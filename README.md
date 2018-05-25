@@ -6,45 +6,46 @@ Implementation of final project to the discipline of Programming II belonging th
 
 ## Specification 
 
-Lista pra mim© 
+### Lista pra mim© 
 
 O Lista pra mim©, é um app que vai revolucionar a forma como você faz compras. Quanto mais você usar o Lista pra mim, mais rápido vai ser gerar novas listas de compras. E você ainda pode economizar anotando preços e locais de compra. Depois é só deixar o Lista pra mim© indicar o melhor lugar para você fazer suas compras.
 
-Requisitos importantes a serem considerados:
-Caso de uso 1: CRUD dos itens compráveis
-Caso de uso 2: outras funcionalidades de pesquisa de itens
-Caso de uso 3: CRUD de listas de compra
-Caso de uso 4: Pesquisar listas de compras
-Caso de uso 5: Geração automática de listas de compras
-Caso de uso 6: Sugestão do melhor estabelecimento para as compras
-Caso de uso 7: Persistência
+#### Requisitos importantes a serem considerados:
+##### Caso de uso 1: CRUD dos itens compráveis
+##### Caso de uso 2: outras funcionalidades de pesquisa de itens
+##### Caso de uso 3: CRUD de listas de compra
+##### Caso de uso 4: Pesquisar listas de compras
+##### Caso de uso 5: Geração automática de listas de compras
+##### Caso de uso 6: Sugestão do melhor estabelecimento para as compras
+##### Caso de uso 7: Persistência
 
-Requisitos importantes a serem considerados:
-É importante ter em mente que ao desenvolver um programa, uma série de decisões importantes de design são tomadas. Uma ótima prática de programação é sempre separar a interface gráfica das classes do domínio do problema. Isso é importante para garantir que mudanças na interface não irão necessitar mudanças nas classes do domínio do problema e mudanças nas classes do domínio do problema não irão requerer mudanças na interface gráfica. Dessa forma, essas partes conceituais do programa ficam isoladas. Nesse projeto iremos alcançar esse isolamento usando uma classe de fachada (ou facade) e classes controladoras (ou controllers). Veja mais detalhes a seguir:
+### Requisitos importantes a serem considerados:
+É importante ter em mente que ao desenvolver um programa, uma série de decisões importantes de design são tomadas. Uma ótima prática de programação é sempre separar a interface gráfica das classes do domínio do problema. Isso é importante para garantir que mudanças na interface não irão necessitar mudanças nas classes do domínio do problema e mudanças nas classes do domínio do problema não irão requerer mudanças na interface gráfica. Dessa forma, essas partes conceituais do programa ficam isoladas. Nesse projeto iremos alcançar esse isolamento usando uma classe de fachada (ou facade) e classes controladoras (ou controllers). Veja mais detalhes a seguir:  
 
-Todas as suas classes que fazem parte do domínio do problema não devem ser acessadas diretamente pelo código da interface gráfica. Portanto, você deve usar o padrão de projeto facade. Para saber mais sobre esse padrão de projeto você pode estudar um pouco aqui ou aqui (ou em outro material que ache legal). Essa classe de fachada vai fazer a comunicação entre a interface gráfica que seu colega irá desenvolver e as classes do domínio do problema que seu grupo irá desenvolver.
-A sua classe de fachada também não deve entender muito das classes do domínio do problema. O ideal é que cada método dessa classe tenha apenas uma linha de código, que será uma chamada por delegação a um método de algum controller. Assim, você terá que usar classes controladoras (controllers) para esconder da fachada tratamentos de entradas que a fachada não deveria ter responsabilidade de fazer, mas que você também não quer delegar para uma classe do domínio do problema. Por exemplo, quando um usuário vai adicionar um item de sua coleção de itens a emprestar, ele irá informar o nome do item, o valor, e quaisquer outras informações para que esse item seja criado. Em vez de chamar diretamente o objeto usuário onde o item deve ser inserido, você deve chamar um controlador que vai checar se essa entrada é válida e só então chama o objeto necessário para a operação. O uso de controladores é mais um nível de abstração para separar a interface gráfica das classes do domínio do problema. Esse controlador faz parte de um padrão de projeto muito usado chamado model-view-controller. Você pode entender um pouco mais desse padrão aqui ou aqui.
+Todas as suas classes que fazem parte do domínio do problema não devem ser acessadas diretamente pelo código da interface gráfica. Portanto, você deve usar o padrão de projeto facade. Para saber mais sobre esse padrão de projeto você pode estudar um pouco aqui ou aqui (ou em outro material que ache legal). Essa classe de fachada vai fazer a comunicação entre a interface gráfica que seu colega irá desenvolver e as classes do domínio do problema que seu grupo irá desenvolver.  
+A sua classe de fachada também não deve entender muito das classes do domínio do problema. O ideal é que cada método dessa classe tenha apenas uma linha de código, que será uma chamada por delegação a um método de algum controller. Assim, você terá que usar classes controladoras (controllers) para esconder da fachada tratamentos de entradas que a fachada não deveria ter responsabilidade de fazer, mas que você também não quer delegar para uma classe do domínio do problema. Por exemplo, quando um usuário vai adicionar um item de sua coleção de itens a emprestar, ele irá informar o nome do item, o valor, e quaisquer outras informações para que esse item seja criado. Em vez de chamar diretamente o objeto usuário onde o item deve ser inserido, você deve chamar um controlador que vai checar se essa entrada é válida e só então chama o objeto necessário para a operação. O uso de controladores é mais um nível de abstração para separar a interface gráfica das classes do domínio do problema. Esse controlador faz parte de um padrão de projeto muito usado chamado model-view-controller. Você pode entender um pouco mais desse padrão aqui ou aqui.  
 
 Você verá que a classe de fachada e os controladores serão escritos aos poucos ao longo do projeto à medida que o grupo avança no desenvolvimento dos casos de uso. Assim, não teremos casos de uso específicos para o desenvolvimento destas entidades, mas lembre-se que a cada caso de uso vocês devem considerar a classe de fachada e os controladores necessários para lidar com o caso de uso sendo desenvolvido.
 
-Caso de uso 1: CRUD dos itens compráveis
+### Caso de uso 1: CRUD dos itens compráveis
 
-Deve ser possível fazer CRUD (Create, read, update and delete) de itens compráveis no Lista pra mim©. Todo item comprável deve manter as seguintes informações obrigatoriamente: identificador único numérico, nome, categoria e mapa de preços. O identificador numérico deve ser gerado automaticamente pelo sistema. Não deve ser permitido que itens iguais sejam adicionados no sistema. Dois itens compráveis são iguais se eles tem o mesmo nome e categoria. As categorias contempladas no Lista pra mim© são: alimentos industrializados, alimentos não industrializados, limpeza e higiene pessoal.
+Deve ser possível fazer CRUD (Create, read, update and delete) de itens compráveis no Lista pra mim©. Todo item comprável deve manter as seguintes informações obrigatoriamente: identificador único numérico, nome, categoria e mapa de preços. O identificador numérico deve ser gerado automaticamente pelo sistema. Não deve ser permitido que itens iguais sejam adicionados no sistema. Dois itens compráveis são iguais se eles tem o mesmo nome e categoria. As categorias contempladas no Lista pra mim© são: alimentos industrializados, alimentos não industrializados, limpeza e higiene pessoal.  
 
-Os itens compráveis podem ser de três tipos:
-Produtos com quantidade fixa (por exemplo, frasco de detergente Brilhol com 500ml, ou saco de algodão Clemer com 300g, ou caixa com 18 ovos). Esses itens devem manter a quantidade e a medida do produto. No exemplo do detergente a quantidade é 500 e a medida é mililitro, já para o algodão a quantidade é 300 e a medida grama. Já no caso do ovo a quantidade é 18 e a medida é "unidade do produto";
-Produtos não industrializados por quilo. Em geral são os produtos de açougue e hortifruti;
-Produto por unidade, como pacote de biscoito recheado Vox, ou copo de requeijão cremoso fofonlí, ou ainda abacaxi. A maioria dos produtos de higiene pessoal e alimentos industrializados recai nessa classe de itens. 
+#### Os itens compráveis podem ser de três tipos:
+- Produtos com quantidade fixa (por exemplo, frasco de detergente Brilhol com 500ml, ou saco de algodão Clemer com 300g, ou caixa com 18 ovos). Esses itens devem manter a quantidade e a medida do produto. No exemplo do detergente a quantidade é 500 e a medida é mililitro, já para o algodão a quantidade é 300 e a medida grama. Já no caso do ovo a quantidade é 18 e a medida é "unidade do produto";  
+- Produtos não industrializados por quilo. Em geral são os produtos de açougue e hortifruti;  
+- Produto por unidade, como pacote de biscoito recheado Vox, ou copo de requeijão cremoso fofonlí, ou ainda abacaxi. A maioria dos produtos de higiene pessoal e alimentos industrializados recai nessa classe de itens.  
 
-O mapa de preços existe para todo item comprável e vai sendo atualizado cada vez que o usuário compra um item em um estabelecimento e obtém o preço do produto. Neste mapa são acumulados os preços para diferentes estabelecimentos de compra. Para os produtos com quantidade fixa, o preço será o preço total da quantidade fixa estabelecida, por exemplo, o preço do pacote de algodão de 300 gramas. Para os produtos por unidade, o preço é pela unidade, por exemplo, o preço de uma unidade de abacaxi ou de uma unidade de pacote de biscoito Vox. Já para os itens não industrializados por quilo, o preço definido deve ser por quilo. Deve ser possível ter uma representação de String de um item comprável das seguintes formas:
+O mapa de preços existe para todo item comprável e vai sendo atualizado cada vez que o usuário compra um item em um estabelecimento e obtém o preço do produto. Neste mapa são acumulados os preços para diferentes estabelecimentos de compra. Para os produtos com quantidade fixa, o preço será o preço total da quantidade fixa estabelecida, por exemplo, o preço do pacote de algodão de 300 gramas. Para os produtos por unidade, o preço é pela unidade, por exemplo, o preço de uma unidade de abacaxi ou de uma unidade de pacote de biscoito Vox. Já para os itens não industrializados por quilo, o preço definido deve ser por quilo. Deve ser possível ter uma representação de String de um item comprável das seguintes formas:  
 Se for produto com quantidade fixa: 219. Algodão Clemer, higiene pessoal, 300 gramas, Preço: <Supermercado BaratoD+, R$ 2,33;  Baratão, R$ 2,30>
 Se for produto não industrializado por quilo: 34. Chuchu, alimentos não industrializados, Preço por quilo: <Supermercado BaratoD+, R$ 1,34;  Baratão, R$ 1,30>
-Se for um produto por unidade: 87. Queijo minas Dali, alimentos industrializados, Preço: <Baratão, R$ 4,30>
+Se for um produto por unidade: 87. Queijo minas Dali, alimentos industrializados, Preço: <Baratão, R$ 4,30>  
 
-Adicionar/remover/pesquisar/atualizar um item no Lista pra mim©  significa adicionar/remover/pesquisar/atualizar um item na coleção de itens daquela instalação do app. Não existe um usuário específico, todos os usuários que acessam o app pelo mesmo celular irá ver a mesma coleção de itens compráveis. A pesquisa de itens oferecida pelo sistema deve usar o seu identificador e portanto pode retornar apenas um  item. Todos os atributos de itens compráveis podem ser atualizados, exceto o seu identificador único. 
+Adicionar/remover/pesquisar/atualizar um item no Lista pra mim©  significa adicionar/remover/pesquisar/atualizar um item na coleção de itens daquela instalação do app. Não existe um usuário específico, todos os usuários que acessam o app pelo mesmo celular irá ver a mesma coleção de itens compráveis. A pesquisa de itens oferecida pelo sistema deve usar o seu identificador e portanto pode retornar apenas um  item. Todos os atributos de itens compráveis podem ser atualizados, exceto o seu identificador único.   
 
-Implemente a parte da classe de fachada e o(s) controlador(es) necessários para lidar com as classes/funcionalidades criadas neste caso de uso. Para avaliar melhor o desenvolvimento deste caso de uso rode esses testes de aceitação com EasyAccept. 
-Caso de uso 2: outras funcionalidades de pesquisa de itens
+Implemente a parte da classe de fachada e o(s) controlador(es) necessários para lidar com as classes/funcionalidades criadas neste caso de uso. Para avaliar melhor o desenvolvimento deste caso de uso rode esses testes de aceitação com EasyAccept.  
+ 
+### Caso de uso 2: outras funcionalidades de pesquisa de itens
 
 Uma vez que o sistema já conhece os itens compráveis, chegou a hora de escrever algumas funcionalidades interessantes.
 
