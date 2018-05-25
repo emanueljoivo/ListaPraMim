@@ -56,71 +56,74 @@ O sistema deve listar todos os itens relacionados a uma dada string de pesquisa.
 
 Implemente a parte da classe de fachada e o(s) controlador(es) necessários para lidar com as classes/funcionalidades criadas neste caso de uso.  Testes de aceitação disponíveis aqui.
 
-Caso de uso 3: CRUD de listas de compra
+### Caso de uso 3: CRUD de listas de compra
 O app deve permitir a criação de listas de compra. Uma lista de compras é caracterizada por um descritor e uma coleção de itens a comprar, ou compras. A lista de compras também insere automaticamente um atributo que identifica a data/hora em que a lista de compras foi criada. O descritor deve descrever a compra, por exemplo, "feira 23/05/2018". Cada compra deve indicar a quantidade e o item comprável. Quando o item comprável for um produto industrializados por quilo, é possível que a quantidade a ser comprada seja um valor não inteiro. O identificador único do item comprável deve ser usado para indicar o item de interesse. Para os outros tipos de itens apenas valores inteiros são aceitos.  Deve ser possível adicionar, remover e atualizar as compras de uma lista de compras. A atualização deve ocorrer apenas na quantidade a ser comprada e não do item comprável em si. Quando uma atualização modificar a quantidade de um item comprável para zero, então este item deve ser removido da lista.  Uma compra de uma lista de compras pode ser pesquisada usando o identificador do item a ser comprado. Cada item comprável só pode aparecer uma vez em cada lista de compra, assim não deve ser possível inserir mais de uma compra para o mesmo item em uma lista de compras. 
 
-O Lista pra mim© não permite que descritores de listas de compras sejam repetidos. Se já existir no sistema uma lista com o descritor "feira 23/05/2017" então nenhuma outra lista de compra pode ter o mesmo descritor.
+O Lista pra mim© não permite que descritores de listas de compras sejam repetidos. Se já existir no sistema uma lista com o descritor "feira 23/05/2017" então nenhuma outra lista de compra pode ter o mesmo descritor.  
 
-Deve ser possível imprimir uma lista de compras como a seguir:
+Deve ser possível imprimir uma lista de compras como a seguir:  
 
-1 Algodão Clemer, higiene pessoal, 300 gramas
-2 Pasta dental DDS, higiene pessoal, 120 gramas
-5 Sabonete de aveia Dorene, higiene pessoal, 80 gramas
-2 Sabão líquido Pomo, limpeza, 1 litro
-1 Creme de ricota Rocotó, alimentos industrializados
-2 Iogurte Lactivia, alimentos industrializado
-1 Queijo minas Dali, alimentos industrializado
-0,5 kg Chuchu, alimentos não industrializados
-1,5 kg Tomate, alimentos não industrializados
-2,0 kg Carne moída extra light, alimentos não industrializados
+1 Algodão Clemer, higiene pessoal, 300 gramas  
+2 Pasta dental DDS, higiene pessoal, 120 gramas  
+5 Sabonete de aveia Dorene, higiene pessoal, 80 gramas  
+2 Sabão líquido Pomo, limpeza, 1 litro  
+1 Creme de ricota Rocotó, alimentos industrializados  
+2 Iogurte Lactivia, alimentos industrializado  
+1 Queijo minas Dali, alimentos industrializado  
+0,5 kg Chuchu, alimentos não industrializados  
+1,5 kg Tomate, alimentos não industrializados  
+2,0 kg Carne moída extra light, alimentos não industrializados  
 
-Note que a lista está ordenada em 2 níveis. Em um primeiro nível está ordenada pela categoria do tipo do item na ordem default: higiene pessoal, limpeza, alimentos industrializados e alimentos não industrializados. Dentro de cada categoria os itens são ordenados pelo nome em ordem crescente.
+Note que a lista está ordenada em 2 níveis. Em um primeiro nível está ordenada pela categoria do tipo do item na ordem default: higiene pessoal, limpeza, alimentos industrializados e alimentos não industrializados. Dentro de cada categoria os itens são ordenados pelo nome em ordem crescente. 
 
-Finalmente, uma vez realizadas as compras da lista, o usuário deve finalizar essa lista e registrar na lista o local onde a compra foi realizada e o valor final da compra. Então além das informações já mencionadas anteriormente que devem ser armazenadas em uma lista de compras, essas duas novas informações devem ser adicionadas.
+Finalmente, uma vez realizadas as compras da lista, o usuário deve finalizar essa lista e registrar na lista o local onde a compra foi realizada e o valor final da compra. Então além das informações já mencionadas anteriormente que devem ser armazenadas em uma lista de compras, essas duas novas informações devem ser adicionadas. 
 
-Caso de uso 4: Pesquisar listas de compras
+### Caso de uso 4: Pesquisar listas de compras
 Listas de compras inseridas no  Lista pra mim© podem ser pesquisadas da seguinte forma:
-Usando o descritor da lista. Neste caso, apenas uma lista de compras deve ser retornada, já que o  Lista pra mim© não aceita descritores repetidos. Uma representação em String da lista de compras deve ser retornada, seguindo a mesma ordenação de impressão da lista de compras;
-Usando uma data. Neste caso o  Lista pra mim© deve retornar todos os descritores as listas de compras criadas na data específica. Esta pesquisa deve retornar uma String com todos os descritores das listas de compras criadas na data especificada, ordenados em ordem lexicográfica crescente dos descritores. Exemplo:
+Usando o descritor da lista. Neste caso, apenas uma lista de compras deve ser retornada, já que o  Lista pra mim© não aceita descritores repetidos. Uma representação em String da lista de compras deve ser retornada, seguindo a mesma ordenação de impressão da lista de compras;  
+Usando uma data. Neste caso o  Lista pra mim© deve retornar todos os descritores as listas de compras criadas na data específica. Esta pesquisa deve retornar uma String com todos os descritores das listas de compras criadas na data especificada, ordenados em ordem lexicográfica crescente dos descritores. Exemplo:  
 		Compras extra atacadão
 		Feira de 23/05/2018
 		Produtos naturais
-Usando o código de um item comprável. Esta pesquisa deve retornar os descritores de todas as listas de compras que contemplam o item especificado, ordenadas pela data de criação das listas. As datas de criação também devem ser retornadas na String de resposta. Exemplo:
-		02/05/2018 - Compras atacadão
-		15/05/2018 - Compras de mês
-		23/05/2018 - Limpeza 25/05/2018
-(No caso em que várias listas forem criadas na mesma data, seus descritores devem ser ordenados em ordem lexicográfica crescente).
-Caso de uso 5: Geração automática de listas de compras
-O Lista pra mim© deve ser capaz de gerar listas de compras para a comodidade de seus usuários. Não é indicado que uma lista de compras já finalizadas seja modificada, pois no futuro os desenvolvedores do Lista pra mim© pretendem gerar relatórios da história das compras, estatísticas de preço, etc. A geração de listas de compras automática segue estratégias diferentes:
+Usando o código de um item comprável. Esta pesquisa deve retornar os descritores de todas as listas de compras que contemplam o item especificado, ordenadas pela data de criação das listas. As datas de criação também devem ser retornadas na String de resposta. Exemplo:  
+		02/05/2018 - Compras atacadão  
+		15/05/2018 - Compras de mês  
+		23/05/2018 - Limpeza 25/05/2018  
+(No caso em que várias listas forem criadas na mesma data, seus descritores devem ser ordenados em ordem lexicográfica crescente).  
+
+### Caso de uso 5: Geração automática de listas de compras  
+O Lista pra mim© deve ser capaz de gerar listas de compras para a comodidade de seus usuários. Não é indicado que uma lista de compras já finalizadas seja modificada, pois no futuro os desenvolvedores do Lista pra mim© pretendem gerar relatórios da história das compras, estatísticas de preço, etc. A geração de listas de compras automática segue estratégias diferentes:  
 Estratégia 1: essa estratégia apenas repete a lista de compras mais recentemente criada. O descritor dessa nova lista de compras é "Lista automática 1 dd/mm/aaaa". Essa data corresponde à data na qual essa lista automática está sendo gerada. Esta lista de compras inicia sem um preço final e não finalizada;
 Estratégia 2: nessa estratégia uma lista de compras é gerada usando como base um item de compra específico que deve ser especificado pelo usuário. O Lista pra mim© deve encontrar a última lista de compras que contempla o item de compra indicado pelo usuário. O descritor dessa nova lista de compras é "Lista automática 2 dd/mm/aaaa". Essa data corresponde à data na qual essa lista automática está sendo gerada. Esta lista de compras inicia sem um preço final e não finalizada;
-Estratégia 3: A última estratégia gera uma lista de compras com os itens de compras que mais aparecem nas listas de compras anteriores. Para que um item de compras entre nessa lista ele tem que ter aparecido em pelo menos metade das listas de compras já inseridas no app. O descritor dessa nova lista de compras é "Lista automática 3 dd/mm/aaaa". Essa data corresponde à data na qual essa lista automática está sendo gerada. Esta lista de compras inicia sem um preço final e não finalizada.
-Caso de uso 6: Sugestão do melhor estabelecimento para as compras
-Com base nos preços cadastrados nos itens de compra, o Lista pra mim© deve ser capaz de indicar o estabelecimento que vai resultar no menor preço para uma determinada lista de compras. É possível que não exista informação de preço para todos os produtos em todos os estabelecimentos de compra. Isso não deve impedir que o app sugira um estabelecimento. A sugestão dada deve levar em conta apenas os preços dos produtos cadastrados para os estabelecimentos de forma comparativa, assim, apenas os itens com preços em todos os estabelecimentos devem ser considerados para essa decisão. Vejamos um exemplo:
+Estratégia 3: A última estratégia gera uma lista de compras com os itens de compras que mais aparecem nas listas de compras anteriores. Para que um item de compras entre nessa lista ele tem que ter aparecido em pelo menos metade das listas de compras já inseridas no app. O descritor dessa nova lista de compras é "Lista automática 3 dd/mm/aaaa". Essa data corresponde à data na qual essa lista automática está sendo gerada. Esta lista de compras inicia sem um preço final e não finalizada.  
 
-1 Algodão Clemer, higiene pessoal, 300 gramas
-2 Sabão líquido Pomo, limpeza, 1 litro
-1 Queijo minas Dali, alimentos industrializado
-0,5 kg Chuchu, alimentos não industrializados
-2,0 kg Carne moída extra light, alimentos não industrializados
+### Caso de uso 6: Sugestão do melhor estabelecimento para as compras
+Com base nos preços cadastrados nos itens de compra, o Lista pra mim© deve ser capaz de indicar o estabelecimento que vai resultar no menor preço para uma determinada lista de compras. É possível que não exista informação de preço para todos os produtos em todos os estabelecimentos de compra. Isso não deve impedir que o app sugira um estabelecimento. A sugestão dada deve levar em conta apenas os preços dos produtos cadastrados para os estabelecimentos de forma comparativa, assim, apenas os itens com preços em todos os estabelecimentos devem ser considerados para essa decisão. Vejamos um exemplo:  
 
-Considerando as informações que temos para estes itens de compra (ver abaixo), percebemos que os dois estabelecimentos mais mencionados são BaratoD+ e Baratão. Nesse caso, o software que sugere o melhor lugar para realizar as compras deve indicar os itens que registraram preços para BaratoD+ e Baratão.
+1 Algodão Clemer, higiene pessoal, 300 gramas  
+2 Sabão líquido Pomo, limpeza, 1 litro  
+1 Queijo minas Dali, alimentos industrializado  
+0,5 kg Chuchu, alimentos não industrializados  
+2,0 kg Carne moída extra light, alimentos não industrializados  
 
-219. Algodão Clemer, higiene pessoal, 300 gramas, Preço: <Supermercado BaratoD+, R$ 2,33;  Baratão, R$ 2,30>
-102. Sabão líquido Pomo, limpeza, 1 litro, Preço: <Supermercado BaratoD+, R$ 12,89;  Baratão, R$ 12,30>
-34. Chuchu, alimentos não industrializados, Preço por quilo: <Supermercado BaratoD+, R$ 1,34;  Baratão, R$ 1,30>
-87. Queijo minas Dali, alimentos industrializados, Preço: <Baratão, R$ 4,30>
-201. Carne moída extra light, alimentos não industrializados, Preço por quilo: <Supermercado BaratoD+, R$ 42,34;  Baratão, R$ 41,30>
+Considerando as informações que temos para estes itens de compra (ver abaixo), percebemos que os dois estabelecimentos mais mencionados são BaratoD+ e Baratão. Nesse caso, o software que sugere o melhor lugar para realizar as compras deve indicar os itens que registraram preços para BaratoD+ e Baratão.  
 
-Neste exemplo, não é possível comparar o preço dessas compras incluindo o queijo minas, já que para este queijo só há registro de preço para o supermercado Baratão. Esta funcionalidade deve indicar os dois estabelecimentos mais indicados para estas compras e o preço parcial das compras em cada um, apresentando primeiro quem tem o menor preço parcial:
+219. Algodão Clemer, higiene pessoal, 300 gramas, Preço: <Supermercado BaratoD+, R$ 2,33;  Baratão, R$ 2,30>  
+102. Sabão líquido Pomo, limpeza, 1 litro, Preço: <Supermercado BaratoD+, R$ 12,89;  Baratão, R$ 12,30>  
+34. Chuchu, alimentos não industrializados, Preço por quilo: <Supermercado BaratoD+, R$ 1,34;  Baratão, R$ 1,30>  
+87. Queijo minas Dali, alimentos industrializados, Preço: <Baratão, R$ 4,30>  
+201. Carne moída extra light, alimentos não industrializados, Preço por quilo: <Supermercado BaratoD+, R$ 42,34;  Baratão, R$ 41,30>  
 
-Baratão, R$ 113,46
-BaratoD+, R$ 110,15
+Neste exemplo, não é possível comparar o preço dessas compras incluindo o queijo minas, já que para este queijo só há registro de preço para o supermercado Baratão. Esta funcionalidade deve indicar os dois estabelecimentos mais indicados para estas compras e o preço parcial das compras em cada um, apresentando primeiro quem tem o menor preço parcial:  
+  
+Baratão, R$ 113,46  
+BaratoD+, R$ 110,15  
 
-Com base nesses itens o Baratão deve ser o melhor lugar para fazer essas compras. No caso em que os locais de compra mais registrados não tenham itens em comum, essa funcionalidade deve indicar esse problema.
+Com base nesses itens o Baratão deve ser o melhor lugar para fazer essas compras. No caso em que os locais de compra mais registrados não tenham itens em comum, essa funcionalidade deve indicar esse problema.  
+  
+Faltam dados para identificar se o melhor local de compra e o Baratão ou o BaratoD+  
 
-Faltam dados para identificar se o melhor local de compra e o Baratão ou o BaratoD+
-Caso de uso 7: Persistência
+### Caso de uso 7: Persistência
 
 O Lista pra mim©  deve armazenar em disco todos os dados necessários para manter o seu estado mesmo que o programa seja fechado. Assim, se eu usar o programa, adicionar listas de compras e itens de compra, gerar novas listas automaticamente, modificar as listas, etc. tudo isso deve ser visto se eu fechar o programa e abrir novamente.
 
