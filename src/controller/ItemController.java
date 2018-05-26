@@ -9,7 +9,15 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 	
-	public void criaItemCompravel(String nome, String categoria) {
-		this.itemService.cria(nome, categoria);
+	public void criaItem(String nome) {
+		if (nome != null && !nome.trim().isEmpty()) {
+			this.itemService.cria(nome, "a");
+		} else {
+			throw new IllegalArgumentException("Campos de entrada inválidos.");
+		}		
 	}	
+	
+	public String listaItem(long id) {
+		return this.itemService.ler(id).toString();
+	}
 }

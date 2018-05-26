@@ -1,13 +1,15 @@
 package services;
 
+import model.item.Item;
+
 public interface ItemService {
 
 	public void cria(String nome, String categoria);
 	
-	public void ler(long id);
+	public Item ler(long id);
 	
 	public void atualiza(long id);
 	
-	public void deleta(long id);
+	public boolean deleta(long id);
 	
 }

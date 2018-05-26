@@ -1,7 +1,7 @@
 package services;
 
 import factory.ItemFactory;
-import model.Item;
+import model.item.Item;
 import repository.ItemRepository;
 
 public class ItemServiceImpl implements ItemService {
@@ -21,8 +21,8 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public void ler(long id) {
-		// TODO Auto-generated method stub		
+	public Item ler(long id) {
+		return this.itemRepository.read(id);		
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public void deleta(long id) {
-		// TODO Auto-generated method stub		
+	public boolean deleta(long id) {
+		return this.itemRepository.delete(id);
 	}
 }

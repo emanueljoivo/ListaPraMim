@@ -1,4 +1,4 @@
-package model;
+package model.item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +15,8 @@ public class Item {
 		this.nome = nome;
 		this.categoria = categoria;
 		this.mapaDePrecos = new HashMap<>();
-	}
-	
+	}	
+
 	/**
 	 * @return the id
 	 */
@@ -64,6 +64,15 @@ public class Item {
 	 */
 	public void setMapaDePrecos(Map<String, Double> mapaDePrecos) {
 		this.mapaDePrecos = mapaDePrecos;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.id + ". " + this.nome + ", " 
+				+ this.categoria + ", ";
 	}
 
 	/* (non-Javadoc)

@@ -1,6 +1,6 @@
 package factory;
 
-import model.Item;
+import model.item.Item;
 
 public class ItemFactoryImpl implements ItemFactory {
 	private long itemCounter;
