@@ -3,7 +3,7 @@ package util;
 /**
  * Classe criada para realizar a validação de dados antes que sejam cadastrados no sistema.
  * 
- * @author Lucas de Medeiros
+ * @author lucas
  */
 
 public class Validator {
@@ -16,20 +16,21 @@ public class Validator {
 	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
 	 */
 	public static void validatorEmptyString(String str, String msg) throws IllegalArgumentException {
-		if (str != null)
-			if (str.trim().isEmpty())
-				throw new IllegalArgumentException(msg);
+		validatorNullObject(str, "String nula!");
+		
+		if (str.trim().isEmpty())
+			throw new IllegalArgumentException(msg);
 	}
 	
 	/**
-	 * Método que faz a validação de uma String, garantindo que não seja nula.
+	 * Método que faz a validação de um objeto, garantindo que não seja nulo.
 	 * 
-	 * @param str string a ser validada.
+	 * @param o objeto a ser validado.
 	 * @param msg mensagem a ser exibida caso a exceção seja lançada.
-	 * @throws NullPointerException exceção lançada quando a string for nula.
+	 * @throws NullPointerException exceção lançada quando o objeto for nulo.
 	 */
-	public static void validatorNullString(String str, String msg) throws NullPointerException {
-		if (str == null)
+	public static void validatorNullObject(Object o, String msg) throws NullPointerException {
+		if (o == null)
 			throw new NullPointerException(msg);
 	}
 	
