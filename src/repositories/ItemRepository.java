@@ -1,5 +1,5 @@
-package repository;
+package repositories;
 
-import model.item.Item;
+import entities.item.Item;
 
 public interface ItemRepository extends Repository<Item> {}

@@ -1,6 +1,6 @@
 package services;
 
-import model.item.Item;
+import entities.item.Item;
 
 public interface ItemService {
 

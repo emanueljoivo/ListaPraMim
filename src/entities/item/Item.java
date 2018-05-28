@@ -1,4 +1,4 @@
-package model.item;
+package entities.item;
 
 import java.util.HashMap;
 import java.util.Map;

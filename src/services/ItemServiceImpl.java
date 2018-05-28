@@ -1,8 +1,8 @@
 package services;
 
 import factory.ItemFactory;
-import model.item.Item;
-import repository.ItemRepository;
+import entities.item.Item;
+import repositories.ItemRepository;
 
 public class ItemServiceImpl implements ItemService {
 	

@@ -1,6 +1,6 @@
 package factory;
 
-import model.item.Item;
+import entities.item.Item;
 
 public interface ItemFactory {
 	

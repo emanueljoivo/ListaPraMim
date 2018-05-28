@@ -8,8 +8,6 @@ public class System {
 	
 	private SystemFactory systemFactory;
 	
-	public System() {}
-	
 	public void init() {
 		this.systemFactory = new SystemFactoryImpl();
 	}

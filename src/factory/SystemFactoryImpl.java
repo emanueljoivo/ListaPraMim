@@ -1,8 +1,8 @@
 package factory;
 
 import controller.ItemController;
-import repository.ItemRepository;
-import repository.ItemRepositoryImpl;
+import repositories.ItemRepository;
+import repositories.ItemRepositoryImpl;
 import services.ItemService;
 import services.ItemServiceImpl;
 

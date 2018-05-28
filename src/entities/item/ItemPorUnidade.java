@@ -1,4 +1,4 @@
-package model.item;
+package entities.item;
 
 public class ItemPorUnidade extends Item {
 	
