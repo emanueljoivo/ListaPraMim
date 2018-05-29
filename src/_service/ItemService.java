@@ -1,6 +1,6 @@
-package services;
+package _service;
 
-import entities.item.Item;
+import _entities.item.Item;
 
 public interface ItemService {
 

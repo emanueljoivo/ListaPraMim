@@ -1,10 +1,10 @@
-package factory;
+package _factory;
 
-import controller.ItemController;
-import repositories.ItemRepository;
-import repositories.ItemRepositoryImpl;
-import services.ItemService;
-import services.ItemServiceImpl;
+import _controller.ItemController;
+import _repository.ItemRepository;
+import _repository.ItemRepositoryImpl;
+import _service.ItemService;
+import _service.ItemServiceImpl;
 
 public class SystemFactoryImpl implements SystemFactory {
 	

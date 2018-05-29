@@ -1,9 +1,9 @@
-package repositories;
+package _repository;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import entities.item.Item;
+import _entities.item.Item;
 
 public class ItemRepositoryImpl implements ItemRepository {
 	private Set<Item> itens;	

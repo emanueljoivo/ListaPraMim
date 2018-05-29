@@ -1,4 +1,4 @@
-package entities.item;
+package _entities.item;
 
 public class ItemQntdFixa extends Item {
 	private int qntd;

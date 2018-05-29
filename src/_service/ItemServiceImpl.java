@@ -1,8 +1,8 @@
-package services;
+package _service;
 
-import factory.ItemFactory;
-import entities.item.Item;
-import repositories.ItemRepository;
+import _factory.ItemFactory;
+import _entities.item.Item;
+import _repository.ItemRepository;
 
 public class ItemServiceImpl implements ItemService {
 	
@@ -15,8 +15,14 @@ public class ItemServiceImpl implements ItemService {
 	}	
 	
 	@Override
-	public void cria(String nome, String categoria) {
-		Item itemAtual = this.itemFactory.cria(nome, categoria);
+	public void cria(String nome, String categoria) throws IllegalArgumentException {
+		Item itemAtual;
+		try {
+			itemAtual = this.itemFactory.criaItem(nome, categoria);
+		} catch (IllegalArgumentException ex) {
+			throw new IllegalArgumentException( ex.getMessage ());
+		}
+
 		this.itemRepository.save(itemAtual);
 	}
 

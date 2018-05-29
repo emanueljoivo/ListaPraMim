@@ -1,4 +1,6 @@
-package entities.item;
+package _entities.item;
+
+import _entities.enums.ItemCategoria;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,10 +9,10 @@ public class Item {
 	
 	private long id;
 	private String nome;
-	private String categoria;
+	private ItemCategoria categoria;
 	private Map<String, Double> mapaDePrecos;
 	
-	public Item(long id, String nome, String categoria) {
+	public Item(long id, String nome, ItemCategoria categoria) {
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;
@@ -41,14 +43,14 @@ public class Item {
 	/**
 	 * @return the categoria
 	 */
-	public String getCategoria() {
+	public ItemCategoria getCategoria() {
 		return categoria;
 	}
 
 	/**
 	 * @param categoria the categoria to set
 	 */
-	public void setCategoria(String categoria) {
+	public void setCategoria(ItemCategoria categoria) {
 		this.categoria = categoria;
 	}
 

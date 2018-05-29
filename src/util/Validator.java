@@ -7,6 +7,31 @@ package util;
  */
 
 public class Validator {
+//	private String example = String.format("A string %s", aVariable);
+
+	private static final String ENTRADA_VAZIA = "";
+	private static final String ENTRADA_NULA = "";
+
+	/**
+	 * Analisa duas strings verificando se são vazias ou nulas.
+	 * @param str1 primeira string a ser avaliada.
+	 * @param str2 segunda string a ser avaliada.
+	 * @throws IllegalArgumentException Exceção lançanda caso pelo menos das strings serem vazia ou nula.
+	 */
+	public static void validatorString(String str1, String str2, String msg) throws IllegalArgumentException {
+		validatorString( str1, str2, msg );
+	}
+
+	/**
+	 * Analisa uma string verificando se é vazia ou nula.
+	 * @param str string a ser avaliada.
+	 * @param msg
+	 * @throws IllegalArgumentException
+	 */
+	public static void validatorString(String str, String msg) throws IllegalArgumentException {
+		validatorEmptyString( str, msg );
+		validatorNullObject(str, msg);
+	}
 	
 	/**
 	 * Método que faz a validação de uma String, garantindo que não seja vazia.
@@ -16,8 +41,6 @@ public class Validator {
 	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
 	 */
 	public static void validatorEmptyString(String str, String msg) throws IllegalArgumentException {
-		validatorNullObject(str, "String nula!");
-		
 		if (str.trim().isEmpty())
 			throw new IllegalArgumentException(msg);
 	}

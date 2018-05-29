@@ -1,4 +1,4 @@
-package entities.item;
+package _entities.item;
 
 public class ItemPorQuilo extends Item {
 	private int kg;

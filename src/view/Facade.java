@@ -11,20 +11,8 @@ public class Facade {
 		this.system.init();		
 	}	
 	
-	public void criaItemIndustrializado(String nome) {
-		this.system.getItemController().criaItem(nome);
-	}
-	
-	public void criaItemNaoIndustrializado(String nome) {
-		
-	}
-	
-	public void criaItemLimpeza(String nome) {
-		
-	}
-	
-	public void criaItemHigienePessoal(String nome) {
-		
+	public void criaItemIndustrializado(String nome, String categoria) throws IllegalArgumentException {
+		this.system.getItemController().criaItem(nome, categoria);
 	}
 	
 	public void atualizaNomeItem(int id, String novoNome) {

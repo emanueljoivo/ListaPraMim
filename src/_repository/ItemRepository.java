@@ -1,5 +1,5 @@
-package repositories;
+package _repository;
 
-import entities.item.Item;
+import _entities.item.Item;
 
 public interface ItemRepository extends Repository<Item> {}
