@@ -7,7 +7,7 @@ package enums;
  *
  */
 public enum MensagensDeErro {
-	OBJ_NULO(""),
+	NOME_INVALIDO("Nao foi possivel cadastrar"),
 	STR_VAZIA("");	
 	
 	private String mensagem;

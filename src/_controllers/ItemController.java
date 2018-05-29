@@ -51,10 +51,12 @@ public class ItemController {
 	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException {
 
 		try {
-			Validator.validatorString(nome,categoria);
+			Validator.validatorString(nome);
+			Validator.validatorString(categoria);
+			Validator.validatorString(unidadeDeMedida);
 		} catch (Exception ex) {
 			throw new IllegalArgumentException(ex.getMessage());
-		} 
+		}
 
 		this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}

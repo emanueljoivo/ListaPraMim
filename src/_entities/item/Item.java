@@ -93,6 +93,7 @@ public abstract class Item {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
