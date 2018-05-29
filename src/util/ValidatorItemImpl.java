@@ -1,7 +1,7 @@
 package util;
 
 import _errormessages.ItemExceptionMessage;
-import enums.ItemErrors;
+import enums.ItemException;
 
 /**
  * Implementação da classe que valida os dados de itens compráveis do sistema.
@@ -29,8 +29,8 @@ public class ValidatorItemImpl extends Validator {
 	 */
 	private void validaCategoriaENome(String nome, String categoria) 
 			throws NullPointerException, IllegalArgumentException {
-		this.generalValidatorString(nome, ItemErrors.NOME_INVALIDO);
-		this.generalValidatorString(nome, ItemErrors.CATEGORIA_INVALIDA);
+		this.generalValidatorString(nome, ItemException.NOME_INVALIDO.getValue());
+		this.generalValidatorString(nome, ItemException.CATEGORIA_INVALIDA.getValue());
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class ValidatorItemImpl extends Validator {
 	public void validaItem(String nome, String categoria, int unidade) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(unidade, ItemErrors.UNIDADE_INVALIDA);
+		this.generalValidatorNumber(unidade, ItemException.UNIDADE_INVALIDA.getValue());
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class ValidatorItemImpl extends Validator {
 	public void validaItem(String nome, String categoria, double kg) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(kg, ItemErrors.QUILO_INVALIDO);
+		this.generalValidatorNumber(kg, ItemException.QUILO_INVALIDO.getValue());
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class ValidatorItemImpl extends Validator {
 	public void validaItem(String nome, String categoria, int qtd, String unidadeDeMedida) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(qtd, ItemErrors.QUANTIDADE_INVALIDA);
-		this.generalValidatorString(unidadeDeMedida, ItemErrors.UNIDADE_DE_MEDIDA_INVALIDA);
+		this.generalValidatorNumber(qtd, ItemException.QUANTIDADE_INVALIDA.getValue());
+		this.generalValidatorString(unidadeDeMedida, ItemException.UNIDADE_DE_MEDIDA_INVALIDA.getValue());
 	}
 }

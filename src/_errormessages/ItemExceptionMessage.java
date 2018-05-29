@@ -1,6 +1,6 @@
 package _errormessages;
 
-import enums.ItemErrors;
+import enums.ItemException;
 
 /**
  * Implementação da classe que retorna as mensagens de um possível erro ao tentar cadastrar um item.
@@ -9,13 +9,13 @@ import enums.ItemErrors;
 
 public class ItemExceptionMessage implements ExceptionMessage {
 	
-	private ItemErrors itemErrors;
+	private ItemException itemException;
 	
 	/**
 	 * Construtor de ItemExceptionMessage, que inicialmente, deixa itemErrors nulo.
 	 */
 	public ItemExceptionMessage() {
-		itemErrors = null;
+		itemException = null;
 	}
 
 	/**
@@ -23,8 +23,8 @@ public class ItemExceptionMessage implements ExceptionMessage {
 	 */
 	@Override
 	public String getMessage() {
-		if (itemErrors != null) {
-			switch (itemErrors) {
+		if (itemException != null) {
+			switch (itemException) {
 			case CATEGORIA_INVALIDA:
 				return "Erro no cadastro de item: categoria nao pode ser vazia ou nula";
 			case NOME_INVALIDO:
@@ -42,13 +42,8 @@ public class ItemExceptionMessage implements ExceptionMessage {
 		
 		return null;
 	}
-
-	/**
-	 * See {@link _errormessages.ExceptionMessage#setEnum(Enum)}
-	 */
-	@SuppressWarnings("rawtypes")
-	@Override
-	public void setEnum(Enum e) {
-		itemErrors = (ItemErrors) e;
+	
+	public void setEnum(int value) {
+		this.itemException = ItemException.values()[value];
 	}
 }

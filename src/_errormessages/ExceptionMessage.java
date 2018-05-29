@@ -20,5 +20,5 @@ public interface ExceptionMessage {
 	 * 
 	 * @param e enum com os possíveis erros que podem acontecer.
 	 */
-	void setEnum(Enum e);
+	void setEnum(int value);
 }

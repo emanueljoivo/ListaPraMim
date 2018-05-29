@@ -64,7 +64,6 @@ public abstract class Validator implements Validation {
 			throw new IllegalArgumentException();
 	}
 	
-	@SuppressWarnings("rawtypes")
 	/**
 	 * Método para validar uma string, retornando a devida mensagem do erro, caso aconteça um problema na validação.
 	 * 
@@ -73,9 +72,9 @@ public abstract class Validator implements Validation {
 	 * @throws IllegalArgumentException exceção que será lançada caso a string seja vazia.
 	 * @throws NullPointerException exceção que será lançada caso a string seja nula.
 	 */
-	protected void generalValidatorString(String str, Enum e) 
+	protected void generalValidatorString(String str, int e) 
 			throws IllegalArgumentException, NullPointerException {
-		errorMessage.setEnum(e);
+		this.errorMessage.setEnum(e);
 		try {
 			this.validatorString(str);
 		} catch (IllegalArgumentException iae) {
@@ -85,7 +84,6 @@ public abstract class Validator implements Validation {
 		}
 	}
 	
-	@SuppressWarnings("rawtypes")
 	/**
 	 * Método para validar um numero menor que zero, retornando a devida mensagem do erro, 
 	 * caso aconteça um problema na validação.
@@ -94,9 +92,9 @@ public abstract class Validator implements Validation {
 	 * @param e valor do enum que vai definir a mensagem de erro a ser mostrada.
 	 * @throws IllegalArgumentException exceção que será lançada caso o número seja menor que zero.
 	 */
-	protected void generalValidatorNumber(double n, Enum e) 
+	protected void generalValidatorNumber(double n, int e) 
 			throws IllegalArgumentException {
-		errorMessage.setEnum(e);
+		this.errorMessage.setEnum(e);
 		try {
 			this.validatorNumber(n);
 		} catch (IllegalArgumentException iae) {
