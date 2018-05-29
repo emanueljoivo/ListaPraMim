@@ -7,11 +7,7 @@ package util;
  */
 
 public class Validator {
-//	private String example = String.format("A string %s", aVariable);
-
-	private static final String ENTRADA_VAZIA = "";
-	private static final String ENTRADA_NULA = "";
-
+	
 	/**
 	 * Analisa duas strings verificando se são vazias ou nulas.
 	 * @param str1 primeira string a ser avaliada.

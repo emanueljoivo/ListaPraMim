@@ -1,8 +1,8 @@
-package view;
+package _view;
 
-import _controller.ItemController;
-import _factory.SystemFactory;
-import _factory.SystemFactoryImpl;
+import _controllers.ItemController;
+import _factories.SystemFactory;
+import _factories.SystemFactoryImpl;
 
 public class System {
 	

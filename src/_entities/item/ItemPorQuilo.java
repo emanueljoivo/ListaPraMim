@@ -1,9 +1,11 @@
 package _entities.item;
 
+import enums.ItemCategoria;
+
 public class ItemPorQuilo extends Item {
-	private int kg;
+	private double kg;
 		
-	public ItemPorQuilo(long id, String nome, String categoria, int kg) {
+	public ItemPorQuilo(int id, String nome, ItemCategoria categoria, double kg) {
 		super(id, nome, categoria);
 		this.kg = kg;
 	}
@@ -11,7 +13,7 @@ public class ItemPorQuilo extends Item {
 	/**
 	 * @return the kg
 	 */
-	public int getKg() {
+	public double getKg() {
 		return kg;
 	}
 

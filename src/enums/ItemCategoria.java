@@ -1,4 +1,4 @@
-package _entities.enums;
+package enums;
 
 public enum ItemCategoria {
 

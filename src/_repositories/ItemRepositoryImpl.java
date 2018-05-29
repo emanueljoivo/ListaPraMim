@@ -1,4 +1,4 @@
-package _repository;
+package _repositories;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,12 +18,22 @@ public class ItemRepositoryImpl implements ItemRepository {
 	}
 
 	@Override
-	public boolean delete(long id) {
+	public boolean delete(int id) {
 		Item o = findById(id);		
 		return (o != null) && (itens.remove(o));
 	}
 	
-	private Item findById(long id) {
+	@Override
+	public Item read(int id) {
+		return findById(id);
+	}
+	
+	@Override
+	public boolean contains(int id) {		
+		return findById(id) != null;
+	}
+	
+	private Item findById(int id) {
 		for (Item item : itens) {
 			if (item.getId() == id) {
 				return item;
@@ -31,13 +41,4 @@ public class ItemRepositoryImpl implements ItemRepository {
 		}
 		return null;
 	}
-	
-	@Override
-	public Item read(long id) {
-		return findById(id);
-	}
-	
-	public boolean containsById(long id) {		
-		return findById(id) != null;
-	}	
 }

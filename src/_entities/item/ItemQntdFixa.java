@@ -1,10 +1,12 @@
 package _entities.item;
 
+import enums.ItemCategoria;
+
 public class ItemQntdFixa extends Item {
 	private int qntd;
 	private String unidadeDeMedida;
 
-	public ItemQntdFixa(long id, String nome, String categoria, int qntd, String unidadeDeMedida) {
+	public ItemQntdFixa(int id, String nome, ItemCategoria categoria, int qntd, String unidadeDeMedida) {
 		super(id, nome, categoria);
 		this.qntd = qntd;
 		this.unidadeDeMedida = unidadeDeMedida;		

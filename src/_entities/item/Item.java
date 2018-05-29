@@ -1,18 +1,18 @@
 package _entities.item;
 
-import _entities.enums.ItemCategoria;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class Item {
+import enums.ItemCategoria;
+
+public abstract class Item {
 	
-	private long id;
+	private int id;
 	private String nome;
 	private ItemCategoria categoria;
 	private Map<String, Double> mapaDePrecos;
 	
-	public Item(long id, String nome, ItemCategoria categoria) {
+	public Item(int id, String nome, ItemCategoria categoria) {
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;

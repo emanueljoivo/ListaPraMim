@@ -1,10 +1,12 @@
 package _entities.item;
 
+import enums.ItemCategoria;
+
 public class ItemPorUnidade extends Item {
 	
 	private int unidades;
 	
-	public ItemPorUnidade(long id, String nome, String categoria, int unidades) {
+	public ItemPorUnidade(int id, String nome, ItemCategoria categoria, int unidades) {
 		super(id, nome, categoria);
 		this.unidades = unidades;
 	}

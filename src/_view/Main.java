@@ -1,7 +1,4 @@
-package view;
-
-import view.Facade;
-import view.System;
+package _view;
 
 public class Main {
 

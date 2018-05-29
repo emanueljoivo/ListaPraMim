@@ -1,4 +1,4 @@
-package _repository;
+package _repositories;
 
 import _entities.item.Item;
 

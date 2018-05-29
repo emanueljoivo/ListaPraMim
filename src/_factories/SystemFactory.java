@@ -1,6 +1,6 @@
-package _factory;
+package _factories;
 
-import _controller.ItemController;
+import _controllers.ItemController;
 
 public interface SystemFactory {
 	
