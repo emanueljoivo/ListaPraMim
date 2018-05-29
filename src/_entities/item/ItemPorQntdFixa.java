@@ -2,11 +2,23 @@ package _entities.item;
 
 import enums.ItemCategoria;
 
-public class ItemQntdFixa extends Item {
+/**
+ * Classe que representa um item com quantidade fixa.
+ *
+ */
+public class ItemPorQntdFixa extends Item {
 	private int qntd;
 	private String unidadeDeMedida;
 
-	public ItemQntdFixa(int id, String nome, ItemCategoria categoria, int qntd, String unidadeDeMedida) {
+	/**
+	 * Constrói um item do tipo ItemPorQntdFixa.
+	 * @param id
+	 * @param nome
+	 * @param categoria
+	 * @param qntd
+	 * @param unidadeDeMedida
+	 */
+	public ItemPorQntdFixa(int id, String nome, ItemCategoria categoria, int qntd, String unidadeDeMedida) {
 		super(id, nome, categoria);
 		this.qntd = qntd;
 		this.unidadeDeMedida = unidadeDeMedida;		

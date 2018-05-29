@@ -5,6 +5,11 @@ import java.util.Map;
 
 import enums.ItemCategoria;
 
+/**
+ * Classe abstrata que representa o tipo mais geral de items.  
+ * 
+ * @author Emanuel Joivo
+ */
 public abstract class Item {
 	
 	private int id;
@@ -74,7 +79,7 @@ public abstract class Item {
 	@Override
 	public String toString() {
 		return this.id + ". " + this.nome + ", " 
-				+ this.categoria + ", ";
+				+ this.categoria.getValue() + ", ";
 	}
 
 	/* (non-Javadoc)

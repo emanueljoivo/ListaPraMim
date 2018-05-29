@@ -2,10 +2,21 @@ package _entities.item;
 
 import enums.ItemCategoria;
 
+/**
+ * Classe que representa um item vendido por unidade.
+ *
+ */
 public class ItemPorUnidade extends Item {
 	
 	private int unidades;
 	
+	/**
+	 * Constrói um item do tipo ItemPorUnidade.
+	 * @param id
+	 * @param nome
+	 * @param categoria
+	 * @param unidades
+	 */
 	public ItemPorUnidade(int id, String nome, ItemCategoria categoria, int unidades) {
 		super(id, nome, categoria);
 		this.unidades = unidades;

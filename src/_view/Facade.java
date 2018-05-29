@@ -1,41 +1,26 @@
 package _view;
 
-public class Facade {
-	private System system;
+/**
+ * Interface que define contrato de funcionalidades oferecidas pelo sistema.
+ * 
+ * @author Emanuel Joivo
+ *
+ */
+public interface Facade {	
 	
-	public Facade(System system) {
-		this.system = system;
-	}
+	void start();		
 	
-	public void start() {
-		this.system.init();		
-	}	
+	void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida);
 	
-	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException {
-		this.system.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida);
-	}
+	void adicionatem(String nome, String categoria, int unidade);
 	
-	public void adicionatem(String nome, String categoria, int unidade) {
-		this.system.getItemController().adicionaItem(nome, categoria, unidade);
-	}
+	void adicionaItem(String nome, String categoria, double kg);
 	
-	public void adicionaItem(String nome, String categoria, double kg) {
-		this.system.getItemController().adicionaItem(nome, categoria, kg);
-	}
+	void listaItem(int id);
 	
-	public void atualizaNomeItem(int id, String novoNome) {
-		this.system.getItemController().atualizaNomeItem(id, novoNome); 
-	}
+	void atualizaNomeItem(int id, String novoNome);
 	
-	public void atualizaCategoriaItem(int id, String novaCategoria) {
-		this.system.getItemController().atualizaCategoriaItem(id, novaCategoria);
-	}
-		
-	public void listaItem(int id) {
-		this.system.getItemController().listaItem(id);
-	}
+	void atualizaCategoriaItem(int id, String novaCategoria);	
 	
-	public void deletaItem(int id) {
-		this.system.getItemController().deletaItem(id);
-	}	
+	void deletaItem(int id);
 }

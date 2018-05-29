@@ -1,5 +1,11 @@
 package enums;
 
+/**
+ * Enum de mensagens de erro para exceções.
+ * 
+ * @author Emanuel Joivo
+ *
+ */
 public enum MensagensDeErro {
 	OBJ_NULO(""),
 	STR_VAZIA("");	
