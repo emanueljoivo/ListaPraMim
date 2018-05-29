@@ -7,13 +7,7 @@ package enums;
  *
  */
 public enum MensagensDeErro {
-	NOME_INVALIDO("Nao foi possivel cadastrar"),
-	STR_VAZIA("");	
 	
-	private String mensagem;
-	
-	MensagensDeErro(String mensagem){ this.mensagem = mensagem;}
-	
-	public String getValue() {return this.mensagem;}
+	NOME_INVALIDO, CATEGORIA_INVALIDA, QUANTIDADE_INVALIDA, QUILO_INVALIDO, UNIDADE_DE_MEDIDA_INVALIDA;
 
 }

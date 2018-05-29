@@ -1,5 +1,8 @@
 package util;
 
+import _errormessages.MensagemDeErro;
+import enums.MensagensDeErro;
+
 /**
  * Classe criada para realizar a validação de dados antes que sejam cadastrados no sistema.
  * 
@@ -8,63 +11,65 @@ package util;
 
 public class Validator {
 	
-	/**
-	 * Analisa duas strings verificando se são vazias ou nulas.
-	 * 
-	 * @param str1 primeira string a ser avaliada.
-	 * @param str2 segunda string a ser avaliada.
-	 * @throws IllegalArgumentException Exceção lançanda caso pelo menos uma das strings seja vazia ou nula.
-	 */
-	public static void validatorString(String str1, String str2) throws IllegalArgumentException {
-		validatorString(str1);
-		validatorString(str2);
+	private MensagemDeErro mensagem;
+	
+	public Validator(MensagemDeErro msg) {
+		this.mensagem = msg;
+	}
+	
+	public void validaItemPorQuantidade(String nome, String categoria, String unidadeDeMedida, int qtd) 
+			throws IllegalArgumentException, NullPointerException {
+		validatorString(nome, MensagensDeErro.NOME_INVALIDO);
+		validatorString(categoria, MensagensDeErro.CATEGORIA_INVALIDA);
+		validatorString(unidadeDeMedida, MensagensDeErro.UNIDADE_DE_MEDIDA_INVALIDA);
+		validatorNumber(qtd, MensagensDeErro.QUANTIDADE_INVALIDA);
 	}
 
 	/**
 	 * Analisa uma string verificando se é vazia ou nula.
 	 * 
 	 * @param str string a ser avaliada.
-	 * @param msg
+	 * @param msg enum com a mensagem que deve ser exibida caso a exceção seja lançada.
 	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
 	 * @throws NullPointerException exceção lançada quando a string for nula.
 	 */
-	public static void validatorString(String str) throws IllegalArgumentException, NullPointerException {
-		validatorEmptyString(str);
-		validatorNullObject(str);
+	private void validatorString(String str, MensagensDeErro msg) throws IllegalArgumentException, NullPointerException {
+		validatorEmptyString(str, msg);
+		validatorNullObject(str, msg);
 	}
 	
 	/**
 	 * Método que faz a validação de uma String, garantindo que não seja vazia.
 	 * 
 	 * @param str string a ser validada.
-	 * @param msg mensagem a ser exibida caso a exceção seja lançada.
+	 * @param msg enum com a mensagem que deve ser exibida caso a exceção seja lançada.
 	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
 	 */
-	public static void validatorEmptyString(String str) throws IllegalArgumentException {
+	private void validatorEmptyString(String str, MensagensDeErro msg) throws IllegalArgumentException {
 		if (str.trim().isEmpty())
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(mensagem.getMessage(msg));
 	}
 	
 	/**
 	 * Método que faz a validação de um objeto, garantindo que não seja nulo.
 	 * 
 	 * @param o objeto a ser validado.
-	 * @param msg mensagem a ser exibida caso a exceção seja lançada.
+	 * @param msg enum com a mensagem que deve ser exibida caso a exceção seja lançada.
 	 * @throws NullPointerException exceção lançada quando o objeto for nulo.
 	 */
-	public static void validatorNullObject(Object o) throws NullPointerException {
+	private void validatorNullObject(Object o, MensagensDeErro msg) throws NullPointerException {
 		if (o == null)
-			throw new NullPointerException();
+			throw new NullPointerException(mensagem.getMessage(msg));
 	}
 	
 	/**
 	 * Método que valida um número, garantindo que não seja menor que zero.
 	 * 
 	 * @param n número a ser validado.
-	 * @param msg mensagem a ser exibida caso a exceção seja lançada.
+	 * @param msg enum com a mensagem que deve ser exibida caso a exceção seja lançada.
 	 */
-	public static void validatorNumber(int n) throws IllegalArgumentException {
-		validatorNumber(n, 0);
+	private void validatorNumber(double n, MensagensDeErro msg) throws IllegalArgumentException {
+		validatorNumber(n, 0, msg);
 	}
 	
 	/**
@@ -72,10 +77,10 @@ public class Validator {
 	 * 
 	 * @param n número a ser validado.
 	 * @param value valor a ser comparado com o número.
-	 * @param msg mensagem a ser exibida caso a exceção seja lançada.
+	 * @param msg enum com a mensagem que deve ser exibida caso a exceção seja lançada.
 	 */
-	public static void validatorNumber(int n, int value) throws IllegalArgumentException {
-		validatorNumber(n, value, Integer.MAX_VALUE);
+	private void validatorNumber(double n, int value, MensagensDeErro msg) throws IllegalArgumentException {
+		validatorNumber(n, value, Integer.MAX_VALUE, msg);
 	}
 	
 	/**
@@ -85,11 +90,11 @@ public class Validator {
 	 * @param n número a ser validado.
 	 * @param start valor inicial do intervalo.
 	 * @param end valor final do intervalo.
-	 * @param msg mensagem a ser exibida caso a exceção seja lançada.
+	 * @param msg enum com a mensagem que deve ser exibida caso a exceção seja lançada.
 	 * @throws IllegalArgumentException
 	 */
-	public static void validatorNumber(int n, int start, int end) throws IllegalArgumentException {
+	private void validatorNumber(double n, int start, int end, MensagensDeErro msg) throws IllegalArgumentException {
 		if ((n < start || n > end))
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(mensagem.getMessage(msg));
 	}
 }
