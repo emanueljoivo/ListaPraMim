@@ -1,8 +1,6 @@
 package _controllers;
 
-import _errormessages.ItemExceptionMessage;
 import _services.ItemService;
-import util.Validator;
 
 /**
  * Controlador de itens, responsável pelo gerenciamento e redirecionamento
@@ -13,7 +11,6 @@ import util.Validator;
  */
 public class ItemController {
 	private ItemService itemService;
-	private Validator validator;
 	
 	/**
 	 * Construtor que recebe por injeção um provedor de serviços sobre itens. 
@@ -22,7 +19,6 @@ public class ItemController {
 	 */
 	public ItemController(ItemService itemService) {
 		this.itemService = itemService;
-		this.validator = new Validator(new ItemExceptionMessage());
 	}
 	
 	/**
@@ -42,7 +38,7 @@ public class ItemController {
 	 * @param unidade
 	 */
 	public void adicionaItem(String nome, String categoria, double kg) {
-		this.itemService.adicionaItem(nome, categoria, kg);		
+		this.itemService.adicionaItem(nome, categoria, kg);
 	}
 	
 	/**
@@ -52,13 +48,6 @@ public class ItemController {
 	 * @param unidade
 	 */
 	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException {
-
-		try {
-			validator.validaItemPorQuantidade(nome, categoria, unidadeDeMedida, qtd);
-		} catch (Exception ex) {
-			throw new IllegalArgumentException(ex.getMessage());
-		}
-
 		this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}
 	
