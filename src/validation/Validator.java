@@ -1,6 +1,4 @@
-package util;
-
-import _errormessages.ExceptionMessage;
+package validation;
 
 /**
  * Classe abstrata que faz a implementação da validação mais geral de dados.
@@ -9,11 +7,9 @@ import _errormessages.ExceptionMessage;
  */
 
 public abstract class Validator implements Validation {
-	
-	protected ExceptionMessage errorMessage;
 
 	/**
-	 * See {@link util.Validation#validatorString(String)}
+	 * See {@link validation.Validation#validatorString(String)}
 	 */
 	@Override
 	public void validatorString(String str) throws IllegalArgumentException, NullPointerException {
@@ -22,7 +18,7 @@ public abstract class Validator implements Validation {
 	}
 
 	/**
-	 * See {@link util.Validation#validatorEmptyString(String)}
+	 * See {@link validation.Validation#validatorEmptyString(String)}
 	 */
 	@Override
 	public void validatorEmptyString(String str) throws IllegalArgumentException {
@@ -31,7 +27,7 @@ public abstract class Validator implements Validation {
 	}
 
 	/**
-	 * See {@link util.Validation#validatorNullObject(Object)}
+	 * See {@link validation.Validation#validatorNullObject(Object)}
 	 */
 	@Override
 	public void validatorNullObject(Object o) throws NullPointerException {
@@ -40,7 +36,7 @@ public abstract class Validator implements Validation {
 	}
 
 	/**
-	 * See {@link util.Validation#validatorNumber(double)}
+	 * See {@link validation.Validation#validatorNumber(double)}
 	 */
 	@Override
 	public void validatorNumber(double n) throws IllegalArgumentException {
@@ -48,7 +44,7 @@ public abstract class Validator implements Validation {
 	}
 
 	/**
-	 * See {@link util.Validation#validatorNumber(double, int)}
+	 * See {@link validation.Validation#validatorNumber(double, int)}
 	 */
 	@Override
 	public void validatorNumber(double n, int value) throws IllegalArgumentException {
@@ -56,7 +52,7 @@ public abstract class Validator implements Validation {
 	}
 
 	/**
-	 * See {@link util.Validation#validatorNumber(double, int, int)}
+	 * See {@link validation.Validation#validatorNumber(double, int, int)}
 	 */
 	@Override
 	public void validatorNumber(double n, int start, int end) throws IllegalArgumentException {
@@ -68,19 +64,18 @@ public abstract class Validator implements Validation {
 	 * Método para validar uma string, retornando a devida mensagem do erro, caso aconteça um problema na validação.
 	 * 
 	 * @param str string a ser validada.
-	 * @param e valor do enum que vai definir a mensagem de erro a ser mostrada. 
+	 * @param value valor do enum que vai definir a mensagem de erro a ser mostrada. 
 	 * @throws IllegalArgumentException exceção que será lançada caso a string seja vazia.
 	 * @throws NullPointerException exceção que será lançada caso a string seja nula.
 	 */
-	protected void generalValidatorString(String str, int e) 
+	protected void generalValidatorString(String str, String value) 
 			throws IllegalArgumentException, NullPointerException {
-		this.errorMessage.setEnum(e);
 		try {
 			this.validatorString(str);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(errorMessage.getMessage());
+			throw new IllegalArgumentException(value);
 		} catch (NullPointerException npe) {
-			throw new NullPointerException(errorMessage.getMessage());
+			throw new NullPointerException(value);
 		}
 	}
 	
@@ -89,16 +84,15 @@ public abstract class Validator implements Validation {
 	 * caso aconteça um problema na validação.
 	 * 
 	 * @param n número a ser validado.
-	 * @param e valor do enum que vai definir a mensagem de erro a ser mostrada.
+	 * @param value valor do enum que vai definir a mensagem de erro a ser mostrada.
 	 * @throws IllegalArgumentException exceção que será lançada caso o número seja menor que zero.
 	 */
-	protected void generalValidatorNumber(double n, int e) 
+	protected void generalValidatorNumber(double n, String value) 
 			throws IllegalArgumentException {
-		this.errorMessage.setEnum(e);
 		try {
 			this.validatorNumber(n);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(errorMessage.getMessage());
+			throw new IllegalArgumentException(value);
 		}
 	}
 }

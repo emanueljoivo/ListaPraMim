@@ -1,4 +1,4 @@
-package util;
+package validation;
 
 /**
  * Interface que define métodos de validação mais geral de dados.

@@ -1,6 +1,7 @@
 package _controllers;
 
 import _services.ItemService;
+import validation.ValidatorItemImpl;
 
 /**
  * Controlador de itens, responsável pelo gerenciamento e redirecionamento
@@ -11,6 +12,7 @@ import _services.ItemService;
  */
 public class ItemController {
 	private ItemService itemService;
+	private ValidatorItemImpl validator;
 	
 	/**
 	 * Construtor que recebe por injeção um provedor de serviços sobre itens. 
@@ -19,6 +21,7 @@ public class ItemController {
 	 */
 	public ItemController(ItemService itemService) {
 		this.itemService = itemService;
+		this.validator = new ValidatorItemImpl();
 	}
 	
 	/**
@@ -27,7 +30,9 @@ public class ItemController {
 	 * @param categoria
 	 * @param unidade
 	 */
-	public void adicionaItem(String nome, String categoria, int unidade) {
+	public void adicionaItem(String nome, String categoria, int unidade)
+			throws NullPointerException, IllegalArgumentException {
+		this.validator.validaItem(nome, categoria, unidade);
 		this.itemService.adicionaItem(nome, categoria, unidade);		
 	}
 	
@@ -37,7 +42,9 @@ public class ItemController {
 	 * @param categoria
 	 * @param unidade
 	 */
-	public void adicionaItem(String nome, String categoria, double kg) {
+	public void adicionaItem(String nome, String categoria, double kg)
+			throws NullPointerException, IllegalArgumentException {
+		this.validator.validaItem(nome, categoria, kg);
 		this.itemService.adicionaItem(nome, categoria, kg);
 	}
 	
@@ -47,7 +54,9 @@ public class ItemController {
 	 * @param categoria
 	 * @param unidade
 	 */
-	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException {
+	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
+			throws IllegalArgumentException, NullPointerException {
+		this.validator.validaItem(nome, categoria, qtd, unidadeDeMedida);
 		this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}
 	

@@ -1,6 +1,5 @@
-package util;
+package validation;
 
-import _errormessages.ItemExceptionMessage;
 import enums.ItemException;
 
 /**
@@ -15,9 +14,7 @@ public class ValidatorItemImpl extends Validator {
 	 * Construtor de ValidatorItemImpl, que atribui valor ao atributo errorMessage, que é o responsável
 	 * por definir qual mensagem de erro será mostrada.
 	 */
-	public ValidatorItemImpl() {
-		this.errorMessage = new ItemExceptionMessage();
-	}
+	public ValidatorItemImpl() {}
 	
 	/**
 	 * Método que valida categoria e nome de um item (atributos gerais)
@@ -30,7 +27,7 @@ public class ValidatorItemImpl extends Validator {
 	private void validaCategoriaENome(String nome, String categoria) 
 			throws NullPointerException, IllegalArgumentException {
 		this.generalValidatorString(nome, ItemException.NOME_INVALIDO.getValue());
-		this.generalValidatorString(nome, ItemException.CATEGORIA_INVALIDA.getValue());
+		this.generalValidatorString(categoria, ItemException.CATEGORIA_INVALIDA.getValue());
 	}
 
 	/**
