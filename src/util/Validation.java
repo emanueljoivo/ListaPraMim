@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Interface que define métodos de validação gerais.
+ * Interface que define métodos de validação mais geral de dados.
  * 
  * @author lucas
  */
