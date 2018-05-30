@@ -1,5 +1,6 @@
 package validation;
 
+import enums.ItemCategoria;
 import enums.ItemException;
 
 /**
@@ -8,13 +9,28 @@ import enums.ItemException;
  * @author lucas
  */
 
-public class ValidatorItemImpl extends Validator {
+public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	
 	/**
 	 * Construtor de ValidatorItemImpl, que atribui valor ao atributo errorMessage, que é o responsável
 	 * por definir qual mensagem de erro será mostrada.
 	 */
 	public ValidatorItemImpl() {}
+	
+	/**
+	 * Método que verifica se o enum de categorias contém o valor passado pelo usuário.
+	 * 
+	 * @param categoria string passada pelo usuario.
+	 * @return <code>true</code> se o valor existir no enum, <code>falso</code> senão.
+	 */
+	private boolean categoriaEhValida(String categoria) {
+		
+		ItemCategoria[] values = ItemCategoria.values();
+		int i = 0;
+		while ((values[i].getValue().equals(categoria.toLowerCase().trim())) && (i < values.length)) i++;
+		
+		return i < (values.length - 1);
+	}
 	
 	/**
 	 * Método que valida categoria e nome de um item (atributos gerais)
@@ -28,18 +44,15 @@ public class ValidatorItemImpl extends Validator {
 			throws NullPointerException, IllegalArgumentException {
 		this.generalValidatorString(nome, ItemException.NOME_INVALIDO.getValue());
 		this.generalValidatorString(categoria, ItemException.CATEGORIA_INVALIDA.getValue());
+		
+		if (!this.categoriaEhValida(categoria))
+			throw new IllegalArgumentException(ItemException.CATEGORIA_VALOR_INVALIDO.getValue());
 	}
 
 	/**
-	 * Método que faz a validação dos dados de um item do tipo ItemPorUnidade
-	 * 
-	 * @param nome nome do item.
-	 * @param categoria categoria do item.
-	 * @param unidade quantidade de items por unidade.
-	 * @throws NullPointerException exceção lançada caso nome e categoria sejam strings nulas.
-	 * @throws IllegalArgumentException exceção lançada caso nome e categoria sejam strings vazias,
-	 * ou unidade for menor que zero.
+	 * See {@link validation.ValidatorItem#validaItem(String, String, int)}
 	 */
+	@Override
 	public void validaItem(String nome, String categoria, int unidade) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
@@ -47,15 +60,9 @@ public class ValidatorItemImpl extends Validator {
 	}
 	
 	/**
-	 * Método que faz a validação dos dados de um item do tipo ItemPorQuilo.
-	 * 
-	 * @param nome nome do item.
-	 * @param categoria categoria do item.
-	 * @param kg valor em quilos do item.
-	 * @throws NullPointerException exceção lançada caso nome e categoria sejam strings nulas.
-	 * @throws IllegalArgumentException exceção lançada caso nome e categoria sejam strings vazias,
-	 * ou kg for menor que zero.
+	 * See {@link validation.ValidatorItem#validaItem(String, String, double)}
 	 */
+	@Override
 	public void validaItem(String nome, String categoria, double kg) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
@@ -63,17 +70,9 @@ public class ValidatorItemImpl extends Validator {
 	}
 	
 	/**
-	 * Método que faz a validação dos dados de um item do tipo ItemPorQntdFixa
-	 * 
-	 * @param nome nome do item.
-	 * @param categoria categoria do item.
-	 * @param qtd quantidade de items desse tipo.
-	 * @param unidadeDeMedida unidade de medida usada no cadastro.
-	 * @throws NullPointerException exceção lançada caso nome, categoria 
-	 * ou unidadeDeMedida sejam strings nulas.
-	 * @throws IllegalArgumentException exceção lançada caso nome, categoria 
-	 * ou unidadeDeMedida sejam strings vazias, ou qtd for menor que zero.
+	 * See {@link validation.ValidatorItem#validaItem(String, String, int, String)}
 	 */
+	@Override
 	public void validaItem(String nome, String categoria, int qtd, String unidadeDeMedida) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);

@@ -1,6 +1,7 @@
 package _controllers;
 
 import _services.ItemService;
+import validation.ValidatorItem;
 import validation.ValidatorItemImpl;
 
 /**
@@ -12,7 +13,7 @@ import validation.ValidatorItemImpl;
  */
 public class ItemController {
 	private ItemService itemService;
-	private ValidatorItemImpl validator;
+	private ValidatorItem validator;
 	
 	/**
 	 * Construtor que recebe por injeção um provedor de serviços sobre itens. 

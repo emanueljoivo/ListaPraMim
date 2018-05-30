@@ -7,7 +7,7 @@ import _entities.item.ItemPorQntdFixa;
 import enums.ItemCategoria;
 
 /**
- * Classe responsável pela implementação da criação de itens. *
+ * Classe responsável pela implementação da criação de itens. 
  */
 public class ItemFactoryImpl implements ItemFactory {
 	private int itemCounter;
@@ -18,7 +18,21 @@ public class ItemFactoryImpl implements ItemFactory {
 	}
 	
 	/**
+	 * Método que gera um ItemCategoria para ser utilizado para a criação do objeto referente a esse item.
+	 * 
+	 * @param categoria string com a categoria do item.
+	 * @return um ItemCategoria que será passado na criação do item.
+	 */
+	private ItemCategoria generateCategoria(String categoria) {
+		ItemCategoria[] values = ItemCategoria.values();
+		int i = 0;
+		while ((values[i].getValue().equals(categoria.toLowerCase().trim())) && (i < values.length)) i++;
+		return values[i];
+	}
+	
+	/**
 	 * Cria um item do tipo ItemPorQndtFixa.
+	 * 
 	 * @param nome
 	 * @param categoria
 	 * @param qtd
@@ -27,18 +41,12 @@ public class ItemFactoryImpl implements ItemFactory {
 	 */
 	@Override
 	public Item create(String nome, String categoria, int qtd, String unidadeDeMedida) {
-		ItemCategoria ic;
-		 try {
-		 	ic = ItemCategoria.valueOf( categoria );
-		 } catch (IllegalArgumentException ex) {
-		 	throw new IllegalArgumentException ();
-		 }
-
-		return new ItemPorQntdFixa(generateId(), nome, ic, qtd, unidadeDeMedida);
+		return new ItemPorQntdFixa(generateId(), nome, generateCategoria(categoria), qtd, unidadeDeMedida);
 	}
 	
 	/**
 	 * Cria um item do tipo ItemPorUnidade.
+	 * 
 	 * @param nome
 	 * @param categoria
 	 * @param unidade
@@ -46,14 +54,7 @@ public class ItemFactoryImpl implements ItemFactory {
 	 */
 	@Override
 	public Item create(String nome, String categoria, int unidade) {
-		ItemCategoria ic;
-		 try {
-		 	ic = ItemCategoria.valueOf( categoria );
-		 } catch (IllegalArgumentException ex) {
-		 	throw new IllegalArgumentException ();
-		 }
-
-		return new ItemPorUnidade(generateId(), nome, ic, unidade);
+		return new ItemPorUnidade(generateId(), nome, generateCategoria(categoria), unidade);
 	}
 	
 	/**
@@ -65,15 +66,8 @@ public class ItemFactoryImpl implements ItemFactory {
 	 */
 	@Override
 	public Item create(String nome, String categoria, double kg) {
-		ItemCategoria ic;
-		 try {
-		 	ic = ItemCategoria.valueOf( categoria );
-		 } catch (IllegalArgumentException ex) {
-		 	throw new IllegalArgumentException ();
-		 }
-
-		return new ItemPorQuilo(generateId(), nome, ic, kg);
-	}	
+		return new ItemPorQuilo(generateId(), nome, generateCategoria(categoria), kg);
+	}
 	
 	/**
 	 * Gera um id para Item de acordo com o valor de incremento

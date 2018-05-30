@@ -7,7 +7,7 @@ package enums;
  *
  */
 public enum ItemCategoria {
-
+	
     INDUSTRIALIZADOS("alimento industrializado"),
     NAO_INDUSTRIALIZADOS("alimento não industrializado"),
     LIMPEZA("limpeza"),
@@ -23,5 +23,7 @@ public enum ItemCategoria {
      * Pega o valor atribuído ao enum.
      * @return uma representação em string do enum.
      */
-    public String getValue() {return this.categoria;}
+    public String getValue() {
+    	return this.categoria;
+    }
 }

@@ -4,6 +4,7 @@ import _factories.ItemFactory;
 import _entities.item.Item;
 import _repositories.ItemRepository;
 import enums.ItemCategoria;
+import enums.ItemException;
 
 /**
  * Classe que implementa serviços oferecidos sobre itens.
@@ -72,13 +73,7 @@ public class ItemServiceImpl implements ItemService {
 	 */
 	@Override
 	public void adicionaItem(String nome, String categoria, double kg) {
-		Item itemAtual;
-		try {
-			itemAtual = this.itemFactory.create(nome, categoria, kg);			
-		} catch (IllegalArgumentException ex) {
-			throw new IllegalArgumentException();
-		}
-		
+		Item itemAtual = this.itemFactory.create(nome, categoria, kg);
 		this.itemRepository.save(itemAtual);		
 	}
 

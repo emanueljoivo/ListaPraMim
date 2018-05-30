@@ -9,6 +9,7 @@ package enums;
 public enum ItemException {
 	NOME_INVALIDO("Erro no cadastro de item: nome nao pode ser vazio ou nulo"),
 	CATEGORIA_INVALIDA("Erro no cadastro de item: categoria nao pode ser vazia ou nula"),
+	CATEGORIA_VALOR_INVALIDO("Erro no cadastro de item: o valor de categoria nao eh valido"),
 	UNIDADE_INVALIDA("Erro no cadastro de item: valor de unidade nao pode ser menor que zero"),
 	QUILO_INVALIDO("Erro no cadastro de item: valor de quilos nao pode ser menor que zero"),
 	QUANTIDADE_INVALIDA("Erro no cadastro de item: valor de quantidade nao pode ser menor que zero"),

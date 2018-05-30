@@ -6,56 +6,73 @@ package validation;
  * @author lucas
  */
 
-public abstract class Validator implements Validation {
+public abstract class Validator {
 
 	/**
-	 * See {@link validation.Validation#validatorString(String)}
+	 * Analisa uma string verificando se é vazia ou nula.
+	 * 
+	 * @param str string a ser avaliada.
+	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
+	 * @throws NullPointerException exceção lançada quando a string for nula.
 	 */
-	@Override
-	public void validatorString(String str) throws IllegalArgumentException, NullPointerException {
+	protected void validatorString(String str) throws IllegalArgumentException, NullPointerException {
 		this.validatorEmptyString(str);
 		this.validatorNullObject(str);
 	}
 
 	/**
-	 * See {@link validation.Validation#validatorEmptyString(String)}
+	 * Método que faz a validação de uma String, garantindo que não seja vazia.
+	 * 
+	 * @param str string a ser validada.
+	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
 	 */
-	@Override
-	public void validatorEmptyString(String str) throws IllegalArgumentException {
+	protected void validatorEmptyString(String str) throws IllegalArgumentException {
 		if (str.trim().isEmpty())
 			throw new IllegalArgumentException();
 	}
 
 	/**
-	 * See {@link validation.Validation#validatorNullObject(Object)}
+	 * Método que faz a validação de um objeto, garantindo que não seja nulo.
+	 * 
+	 * @param o objeto a ser validado.
+	 * @throws NullPointerException exceção lançada quando o objeto for nulo.
 	 */
-	@Override
-	public void validatorNullObject(Object o) throws NullPointerException {
+	protected void validatorNullObject(Object o) throws NullPointerException {
 		if (o == null)
 			throw new NullPointerException();
 	}
 
 	/**
-	 * See {@link validation.Validation#validatorNumber(double)}
+	 * Método que valida um número, garantindo que não seja menor que zero.
+	 * 
+	 * @param n número a ser validado.
+	 * @throws IllegalArgumentException exceção lançada quando o número for menor que zero.
 	 */
-	@Override
-	public void validatorNumber(double n) throws IllegalArgumentException {
+	protected void validatorNumber(double n) throws IllegalArgumentException {
 		this.validatorNumber(n, 0);
 	}
 
 	/**
-	 * See {@link validation.Validation#validatorNumber(double, int)}
+	 * Método que valida um número, garantindo que não seja menor que certo valor.
+	 * 
+	 * @param n número a ser validado.
+	 * @param value valor a ser comparado com o número.
+	 * @throws IllegalArgumentException exceção lançada quando o número for menor que o valor passado.
 	 */
-	@Override
-	public void validatorNumber(double n, int value) throws IllegalArgumentException {
+	protected void validatorNumber(double n, int value) throws IllegalArgumentException {
 		this.validatorNumber(n, value, Integer.MAX_VALUE);
 	}
 
 	/**
-	 * See {@link validation.Validation#validatorNumber(double, int, int)}
+	 * Método que valida um número, garantindo que esteja dentro de determinado intervalo.
+	 * OBS: inclui os limites do intervalo.
+	 * 
+	 * @param n número a ser validado.
+	 * @param start valor inicial do intervalo.
+	 * @param end valor final do intervalo.
+	 * @throws IllegalArgumentException exceção lançada quando o número não estiver no intervalo.
 	 */
-	@Override
-	public void validatorNumber(double n, int start, int end) throws IllegalArgumentException {
+	protected void validatorNumber(double n, int start, int end) throws IllegalArgumentException {
 		if ((n < start || n > end))
 			throw new IllegalArgumentException();
 	}
