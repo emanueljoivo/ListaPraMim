@@ -24,7 +24,6 @@ public class ItemController {
 	public ItemController(ItemService itemService, ValidatorItem validator) {
 		this.itemService = itemService;
 		this.validator = validator;
-		
 	}
 	
 	/**
@@ -45,7 +44,7 @@ public class ItemController {
 	 * Gerencia a adição de um item do tipo ItemPorQuilo.
 	 * @param nome
 	 * @param categoria
-	 * @param unidade
+	 * @param kg
 	 * @throws ItemExistException 
 	 */
 	public void adicionaItem(String nome, String categoria, double kg)
@@ -59,8 +58,11 @@ public class ItemController {
 	 * Gerencia a adição de um ItemPorQntdFixa.
 	 * @param nome
 	 * @param categoria
-	 * @param unidade
-	 * @throws ItemExistException 
+	 * @param qtd
+	 * @param unidadeDeMedida
+	 * @throws ItemExistException
+	 * @throws NullPointerException
+	 * @throws IllegalArgumentException
 	 */
 	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
@@ -70,10 +72,8 @@ public class ItemController {
 	}
 	
 	/**
-	 * Gerencia a recuperação de um Item.
-	 * @param nome
-	 * @param categoria
-	 * @param unidade
+	 * Retorna uma representação em string de um item se o item existir.
+	 * @param id
 	 * @throws ItemNotExistException 
 	 */
 	public String listaItem(int id) throws ItemNotExistException {		
@@ -82,9 +82,7 @@ public class ItemController {
 
 	/**
 	 * Gerencia a exclusão de um Item.
-	 * @param nome
-	 * @param categoria
-	 * @param unidade
+	 * @param id
 	 * @throws ItemNotExistException 
 	 */
 	public void deletaItem(int id) throws ItemNotExistException {
@@ -93,10 +91,11 @@ public class ItemController {
 
 	/**
 	 * Gerencia a atualização de um atributo de um Item.
-	 * @param nome
-	 * @param categoria
-	 * @param unidade
-	 * @throws ItemNotExistException 
+	 * @param id
+	 * @param atributo
+	 * @param novoValor
+	 * @throws ItemNotExistException
+	 * @throws IllegalArgumentException
 	 */
 	public void atualizaItem(int id, String atributo, String novoValor)
 			throws IllegalArgumentException, ItemNotExistException {
