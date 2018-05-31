@@ -1,34 +1,22 @@
 package _factories;
 
 import _entities.item.Item;
+
 import _entities.item.ItemPorQuilo;
 import _entities.item.ItemPorUnidade;
+import util.Util;
 import _entities.item.ItemPorQntdFixa;
-import enums.ItemCategoria;
 
 /**
  * Classe responsável pela implementação da criação de itens. 
  */
 public class ItemFactoryImpl implements ItemFactory {
 	private int itemCounter;
-	private final int INCREMENT_VALUE = 1;
+	private final int INCREMENT_VALUE = 1;	
 	
 	public ItemFactoryImpl() {
 		this.itemCounter = 0;
-	}
-	
-	/**
-	 * Método que gera um ItemCategoria para ser utilizado para a criação do objeto referente a esse item.
-	 * 
-	 * @param categoria string com a categoria do item.
-	 * @return um ItemCategoria que será passado na criação do item.
-	 */
-	private ItemCategoria generateCategoria(String categoria) {
-		ItemCategoria[] values = ItemCategoria.values();
-		int i = 0;
-		while ((values[i].getValue().equals(categoria.toLowerCase().trim())) && (i < values.length)) i++;
-		return values[i];
-	}
+	}	
 	
 	/**
 	 * Cria um item do tipo ItemPorQndtFixa.
@@ -41,7 +29,7 @@ public class ItemFactoryImpl implements ItemFactory {
 	 */
 	@Override
 	public Item create(String nome, String categoria, int qtd, String unidadeDeMedida) {
-		return new ItemPorQntdFixa(generateId(), nome, generateCategoria(categoria), qtd, unidadeDeMedida);
+		return new ItemPorQntdFixa(generateId(), nome, Util.generateCategoria(categoria), qtd, unidadeDeMedida);
 	}
 	
 	/**
@@ -54,7 +42,7 @@ public class ItemFactoryImpl implements ItemFactory {
 	 */
 	@Override
 	public Item create(String nome, String categoria, int unidade) {
-		return new ItemPorUnidade(generateId(), nome, generateCategoria(categoria), unidade);
+		return new ItemPorUnidade(generateId(), nome, Util.generateCategoria(categoria), unidade);
 	}
 	
 	/**
@@ -66,7 +54,7 @@ public class ItemFactoryImpl implements ItemFactory {
 	 */
 	@Override
 	public Item create(String nome, String categoria, double kg) {
-		return new ItemPorQuilo(generateId(), nome, generateCategoria(categoria), kg);
+		return new ItemPorQuilo(generateId(), nome, Util.generateCategoria(categoria), kg);
 	}
 	
 	/**
@@ -76,7 +64,5 @@ public class ItemFactoryImpl implements ItemFactory {
 	 */
 	private int generateId() {
 		return this.itemCounter += INCREMENT_VALUE;
-	}
-
-	
+	}	
 }

@@ -1,10 +1,12 @@
 package _services;
 
 import _factories.ItemFactory;
+
 import _entities.item.Item;
 import _repositories.ItemRepository;
-import enums.ItemCategoria;
-import enums.ItemException;
+import enums.ItemExceptionsMessages;
+import item_exceptions.ItemExistException;
+import item_exceptions.ItemNotExistException;
 
 /**
  * Classe que implementa serviços oferecidos sobre itens.
@@ -15,6 +17,7 @@ public class ItemServiceImpl implements ItemService {
 	private ItemRepository itemRepository;
 	private ItemFactory itemFactory;
 	
+	
 	/**
 	 * Construtor que recebe por injeção uma fabrica e um repositorio
 	 * dos quais este serviço é dependente.
@@ -24,6 +27,7 @@ public class ItemServiceImpl implements ItemService {
 	public ItemServiceImpl(ItemFactory itemFactory, ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 		this.itemFactory = itemFactory;
+		
 	}	
 	
 	/**
@@ -34,15 +38,12 @@ public class ItemServiceImpl implements ItemService {
 	 * @param unidadeDeMedida
 	 */
 	@Override
-	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException {
-		Item itemAtual;
-		try {
-			itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
-		} catch (IllegalArgumentException ex) {
-			throw new IllegalArgumentException( ex.getMessage ());
-		}
-
-		this.itemRepository.save(itemAtual);
+	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException {
+		Item itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
+			
+		if (!this.itemRepository.save(itemAtual)) {
+			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
+		}			
 	}
 	
 	/**
@@ -51,17 +52,15 @@ public class ItemServiceImpl implements ItemService {
 	 * @param categoria
 	 * @param qtd
 	 * @param unidadeDeMedida
+	 * @throws ItemExistException 
 	 */
 	@Override
-	public void adicionaItem(String nome, String categoria, int unidade) {
-		Item itemAtual;
-		try {
-			itemAtual = this.itemFactory.create(nome, categoria, unidade);			
-		} catch (IllegalArgumentException ex) {
-			throw new IllegalArgumentException();
-		}
+	public void adicionaItem(String nome, String categoria, int unidade) throws ItemExistException {
+		Item itemAtual = this.itemFactory.create(nome, categoria, unidade);			
 		
-		this.itemRepository.save(itemAtual);		
+		if (!this.itemRepository.save(itemAtual)) {
+			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
+		};		
 	}
 	
 	/**
@@ -72,47 +71,52 @@ public class ItemServiceImpl implements ItemService {
 	 * @param unidadeDeMedida
 	 */
 	@Override
-	public void adicionaItem(String nome, String categoria, double kg) {
+	public void adicionaItem(String nome, String categoria, double kg) throws ItemExistException {
 		Item itemAtual = this.itemFactory.create(nome, categoria, kg);
-		this.itemRepository.save(itemAtual);		
+		
+		if (!this.itemRepository.save(itemAtual)) {
+			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
+		}		
 	}
 
 	/**
 	 * Pega um item a partir do seu id.
 	 * @param id
 	 * @return o Item correspondente ao id.
+	 * @throws ItemNotExistException 
 	 */
 	@Override
-	public Item recuperaItem(int id) {
+	public Item recuperaItem(int id) throws ItemNotExistException {
+		if (!this.itemRepository.contains(id)) {
+			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getValue());
+		}
+		
 		return this.itemRepository.recovery(id);		
 	}		
 
 	/**
-	 * Atualiza nome de um item.
+	 * Deleta um item.
 	 * @param id
 	 * @param novoNome
+	 * @throws ItemNotExistException 
 	 */
 	@Override
-	public void deletaItem(int id) {
+	public void deletaItem(int id) throws ItemNotExistException {
+		if (!this.itemRepository.contains(id)) {
+			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getValue());
+		}
 		this.itemRepository.delete(id);		
-	}
-
-	/**
-	 * Atualiza categoria de um item.
-	 * @param categoria
-	 * @param id
-	 */
-	@Override
-	public void atualizaItem(int id, String novoNome) {
-		this.itemRepository.recovery(id).setNome(novoNome);		
 	}
 	
 	/**
-	 * Apaga um item pelo id.
-	 * @param id
+	 * @see {@link _services.ItemService#atualizaItem(int, String, String)}
 	 */
 	@Override
-	public void atualizaItem(String categoria, int id) {
-		this.itemRepository.recovery(id).setCategoria(ItemCategoria.valueOf(categoria));
+	public void atualizaItem(int id, String atributo, String novoValor) throws ItemNotExistException {
+		if (!this.itemRepository.contains(id)) {
+			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getValue());
+		}		
+		
+		this.itemRepository.recovery(id).set(atributo.toLowerCase(), novoValor);					
 	}	
 }

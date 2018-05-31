@@ -15,7 +15,7 @@ public interface Repository<T> {
 	 * Salva uma entidade no banco de dados.
 	 * @param o
 	 */
-	void save(T o);
+	boolean save(T o);
 	
 	/**
 	 * Deleta uma entidade do banco de dados pelo id.

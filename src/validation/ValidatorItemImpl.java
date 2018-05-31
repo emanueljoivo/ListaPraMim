@@ -1,7 +1,8 @@
 package validation;
 
-import enums.ItemCategoria;
-import enums.ItemException;
+import enums.ItemAtributos;
+import enums.ItemCategorias;
+import enums.ItemExceptionsMessages;
 
 /**
  * Implementação da classe que valida os dados de itens compráveis do sistema.
@@ -15,7 +16,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	 * Construtor de ValidatorItemImpl, que atribui valor ao atributo errorMessage, que é o responsável
 	 * por definir qual mensagem de erro será mostrada.
 	 */
-	public ValidatorItemImpl() {}
+	public ValidatorItemImpl() {}	
 	
 	/**
 	 * Método que verifica se o enum de categorias contém o valor passado pelo usuário.
@@ -25,7 +26,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	 */
 	private boolean categoriaEhValida(String categoria) {
 		
-		ItemCategoria[] values = ItemCategoria.values();
+		ItemCategorias[] values = ItemCategorias.values();
 		int i = 0;
 		while ((values[i].getValue().equals(categoria.toLowerCase().trim())) && (i < values.length)) i++;
 		
@@ -42,41 +43,84 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	 */
 	private void validaCategoriaENome(String nome, String categoria) 
 			throws NullPointerException, IllegalArgumentException {
-		this.generalValidatorString(nome, ItemException.NOME_INVALIDO.getValue());
-		this.generalValidatorString(categoria, ItemException.CATEGORIA_INVALIDA.getValue());
+		this.generalValidatorString(nome, ItemExceptionsMessages.NOME_INVALIDO.getValue());
+		this.generalValidatorString(categoria, ItemExceptionsMessages.CATEGORIA_INVALIDA.getValue());
 		
 		if (!this.categoriaEhValida(categoria))
-			throw new IllegalArgumentException(ItemException.CATEGORIA_VALOR_INVALIDO.getValue());
+			throw new IllegalArgumentException(ItemExceptionsMessages.CATEGORIA_VALOR_INVALIDO.getValue());
 	}
 
 	/**
-	 * See {@link validation.ValidatorItem#validaItem(String, String, int)}
+	 * @see {@link validation.ValidatorItem#validaItem(String, String, int)}
 	 */
 	@Override
 	public void validaItem(String nome, String categoria, int unidade) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(unidade, ItemException.UNIDADE_INVALIDA.getValue());
+		this.generalValidatorNumber(unidade, ItemExceptionsMessages.UNIDADE_INVALIDA.getValue());
 	}
 	
 	/**
-	 * See {@link validation.ValidatorItem#validaItem(String, String, double)}
+	 * @see {@link validation.ValidatorItem#validaItem(String, String, double)}
 	 */
 	@Override
 	public void validaItem(String nome, String categoria, double kg) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(kg, ItemException.QUILO_INVALIDO.getValue());
+		this.generalValidatorNumber(kg, ItemExceptionsMessages.QUILO_INVALIDO.getValue());
 	}
 	
 	/**
-	 * See {@link validation.ValidatorItem#validaItem(String, String, int, String)}
+	 * @see {@link validation.ValidatorItem#validaItem(String, String, int, String)}
 	 */
 	@Override
 	public void validaItem(String nome, String categoria, int qtd, String unidadeDeMedida) 
 			throws NullPointerException, IllegalArgumentException {
 		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(qtd, ItemException.QUANTIDADE_INVALIDA.getValue());
-		this.generalValidatorString(unidadeDeMedida, ItemException.UNIDADE_DE_MEDIDA_INVALIDA.getValue());
+		this.generalValidatorNumber(qtd, ItemExceptionsMessages.QUANTIDADE_INVALIDA.getValue());
+		this.generalValidatorString(unidadeDeMedida, ItemExceptionsMessages.UNIDADE_DE_MEDIDA_INVALIDA.getValue());
 	}
+	
+	/**
+	 * @see {@link validation.ValidatorItem#validaExclusao(int)}
+	 * 
+	 */
+	public void validaExclusao(int id) throws IllegalArgumentException {
+		validatorNumber(id);
+	}
+	
+	/**
+	 * @see {@link validation.ValidatorItem#validaAtualizacao(int, String)}
+	 */
+	@Override
+	public void validaAtualizacao(int id, String atributo) throws IllegalArgumentException {
+		validatorNumber(id);
+		
+		validaAtributoItem(atributo);		
+	}
+	
+	/**
+	 * Valida se um dado atributo pertence a algum tipo de item.
+	 * @param atributo
+	 */
+	private void validaAtributoItem(String atributo) {
+			if (!atributoEhValido(atributo)) {
+				throw new IllegalArgumentException(ItemExceptionsMessages.ATRIBUTO_INVALIDO.getValue());
+			}
+	}
+	
+	/**
+	 * Verifica se um dado atributo corresponde a algum valor no enum de ItemAtributos.
+	 * @param atributo
+	 * @return <code> true </code> caso haja o atributo no enum e <code> false </code> no caso contrário.
+	 */
+	private boolean atributoEhValido(String atributo) {
+		ItemAtributos[] values = ItemAtributos.values();
+		int i = 0;
+		
+		while ((values[i].getValue().equalsIgnoreCase(atributo.trim())) && (i < values.length-1)) {
+			i++;
+		}		
+		return i < (values.length - 1);
+	}	
 }

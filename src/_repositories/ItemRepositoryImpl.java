@@ -26,14 +26,15 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 * @param o
 	 */
 	@Override
-	public void save(Item item) {
-		itens.add(item);		
+	public boolean save(Item item) {
+		return itens.add(item);		
 	}
 
 	/**
 	 * Deleta um item do banco de dados pelo id.
 	 * @param id
-	 * @return
+	 * @return <code> true </code> caso o item seja removido com sucesso,
+	 * <code> false </code> no caso contrário.
 	 */
 	@Override
 	public boolean delete(int id) {
@@ -44,7 +45,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	/**
 	 * Recupera um item do banco de dados pelo id.
 	 * @param id
-	 * @return
+	 * @return o item correspondente ao id, caso exista.
 	 */
 	@Override
 	public Item recovery(int id) {
@@ -64,7 +65,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	/**
 	 * Retorna Item a partir de id.
 	 * @param id
-	 * @return um Item.
+	 * @return um Item correspondente ao id.
 	 */
 	private Item findById(int id) {
 		for (Item item : itens) {
@@ -74,4 +75,5 @@ public class ItemRepositoryImpl implements ItemRepository {
 		}
 		return null;
 	}
+	
 }

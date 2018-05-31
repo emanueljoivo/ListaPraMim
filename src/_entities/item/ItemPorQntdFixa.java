@@ -1,6 +1,9 @@
 package _entities.item;
 
-import enums.ItemCategoria;
+import util.Util;
+
+import enums.ItemAtributos;
+import enums.ItemCategorias;
 
 /**
  * Classe que representa um item com quantidade fixa.
@@ -18,10 +21,36 @@ public class ItemPorQntdFixa extends Item {
 	 * @param qntd
 	 * @param unidadeDeMedida
 	 */
-	public ItemPorQntdFixa(int id, String nome, ItemCategoria categoria, int qntd, String unidadeDeMedida) {
+	public ItemPorQntdFixa(int id, String nome, ItemCategorias categoria, int qntd, String unidadeDeMedida) {
 		super(id, nome, categoria);
 		this.qntd = qntd;
 		this.unidadeDeMedida = unidadeDeMedida;		
+	}
+	
+	/**
+	 * @see {@link _entities.item.Item#set(String, String)}}
+	 */
+	@Override
+	public void set(String atributo, String novoValor) {
+		super.set(atributo, novoValor);
+		
+		if (atributo.equals(ItemAtributos.UNIDADES.getValue())) {
+			setQntd(Integer.parseInt(novoValor));
+		} else if (atributo.equals(ItemAtributos.UNIDADE_DE_MEDIDA.getValue()));
+	}
+
+	/**
+	 * @param qntd the qntd to set
+	 */
+	public void setQntd(int qntd) {
+		this.qntd = qntd;
+	}
+
+	/**
+	 * @param unidadeDeMedida the unidadeDeMedida to set
+	 */
+	public void setUnidadeDeMedida(String unidadeDeMedida) {
+		this.unidadeDeMedida = unidadeDeMedida;
 	}
 
 	/**
@@ -44,7 +73,7 @@ public class ItemPorQntdFixa extends Item {
 	@Override
 	public String toString() {
 		return super.toString() + this.qntd + " " 
-				+ this.unidadeDeMedida + ", Preço: " + super.getMapaDePrecos().toString();
+				+ this.unidadeDeMedida + ", Preço: " + Util.mapToString(getMapaDePrecos());
 	}
 	
 	

@@ -1,8 +1,8 @@
 package main;
 
 import _controllers.ItemController;
-import _factories.SystemFactory;
-import _factories.SystemFactoryImpl;
+import _factories.ApplicationFactory;
+import _factories.ApplicationFactoryImpl;
 
 /**
  * Classe responsável por representar o Sistema como um todo. 
@@ -12,18 +12,18 @@ import _factories.SystemFactoryImpl;
  * @author Emanuel Joivo.
  *
  */
-public class System {
+public class Application {
 	
 	/**
 	 * Fábrica das entidades do sistema.
 	 */
-	private SystemFactory systemFactory;
+	private ApplicationFactory appFactory;
 	
 	/**
 	 * Cria a instância do sistema.
 	 */
 	public void init() {
-		this.systemFactory = new SystemFactoryImpl();
+		this.appFactory = new ApplicationFactoryImpl();
 	}
 	
 	/**
@@ -31,6 +31,6 @@ public class System {
 	 * @return a instância de ItemController.
 	 */
 	public ItemController getItemController() {
-		return this.systemFactory.getItemController();
+		return this.appFactory.getItemController();
 	}
 }

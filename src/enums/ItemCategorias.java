@@ -6,7 +6,7 @@ package enums;
  * @author Emanuel Joivo
  *
  */
-public enum ItemCategoria {
+public enum ItemCategorias {
 	
     INDUSTRIALIZADOS("alimento industrializado"),
     NAO_INDUSTRIALIZADOS("alimento não industrializado"),
@@ -15,7 +15,7 @@ public enum ItemCategoria {
 
     private String categoria;
 
-    ItemCategoria(String categoria) {
+    ItemCategorias(String categoria) {
         this.categoria = categoria;
     }
     
@@ -25,5 +25,5 @@ public enum ItemCategoria {
      */
     public String getValue() {
     	return this.categoria;
-    }
+    }    
 }

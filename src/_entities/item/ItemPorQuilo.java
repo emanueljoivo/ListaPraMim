@@ -1,6 +1,8 @@
 package _entities.item;
 
-import enums.ItemCategoria;
+import enums.ItemAtributos;
+import enums.ItemCategorias;
+import util.Util;
 
 /**
  * Classe que representa um item vendido por quilo.
@@ -16,8 +18,26 @@ public class ItemPorQuilo extends Item {
 	 * @param categoria
 	 * @param kg
 	 */
-	public ItemPorQuilo(int id, String nome, ItemCategoria categoria, double kg) {
+	public ItemPorQuilo(int id, String nome, ItemCategorias categoria, double kg) {
 		super(id, nome, categoria);
+		this.kg = kg;
+	}
+	
+	/**
+	 * @see {@link _entities.item.Item#set(String, String)}}
+	 */
+	@Override
+	public void set(String atributo, String novoValor) {
+		super.set(atributo, novoValor);
+		if (atributo.equals(ItemAtributos.QUILOS.getValue())) {
+			setKg(Double.parseDouble(novoValor));
+		} 
+	}
+
+	/**
+	 * @param kg the kg to set
+	 */
+	public void setKg(double kg) {
 		this.kg = kg;
 	}
 
@@ -33,7 +53,7 @@ public class ItemPorQuilo extends Item {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "Preço por quilo: " + super.getMapaDePrecos().toString();
+		return super.toString() + "Preço por quilo: " + Util.mapToString(getMapaDePrecos());
 	}
 	
 	

@@ -1,6 +1,8 @@
 package _view;
 
-import main.System;
+import item_exceptions.ItemExistException;
+import item_exceptions.ItemNotExistException;
+import main.Application;
 
 /**
  * Implementação da Facade.
@@ -8,9 +10,9 @@ import main.System;
  */
 public class FacadeImpl implements Facade {
 	
-	private System system;
+	private Application system;
 	
-	public FacadeImpl(System system) {
+	public FacadeImpl(Application system) {
 		this.system = system;
 	}
 	
@@ -18,31 +20,27 @@ public class FacadeImpl implements Facade {
 		this.system.init();		
 	}	
 	
-	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException {
+	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException, NullPointerException, ItemExistException {
 		this.system.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}
 	
-	public void adicionatem(String nome, String categoria, int unidade) {
+	public void adicionatem(String nome, String categoria, int unidade) throws NullPointerException, IllegalArgumentException, ItemExistException {
 		this.system.getItemController().adicionaItem(nome, categoria, unidade);
 	}
 	
-	public void adicionaItem(String nome, String categoria, double kg) {
+	public void adicionaItem(String nome, String categoria, double kg) throws NullPointerException, IllegalArgumentException, ItemExistException {
 		this.system.getItemController().adicionaItem(nome, categoria, kg);
 	}
 	
-	public void atualizaNomeItem(int id, String novoNome) {
-		this.system.getItemController().atualizaNomeItem(id, novoNome); 
-	}
-	
-	public void atualizaCategoriaItem(int id, String novaCategoria) {
-		this.system.getItemController().atualizaCategoriaItem(id, novaCategoria);
-	}
+	public void atualizaItem(int id, String atributo, String novoValor) throws IllegalArgumentException, ItemNotExistException {
+		this.system.getItemController().atualizaItem(id, atributo, novoValor);
 		
-	public void listaItem(int id) {
+	}
+	public void listaItem(int id) throws ItemNotExistException {
 		this.system.getItemController().listaItem(id);
 	}
 	
-	public void deletaItem(int id) {
+	public void deletaItem(int id) throws ItemNotExistException {
 		this.system.getItemController().deletaItem(id);
 	}
 

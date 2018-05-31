@@ -1,6 +1,8 @@
 package _services;
 
 import _entities.item.Item;
+import item_exceptions.ItemExistException;
+import item_exceptions.ItemNotExistException;
 
 /**
  * Interface que representa contrato de serviços oferecidos sobre itens.
@@ -16,8 +18,9 @@ public interface ItemService {
 	 * @param categoria
 	 * @param qtd
 	 * @param unidadeDeMedida
+	 * @throws ItemExistException 
 	 */
-	void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida);
+	void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException;
 	
 	/**
 	 * Gerencia adição de itens do tipo ItemPorUnidade.
@@ -26,7 +29,7 @@ public interface ItemService {
 	 * @param qtd
 	 * @param unidadeDeMedida
 	 */
-	void adicionaItem(String nome, String categoria, int unidade);
+	void adicionaItem(String nome, String categoria, int unidade) throws ItemExistException;
 	
 	/**
 	 * Gerencia adição de itens do tipo ItemPorQuilo.
@@ -35,33 +38,31 @@ public interface ItemService {
 	 * @param qtd
 	 * @param unidadeDeMedida
 	 */
-	void adicionaItem(String nome, String categoria, double kg);
+	void adicionaItem(String nome, String categoria, double kg) throws ItemExistException;
+	
+	/**
+	 * Atualiza atributo de um item.
+	 * @param categoria
+	 * @param id
+	 * @throws ItemNotExistException 
+	 */
+	void atualizaItem(int id, String atributo, String novoValor) throws ItemNotExistException;
 	
 	/**
 	 * Pega um item a partir do seu id.
 	 * @param id
 	 * @return o Item correspondente ao id.
+	 * @throws ItemNotExistException 
 	 */
-	Item recuperaItem(int id);
-	
-	/**
-	 * Atualiza nome de um item.
-	 * @param id
-	 * @param novoNome
-	 */
-	void atualizaItem(int id, String novoNome);
-	
-	/**
-	 * Atualiza categoria de um item.
-	 * @param categoria
-	 * @param id
-	 */
-	void atualizaItem(String categoria, int id);
+	Item recuperaItem(int id) throws ItemNotExistException;	
 	
 	/**
 	 * Apaga um item pelo id.
 	 * @param id
+	 * @throws ItemNotExistException 
 	 */
-	void deletaItem(int id);
+	void deletaItem(int id) throws ItemNotExistException;
+	
+	
 	
 }

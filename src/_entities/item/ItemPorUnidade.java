@@ -1,6 +1,8 @@
 package _entities.item;
 
-import enums.ItemCategoria;
+import enums.ItemAtributos;
+import enums.ItemCategorias;
+import util.Util;
 
 /**
  * Classe que representa um item vendido por unidade.
@@ -17,9 +19,20 @@ public class ItemPorUnidade extends Item {
 	 * @param categoria
 	 * @param unidades
 	 */
-	public ItemPorUnidade(int id, String nome, ItemCategoria categoria, int unidades) {
+	public ItemPorUnidade(int id, String nome, ItemCategorias categoria, int unidades) {
 		super(id, nome, categoria);
 		this.unidades = unidades;
+	}
+	
+	/**
+	 * @see {@link _entities.item.Item#set(String, String)}}
+	 */
+	@Override
+	public void set(String atributo, String novoValor) {
+		super.set(atributo, novoValor);
+		if (atributo.equals(ItemAtributos.UNIDADES.getValue())) {
+			setUnidades(Integer.parseInt(novoValor));
+		} 
 	}
 
 	/**
@@ -34,7 +47,14 @@ public class ItemPorUnidade extends Item {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "Preço: " + super.getMapaDePrecos().toString();
+		return super.toString() + "Preço: " + Util.mapToString(getMapaDePrecos());
+	}
+
+	/**
+	 * @param unidades the unidades to set
+	 */
+	public void setUnidades(int unidades) {
+		this.unidades = unidades;
 	}
 	
 	

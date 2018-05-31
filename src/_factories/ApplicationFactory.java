@@ -7,7 +7,7 @@ import _controllers.ItemController;
  * 
  * @author Emanuel Joivo
  */
-public interface SystemFactory {
+public interface ApplicationFactory {
 	
 	/**
 	 * Pega a instância do Controller de items. 

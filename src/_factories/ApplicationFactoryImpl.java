@@ -5,12 +5,14 @@ import _repositories.ItemRepository;
 import _repositories.ItemRepositoryImpl;
 import _services.ItemService;
 import _services.ItemServiceImpl;
+import validation.ValidatorItem;
+import validation.ValidatorItemImpl;
 
 /**
  * Classe responsável pelo implementação da criação de entidades do sistema,
  * permitindo assim o mecanismo de injeção de dependências. 
  */
-public class SystemFactoryImpl implements SystemFactory {
+public class ApplicationFactoryImpl implements ApplicationFactory {
 	
 	/**
 	 * Fábrica de itens. Responsável pela criação de itens.
@@ -33,13 +35,19 @@ public class SystemFactoryImpl implements SystemFactory {
 	private ItemRepository itemRepository;
 	
 	/**
+	 * Interface que define validações de item.
+	 */
+	private ValidatorItem validator;
+		
+	/**
 	 * Contrutor responsável pela injeção de dependências adequada.
 	 */
-	public SystemFactoryImpl() {
+	public ApplicationFactoryImpl() {
 		this.itemFactory = new ItemFactoryImpl();
 		this.itemRepository = new ItemRepositoryImpl();
+		this.validator = new ValidatorItemImpl();		
 		this.itemService = new ItemServiceImpl(itemFactory, itemRepository);
-		this.itemController = new ItemController(itemService);
+		this.itemController = new ItemController(itemService, validator);
 	}	
 	
 	/**
