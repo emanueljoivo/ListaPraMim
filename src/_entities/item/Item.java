@@ -31,7 +31,7 @@ public abstract class Item implements Comparable<Item>{
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

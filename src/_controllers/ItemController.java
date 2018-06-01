@@ -30,11 +30,11 @@ public class ItemController {
 	 * @throws NullPointerException caso algum parâmetro seja nulo.
 	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
-	public void adicionaItem(String nome, String categoria, int unidade) 
+	public int adicionaItem(String nome, String categoria, int unidade)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 		
 		this.validator.validaItem(nome, categoria, unidade);
-		this.itemService.adicionaItem(nome, categoria, unidade);		
+		return this.itemService.adicionaItem(nome, categoria, unidade);
 	}
 	
 	/**
@@ -43,11 +43,11 @@ public class ItemController {
 	 * @throws NullPointerException caso algum parâmetro seja nulo.
 	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
-	public void adicionaItem(String nome, String categoria, double kg)
+	public int adicionaItem(String nome, String categoria, double kg)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 		
 		this.validator.validaItem(nome, categoria, kg);
-		this.itemService.adicionaItem(nome, categoria, kg);
+		return this.itemService.adicionaItem(nome, categoria, kg);
 	}
 	
 	/**
@@ -56,11 +56,11 @@ public class ItemController {
 	 * @throws NullPointerException caso algum parâmetro seja nulo.
 	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
-	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
+	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
 		
 		this.validator.validaItem(nome, categoria, qtd, unidadeDeMedida);
-		this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida);
+		return this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}
 	
 	/**
@@ -99,17 +99,30 @@ public class ItemController {
 		return this.itemService.listaItens();
     }
 
-    public String listaItens(String categoria) {
+	/**
+	 * Gerencia a listagem de todos os itens dada uma categoria, ordenados em ordem alfabética.
+	 * @return uma representação em string da lista de itens de uma dada categoria.
+	 */
+	public String listaItens(String categoria) {
 
     	this.validator.validaCategoria(categoria);
 
     	return this.itemService.listaItens(categoria);
     }
 
+	/**
+	 * Gerencia a listagem de todos os itens pelo menor preço, ordenados em ordem alfabética.
+	 * @return uma representação em string da lista de itens ordenados pelo seu menor preço.
+	 */
 	public String listaItensPreco() {
     	return this.itemService.listaItensPreco();
 	}
 
+	/**
+	 * Gerencia a listagem de todos os itens relacionados a uma dada string pesquisada.
+	 * @return uma representação em string de uma lista de itens ordenados por ordem alfabética dos itens que correspon-
+	 * dem a string pesquisada.
+	 */
 	public String listaItensPesquisa(String strPesquisada) {
     	this.validator.ValidaPesquisa(strPesquisada);
 

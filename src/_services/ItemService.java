@@ -16,18 +16,18 @@ public interface ItemService {
 	 * Gerencia adição de itens do tipo ItemPorQntdFixa.
 	 * @throws ItemExistException caso o item já exista na base de dados.
 	 */
-	void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException;
+	int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException;
 	
 	/**
 	 * Gerencia adição de itens do tipo ItemPorUnidade.
 	 */
-	void adicionaItem(String nome, String categoria, int unidade) throws ItemExistException;
+	int adicionaItem(String nome, String categoria, int unidade) throws ItemExistException;
 	
 	/**
 	 * Gerencia adição de itens do tipo ItemPorQuilo.
 	 * @throws ItemExistException caso o item já exista na base de dados.
 	 */
-	void adicionaItem(String nome, String categoria, double kg) throws ItemExistException;
+	int adicionaItem(String nome, String categoria, double kg) throws ItemExistException;
 	
 	/**
 	 * Atualiza atributo de um item.

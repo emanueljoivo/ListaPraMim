@@ -15,7 +15,9 @@ public class Main {
 		Facade facade = new Facade(app);
 		facade.start();
 
-		Util.mockOrdenacao(facade);
+		facade.adicionaItem("banana", "fruta", 1);
+
+		facade.listaItens();
 	}
 
 

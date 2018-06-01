@@ -43,36 +43,40 @@ public class ItemServiceImpl implements ItemService {
 	 * {@link ItemService#adicionaItem(String, String, int, String)}
 	 */
 	@Override
-	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException {
+	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException {
 		Item itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
 			
 		if (!this.itemRepository.save(itemAtual)) {
 			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
-		}			
+		}
+		return itemAtual.getId();
 	}
 	
 	/**
 	 * {@link ItemService#adicionaItem(String, String, int)}
 	 */
 	@Override
-	public void adicionaItem(String nome, String categoria, int unidade) throws ItemExistException {
+	public int adicionaItem(String nome, String categoria, int unidade) throws ItemExistException {
 		Item itemAtual = this.itemFactory.create(nome, categoria, unidade);			
 		
 		if (!this.itemRepository.save(itemAtual)) {
 			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
-		};		
+		}
+		return itemAtual.getId();
 	}
 	
 	/**
 	 * {@link ItemService#adicionaItem(String, String, double)}
 	 */
 	@Override
-	public void adicionaItem(String nome, String categoria, double kg) throws ItemExistException {
+	public int adicionaItem(String nome, String categoria, double kg) throws ItemExistException {
 		Item itemAtual = this.itemFactory.create(nome, categoria, kg);
 		
 		if (!this.itemRepository.save(itemAtual)) {
 			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
-		}		
+		}
+
+		return itemAtual.getId();
 	}
 
 	/**
