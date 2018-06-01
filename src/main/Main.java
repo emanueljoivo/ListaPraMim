@@ -14,12 +14,5 @@ public class Main {
 		Application app = new Application();
 		Facade facade = new Facade(app);
 		facade.start();
-
-		facade.adicionaItem("pasta de dente", "higiene pessoal", 1);
-
-		facade.listaItens();
-
 	}
-
-
 }

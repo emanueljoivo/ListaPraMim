@@ -1,8 +1,12 @@
 package validation;
 
+import _entities.item.Item;
 import enums.ItemAtributos;
 import enums.ItemCategorias;
 import enums.ItemExceptionsMessages;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Implementação da classe que valida os dados de itens compráveis do sistema.
@@ -25,12 +29,13 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	 * @return <code>true</code> se o valor existir no enum, <code>falso</code> senão.
 	 */
 	private boolean categoriaEhValida(String categoria) {
+		Map<String, ItemCategorias> auxMap = new HashMap<>();
+		ItemCategorias[] auxArr = ItemCategorias.values();
 
-		ItemCategorias[] values = ItemCategorias.values();
-		int i = 0;
-		while ((i == values.length) && !(values[i].getValue().equalsIgnoreCase(categoria.trim()))) i++;
-
-		return i < (values.length - 1);
+		for (int i= 0; i < auxArr.length; i++) {
+			auxMap.put(auxArr[i].getValue(), auxArr[i]);
+		}
+		return auxMap.containsKey(categoria);
 	}
 
 	/**
