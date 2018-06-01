@@ -1,9 +1,13 @@
 package util;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
+import _view.Facade;
 import enums.ItemCategorias;
+import item_exceptions.ItemExistException;
 
 /**
  * Classe com algoritmos estáticos.
@@ -42,5 +46,25 @@ public class Util {
 			mapStringifier += (key + ", R$ " + mapa.get(key).toString() + ";");
 		}
 		return mapStringifier + ">";
+	}
+
+	public static void mockOrdenacao(Facade facade) throws ItemExistException {
+		ItemCategorias[] categorias = ItemCategorias.values();
+		Random generator = new Random();
+		generator.nextDouble();
+
+		for (int i = 0; i < 10; i++) {
+			String nome = "Item" + i;
+			String nome2 = "Item" + (i+10);
+			String categoria = categorias[generator.nextInt(4)].getValue();
+			facade.adicionaItem(nome,categoria, generator.nextDouble());
+			facade.adicionatem(nome2, categoria, generator.nextInt(10));
+		}
+
+		facade.listaItens();
+
+		System.out.println("Ordenação por categoria" + "\n");
+
+		facade.listaItens(categorias[generator.nextInt(4)].getValue());
 	}
 }

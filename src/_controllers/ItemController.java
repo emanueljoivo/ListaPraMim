@@ -95,7 +95,24 @@ public class ItemController {
 	 * Gerencia a listagem de todos os itens da base de dados.
 	 * @return uma representação em string da lista de itens salvos.
 	 */
-    public String listaItems() {
-		return this.itemService.listaItems();
+    public String listaItens() {
+		return this.itemService.listaItens();
     }
+
+    public String listaItens(String categoria) {
+
+    	this.validator.validaCategoria(categoria);
+
+    	return this.itemService.listaItens(categoria);
+    }
+
+	public String listaItensPreco() {
+    	return this.itemService.listaItensPreco();
+	}
+
+	public String listaItensPesquisa(String strPesquisada) {
+    	this.validator.ValidaPesquisa(strPesquisada);
+
+    	return this.itemService.listaItensPesquisa(strPesquisada);
+	}
 }

@@ -6,7 +6,7 @@ package enums;
  * @author Emanuel Joivo
  *
  */
-public enum ItemCategorias {
+public enum ItemCategorias implements Comparable<ItemCategorias>  {
 	
     INDUSTRIALIZADOS("alimento industrializado"),
     NAO_INDUSTRIALIZADOS("alimento não industrializado"),
@@ -25,5 +25,6 @@ public enum ItemCategorias {
      */
     public String getValue() {
     	return this.categoria;
-    }    
+    }
+
 }

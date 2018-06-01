@@ -1,5 +1,7 @@
 package _services;
 
+import _entities.item.comparators.CategoriaComparator;
+import _entities.item.comparators.PrecoComparator;
 import _factories.ItemFactory;
 
 import _entities.item.Item;
@@ -8,8 +10,12 @@ import enums.ItemExceptionsMessages;
 import item_exceptions.ItemExistException;
 import item_exceptions.ItemNotExistException;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
+import static java.util.Collections.*;
 
 /**
  * Classe que implementa serviços oferecidos sobre itens.
@@ -93,17 +99,82 @@ public class ItemServiceImpl implements ItemService {
 	}
 
     /**
-     * {@link ItemService#listaItems()}
+     * {@link ItemService#listaItens()}
      */
 	@Override
-	public String listaItems() {
-        List<Item> tempList = this.itemRepository.getItens();
-        Collections.sort(tempList);
-        return tempList.toString();
+	public String listaItens() {
+        List<Item> itens = this.itemRepository.getItens();
+        sort(itens);
+        return listaDeItens(itens);
 	}
 
 	/**
-	 * @see ItemService#atualizaItem(int, String, String)
+	 * {@link ItemService#listaItens(String)}
+	 */
+	@Override
+	public String listaItens(String categoria) {
+		List<Item> itens = this.itemRepository.getItensByCategoria(categoria);
+
+		CategoriaComparator comparator = new CategoriaComparator();
+
+		sort(itens, comparator);
+
+		return listaDeItens(itens);
+	}
+
+	/**
+	 * {@link ItemService#listaItensPreco()}
+	 * @return
+	 */
+	@Override
+	public String listaItensPreco() {
+		List<Item> itens = this.itemRepository.getItensByPreco();
+
+		PrecoComparator comparator = new PrecoComparator();
+
+		sort(itens, comparator);
+
+		return listaDeItensByPreco(itens);
+	}
+
+	/**
+	 * {@link ItemService#listaItens(String)}
+	 */
+	@Override
+	public String listaItensPesquisa(String strPesquisada) {
+		List<Item> itens = this.itemRepository.getItensBySearch(strPesquisada);
+		sort(itens);
+
+		return listaDeItens(itens);
+	}
+
+	/**
+	 * Método que transforma uma lista de itens numa string de itens.
+	 * @return uma representação em string para uma lista de itens;
+	 */
+	private String listaDeItensByPreco(List<Item> itens) {
+		String itensStringifier = "";
+
+		for (Item item : itens) {
+			String menorPreco = item.getMenorPreco();
+			itensStringifier += item.toString(menorPreco) + "\n";
+		}
+		return itensStringifier;
+	}
+
+	/**
+	 * Método que transforma uma lista de itens numa string de itens.
+	 * @return uma representação em string para uma lista de itens;
+	 */
+	private String listaDeItens(List<Item> itens) {
+		String itensStringifier = "";
+
+		for (Item item : itens) itensStringifier += item.toString() + "\n";
+		return itensStringifier;
+	}
+
+	/**
+	 * {@link ItemService#atualizaItem(int, String, String)}
 	 */
 	@Override
 	public void atualizaItem(int id, String atributo, String novoValor) throws ItemNotExistException {

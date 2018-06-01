@@ -89,6 +89,18 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 		validatorNumber(id);
 	}
 
+	@Override
+	public void validaCategoria(String categoria) throws IllegalArgumentException {
+		if (!categoriaEhValida(categoria)) {
+		    throw new IllegalArgumentException(ItemExceptionsMessages.CATEGORIA_INVALIDA.getValue());
+        };
+	}
+
+	@Override
+	public void ValidaPesquisa(String strPesquisada) {
+		validatorString(strPesquisada);
+	}
+
 	/**
 	 * {@link ValidatorItem#validaAtualizacao(int, String)}
 	 */

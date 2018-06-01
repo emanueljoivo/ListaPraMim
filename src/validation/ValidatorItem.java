@@ -53,4 +53,15 @@ public interface ValidatorItem {
 	 * Verifica se o id é válido para a operação de exclusão de item.
 	 */
 	void validaExclusao(int id) throws IllegalArgumentException;
+
+	/**
+	 * Verifica se uma dada categoria é válida.
+	 */
+    void validaCategoria(String categoria);
+
+	/**
+	 * Verifica se uma dada string para pesquisa no sistema é válida.
+	 * @param strPesquisada
+	 */
+	void ValidaPesquisa(String strPesquisada);
 }

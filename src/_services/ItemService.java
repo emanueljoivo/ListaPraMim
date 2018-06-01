@@ -50,9 +50,26 @@ public interface ItemService {
 
 
 	/**
-	 * Lista todos os itens cadastrados no sistema.
-	 * @return uma representação em string de uma lista de todos os itens
-	 * cadastrados no sistema.
+	 * Lista todos os itens cadastrados no sistema de forma ordenada.
+	 * @return uma representação em string de uma lista de todos os itens cadastrados no sistema.
 	 */
-    String listaItems();
+    String listaItens();
+
+	/**
+	 * Lista todos os itens cadastrados de uma dada categoria de forma ordenada.
+	 * @return uma representação em string de uma lista de itens cadastrados no sistema.
+	 */
+	String listaItens(String categoria);
+
+	/**
+	 * Lista todos os itens com pelo menos um preço, ordenados pelo menor preço de cada em ordem crescente.
+	 * @return uma representação em string de uma lista de itens cadastrados no sistema.
+	 */
+	String listaItensPreco();
+
+	/**
+	 * Lista todos os itens relacionados a uma dada string.
+	 * @return uma representação em string de uma lista de itens relacionadas com uma dada string.
+	 */
+	String listaItensPesquisa(String strPesquisada);
 }

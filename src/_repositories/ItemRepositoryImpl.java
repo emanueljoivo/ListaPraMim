@@ -72,12 +72,62 @@ public class ItemRepositoryImpl implements ItemRepository {
 		return null;
 	}
 
+	/**
+	 * {@link ItemRepository#getItens()}
+	 */
 	@Override
 	public List<Item> getItens() {
 		return toList(this.itens);
 	}
 
-	private List toList(Collection c) {
+	/**
+	 * {@link ItemRepository#getItensByCategoria(String)}
+	 */
+	@Override
+	public List<Item> getItensByCategoria(String categoria) {
+		List<Item> itensDaCategoria = new ArrayList<>();
+
+		for (Item item : this.itens) {
+			if (item.getCategoria().getValue().equals(categoria)) {
+				itensDaCategoria.add(item);
+			}
+		}
+		return itensDaCategoria;
+	}
+
+	/**
+	 * {@link ItemRepository#getItensByPreco()}
+	 */
+	@Override
+	public List<Item> getItensByPreco() {
+		List<Item> itensComPreco = new ArrayList<>();
+
+		for (Item item : this.itens) {
+			if (!item.getMapaDePrecos().isEmpty()) {
+				itensComPreco.add(item);
+			}
+		}
+
+		return itensComPreco;
+	}
+
+    /**
+     * {@link ItemRepository#getItensBySearch(String)}
+     */
+    @Override
+    public List<Item> getItensBySearch(String strPesquisada) {
+        List<Item> itensRelacionados = new ArrayList<>();
+
+        for (Item item : this.itens) {
+            if (item.getNome().equalsIgnoreCase(strPesquisada)
+                    || item.getCategoria().getValue().equalsIgnoreCase(strPesquisada)) {
+                itensRelacionados.add(item);
+            }
+        }
+	    return itensRelacionados;
+    }
+
+    private List toList(Collection c) {
 		List novaLista = new ArrayList();
 		novaLista.addAll(c);
 		return novaLista;

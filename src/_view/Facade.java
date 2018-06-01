@@ -40,14 +40,23 @@ public class Facade  {
 		this.system.getItemController().listaItem(id);
 	}
 
-	public void listaItems() {
-		System.out.println(this.system.getItemController().listaItems());
+	public void listaItens() {
+		System.out.println(this.system.getItemController().listaItens());
+	}
+
+	public void listaItens(String categoria) {
+		System.out.println(this.system.getItemController().listaItens(categoria));
+	}
+
+	public void listaItensPreco() {
+		this.system.getItemController().listaItensPreco();
+	}
+
+	public void listaItensPesquisa(String strPesquisada) {
+		this.system.getItemController().listaItensPesquisa(strPesquisada);
 	}
 	
 	public void deletaItem(int id) throws ItemNotExistException {
 		this.system.getItemController().deletaItem(id);
 	}
-
-
-
 }

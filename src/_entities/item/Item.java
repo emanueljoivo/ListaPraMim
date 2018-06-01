@@ -7,6 +7,8 @@ import enums.ItemAtributos;
 import enums.ItemCategorias;
 import util.Util;
 
+import static java.util.Collections.min;
+
 /**
  * Classe abstrata que representa o tipo mais geral de items.  
  * 
@@ -102,6 +104,10 @@ public abstract class Item implements Comparable<Item>{
 				+ this.categoria.getValue() + ", ";
 	}
 
+	public String toString(String menorPreco) {
+		return toString() + "Menor Preço: " + menorPreco;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -139,5 +145,13 @@ public abstract class Item implements Comparable<Item>{
 		return true;
 	}
 
-	
+	/**
+	 * Método que pega menor preco no mapa de preços.
+	 * @return o menor preço do mapa de preços;
+	 */
+	public String getMenorPreco() {
+		Map<String, Double> precos = getMapaDePrecos();
+		Double minor = min(precos.values());
+		return minor.toString();
+	}
 }
