@@ -14,10 +14,6 @@ public class ItemPorUnidade extends Item {
 	
 	/**
 	 * Constrói um item do tipo ItemPorUnidade.
-	 * @param id
-	 * @param nome
-	 * @param categoria
-	 * @param unidades
 	 */
 	public ItemPorUnidade(int id, String nome, ItemCategorias categoria, int unidades) {
 		super(id, nome, categoria);
@@ -25,7 +21,7 @@ public class ItemPorUnidade extends Item {
 	}
 	
 	/**
-	 * @see {@link _entities.item.Item#set(String, String)}}
+	 * {@link _entities.item.Item#set(String, String)}}
 	 */
 	@Override
 	public void set(String atributo, String novoValor) {
@@ -56,11 +52,10 @@ public class ItemPorUnidade extends Item {
 	public void setUnidades(int unidades) {
 		this.unidades = unidades;
 	}
-	
-	
 
-	
-	
-	
 
+	@Override
+	public int compareTo(Item o) {
+		return super.compareTo(o);
+	}
 }

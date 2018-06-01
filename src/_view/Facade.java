@@ -2,26 +2,52 @@ package _view;
 
 import item_exceptions.ItemExistException;
 import item_exceptions.ItemNotExistException;
+import main.Application;
 
 /**
- * Interface que define contrato de funcionalidades oferecidas pelo sistema.
- * 
- * @author Emanuel Joivo
+ * Implementação da Facade.
  *
  */
-public interface Facade {	
+public class Facade  {
 	
-	void start();		
+	private Application system;
 	
-	void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException, NullPointerException, ItemExistException;
+	public Facade(Application system) {
+		this.system = system;
+	}
 	
-	void adicionatem(String nome, String categoria, int unidade) throws NullPointerException, IllegalArgumentException, ItemExistException;
+	public void start() {
+		this.system.init();		
+	}	
 	
-	void adicionaItem(String nome, String categoria, double kg) throws NullPointerException, IllegalArgumentException, ItemExistException;
+	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws IllegalArgumentException, NullPointerException, ItemExistException {
+		this.system.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida);
+	}
 	
-	void listaItem(int id) throws ItemNotExistException;
+	public void adicionatem(String nome, String categoria, int unidade) throws NullPointerException, IllegalArgumentException, ItemExistException {
+		this.system.getItemController().adicionaItem(nome, categoria, unidade);
+	}
 	
-	void atualizaItem(int id, String atributo, String novoValor) throws IllegalArgumentException, ItemNotExistException;		
+	public void adicionaItem(String nome, String categoria, double kg) throws NullPointerException, IllegalArgumentException, ItemExistException {
+		this.system.getItemController().adicionaItem(nome, categoria, kg);
+	}
 	
-	void deletaItem(int id) throws ItemNotExistException;
+	public void atualizaItem(int id, String atributo, String novoValor) throws IllegalArgumentException, ItemNotExistException {
+		this.system.getItemController().atualizaItem(id, atributo, novoValor);
+		
+	}
+	public void listaItem(int id) throws ItemNotExistException {
+		this.system.getItemController().listaItem(id);
+	}
+
+	public void listaItems() {
+		System.out.println(this.system.getItemController().listaItems());
+	}
+	
+	public void deletaItem(int id) throws ItemNotExistException {
+		this.system.getItemController().deletaItem(id);
+	}
+
+
+
 }

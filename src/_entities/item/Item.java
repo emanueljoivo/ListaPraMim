@@ -12,8 +12,8 @@ import util.Util;
  * 
  * @author Emanuel Joivo
  */
-public abstract class Item {
-	
+public abstract class Item implements Comparable<Item>{
+
 	private int id;
 	protected String nome;
 	protected ItemCategorias categoria;
@@ -77,8 +77,8 @@ public abstract class Item {
 	
 	/**
 	 * Atualiza o valo de um atributo em específico.
-	 * @param atributo
-	 * @param novoValor
+	 * @param atributo a ser atualizado.
+	 * @param novoValor valor a ser atribuído.
 	 */
 	public void set(String atributo, String novoValor) {		
 		if (atributo.equals(ItemAtributos.NOME.getValue())) {			
@@ -87,6 +87,11 @@ public abstract class Item {
 			setCategoria(Util.generateCategoria(novoValor));
 		}	
 	}
+
+	@Override
+	public int compareTo(Item i) {
+        return getNome().compareTo(i.getNome());
+    }
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

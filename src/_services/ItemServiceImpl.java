@@ -8,6 +8,9 @@ import enums.ItemExceptionsMessages;
 import item_exceptions.ItemExistException;
 import item_exceptions.ItemNotExistException;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Classe que implementa serviços oferecidos sobre itens.
  *
@@ -21,8 +24,8 @@ public class ItemServiceImpl implements ItemService {
 	/**
 	 * Construtor que recebe por injeção uma fabrica e um repositorio
 	 * dos quais este serviço é dependente.
-	 * @param itemFactory
-	 * @param itemRepository
+	 * @param itemFactory objeto que provê instâncias de itens.
+	 * @param itemRepository objeto responsável pelo gerenciamento da base de dados.
 	 */
 	public ItemServiceImpl(ItemFactory itemFactory, ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
@@ -31,11 +34,7 @@ public class ItemServiceImpl implements ItemService {
 	}	
 	
 	/**
-	 * Gerencia adição de itens do tipo ItemPorQntdFixa.
-	 * @param nome
-	 * @param categoria
-	 * @param qtd
-	 * @param unidadeDeMedida
+	 * {@link ItemService#adicionaItem(String, String, int, String)}
 	 */
 	@Override
 	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException {
@@ -47,12 +46,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 	
 	/**
-	 * Gerencia adição de itens do tipo ItemPorUnidade.
-	 * @param nome
-	 * @param categoria
-	 * @param qtd
-	 * @param unidadeDeMedida
-	 * @throws ItemExistException 
+	 * {@link ItemService#adicionaItem(String, String, int)}
 	 */
 	@Override
 	public void adicionaItem(String nome, String categoria, int unidade) throws ItemExistException {
@@ -64,11 +58,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 	
 	/**
-	 * Gerencia adição de itens do tipo ItemPorQuilo.
-	 * @param nome
-	 * @param categoria
-	 * @param qtd
-	 * @param unidadeDeMedida
+	 * {@link ItemService#adicionaItem(String, String, double)}
 	 */
 	@Override
 	public void adicionaItem(String nome, String categoria, double kg) throws ItemExistException {
@@ -80,10 +70,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	/**
-	 * Pega um item a partir do seu id.
-	 * @param id
-	 * @return o Item correspondente ao id.
-	 * @throws ItemNotExistException 
+	 * {@link ItemService#recuperaItem(int)}
 	 */
 	@Override
 	public Item recuperaItem(int id) throws ItemNotExistException {
@@ -95,10 +82,7 @@ public class ItemServiceImpl implements ItemService {
 	}		
 
 	/**
-	 * Deleta um item.
-	 * @param id
-	 * @param novoNome
-	 * @throws ItemNotExistException 
+	 * {@link ItemService#deletaItem(int)}
 	 */
 	@Override
 	public void deletaItem(int id) throws ItemNotExistException {
@@ -107,9 +91,19 @@ public class ItemServiceImpl implements ItemService {
 		}
 		this.itemRepository.delete(id);		
 	}
-	
+
+    /**
+     * {@link ItemService#listaItems()}
+     */
+	@Override
+	public String listaItems() {
+        List<Item> tempList = this.itemRepository.getItens();
+        Collections.sort(tempList);
+        return tempList.toString();
+	}
+
 	/**
-	 * @see {@link _services.ItemService#atualizaItem(int, String, String)}
+	 * @see ItemService#atualizaItem(int, String, String)
 	 */
 	@Override
 	public void atualizaItem(int id, String atributo, String novoValor) throws ItemNotExistException {

@@ -17,9 +17,7 @@ public class ItemController {
 	private ValidatorItem validator;	
 	
 	/**
-	 * Construtor que recebe por injeção um provedor de serviços sobre itens. 
-	 * 
-	 * @param itemService
+	 * Construtor que recebe por injeção um provedor de serviços sobre itens.
 	 */
 	public ItemController(ItemService itemService, ValidatorItem validator) {
 		this.itemService = itemService;
@@ -28,10 +26,9 @@ public class ItemController {
 	
 	/**
 	 * Gerencia a adicão de um item do tipo ItemPorUnidade.
-	 * @param nome
-	 * @param categoria
-	 * @param unidade
-	 * @throws ItemExistException 
+	 * @throws ItemExistException caso o item já exista na base de dados.
+	 * @throws NullPointerException caso algum parâmetro seja nulo.
+	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
 	public void adicionaItem(String nome, String categoria, int unidade) 
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
@@ -42,10 +39,9 @@ public class ItemController {
 	
 	/**
 	 * Gerencia a adição de um item do tipo ItemPorQuilo.
-	 * @param nome
-	 * @param categoria
-	 * @param kg
-	 * @throws ItemExistException 
+	 * @throws ItemExistException caso o item já exista na base de dados.
+	 * @throws NullPointerException caso algum parâmetro seja nulo.
+	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
 	public void adicionaItem(String nome, String categoria, double kg)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
@@ -56,13 +52,9 @@ public class ItemController {
 	
 	/**
 	 * Gerencia a adição de um ItemPorQntdFixa.
-	 * @param nome
-	 * @param categoria
-	 * @param qtd
-	 * @param unidadeDeMedida
-	 * @throws ItemExistException
-	 * @throws NullPointerException
-	 * @throws IllegalArgumentException
+	 * @throws ItemExistException caso o item já exista na base de dados.
+	 * @throws NullPointerException caso algum parâmetro seja nulo.
+	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
 	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
@@ -73,8 +65,7 @@ public class ItemController {
 	
 	/**
 	 * Retorna uma representação em string de um item se o item existir.
-	 * @param id
-	 * @throws ItemNotExistException 
+	 * @throws ItemNotExistException caso o item não exista na base de dados.
 	 */
 	public String listaItem(int id) throws ItemNotExistException {		
 		return this.itemService.recuperaItem(id).toString();
@@ -82,8 +73,7 @@ public class ItemController {
 
 	/**
 	 * Gerencia a exclusão de um Item.
-	 * @param id
-	 * @throws ItemNotExistException 
+	 * @throws ItemNotExistException caso o item não exista na base de dados.
 	 */
 	public void deletaItem(int id) throws ItemNotExistException {
 		this.itemService.deletaItem(id);		
@@ -91,16 +81,21 @@ public class ItemController {
 
 	/**
 	 * Gerencia a atualização de um atributo de um Item.
-	 * @param id
-	 * @param atributo
-	 * @param novoValor
-	 * @throws ItemNotExistException
-	 * @throws IllegalArgumentException
+	 * @throws ItemNotExistException caso o item não exista na base de dados.
+	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
 	public void atualizaItem(int id, String atributo, String novoValor)
 			throws IllegalArgumentException, ItemNotExistException {
 		
 		this.validator.validaAtualizacao(id, atributo);		
 		this.itemService.atualizaItem(id, atributo, novoValor);		
-	}	
+	}
+
+	/**
+	 * Gerencia a listagem de todos os itens da base de dados.
+	 * @return uma representação em string da lista de itens salvos.
+	 */
+    public String listaItems() {
+		return this.itemService.listaItems();
+    }
 }

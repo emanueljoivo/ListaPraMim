@@ -27,7 +27,7 @@ public enum ItemExceptionsMessages {
 	/**
 	 * Método para pegar o valor do enum, que funciona como um index.
 	 * 
-	 * @return
+	 * @return representação em string de uma mensagem de exceção.
 	 */
 	public String getValue() {
 		return value;

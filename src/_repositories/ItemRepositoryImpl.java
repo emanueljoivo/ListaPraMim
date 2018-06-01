@@ -1,7 +1,6 @@
 package _repositories;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import _entities.item.Item;
 
@@ -23,7 +22,6 @@ public class ItemRepositoryImpl implements ItemRepository {
 	
 	/**
 	 * Salva um item no banco de dados.
-	 * @param o
 	 */
 	@Override
 	public boolean save(Item item) {
@@ -32,7 +30,6 @@ public class ItemRepositoryImpl implements ItemRepository {
 
 	/**
 	 * Deleta um item do banco de dados pelo id.
-	 * @param id
 	 * @return <code> true </code> caso o item seja removido com sucesso,
 	 * <code> false </code> no caso contrário.
 	 */
@@ -44,7 +41,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	
 	/**
 	 * Recupera um item do banco de dados pelo id.
-	 * @param id
+
 	 * @return o item correspondente ao id, caso exista.
 	 */
 	@Override
@@ -54,7 +51,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	
 	/**
 	 * Verifica se um item está contido na base de dados a partir do id.
-	 * @param id
+
 	 * @return true se existe ou false se não existe o tem na base de dados.
 	 */
 	@Override
@@ -64,7 +61,6 @@ public class ItemRepositoryImpl implements ItemRepository {
 	
 	/**
 	 * Retorna Item a partir de id.
-	 * @param id
 	 * @return um Item correspondente ao id.
 	 */
 	private Item findById(int id) {
@@ -75,5 +71,15 @@ public class ItemRepositoryImpl implements ItemRepository {
 		}
 		return null;
 	}
-	
+
+	@Override
+	public List<Item> getItens() {
+		return toList(this.itens);
+	}
+
+	private List toList(Collection c) {
+		List novaLista = new ArrayList();
+		novaLista.addAll(c);
+		return novaLista;
+	}
 }

@@ -15,11 +15,6 @@ public class ItemPorQntdFixa extends Item {
 
 	/**
 	 * Constrói um item do tipo ItemPorQntdFixa.
-	 * @param id
-	 * @param nome
-	 * @param categoria
-	 * @param qntd
-	 * @param unidadeDeMedida
 	 */
 	public ItemPorQntdFixa(int id, String nome, ItemCategorias categoria, int qntd, String unidadeDeMedida) {
 		super(id, nome, categoria);
@@ -28,7 +23,7 @@ public class ItemPorQntdFixa extends Item {
 	}
 	
 	/**
-	 * @see {@link _entities.item.Item#set(String, String)}}
+	 * {@link _entities.item.Item#set(String, String)}}
 	 */
 	@Override
 	public void set(String atributo, String novoValor) {
@@ -75,7 +70,10 @@ public class ItemPorQntdFixa extends Item {
 		return super.toString() + this.qntd + " " 
 				+ this.unidadeDeMedida + ", Preço: " + Util.mapToString(getMapaDePrecos());
 	}
-	
-	
 
+
+    @Override
+    public int compareTo(Item o) {
+       return super.compareTo(o);
+    }
 }

@@ -45,15 +45,12 @@ public interface ValidatorItem {
 
 	/**
 	 * Verifica se o id e o atributo são válido para a operação de atualização de item.
-	 * @param id
-	 * @param atributo
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
 	void validaAtualizacao(int id, String atributo) throws IllegalArgumentException;
 	
 	/**
 	 * Verifica se o id é válido para a operação de exclusão de item.
-	 * @param id
 	 */
 	void validaExclusao(int id) throws IllegalArgumentException;
 }

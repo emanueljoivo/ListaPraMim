@@ -19,13 +19,7 @@ public class ItemFactoryImpl implements ItemFactory {
 	}	
 	
 	/**
-	 * Cria um item do tipo ItemPorQndtFixa.
-	 * 
-	 * @param nome
-	 * @param categoria
-	 * @param qtd
-	 * @param unidadeDeMedida
-	 * @return uma instância de ItemPorQndtFixa
+	 * {@link ItemFactory#create(String, String, int, String)}
 	 */
 	@Override
 	public Item create(String nome, String categoria, int qtd, String unidadeDeMedida) {
@@ -33,12 +27,7 @@ public class ItemFactoryImpl implements ItemFactory {
 	}
 	
 	/**
-	 * Cria um item do tipo ItemPorUnidade.
-	 * 
-	 * @param nome
-	 * @param categoria
-	 * @param unidade
-	 * @return uma instância de ItemPorUnidade
+	 * {@link ItemFactory#create(String, String, int)}
 	 */
 	@Override
 	public Item create(String nome, String categoria, int unidade) {
@@ -46,11 +35,7 @@ public class ItemFactoryImpl implements ItemFactory {
 	}
 	
 	/**
-	 * Cria um item do tipo ItemPorQuilo.
-	 * @param nome
-	 * @param categoria
-	 * @param kg
-	 * @return uma instância de ItemPorQuilo
+	 * {@link ItemFactory#create(String, String, double)}
 	 */
 	@Override
 	public Item create(String nome, String categoria, double kg) {
@@ -58,9 +43,9 @@ public class ItemFactoryImpl implements ItemFactory {
 	}
 	
 	/**
-	 * Gera um id para Item de acordo com o valor de incremento
+	 * Gera um identificador único inteiro para um Item de acordo com o valor de incremento
 	 * e de um contador.
-	 * @return um id para Item.
+	 * @return um identificador único para Item.
 	 */
 	private int generateId() {
 		return this.itemCounter += INCREMENT_VALUE;

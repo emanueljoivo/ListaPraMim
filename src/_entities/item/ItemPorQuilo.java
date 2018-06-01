@@ -13,10 +13,6 @@ public class ItemPorQuilo extends Item {
 	
 	/**
 	 * Constrói um item do tipo ItemPorQuilo.
-	 * @param id
-	 * @param nome
-	 * @param categoria
-	 * @param kg
 	 */
 	public ItemPorQuilo(int id, String nome, ItemCategorias categoria, double kg) {
 		super(id, nome, categoria);
@@ -24,7 +20,7 @@ public class ItemPorQuilo extends Item {
 	}
 	
 	/**
-	 * @see {@link _entities.item.Item#set(String, String)}}
+	 * {@link _entities.item.Item#set(String, String)}}
 	 */
 	@Override
 	public void set(String atributo, String novoValor) {
@@ -55,7 +51,10 @@ public class ItemPorQuilo extends Item {
 	public String toString() {
 		return super.toString() + "Preço por quilo: " + Util.mapToString(getMapaDePrecos());
 	}
-	
-	
 
+
+    @Override
+    public int compareTo(Item o) {
+        return super.compareTo(o);
+    }
 }

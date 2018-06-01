@@ -15,7 +15,7 @@ import _factories.ApplicationFactoryImpl;
 public class Application {
 	
 	/**
-	 * Fábrica das entidades do sistema.
+	 * Fábrica das entidades estruturais do sistema.
 	 */
 	private ApplicationFactory appFactory;
 	

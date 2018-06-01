@@ -15,8 +15,9 @@ public class Util {
 	/**
 	 * Método que gera um ItemCategoria para ser utilizado para a criação do objeto referente a esse item.
 	 * 
-	 * @param categoria string com a categoria do item.
-	 * @return um ItemCategoria que será passado na criação do item.
+	 * @param categoria string que descreve a categoria do item.
+	 * @return um ItemCategoria que será passado na criação do item ou null caso não haja match da string
+	 * com as categorias.
 	 */
 	public static ItemCategorias generateCategoria(String categoria) {
 		ItemCategorias[] values = ItemCategorias.values();
@@ -29,18 +30,17 @@ public class Util {
 	
 	/**
 	 * Tranforma um mapa numa representação em string customizada.
-	 * @param mapa
-	 * @return
+	 * @param mapa a ter representação do toString() customizada.
+	 * @return representação em string customizada.
 	 */
 	public static String mapToString(Map<String, Double> mapa) {
-		String result = "<";
+		String mapStringifier = "<";
 		
 		Set<String> keys = mapa.keySet();
 		
 		for (String key: keys) {
-			result += (key + ", R$ " + mapa.get(key).toString() + ";"); 
-		}	
-		
-		return result += ">";
+			mapStringifier += (key + ", R$ " + mapa.get(key).toString() + ";");
+		}
+		return mapStringifier + ">";
 	}
 }
