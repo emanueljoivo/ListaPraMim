@@ -28,7 +28,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 
 		ItemCategorias[] values = ItemCategorias.values();
 		int i = 0;
-		while (!(values[i].getValue().equalsIgnoreCase(categoria.trim())) && (i < values.length -1)) i++;
+		while ((i == values.length) && !(values[i].getValue().equalsIgnoreCase(categoria.trim()))) i++;
 
 		return i < (values.length - 1);
 	}

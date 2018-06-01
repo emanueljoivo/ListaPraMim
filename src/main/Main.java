@@ -15,9 +15,10 @@ public class Main {
 		Facade facade = new Facade(app);
 		facade.start();
 
-		facade.adicionaItem("banana", "fruta", 1);
+		facade.adicionaItem("pasta de dente", "higiene pessoal", 1);
 
 		facade.listaItens();
+
 	}
 
 
