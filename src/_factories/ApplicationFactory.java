@@ -1,6 +1,7 @@
 package _factories;
 
 import _controllers.ItemController;
+import _controllers.ListaDeComprasController;
 
 /**
  * Interface responsável pelo encapsulamento da criação de entidades do sistema.
@@ -14,5 +15,11 @@ public interface ApplicationFactory {
 	 * @return ItemController
 	 */
 	ItemController getItemController();
+
+	/**
+	 * Pega a instância do Controller de lista de compras.
+	 * @return
+	 */
+	ListaDeComprasController getListaDeComprasController();
 
 }

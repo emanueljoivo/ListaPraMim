@@ -59,4 +59,8 @@ public class Facade  {
 	public void deletaItem(int id) throws ItemNotExistException {
 		this.system.getItemController().deletaItem(id);
 	}
+
+	public void adicionaListaDeCompras(String descritor) {
+		this.system.getListaDeComprasController().adicionaListaDeCompras(descritor);
+	}
 }

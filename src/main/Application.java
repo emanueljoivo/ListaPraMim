@@ -1,6 +1,7 @@
 package main;
 
 import _controllers.ItemController;
+import _controllers.ListaDeComprasController;
 import _factories.ApplicationFactory;
 import _factories.ApplicationFactoryImpl;
 
@@ -33,4 +34,10 @@ public class Application {
 	public ItemController getItemController() {
 		return this.appFactory.getItemController();
 	}
+
+	/**
+	 * Pega o controlador de lista de compras.
+	 * @return a instância de ListaDeComprasController.
+	 */
+	public ListaDeComprasController getListaDeComprasController() {return this.appFactory.getListaDeComprasController(); }
 }
