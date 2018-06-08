@@ -49,7 +49,7 @@ public class ItemPorQuilo extends Item {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "Preço por quilo: " + Util.mapToString(getMapaDePrecos());
+		return super.toString() + "Preco por quilo: " + Util.mapToString(getMapaDePrecos());
 	}
 
 

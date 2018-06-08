@@ -68,7 +68,7 @@ public class ItemPorQntdFixa extends Item {
 	@Override
 	public String toString() {
 		return super.toString() + this.qntd + " " 
-				+ this.unidadeDeMedida + ", Preço: " + Util.mapToString(getMapaDePrecos());
+				+ this.unidadeDeMedida + ", Preco: " + Util.mapToString(getMapaDePrecos());
 	}
 
 

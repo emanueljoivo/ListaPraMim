@@ -78,9 +78,9 @@ public abstract class Item implements Comparable<Item>{
 	}
 	
 	/**
-	 * Atualiza o valo de um atributo em específico.
+	 * Atualiza o valo de um atributo em especifico.
 	 * @param atributo a ser atualizado.
-	 * @param novoValor valor a ser atribuído.
+	 * @param novoValor valor a ser atribuido.
 	 */
 	public void set(String atributo, String novoValor) {		
 		if (atributo.equals(ItemAtributos.NOME.getValue())) {			
@@ -105,7 +105,7 @@ public abstract class Item implements Comparable<Item>{
 	}
 
 	public String toString(String menorPreco) {
-		return toString() + "Menor Preço: " + menorPreco;
+		return toString() + "Menor Preco: " + menorPreco;
 	}
 
 	/* (non-Javadoc)
@@ -146,8 +146,8 @@ public abstract class Item implements Comparable<Item>{
 	}
 
 	/**
-	 * Método que pega menor preco no mapa de preços.
-	 * @return o menor preço do mapa de preços;
+	 * Metodo que pega menor preco no mapa de preços.
+	 * @return o menor preço do mapa de precos;
 	 */
 	public String getMenorPreco() {
 		Map<String, Double> precos = getMapaDePrecos();

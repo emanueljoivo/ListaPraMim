@@ -43,7 +43,7 @@ public class ItemPorUnidade extends Item {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "Preço: " + Util.mapToString(getMapaDePrecos());
+		return super.toString() + "Preco: " + Util.mapToString(getMapaDePrecos());
 	}
 
 	/**

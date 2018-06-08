@@ -9,7 +9,7 @@ package enums;
 public enum ItemCategorias implements Comparable<ItemCategorias>  {
 	
     INDUSTRIALIZADOS("alimento industrializado"),
-    NAO_INDUSTRIALIZADOS("alimento não industrializado"),
+    NAO_INDUSTRIALIZADOS("alimento nao industrializado"),
     LIMPEZA("limpeza"),
     HIGIENTE_PESOAL("higiene pessoal");
 

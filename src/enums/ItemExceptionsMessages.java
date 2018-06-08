@@ -15,8 +15,8 @@ public enum ItemExceptionsMessages {
 	QUANTIDADE_INVALIDA("Erro no cadastro de item: valor de quantidade nao pode ser menor que zero."),
 	UNIDADE_DE_MEDIDA_INVALIDA("Erro no cadastro de item: unidade de medida nao pode ser vazia ou nula."),
 	CONTEM_ITEM("Erro no cadastro de item: item já existe."),
-	NAO_CONTEM_ITEM("Item não existe."),
-	ATRIBUTO_INVALIDO("Atributo inválido.");
+	NAO_CONTEM_ITEM("Item nao existe."),
+	ATRIBUTO_INVALIDO("Atributo invalido.");
 	
 	private String value;
 	
