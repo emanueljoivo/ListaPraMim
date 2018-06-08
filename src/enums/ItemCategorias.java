@@ -7,11 +7,10 @@ package enums;
  *
  */
 public enum ItemCategorias implements Comparable<ItemCategorias>  {
-	
-    INDUSTRIALIZADOS("alimento industrializado"),
-    NAO_INDUSTRIALIZADOS("alimento nao industrializado"),
+    HIGIENTE_PESOAL("higiene pessoal"),
     LIMPEZA("limpeza"),
-    HIGIENTE_PESOAL("higiene pessoal");
+    INDUSTRIALIZADOS("alimento industrializado"),
+    NAO_INDUSTRIALIZADOS("alimento nao industrializado");
 
     private String categoria;
 
@@ -26,5 +25,4 @@ public enum ItemCategorias implements Comparable<ItemCategorias>  {
     public String getValue() {
     	return this.categoria;
     }
-
 }

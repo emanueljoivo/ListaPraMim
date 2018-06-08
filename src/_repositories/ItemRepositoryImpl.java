@@ -107,7 +107,6 @@ public class ItemRepositoryImpl implements ItemRepository {
 				itensComPreco.add(item);
 			}
 		}
-
 		return itensComPreco;
 	}
 
@@ -117,7 +116,6 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Override
     public List<Item> getItensBySearch(String strPesquisada) {
         List<Item> itensRelacionados = new ArrayList<>();
-
         for (Item item : this.itens) {
             if (item.getNome().equalsIgnoreCase(strPesquisada)
                     || item.getCategoria().getValue().equalsIgnoreCase(strPesquisada)) {

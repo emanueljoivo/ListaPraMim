@@ -18,7 +18,7 @@ public interface ApplicationFactory {
 
 	/**
 	 * Pega a instância do Controller de lista de compras.
-	 * @return
+	 * @return ListaDeComprasController
 	 */
 	ListaDeComprasController getListaDeComprasController();
 

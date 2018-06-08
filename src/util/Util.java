@@ -1,13 +1,12 @@
 package util;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
 import _view.Facade;
 import enums.ItemCategorias;
-import item_exceptions.ItemExistException;
+import itemExceptions.ItemExistException;
 
 /**
  * Classe com algoritmos estáticos.

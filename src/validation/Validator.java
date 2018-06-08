@@ -81,18 +81,18 @@ public abstract class Validator {
 	 * Método para validar uma string, retornando a devida mensagem do erro, caso aconteça um problema na validação.
 	 * 
 	 * @param str string a ser validada.
-	 * @param value valor do enum que vai definir a mensagem de erro a ser mostrada. 
+	 * @param errorMessage valor do enum que vai definir a mensagem de erro a ser mostrada.
 	 * @throws IllegalArgumentException exceção que será lançada caso a string seja vazia.
 	 * @throws NullPointerException exceção que será lançada caso a string seja nula.
 	 */
-	protected void generalValidatorString(String str, String value) 
+	protected void generalValidatorString(String str, String errorMessage)
 			throws IllegalArgumentException, NullPointerException {
 		try {
 			this.validatorString(str);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(value);
+			throw new IllegalArgumentException(errorMessage);
 		} catch (NullPointerException npe) {
-			throw new NullPointerException(value);
+			throw new NullPointerException(errorMessage);
 		}
 	}
 	
@@ -101,15 +101,15 @@ public abstract class Validator {
 	 * caso aconteça um problema na validação.
 	 * 
 	 * @param n número a ser validado.
-	 * @param value valor do enum que vai definir a mensagem de erro a ser mostrada.
+	 * @param errorMessage valor do enum que vai definir a mensagem de erro a ser mostrada.
 	 * @throws IllegalArgumentException exceção que será lançada caso o número seja menor que zero.
 	 */
-	protected void generalValidatorNumber(double n, String value) 
+	protected void generalValidatorNumber(double n, String errorMessage)
 			throws IllegalArgumentException {
 		try {
 			this.validatorNumber(n);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(value);
+			throw new IllegalArgumentException(errorMessage);
 		}
 	}
 }

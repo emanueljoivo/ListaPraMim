@@ -1,8 +1,8 @@
 package _services;
 
 import _entities.item.Item;
-import item_exceptions.ItemExistException;
-import item_exceptions.ItemNotExistException;
+import itemExceptions.ItemExistException;
+import itemExceptions.ItemNotExistException;
 
 /**
  * Interface que representa contrato de serviços oferecidos sobre itens.

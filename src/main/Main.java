@@ -1,12 +1,8 @@
 package main;
 
 import _view.Facade;
-import enums.ItemCategorias;
-import item_exceptions.ItemExistException;
-import item_exceptions.ItemNotExistException;
-import util.Util;
-
-import java.util.Random;
+import itemExceptions.ItemExistException;
+import itemExceptions.ItemNotExistException;
 
 public class Main {
 

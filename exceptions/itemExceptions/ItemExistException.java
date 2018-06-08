@@ -1,4 +1,4 @@
-package item_exceptions;
+package itemExceptions;
 
 public class ItemExistException extends Exception {
 

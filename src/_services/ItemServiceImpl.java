@@ -7,13 +7,10 @@ import _factories.ItemFactory;
 import _entities.item.Item;
 import _repositories.ItemRepository;
 import enums.ItemExceptionsMessages;
-import item_exceptions.ItemExistException;
-import item_exceptions.ItemNotExistException;
+import itemExceptions.ItemExistException;
+import itemExceptions.ItemNotExistException;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static java.util.Collections.*;
 
@@ -47,7 +44,7 @@ public class ItemServiceImpl implements ItemService {
 		Item itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
 			
 		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
+			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getErrorMessage());
 		}
 		return itemAtual.getId();
 	}
@@ -60,7 +57,7 @@ public class ItemServiceImpl implements ItemService {
 		Item itemAtual = this.itemFactory.create(nome, categoria, unidade);			
 		
 		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
+			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getErrorMessage());
 		}
 		return itemAtual.getId();
 	}
@@ -73,7 +70,7 @@ public class ItemServiceImpl implements ItemService {
 		Item itemAtual = this.itemFactory.create(nome, categoria, kg);
 		
 		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getValue());
+			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getErrorMessage());
 		}
 
 		return itemAtual.getId();
@@ -85,7 +82,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Item recuperaItem(int id) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
-			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getValue());
+			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getErrorMessage());
 		}
 		
 		return this.itemRepository.recovery(id);		
@@ -97,7 +94,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void deletaItem(int id) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
-			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getValue());
+			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getErrorMessage());
 		}
 		this.itemRepository.delete(id);		
 	}
@@ -183,7 +180,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void atualizaItem(int id, String atributo, String novoValor) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
-			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getValue());
+			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getErrorMessage());
 		}		
 		
 		this.itemRepository.recovery(id).set(atributo.toLowerCase(), novoValor);					

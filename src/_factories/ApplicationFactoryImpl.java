@@ -4,6 +4,8 @@ import _controllers.ItemController;
 import _controllers.ListaDeComprasController;
 import _repositories.ItemRepository;
 import _repositories.ItemRepositoryImpl;
+import _repositories.ListaDeComprasRepository;
+import _repositories.ListaDeComprasRepositoryImpl;
 import _services.ItemService;
 import _services.ItemServiceImpl;
 import _services.ListaDeComprasService;
@@ -29,6 +31,9 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 	 */
 	private ItemController itemController;
 
+	/**
+	 * Objeto responsavel por controlar requisicoes de usuario a respeito de listas de compras.
+	 */
 	private ListaDeComprasController listaDeComprasController;
 	
 	/**
@@ -45,6 +50,8 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 	 * Interface responsável pela comunicação com banco de dados (Persistência).
 	 */
 	private ItemRepository itemRepository;
+
+	private ListaDeComprasRepository listaDeComprasRepository;
 	
 	/**
 	 * Interface que define validações de item.
@@ -66,7 +73,8 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 		this.itemService = new ItemServiceImpl(itemFactory, itemRepository);
 		this.itemController = new ItemController(itemService, validatorItem);
 		this.validatorLista = new ValidatorListaDeComprasImpl();
-		this.listaService = new ListaDeComprasServiceImpl();
+		this.listaDeComprasRepository = new ListaDeComprasRepositoryImpl();
+		this.listaService = new ListaDeComprasServiceImpl(listaDeComprasRepository, itemRepository);
 		this.listaDeComprasController = new ListaDeComprasController(validatorLista, listaService);
 	}	
 	
@@ -76,7 +84,7 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 	 */
 	@Override
 	public ItemController getItemController() {
-		return itemController;
+		return this.itemController;
 	}
 
 	/**
@@ -85,6 +93,6 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 	 */
 	@Override
 	public ListaDeComprasController getListaDeComprasController() {
-		return null;
+		return this.listaDeComprasController;
 	}
 }

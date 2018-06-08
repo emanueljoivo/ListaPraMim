@@ -13,26 +13,35 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
         this.listasDeCompras = new HashSet<>();
     }
 
-    @Override
     public boolean save(ListaDeCompra l) {
         return this.listasDeCompras.add(l);
     }
 
     @Override
-    public boolean delete(int id) {
-        /* todo */
-        return true;
+    public boolean containsLista(String descritorLista) {
+        return containsListaPorDescritor(descritorLista);
     }
 
     @Override
-    public ListaDeCompra recovery(int id) {
-        /* todo */
-        return null;
+    public ListaDeCompra recoveryLista(String descritorLista) {
+        return recoveryListaPorDescritor(descritorLista);
     }
 
-    @Override
-    public boolean contains(int id) {
-        /* todo */
+    private ListaDeCompra recoveryListaPorDescritor(String descritorLista) {
+        ListaDeCompra listaAtual = null;
+        for (ListaDeCompra l: this.listasDeCompras) {
+            if (l.getDescritor().equalsIgnoreCase(descritorLista)) {
+                listaAtual = l;
+            }
+        }
+        return listaAtual;
+    }
+
+    private boolean containsListaPorDescritor(String descritorLista) {
+        for (ListaDeCompra l : this.listasDeCompras) {
+            if (l.getDescritor().equalsIgnoreCase(descritorLista))
+                return true;
+        }
         return false;
     }
 }

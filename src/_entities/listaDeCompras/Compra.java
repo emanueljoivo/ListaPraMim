@@ -7,18 +7,18 @@ import java.util.Objects;
 public class Compra {
 
     private double quantidade;
-    private int itemId;
+    private Item item;
 
-    public Compra(double quantidade, int itemId) {
+    public Compra(double quantidade, Item itemId) {
         this.quantidade = quantidade;
-        this.itemId = itemId;
+        this.item = itemId;
     }
 
     @Override
     public String toString() {
         return "Compra{" +
                 "quantidade=" + quantidade +
-                ", itemCompravel=" + itemId +
+                ", itemCompravel=" + item.getNome() +
                 '}';
     }
 
@@ -28,11 +28,11 @@ public class Compra {
         if (o == null || getClass() != o.getClass()) return false;
         Compra compra = (Compra) o;
         return quantidade == compra.quantidade &&
-                Objects.equals(itemId, compra.itemId);
+                Objects.equals(item, compra.item);
     }
 
     @Override
-    public int hashCode() {return Objects.hash(quantidade, itemId);}
+    public int hashCode() {return Objects.hash(quantidade, item);}
 
     public double getQuantidade() { return quantidade; }
 
@@ -40,7 +40,7 @@ public class Compra {
         this.quantidade = quantidade;
     }
 
-    public int getItemCompravel() {
-        return itemId;
+    public Item getItemCompravel() {
+        return item;
     }
 }

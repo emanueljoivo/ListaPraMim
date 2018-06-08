@@ -9,7 +9,6 @@ import util.Util;
  *
  */
 public class ItemPorUnidade extends Item {
-	
 	private int unidades;
 	
 	/**

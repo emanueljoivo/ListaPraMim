@@ -1,18 +1,31 @@
 package _entities.listaDeCompras;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class ListaDeCompra {
 
-    private String descritor;
+    private String descritor, localDeCompra;
     private Set<Compra> compras;
+    private Date momentoDeCriacao;
+    private double valorFinal;
 
     public ListaDeCompra(String descritor) {
         this.descritor = descritor;
         this.compras = new HashSet<>();
-        /* todo: adicionar data */
+        this.momentoDeCriacao = new Date();
+    }
+
+    public Compra getCompra(int itemId) {
+        Compra c = null;
+        for (Compra compra : this.compras) {
+            if (compra.getItemCompravel().getId() == itemId) {
+                c = compra;
+            }
+        }
+        return c;
     }
 
     public String getDescritor() {
@@ -25,6 +38,22 @@ public class ListaDeCompra {
 
     public void setDescritor(String descritor) {
         this.descritor = descritor;
+    }
+
+    public String getLocalDeCompra() {
+        return localDeCompra;
+    }
+
+    public void setLocalDeCompra(String localDeCompra) {
+        this.localDeCompra = localDeCompra;
+    }
+
+    public double getValorFinal() {
+        return valorFinal;
+    }
+
+    public void setValorFinal(double valorFinal) {
+        this.valorFinal = valorFinal;
     }
 
     @Override

@@ -29,7 +29,7 @@ public enum ItemExceptionsMessages {
 	 * 
 	 * @return representação em string de uma mensagem de exceção.
 	 */
-	public String getValue() {
+	public String getErrorMessage() {
 		return value;
 	}
 }
