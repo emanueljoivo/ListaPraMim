@@ -3,6 +3,7 @@ package _repositories;
 import java.util.*;
 
 import _entities.item.Item;
+import util.Util;
 
 /**
  * Implementação de repositório de itens. Representa comunicação
@@ -77,7 +78,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 */
 	@Override
 	public List<Item> getItens() {
-		return toList(this.itens);
+		return Util.toList(this.itens);
 	}
 
 	/**
@@ -125,9 +126,5 @@ public class ItemRepositoryImpl implements ItemRepository {
 	    return itensRelacionados;
     }
 
-    private List toList(Collection c) {
-		List novaLista = new ArrayList();
-		novaLista.addAll(c);
-		return novaLista;
-	}
+
 }

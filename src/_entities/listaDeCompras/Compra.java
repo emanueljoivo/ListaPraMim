@@ -16,10 +16,7 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" +
-                "quantidade=" + quantidade +
-                ", itemCompravel=" + item.getNome() +
-                '}';
+        return quantidade + " " + item.toString();
     }
 
     @Override

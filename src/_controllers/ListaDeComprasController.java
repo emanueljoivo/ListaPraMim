@@ -56,7 +56,13 @@ public class ListaDeComprasController {
 
     }
 
-    /* ToDo: Uma compra de uma lista de compras pode ser pesquisada usando o identificador do item a ser comprado. */
+    public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+        this.validator.validaDescritor(descritorLista);
+
+        return this.service.imprimirListaDeCompras(descritorLista);
+    }
+
+
 
 
 }

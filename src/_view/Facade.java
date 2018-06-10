@@ -23,22 +23,22 @@ public class Facade  {
 		this.app.init();
 	}	
 	
-	public void adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
+	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
 
-		this.app.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida);
+		return this.app.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}
 	
-	public void adicionatem(String nome, String categoria, int unidade)
+	public int adicionaItem(String nome, String categoria, int unidade)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 
-		this.app.getItemController().adicionaItem(nome, categoria, unidade);
+		return this.app.getItemController().adicionaItem(nome, categoria, unidade);
 	}
 	
-	public void adicionaItem(String nome, String categoria, double kg)
+	public int adicionaItem(String nome, String categoria, double kg)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 
-		this.app.getItemController().adicionaItem(nome, categoria, kg);
+		return this.app.getItemController().adicionaItem(nome, categoria, kg);
 	}
 	
 	public void atualizaItem(int id, String atributo, String novoValor)
@@ -47,24 +47,24 @@ public class Facade  {
 		this.app.getItemController().atualizaItem(id, atributo, novoValor);
 		
 	}
-	public void listaItem(int id) throws ItemNotExistException {
-		this.app.getItemController().listaItem(id);
+	public String listaItem(int id) throws ItemNotExistException {
+		return this.app.getItemController().listaItem(id);
 	}
 
-	public void listaItens() {
-		this.app.getItemController().listaItens();
+	public String listaItens() {
+		return this.app.getItemController().listaItens();
 	}
 
-	public void listaItens(String categoria) {
-		this.app.getItemController().listaItens(categoria);
+	public String listaItens(String categoria) {
+		return this.app.getItemController().listaItens(categoria);
 	}
 
-	public void listaItensPreco() {
-		this.app.getItemController().listaItensPreco();
+	public String listaItensPreco() {
+		return this.app.getItemController().listaItensPreco();
 	}
 
-	public void listaItensPesquisa(String strPesquisada) {
-		this.app.getItemController().listaItensPesquisa(strPesquisada);
+	public String listaItensPesquisa(String strPesquisada) {
+		return this.app.getItemController().listaItensPesquisa(strPesquisada);
 	}
 	
 	public void deletaItem(int id) throws ItemNotExistException {
@@ -97,7 +97,11 @@ public class Facade  {
 		this.app.getListaDeComprasController().deletaCompraDeLista(descritorLista, itemId);
 	}
 
-	public void pesquisaCompraDeLista(String descritorLista, int itemId) {
+	public void pesquisaCompraDeLista(String descritorLista, int itemId) throws ItemNotExistException, ListaDeComprasNotExistException, CompraNotExistException {
 		this.app.getListaDeComprasController().pesquisaCompraDeLista(descritorLista, itemId);
+	}
+
+	public void imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+		this.app.getListaDeComprasController().imprimirListaDeCompras(descritorLista);
 	}
 }

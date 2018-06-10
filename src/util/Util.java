@@ -1,8 +1,7 @@
 package util;
 
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.text.DecimalFormat;
+import java.util.*;
 
 import _view.Facade;
 import enums.ItemCategorias;
@@ -30,6 +29,10 @@ public class Util {
 		
 		return values[i];
 	}
+
+	public static DecimalFormat formatDouble(double d) {
+		return (DecimalFormat) DecimalFormat.getNumberInstance(Locale.GERMAN);
+	}
 	
 	/**
 	 * Tranforma um mapa numa representação em string customizada.
@@ -46,6 +49,13 @@ public class Util {
 		}
 		return mapStringifier + ">";
 	}
+
+	public static List toList(Collection c) {
+		List novaLista = new ArrayList();
+		novaLista.addAll(c);
+		return novaLista;
+	}
+
 
 	public static void mockOrdenacao(Facade facade) throws ItemExistException {
 		ItemCategorias[] categorias = ItemCategorias.values();

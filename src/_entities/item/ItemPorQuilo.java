@@ -4,6 +4,8 @@ import enums.ItemAtributos;
 import enums.ItemCategorias;
 import util.Util;
 
+import java.text.DecimalFormat;
+
 /**
  * Classe que representa um item vendido por quilo.
  *
@@ -52,8 +54,14 @@ public class ItemPorQuilo extends Item {
 		return super.toString() + "Preco por quilo: " + Util.mapToString(getMapaDePrecos());
 	}
 
+	@Override
+	public String toString(double quantidade) {
+		return Util.formatDouble(quantidade) + " kg " + this.getNome()
+				+ this.getCategoria().getValue();
+	}
 
-    @Override
+
+	@Override
     public int compareTo(Item o) {
         return super.compareTo(o);
     }

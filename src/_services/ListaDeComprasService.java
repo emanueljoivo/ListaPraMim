@@ -19,4 +19,6 @@ public interface ListaDeComprasService {
     void deletaCompraDeLista(String descritorLista, int itemId) throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException;
 
     Compra pesquisaCompraDeLista(String descritorLista, int itemId) throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException;
+
+    String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException;
 }

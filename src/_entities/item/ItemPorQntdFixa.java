@@ -29,9 +29,11 @@ public class ItemPorQntdFixa extends Item {
 	public void set(String atributo, String novoValor) {
 		super.set(atributo, novoValor);
 		
-		if (atributo.equals(ItemAtributos.UNIDADES.getValue())) {
+		if (atributo.equals(ItemAtributos.QUANTIDADE.getValue())) {
 			setQntd(Integer.parseInt(novoValor));
-		} else if (atributo.equals(ItemAtributos.UNIDADE_DE_MEDIDA.getValue()));
+		} else if (atributo.equals(ItemAtributos.UNIDADE_DE_MEDIDA.getValue())) {
+			setUnidadeDeMedida(novoValor);
+		};
 	}
 
 	/**
@@ -67,12 +69,18 @@ public class ItemPorQntdFixa extends Item {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + this.qntd + " " 
+		return super.toString() + this.qntd + " "
 				+ this.unidadeDeMedida + ", Preco: " + Util.mapToString(getMapaDePrecos());
 	}
 
+	@Override
+	public String toString(double quantidade) {
+		return (int) quantidade + " " + this.getNome()
+				+ ", " + this.getCategoria().getValue()
+				+ ", " + this.qntd + " " + this.unidadeDeMedida;
+	}
 
-    @Override
+	@Override
     public int compareTo(Item o) {
        return super.compareTo(o);
     }

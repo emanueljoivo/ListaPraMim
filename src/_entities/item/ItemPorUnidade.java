@@ -45,6 +45,11 @@ public class ItemPorUnidade extends Item {
 		return super.toString() + "Preco: " + Util.mapToString(getMapaDePrecos());
 	}
 
+	@Override
+	public String toString(double quantidade) {
+		return (int) quantidade + " " + this.getNome() + " " + this.getCategoria().getValue();
+	}
+
 	/**
 	 * @param unidades the unidades to set
 	 */

@@ -1,6 +1,7 @@
 package _services;
 
 import _entities.item.Item;
+import _entities.item.comparators.CategoriaComparator;
 import _entities.listaDeCompras.Compra;
 import _entities.listaDeCompras.ListaDeCompra;
 import _repositories.ItemRepository;
@@ -11,6 +12,13 @@ import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
+import util.Util;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import static util.Util.*;
 
 public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
@@ -84,16 +92,39 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         return compraAtual;
     }
 
+    @Override
+    public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+        verificaDescritor(descritorLista);
+        String listaStringify = "";
+        List<Compra> compras = toList(this.listaRepository.
+                recoveryLista(descritorLista).getCompras());
+        CategoriaComparator comparator1 = new CategoriaComparator();
+
+        /* TODO */
+
+        for (Compra compra : compras) {
+            listaStringify += compra.getItemCompravel().toString(compra.getQuantidade()) + "\n";
+        }
+        return listaStringify;
+    }
+
     private void verificaIntegridade(String descritorLista, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException {
-        if (!this.listaRepository.containsLista(descritorLista)) {
-            throw new ListaDeComprasNotExistException(ListaDeComprasExceptionMessages.
-                    LISTA_NAO_ENCONTRADA.getErrorMessage());
-        }
+        verificaDescritor(descritorLista);
+        verificaItem(itemId);
+    }
 
+    private void verificaItem(int itemId) throws ItemNotExistException {
         if (!this.itemRepository.contains(itemId)) {
             throw new ItemNotExistException(ItemExceptionsMessages.
                     NAO_CONTEM_ITEM.getErrorMessage());
+        }
+    }
+
+    private void verificaDescritor(String descritorLista) throws ListaDeComprasNotExistException {
+        if (!this.listaRepository.containsLista(descritorLista)) {
+            throw new ListaDeComprasNotExistException(ListaDeComprasExceptionMessages.
+                    LISTA_NAO_ENCONTRADA.getErrorMessage());
         }
     }
 

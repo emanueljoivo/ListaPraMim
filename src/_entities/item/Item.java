@@ -108,6 +108,8 @@ public abstract class Item implements Comparable<Item>{
 		return toString() + "Menor Preco: " + menorPreco;
 	}
 
+	abstract public String toString(double quantidade);
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
