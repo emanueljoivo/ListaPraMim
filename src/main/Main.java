@@ -14,7 +14,5 @@ public class Main {
 		Application app = new Application();
 		Facade facade = new Facade(app);
 		facade.start();
-
-		System.out.println(Util.formatDouble(1.2));
 	}
 }

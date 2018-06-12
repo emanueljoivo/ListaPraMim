@@ -4,7 +4,7 @@ import _entities.item.Item;
 
 import java.util.Objects;
 
-public class Compra {
+public class Compra implements Comparable<Compra>  {
 
     private double quantidade;
     private Item item;
@@ -39,5 +39,10 @@ public class Compra {
 
     public Item getItemCompravel() {
         return item;
+    }
+
+    @Override
+    public int compareTo(Compra o) {
+        return this.getItemCompravel().getCategoria().compareTo(o.getItemCompravel().getCategoria());
     }
 }

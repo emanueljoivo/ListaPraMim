@@ -111,7 +111,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	public void validaCategoria(String categoria) throws IllegalArgumentException {
 		if (!categoriaEhValida(categoria)) {
 		    throw new IllegalArgumentException(ItemExceptionsMessages.CATEGORIA_INVALIDA.getErrorMessage());
-        };
+        }
 	}
 
 	@Override

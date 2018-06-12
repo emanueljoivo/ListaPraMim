@@ -53,7 +53,6 @@ public class ListaDeComprasController {
         this.validator.validaPesquisa(descritorLista, itemId);
 
         return this.service.pesquisaCompraDeLista(descritorLista, itemId).toString();
-
     }
 
     public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
@@ -63,6 +62,9 @@ public class ListaDeComprasController {
     }
 
 
+    public void finalizaListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) throws ListaDeComprasNotExistException {
+        this.validator.validaFinalizacaoDeLista(descritorLista, localDaCompra, valorFinalDaCompra);
 
-
+        this.service.finalizaListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);
+    }
 }

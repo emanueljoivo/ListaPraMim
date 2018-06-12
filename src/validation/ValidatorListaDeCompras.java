@@ -11,4 +11,6 @@ public interface ValidatorListaDeCompras {
     void validaExclusao(String descritorLista, int itemId);
 
     void validaPesquisa(String descritorLista, int itemId);
+
+    void validaFinalizacaoDeLista(String descritorLista, String localDaCompra, double valorFinalDaCompra);
 }

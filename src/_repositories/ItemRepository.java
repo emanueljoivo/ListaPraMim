@@ -2,7 +2,6 @@ package _repositories;
 
 import _entities.item.Item;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public interface ItemRepository extends Repository<Item> {
      * Pega uma lista com todos os itens do sistema.
      * @return uma lista de itens.
      */
-    List<Item> getItens();
+    List getItens();
 
     /**
      * Pega uma lista com todos os itens do sistema de uma dada categoria.

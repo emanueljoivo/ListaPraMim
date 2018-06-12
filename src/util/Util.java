@@ -30,6 +30,10 @@ public class Util {
 		return values[i];
 	}
 
+	/**
+	 * Converte a formatação de um double para um formato com virgula ao inves de ponto.	 *
+	 * @return Um decimal formatado.
+	 */
 	public static DecimalFormat formatDouble(double d) {
 		return (DecimalFormat) DecimalFormat.getNumberInstance(Locale.GERMAN);
 	}
@@ -50,6 +54,10 @@ public class Util {
 		return mapStringifier + ">";
 	}
 
+	/**
+	 * Converte uma coleção numa lista.
+	 * @return uma lista com os itens correspondentes.
+	 */
 	public static List toList(Collection c) {
 		List novaLista = new ArrayList();
 		novaLista.addAll(c);
@@ -57,23 +65,23 @@ public class Util {
 	}
 
 
-	public static void mockOrdenacao(Facade facade) throws ItemExistException {
-		ItemCategorias[] categorias = ItemCategorias.values();
-		Random generator = new Random();
-		generator.nextDouble();
-
-		for (int i = 0; i < 10; i++) {
-			String nome = "Item" + i;
-			String nome2 = "Item" + (i+10);
-			String categoria = categorias[generator.nextInt(4)].getValue();
-			facade.adicionaItem(nome,categoria, generator.nextDouble());
-			facade.adicionatem(nome2, categoria, generator.nextInt(10));
-		}
-
-		facade.listaItens();
-
-		System.out.println("Ordenação por categoria" + "\n");
-
-		facade.listaItens(categorias[generator.nextInt(4)].getValue());
-	}
+//	public static void mockOrdenacao(Facade facade) throws ItemExistException {
+//		ItemCategorias[] categorias = ItemCategorias.values();
+//		Random generator = new Random();
+//		generator.nextDouble();
+//
+//		for (int i = 0; i < 10; i++) {
+//			String nome = "Item" + i;
+//			String nome2 = "Item" + (i+10);
+//			String categoria = categorias[generator.nextInt(4)].getValue();
+//			facade.adicionaItem(nome,categoria, generator.nextDouble());
+//			facade.adicionaItem(nome2, categoria, generator.nextInt(10));
+//		}
+//
+//		facade.listaItens();
+//
+//		System.out.println("Ordenação por categoria" + "\n");
+//
+//		facade.listaItens(categorias[generator.nextInt(4)].getValue());
+//	}
 }

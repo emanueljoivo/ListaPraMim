@@ -33,7 +33,7 @@ public class ItemPorQntdFixa extends Item {
 			setQntd(Integer.parseInt(novoValor));
 		} else if (atributo.equals(ItemAtributos.UNIDADE_DE_MEDIDA.getValue())) {
 			setUnidadeDeMedida(novoValor);
-		};
+		}
 	}
 
 	/**

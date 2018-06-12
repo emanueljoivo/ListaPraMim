@@ -4,7 +4,7 @@ import _entities.listaDeCompras.ListaDeCompra;
 
 public interface ListaDeComprasRepository {
 
-    public boolean save(ListaDeCompra l);
+    boolean save(ListaDeCompra l);
 
     boolean containsLista(String descritorLista);
 

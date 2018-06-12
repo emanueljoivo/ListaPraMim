@@ -104,4 +104,8 @@ public class Facade  {
 	public void imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
 		this.app.getListaDeComprasController().imprimirListaDeCompras(descritorLista);
 	}
+
+	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) throws ListaDeComprasNotExistException {
+		this.app.getListaDeComprasController().finalizaListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);
+	}
 }

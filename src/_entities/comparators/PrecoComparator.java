@@ -1,4 +1,4 @@
-package _entities.item.comparators;
+package _entities.comparators;
 
 import _entities.item.Item;
 

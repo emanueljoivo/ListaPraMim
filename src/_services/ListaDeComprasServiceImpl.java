@@ -1,7 +1,9 @@
 package _services;
 
+import _entities.comparators.ComprasComparator;
+import _entities.comparators.NomeComparator;
 import _entities.item.Item;
-import _entities.item.comparators.CategoriaComparator;
+import _entities.comparators.CategoriaComparator;
 import _entities.listaDeCompras.Compra;
 import _entities.listaDeCompras.ListaDeCompra;
 import _repositories.ItemRepository;
@@ -12,9 +14,7 @@ import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
-import util.Util;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -95,17 +95,31 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     @Override
     public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
         verificaDescritor(descritorLista);
+
         String listaStringify = "";
+
         List<Compra> compras = toList(this.listaRepository.
                 recoveryLista(descritorLista).getCompras());
-        CategoriaComparator comparator1 = new CategoriaComparator();
 
-        /* TODO */
+        ComprasComparator c1 = new ComprasComparator();
+        NomeComparator c2 = new NomeComparator();
+        c1.thenComparing(c2);
+        Collections.sort(compras, c1);
 
         for (Compra compra : compras) {
             listaStringify += compra.getItemCompravel().toString(compra.getQuantidade()) + "\n";
         }
         return listaStringify;
+    }
+
+    @Override
+    public void finalizaListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) throws ListaDeComprasNotExistException {
+        verificaDescritor(descritorLista);
+
+        ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
+
+        listaAtual.setLocalDeCompra(localDaCompra);
+        listaAtual.setValorFinal(valorFinalDaCompra);
     }
 
     private void verificaIntegridade(String descritorLista, int itemId)

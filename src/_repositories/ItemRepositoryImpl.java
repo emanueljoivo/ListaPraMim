@@ -77,7 +77,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 * {@link ItemRepository#getItens()}
 	 */
 	@Override
-	public List<Item> getItens() {
+	public List getItens() {
 		return Util.toList(this.itens);
 	}
 
