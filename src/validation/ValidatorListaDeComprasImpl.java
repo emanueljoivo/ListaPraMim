@@ -60,13 +60,13 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     public void validaFinalizacaoDeLista(String descritorLista, String localDaCompra, double valorFinalDaCompra)
             throws IllegalArgumentException, NullPointerException {
 
-        this.generalValidatorString(descritorLista,
+        this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.FINALIZACAO_INVALIDA_DESCRITOR.getErrorMessage());
 
-        this.generalValidatorString(localDaCompra,
+        this.genericValidatorString(localDaCompra,
                 ListaDeComprasExceptionMessages.FINALIZACAO_INVALIDA_LOCAL.getErrorMessage());
 
-        this.generalValidatorNumber(valorFinalDaCompra,
+        this.genericValidatorNumber(valorFinalDaCompra,
                 ListaDeComprasExceptionMessages.FINALIZACAO_INVALIDA_VALOR.getErrorMessage());
 
     }

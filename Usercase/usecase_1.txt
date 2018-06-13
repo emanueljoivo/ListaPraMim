@@ -1,0 +1,34 @@
+#################
+# Caso de Uso 1 #
+#################
+
+#Iniciando o sistema do ListaPraMim
+
+start
+###############################
+#  Cadastro de itens  #
+###############################
+
+###  Entradas inv�lidas ###
+expectError "Erro no cadastro de item: nome nao pode ser vazio ou nulo." adicionaItemPorQtd nome="" categoria="limpeza" qtd=100 unidadeDeMedida="gramas"
+expectError "Erro no cadastro de item: categoria nao pode ser vazia ou nula." adicionaItemPorUnidade nome="Detergente" categoria="" qtd=1
+expectError "Erro no cadastro de item: categoria nao existe." adicionaItemPorQuilo nome="Banana" categoria="fruta" kg=1
+expectError "Erro no cadastro de item: valor de quilos nao pode ser menor que zero." adicionaItemPorQuilo nome="Biscoito" categoria="alimento industrializado" kg=-4.3
+expectError "Erro no cadastro de item: valor de quantidade nao pode ser menor que zero." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=-300 unidadeDeMedida="gramas"
+expectError "Erro no cadastro de item: unidade de medida nao pode ser vazia ou nula." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=300 unidadeDeMedida=""
+
+### Adicionando itens ###
+id1=adicionaItemPorQuilo nome="banana" categoria="alimento nao industrializado" kg=2
+id2=adicionaItemPorQtd nome="macarrao" categoria="alimento industrializado" qnt=500 unidadeDeMedida="grama"
+id3=adicionaItemPorQuilo nome="uva" categoria="alimento nao industrializado" kg=0.5
+id4=adicionaItemPorQtd nome="detergente" categoria="limpeza" qnt=500 unidadeDeMedida="ml"
+id5=adicionaItemPorQtd nome="pasta de dente" categoria="higiene pessoal" qnt=70 unidadeDeMedia="grama"
+
+
+### Testando listaItem ###
+
+##Esse vai dar erro por causa do acento##
+expect ${id1}". banana, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id1}
+
+
+

@@ -23,19 +23,19 @@ public class Facade  {
 		this.app.init();
 	}	
 	
-	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
+	public int adicionaItemPorQtd(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
 
 		return this.app.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}
-	
-	public int adicionaItem(String nome, String categoria, int unidade)
+
+	public int adicionaItemPorUnidade(String nome, String categoria, int unidade)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 
 		return this.app.getItemController().adicionaItem(nome, categoria, unidade);
 	}
 	
-	public int adicionaItem(String nome, String categoria, double kg)
+	public int adicionaItemPorQuilo(String nome, String categoria, double kg)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 
 		return this.app.getItemController().adicionaItem(nome, categoria, kg);

@@ -160,7 +160,7 @@ public class ItemServiceImpl implements ItemService {
 
 		for (Item item : itens) {
 			String menorPreco = item.getMenorPreco();
-			itensStringifier += item.toString(menorPreco) + "\n";
+			itensStringifier += item.toString(menorPreco) + System.lineSeparator();
 		}
 		return itensStringifier;
 	}
@@ -172,7 +172,7 @@ public class ItemServiceImpl implements ItemService {
 	private String listaDeItens(List<Item> itens) {
 		String itensStringifier = "";
 
-		for (Item item : itens) itensStringifier += item.toString() + "\n";
+		for (Item item : itens) itensStringifier += item.toString() + System.lineSeparator();
 		return itensStringifier;
 	}
 

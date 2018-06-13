@@ -28,6 +28,7 @@ public enum ItemExceptionsMessages {
 
 	CADASTRO_INVALIDO_NOME(ERRO_CADASTRO.errorMessage + "nome nao pode ser vazio ou nulo."),
 	CADASTRO_INVALIDO_CATEGORIA(ERRO_CADASTRO.errorMessage + CATEGORIA_INVALIDA.errorMessage),
+	CADASTRO_INVALIDO_CATEGORIA_VN(ERRO_CADASTRO.errorMessage + CATEGORIA_INVALIDA_VN.errorMessage),
 	CADASTRO_INVALIDO_UNIDADE(ERRO_CADASTRO.errorMessage + "valor de unidade nao pode ser menor que zero."),
 	CADASTRO_INVALIDO_QUILO(ERRO_CADASTRO.errorMessage + "valor de quilos nao pode ser menor que zero."),
 	CADASTRO_INVALIDO_QUANTIDADE(ERRO_CADASTRO.errorMessage + "valor de quantidade nao pode ser menor que zero."),

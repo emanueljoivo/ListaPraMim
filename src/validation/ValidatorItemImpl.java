@@ -75,6 +75,8 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	private void validaCadastro(String nome, String categoria) {
 		this.genericValidatorString(nome,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_NOME.getErrorMessage());
+		this.genericValidatorString(categoria,
+				ItemExceptionsMessages.CADASTRO_INVALIDO_CATEGORIA_VN.getErrorMessage());
 		this.validaCategoria(categoria,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_CATEGORIA.getErrorMessage());
 	}
