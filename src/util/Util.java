@@ -67,7 +67,7 @@ public class Util {
 			String nome2 = "Item" + (i+10);
 			String categoria = categorias[generator.nextInt(4)].getValue();
 			facade.adicionaItem(nome,categoria, generator.nextDouble());
-			facade.adicionatem(nome2, categoria, generator.nextInt(10));
+			facade.adicionaItem(nome2, categoria, generator.nextInt(10));
 		}
 
 		facade.listaItens();

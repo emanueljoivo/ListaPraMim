@@ -19,6 +19,7 @@ public enum ItemExceptionsMessages {
 	CATEGORIA_INVALIDA("categoria nao existe."),
 	ID_INVALIDO("id invalido."),
 	NOVO_VALOR_INVALIDO("novo valor de atributo nao pode ser vazio ou nulo."),
+	ITEM_NOT_EXIST("item nao existe."),
 
 	ATUALIZACAO_INVALIDA_ATRIBUTO(ERRO_ATUALIZACAO.errorMessage + ATRIBUTO_INVALIDO.errorMessage),
 	ATUALIZACAO_INVALIDA_ID(ERRO_ATUALIZACAO.errorMessage + ID_INVALIDO.errorMessage),
@@ -38,7 +39,9 @@ public enum ItemExceptionsMessages {
 	LISTAGEM_INVALIDA_CATEGORIA_VN(ERRO_LISTAGEM.errorMessage + CATEGORIA_INVALIDA_VN.errorMessage),
 	LISTAGEM_INVALIDA_CATEGORIA(ERRO_LISTAGEM.errorMessage + CATEGORIA_INVALIDA.errorMessage),
 
-	EXCLUSAO_INVALIDA_ID(ERRO_EXCLUSAO.errorMessage + ID_INVALIDO.errorMessage);
+	EXCLUSAO_INVALIDA_ID(ERRO_EXCLUSAO.errorMessage + ID_INVALIDO.errorMessage),
+
+	NAO_CONTEM_ITEM(ITEM_NOT_EXIST.errorMessage);
 	
 	private String errorMessage;
 	
