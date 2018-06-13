@@ -33,7 +33,7 @@ public class ItemController {
 	public int adicionaItem(String nome, String categoria, int unidade)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 		
-		this.validator.validaItem(nome, categoria, unidade);
+		this.validator.validaCadastro(nome, categoria, unidade);
 		return this.itemService.adicionaItem(nome, categoria, unidade);
 	}
 	
@@ -46,7 +46,7 @@ public class ItemController {
 	public int adicionaItem(String nome, String categoria, double kg)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 		
-		this.validator.validaItem(nome, categoria, kg);
+		this.validator.validaCadastro(nome, categoria, kg);
 		return this.itemService.adicionaItem(nome, categoria, kg);
 	}
 	
@@ -59,7 +59,7 @@ public class ItemController {
 	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
 		
-		this.validator.validaItem(nome, categoria, qtd, unidadeDeMedida);
+		this.validator.validaCadastro(nome, categoria, qtd, unidadeDeMedida);
 		return this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida);
 	}
 	
@@ -87,7 +87,7 @@ public class ItemController {
 	public void atualizaItem(int id, String atributo, String novoValor)
 			throws IllegalArgumentException, ItemNotExistException {
 		
-		this.validator.validaAtualizacao(id, atributo);		
+		this.validator.validaAtualizacao(id, atributo, novoValor);
 		this.itemService.atualizaItem(id, atributo, novoValor);		
 	}
 
@@ -105,8 +105,7 @@ public class ItemController {
 	 */
 	public String listaItens(String categoria) {
 
-    	this.validator.validaCategoria(categoria);
-
+    	this.validator.validaListagem(categoria);
     	return this.itemService.listaItens(categoria);
     }
 

@@ -7,7 +7,7 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     @Override
     public void validaDescritor(String descritorLista)
             throws IllegalArgumentException, NullPointerException {
-        this.generalValidatorString(descritorLista,
+        this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.CRIACAO_INVALIDA_DESCRITOR.getErrorMessage());
     }
 
@@ -15,23 +15,23 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     public void validaCompra(String descritorLista, double quantidade, int itemId)
             throws IllegalArgumentException, NullPointerException {
 
-        this.generalValidatorString(descritorLista,
+        this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.COMPRA_INVALIDA_DESCRITOR.getErrorMessage());
-        this.generalValidatorNumber(quantidade,
+        this.genericValidatorNumber(quantidade,
                 ListaDeComprasExceptionMessages.COMPRA_INVALIDA_QUANTIDADE.getErrorMessage());
-        this.generalValidatorNumber(itemId, ListaDeComprasExceptionMessages.COMPRA_INVALIDA_ITEM.getErrorMessage());
+        this.genericValidatorNumber(itemId, ListaDeComprasExceptionMessages.COMPRA_INVALIDA_ITEM.getErrorMessage());
     }
 
     @Override
     public void validaAtualizacao(String descritorLista, int itemId, int quantidade)
             throws IllegalArgumentException, NullPointerException {
-        this.generalValidatorString(descritorLista,
+        this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_DESCRITOR.getErrorMessage());
 
-        this.generalValidatorNumber(itemId,
+        this.genericValidatorNumber(itemId,
                 ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_ITEM.getErrorMessage());
 
-        this.generalValidatorNumber(quantidade,
+        this.genericValidatorNumber(quantidade,
                 ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_QUANTIDADE.getErrorMessage());
     }
 
@@ -39,10 +39,10 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     public void validaExclusao(String descritorLista, int itemId)
             throws IllegalArgumentException, NullPointerException {
 
-        this.generalValidatorString(descritorLista,
+        this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.EXCLUSAO_INVALIDA_DESCRITOR.getErrorMessage());
 
-        this.generalValidatorNumber(itemId,
+        this.genericValidatorNumber(itemId,
                 ListaDeComprasExceptionMessages.EXCLUSAO_INVALIDA_ITEM.getErrorMessage());
     }
 
@@ -50,9 +50,9 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     public void validaPesquisa(String descritorLista, int itemId)
             throws IllegalArgumentException, NullPointerException {
 
-        this.generalValidatorString(descritorLista,
+        this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_DESCRITOR.getErrorMessage());
-        this.generalValidatorNumber(itemId,
+        this.genericValidatorNumber(itemId,
                 ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_ITEM.getErrorMessage()) ;
     }
 }

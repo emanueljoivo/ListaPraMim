@@ -15,7 +15,7 @@ public abstract class Validator {
 	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
 	 * @throws NullPointerException exceção lançada quando a string for nula.
 	 */
-	protected void validatorString(String str) throws IllegalArgumentException, NullPointerException {
+	private void validatorString(String str) throws IllegalArgumentException, NullPointerException {
 		this.validatorEmptyString(str);
 		this.validatorNullObject(str);
 	}
@@ -26,7 +26,7 @@ public abstract class Validator {
 	 * @param str string a ser validada.
 	 * @throws IllegalArgumentException exceção lançada quando a string for vazia.
 	 */
-	protected void validatorEmptyString(String str) throws IllegalArgumentException {
+	private void validatorEmptyString(String str) throws IllegalArgumentException {
 		if (str.trim().isEmpty())
 			throw new IllegalArgumentException();
 	}
@@ -37,7 +37,7 @@ public abstract class Validator {
 	 * @param o objeto a ser validado.
 	 * @throws NullPointerException exceção lançada quando o objeto for nulo.
 	 */
-	protected void validatorNullObject(Object o) throws NullPointerException {
+	private void validatorNullObject(Object o) throws NullPointerException {
 		if (o == null)
 			throw new NullPointerException();
 	}
@@ -48,7 +48,7 @@ public abstract class Validator {
 	 * @param n número a ser validado.
 	 * @throws IllegalArgumentException exceção lançada quando o número for menor que zero.
 	 */
-	protected void validatorNumber(double n) throws IllegalArgumentException {
+	private void validatorNumber(double n) throws IllegalArgumentException {
 		this.validatorNumber(n, 0);
 	}
 
@@ -59,7 +59,7 @@ public abstract class Validator {
 	 * @param value valor a ser comparado com o número.
 	 * @throws IllegalArgumentException exceção lançada quando o número for menor que o valor passado.
 	 */
-	protected void validatorNumber(double n, int value) throws IllegalArgumentException {
+	private void validatorNumber(double n, int value) throws IllegalArgumentException {
 		this.validatorNumber(n, value, Integer.MAX_VALUE);
 	}
 
@@ -72,7 +72,7 @@ public abstract class Validator {
 	 * @param end valor final do intervalo.
 	 * @throws IllegalArgumentException exceção lançada quando o número não estiver no intervalo.
 	 */
-	protected void validatorNumber(double n, int start, int end) throws IllegalArgumentException {
+	private void validatorNumber(double n, int start, int end) throws IllegalArgumentException {
 		if ((n < start || n > end))
 			throw new IllegalArgumentException();
 	}
@@ -85,7 +85,7 @@ public abstract class Validator {
 	 * @throws IllegalArgumentException exceção que será lançada caso a string seja vazia.
 	 * @throws NullPointerException exceção que será lançada caso a string seja nula.
 	 */
-	protected void generalValidatorString(String str, String errorMessage)
+	protected void genericValidatorString(String str, String errorMessage)
 			throws IllegalArgumentException, NullPointerException {
 		try {
 			this.validatorString(str);
@@ -104,7 +104,7 @@ public abstract class Validator {
 	 * @param errorMessage valor do enum que vai definir a mensagem de erro a ser mostrada.
 	 * @throws IllegalArgumentException exceção que será lançada caso o número seja menor que zero.
 	 */
-	protected void generalValidatorNumber(double n, String errorMessage)
+	protected void genericValidatorNumber(double n, String errorMessage)
 			throws IllegalArgumentException {
 		try {
 			this.validatorNumber(n);
