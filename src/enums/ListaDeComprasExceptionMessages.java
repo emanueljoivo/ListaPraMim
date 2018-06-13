@@ -5,6 +5,7 @@ public enum ListaDeComprasExceptionMessages {
     DESCRITOR_INVALIDO("descritor vazio ou nulo."),
     QUANTIDADE_INVALIDA("quantidade invalida."),
     ITEM_ID_INVALIDO("item id inválido."),
+
     ERRO_COMPRA("Erro na compra de item: "),
     ERRO_ATUALIZACAO("Erro na atualizacao de compra: "),
     ERRO_EXCLUSAO("Erro na exclusao de compra: "),
@@ -29,7 +30,6 @@ public enum ListaDeComprasExceptionMessages {
     FINALIZACAO_INVALIDA_VALOR(ERRO_FINALIZACAO.errorMessage + "valor final da lista invalido.");
 
     private String errorMessage;
-
     ListaDeComprasExceptionMessages(String errorMessage) {
         this.errorMessage = errorMessage;
     }

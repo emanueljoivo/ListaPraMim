@@ -44,7 +44,7 @@ public class ItemServiceImpl implements ItemService {
 		Item itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
 			
 		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getErrorMessage());
+			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
 		}
 		return itemAtual.getId();
 	}
@@ -57,7 +57,7 @@ public class ItemServiceImpl implements ItemService {
 		Item itemAtual = this.itemFactory.create(nome, categoria, unidade);			
 		
 		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getErrorMessage());
+			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
 		}
 		return itemAtual.getId();
 	}
@@ -70,7 +70,7 @@ public class ItemServiceImpl implements ItemService {
 		Item itemAtual = this.itemFactory.create(nome, categoria, kg);
 		
 		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CONTEM_ITEM.getErrorMessage());
+			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
 		}
 
 		return itemAtual.getId();
@@ -82,7 +82,8 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Item recuperaItem(int id) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
-			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getErrorMessage());
+			throw new ItemNotExistException(
+					ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_NOT_EXIST.getErrorMessage());
 		}
 		
 		return this.itemRepository.recovery(id);		
@@ -94,7 +95,8 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void deletaItem(int id) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
-			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getErrorMessage());
+			throw new ItemNotExistException(
+					ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_NOT_EXIST.getErrorMessage());
 		}
 		this.itemRepository.delete(id);		
 	}
@@ -180,7 +182,8 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void atualizaItem(int id, String atributo, String novoValor) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
-			throw new ItemNotExistException(ItemExceptionsMessages.NAO_CONTEM_ITEM.getErrorMessage());
+			throw new ItemNotExistException(
+					ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_NOT_EXIST.getErrorMessage());
 		}		
 		
 		this.itemRepository.recovery(id).set(atributo.toLowerCase(), novoValor);					

@@ -51,90 +51,114 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 		return auxMap.containsKey(atributo);
 	}
 
+	private void validaAtributo(String atributo, String errorMessage) throws IllegalArgumentException{
+		if (!atributoEhValido(atributo)) {
+			throw new IllegalArgumentException(errorMessage);
+		}
+	}
+
 	/**
 	 * Método que valida categoria e nome de um item (atributos gerais)
-	 *
-	 * @param nome nome do item.
 	 * @param categoria categoria do item
 	 * @throws NullPointerException exceção que será lançada caso algum dos dois seja nulo.
 	 * @throws IllegalArgumentException exceção que será lançada caso algum dos dois seja vazio.
 	 */
-	private void validaCategoriaENome(String nome, String categoria)
+	private void validaCategoria(String categoria, String errorMessage)
 			throws NullPointerException, IllegalArgumentException {
-		this.generalValidatorString(nome, ItemExceptionsMessages.NOME_INVALIDO.getErrorMessage());
-		this.generalValidatorString(categoria, ItemExceptionsMessages.CATEGORIA_INVALIDA.getErrorMessage());
-
 		if (!this.categoriaEhValida(categoria))
-			throw new IllegalArgumentException(ItemExceptionsMessages.CATEGORIA_VALOR_INVALIDO.getErrorMessage());
+			throw new IllegalArgumentException(errorMessage);
 	}
 
 	/**
-	 * {@link ValidatorItem#validaItem(String, String, int)}
+	 * Faz validacao dos principais atributos usados em um cadastro de itens.
 	 */
-	@Override
-	public void validaItem(String nome, String categoria, int unidade)
-			throws NullPointerException, IllegalArgumentException {
-		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(unidade, ItemExceptionsMessages.UNIDADE_INVALIDA.getErrorMessage());
+	private void validaCadastro(String nome, String categoria) {
+		this.genericValidatorString(nome,
+				ItemExceptionsMessages.CADASTRO_INVALIDO_NOME.getErrorMessage());
+		this.validaCategoria(categoria,
+				ItemExceptionsMessages.CADASTRO_INVALIDO_CATEGORIA.getErrorMessage());
 	}
 
 	/**
-	 * {@link ValidatorItem#validaItem(String, String, double)}
+	 * {@link ValidatorItem#validaCadastro(String, String, int)}
 	 */
 	@Override
-	public void validaItem(String nome, String categoria, double kg)
+	public void validaCadastro(String nome, String categoria, int unidade)
 			throws NullPointerException, IllegalArgumentException {
-		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(kg, ItemExceptionsMessages.QUILO_INVALIDO.getErrorMessage());
+		validaCadastro(nome, categoria);
+		this.genericValidatorNumber(unidade,
+				ItemExceptionsMessages.CADASTRO_INVALIDO_UNIDADE.getErrorMessage());
 	}
 
 	/**
-	 * {@link ValidatorItem#validaItem(String, String, int, String)}
+	 * {@link ValidatorItem#validaCadastro(String, String, double)}
 	 */
 	@Override
-	public void validaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
+	public void validaCadastro(String nome, String categoria, double kg)
 			throws NullPointerException, IllegalArgumentException {
-		this.validaCategoriaENome(nome, categoria);
-		this.generalValidatorNumber(qtd, ItemExceptionsMessages.QUANTIDADE_INVALIDA.getErrorMessage());
-		this.generalValidatorString(unidadeDeMedida, ItemExceptionsMessages.UNIDADE_DE_MEDIDA_INVALIDA.getErrorMessage());
+		validaCadastro(nome, categoria);
+		this.genericValidatorNumber(kg,
+				ItemExceptionsMessages.CADASTRO_INVALIDO_QUILO.getErrorMessage());
+	}
+
+	/**
+	 * {@link ValidatorItem#validaCadastro(String, String, int, String)}
+	 */
+	@Override
+	public void validaCadastro(String nome, String categoria, int qtd, String unidadeDeMedida)
+			throws NullPointerException, IllegalArgumentException {
+
+		validaCadastro(nome, categoria);
+		this.genericValidatorNumber(qtd,
+				ItemExceptionsMessages.CADASTRO_INVALIDO_QUANTIDADE.getErrorMessage());
+
+		this.genericValidatorString(unidadeDeMedida,
+				ItemExceptionsMessages.CADASTRO_INVALIDO_UNI_DE_MEDIDA.getErrorMessage());
 	}
 
 	/**
 	 * {@link ValidatorItem#validaExclusao(int)}
 	 *
 	 */
-	public void validaExclusao(int id) throws IllegalArgumentException {
-		validatorNumber(id);
+	public void validaExclusao(int id)
+			throws IllegalArgumentException, NullPointerException {
+
+		this.genericValidatorNumber(id,
+				ItemExceptionsMessages.EXCLUSAO_INVALIDA_ID.getErrorMessage());
 	}
 
 	@Override
-	public void validaCategoria(String categoria) throws IllegalArgumentException {
-		if (!categoriaEhValida(categoria)) {
-		    throw new IllegalArgumentException(ItemExceptionsMessages.CATEGORIA_INVALIDA.getErrorMessage());
-        }
+	public void ValidaPesquisa(String strPesquisada)
+			throws IllegalArgumentException, NullPointerException {
+
+		this.genericValidatorString(strPesquisada,
+				ItemExceptionsMessages.PESQUISA_INVALIDA_STR.getErrorMessage());
 	}
 
 	@Override
-	public void ValidaPesquisa(String strPesquisada) {
-		validatorString(strPesquisada);
+	public void validaListagem(String categoria)
+			throws IllegalArgumentException, NullPointerException {
+
+		this.genericValidatorString(categoria,
+				ItemExceptionsMessages.LISTAGEM_INVALIDA_CATEGORIA_VN.getErrorMessage());
+		this.validaCategoria(categoria,
+				ItemExceptionsMessages.LISTAGEM_INVALIDA_CATEGORIA.getErrorMessage());
 	}
 
 	/**
-	 * {@link ValidatorItem#validaAtualizacao(int, String)}
+	 * {@link ValidatorItem#validaAtualizacao(int, String, String)}
 	 */
 	@Override
-	public void validaAtualizacao(int id, String atributo) throws IllegalArgumentException {
-		validatorNumber(id);
+	public void validaAtualizacao(int id, String atributo, String novoValor)
+			throws IllegalArgumentException, NullPointerException {
 
-		validaAtributoItem(atributo);
-	}
-
-	/**
-	 * Valida se um dado atributo pertence a algum tipo de item.
-	 */
-	private void validaAtributoItem(String atributo) {
-			if (!atributoEhValido(atributo)) {
-				throw new IllegalArgumentException(ItemExceptionsMessages.ATRIBUTO_INVALIDO.getErrorMessage());
-			}
+		this.genericValidatorNumber(id,
+				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_ID.getErrorMessage());
+		this.genericValidatorString(atributo,
+				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_ATRIBUTO_VN.getErrorMessage());
+		validaAtributo(atributo,
+				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_ATRIBUTO.getErrorMessage());
+		this.genericValidatorString(novoValor,
+				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_VALOR.getErrorMessage());
 	}
 }
