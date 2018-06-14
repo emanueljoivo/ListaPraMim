@@ -158,9 +158,24 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_ID.getErrorMessage());
 		this.genericValidatorString(atributo,
 				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_ATRIBUTO_VN.getErrorMessage());
-		validaAtributo(atributo,
+		this.validaAtributo(atributo,
 				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_ATRIBUTO.getErrorMessage());
 		this.genericValidatorString(novoValor,
 				ItemExceptionsMessages.ATUALIZACAO_INVALIDA_VALOR.getErrorMessage());
+
+		if (atributo.equalsIgnoreCase(ItemAtributos.UNIDADES.getValue())) {
+			this.genericValidatorNumber(Integer.parseInt(novoValor),
+					ItemExceptionsMessages.ATUALIZACAO_INVALIDA_UNIDADE.getErrorMessage());
+		}
+
+		if (atributo.equalsIgnoreCase(ItemAtributos.QUILOS.getValue())) {
+			this.genericValidatorNumber(Double.parseDouble(novoValor),
+					ItemExceptionsMessages.ATUALIZACAO_INVALIDA_KG.getErrorMessage());
+		}
+
+		if (atributo.equalsIgnoreCase(ItemAtributos.CATEGORIA.getValue())) {
+			this.validaCategoria(novoValor,
+					ItemExceptionsMessages.ATUALIZACAO_INVALIDA_CATEGORIA.getErrorMessage());
+		}
 	}
 }

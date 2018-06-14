@@ -83,7 +83,7 @@ public class ItemServiceImpl implements ItemService {
 	public Item recuperaItem(int id) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
 			throw new ItemNotExistException(
-					ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_NOT_EXIST.getErrorMessage());
+					ItemExceptionsMessages.LISTAGEM_INVALIDA_ITEM_NOT_EXIST.getErrorMessage());
 		}
 		
 		return this.itemRepository.recovery(id);		
@@ -96,7 +96,7 @@ public class ItemServiceImpl implements ItemService {
 	public void deletaItem(int id) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
 			throw new ItemNotExistException(
-					ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_NOT_EXIST.getErrorMessage());
+					ItemExceptionsMessages.EXCLUSAO_INVALIDA_ITEM_NOT_EXIST.getErrorMessage());
 		}
 		this.itemRepository.delete(id);		
 	}
@@ -183,7 +183,7 @@ public class ItemServiceImpl implements ItemService {
 	public void atualizaItem(int id, String atributo, String novoValor) throws ItemNotExistException {
 		if (!this.itemRepository.contains(id)) {
 			throw new ItemNotExistException(
-					ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_NOT_EXIST.getErrorMessage());
+					ItemExceptionsMessages.ATUALIZACAO_INVALIDA_ITEM_NOT_EXIST.getErrorMessage());
 		}		
 		
 		this.itemRepository.recovery(id).set(atributo.toLowerCase(), novoValor);					

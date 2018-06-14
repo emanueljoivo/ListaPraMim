@@ -16,6 +16,7 @@ public class Main {
 	public static void main(String[] args) throws NullPointerException, IllegalArgumentException, ItemExistException, ItemNotExistException {
 		Application app = new Application();
 		Facade facade = new Facade(app);
+		facade.start();
 
 		List<String> list = new ArrayList<String>();
 		list.add("user_cases/usecase_1.txt");

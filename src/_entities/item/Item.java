@@ -2,6 +2,7 @@ package _entities.item;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import enums.ItemAtributos;
 import enums.ItemCategorias;
@@ -113,38 +114,19 @@ public abstract class Item implements Comparable<Item>{
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Item item = (Item) o;
+		return id == item.id;
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Item other = (Item) obj;
-		if (categoria == null) {
-			if (other.categoria != null)
-				return false;
-		} else if (!categoria.equals(other.categoria))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		return true;
+
+		return Objects.hash(id);
 	}
 
 	/**

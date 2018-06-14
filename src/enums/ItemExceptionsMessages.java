@@ -9,7 +9,7 @@ package enums;
 public enum ItemExceptionsMessages {
 	ERRO_CADASTRO("Erro no cadastro de item: "),
 	ERRO_ATUALIZACAO("Erro na atualizacao de item: "),
-	ERRO_LISTAGEM("Erro na listagem de itens: "),
+	ERRO_LISTAGEM("Erro na listagem de item: "),
 	ERRO_PESQUISA("Erro na pesquisa de itens: "),
 	ERRO_EXCLUSAO("Erro na exclusao de item: "),
 
@@ -23,8 +23,12 @@ public enum ItemExceptionsMessages {
 
 	ATUALIZACAO_INVALIDA_ATRIBUTO(ERRO_ATUALIZACAO.errorMessage + ATRIBUTO_INVALIDO.errorMessage),
 	ATUALIZACAO_INVALIDA_ID(ERRO_ATUALIZACAO.errorMessage + ID_INVALIDO.errorMessage),
-	ATUALIZACAO_INVALIDA_ATRIBUTO_VN(ERRO_ATUALIZACAO.errorMessage + ATRIBUTO_INVALIDO_VN),
+	ATUALIZACAO_INVALIDA_ATRIBUTO_VN(ERRO_ATUALIZACAO.errorMessage + ATRIBUTO_INVALIDO_VN.errorMessage),
 	ATUALIZACAO_INVALIDA_VALOR(ERRO_ATUALIZACAO.errorMessage + NOVO_VALOR_INVALIDO.errorMessage),
+	ATUALIZACAO_INVALIDA_ITEM_NOT_EXIST(ERRO_ATUALIZACAO.errorMessage + ITEM_NOT_EXIST.errorMessage),
+	ATUALIZACAO_INVALIDA_CATEGORIA(ERRO_ATUALIZACAO.errorMessage + CATEGORIA_INVALIDA.errorMessage),
+	ATUALIZACAO_INVALIDA_UNIDADE(ERRO_ATUALIZACAO.errorMessage + "valor de quantidade nao pode ser menor que zero."),
+	ATUALIZACAO_INVALIDA_KG(ERRO_ATUALIZACAO.errorMessage + "valor de quilos nao pode ser menor que zero."),
 
 	CADASTRO_INVALIDO_NOME(ERRO_CADASTRO.errorMessage + "nome nao pode ser vazio ou nulo."),
 	CADASTRO_INVALIDO_CATEGORIA(ERRO_CADASTRO.errorMessage + CATEGORIA_INVALIDA.errorMessage),
@@ -34,13 +38,14 @@ public enum ItemExceptionsMessages {
 	CADASTRO_INVALIDO_QUANTIDADE(ERRO_CADASTRO.errorMessage + "valor de quantidade nao pode ser menor que zero."),
 	CADASTRO_INVALIDO_UNI_DE_MEDIDA(ERRO_CADASTRO.errorMessage + "unidade de medida nao pode ser vazia ou nula."),
 	CADASTRO_INVALIDO_ITEM_EXIST(ERRO_CADASTRO.errorMessage + "item ja existe."),
-	CADASTRO_INVALIDO_ITEM_NOT_EXIST(ERRO_CADASTRO.errorMessage + "item nao existe."),
 
 	PESQUISA_INVALIDA_STR(ERRO_PESQUISA.errorMessage + "palavra pesquisada nao pode ser vazia ou nula."),
 	LISTAGEM_INVALIDA_CATEGORIA_VN(ERRO_LISTAGEM.errorMessage + CATEGORIA_INVALIDA_VN.errorMessage),
 	LISTAGEM_INVALIDA_CATEGORIA(ERRO_LISTAGEM.errorMessage + CATEGORIA_INVALIDA.errorMessage),
+	LISTAGEM_INVALIDA_ITEM_NOT_EXIST(ERRO_LISTAGEM.errorMessage + ITEM_NOT_EXIST.errorMessage),
 
 	EXCLUSAO_INVALIDA_ID(ERRO_EXCLUSAO.errorMessage + ID_INVALIDO.errorMessage),
+	EXCLUSAO_INVALIDA_ITEM_NOT_EXIST(ERRO_EXCLUSAO.errorMessage + ITEM_NOT_EXIST.errorMessage),
 
 	NAO_CONTEM_ITEM(ITEM_NOT_EXIST.errorMessage);
 	
