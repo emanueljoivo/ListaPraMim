@@ -19,11 +19,12 @@ public class Facade  {
 	
 	public Facade(Application app) {
 		this.app = app;
-	}
-	
-	public void start() {
 		this.app.init();
-	}	
+	}
+
+	/*
+	 * US - 1
+	 */
 	
 	public int adicionaItemPorQtd(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
@@ -51,31 +52,40 @@ public class Facade  {
 	}
 	public String listaItem(int id)
 			throws ItemNotExistException, NullPointerException, IllegalArgumentException {
+
 		return this.app.getItemController().listaItem(id);
 	}
+
+	public void deletaItem(int id) throws ItemNotExistException {
+		this.app.getItemController().deletaItem(id);
+	}
+
+	/*
+	 * US - 2
+	 */
 
 	public String listaItens() {
 
 		return this.app.getItemController().listaItens();
 	}
 
-	public String listaItens(String categoria)
+	public String listaItensPorCategoria(String categoria)
 		throws NullPointerException, IllegalArgumentException {
 
 		return this.app.getItemController().listaItens(categoria);
 	}
 
-	public String listaItensPreco() {
+	public String listaItensPorMenorPreco() {
 		return this.app.getItemController().listaItensPreco();
 	}
 
 	public String listaItensPesquisa(String strPesquisada) {
 		return this.app.getItemController().listaItensPesquisa(strPesquisada);
 	}
-	
-	public void deletaItem(int id) throws ItemNotExistException {
-		this.app.getItemController().deletaItem(id);
-	}
+
+	/*
+	 * US - 3
+	 */
 
 	public void adicionaListaDeCompras(String descritorLista) {
 		this.app.getListaDeComprasController().adicionaListaDeCompras(descritorLista);
@@ -111,17 +121,21 @@ public class Facade  {
 		this.app.getListaDeComprasController().imprimirListaDeCompras(descritorLista);
 	}
 
+	public void pesquisaCompraDeLista(String descritorLista, int itemId)
+			throws ItemNotExistException, ListaDeComprasNotExistException, CompraNotExistException {
+
+		this.app.getListaDeComprasController().pesquisaCompraDeLista(descritorLista, itemId);
+	}
+
 	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra)
 			throws ListaDeComprasNotExistException {
 
 		this.app.getListaDeComprasController().finalizaListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);
 	}
 
-	public void pesquisaCompraDeLista(String descritorLista, int itemId)
-			throws ItemNotExistException, ListaDeComprasNotExistException, CompraNotExistException {
-
-		this.app.getListaDeComprasController().pesquisaCompraDeLista(descritorLista, itemId);
-	}
+	/*
+	 * US - 4
+	 */
 
 	public void pesquisaListaDeCompra(String descritorLista)
 			throws IllegalArgumentException, NullPointerException, ListaDeComprasNotExistException {

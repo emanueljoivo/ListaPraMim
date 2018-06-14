@@ -6,8 +6,8 @@ import itemExceptions.ItemNotExistException;
 import validation.ValidatorItem;
 
 /**
- * Controlador de itens, responsável pelo gerenciamento e redirecionamento
- * de fluxo de itens. Trata requisições de usuário (Advindas da facade).
+ * Controlador de itens, responsável pelo gerenciamento e redirecionamento de fluxo de itens. Trata requisições de
+ * usuário.
  * 
  * @author Emanuel Joivo
  *

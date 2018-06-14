@@ -10,6 +10,9 @@ import validation.ValidatorListaDeCompras;
 import java.text.ParseException;
 import java.util.Date;
 
+/**
+ * Controlador de lista de compras responsavel pelo gerenciamento e direcionamento do
+ */
 public class ListaDeComprasController {
 
     private ValidatorListaDeCompras validator;
