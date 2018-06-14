@@ -7,6 +7,9 @@ import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 import validation.ValidatorListaDeCompras;
 
+import java.text.ParseException;
+import java.util.Date;
+
 public class ListaDeComprasController {
 
     private ValidatorListaDeCompras validator;
@@ -66,5 +69,23 @@ public class ListaDeComprasController {
         this.validator.validaFinalizacaoDeLista(descritorLista, localDaCompra, valorFinalDaCompra);
 
         this.service.finalizaListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);
+    }
+
+    public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+        this.validator.validaPesquisa(descritorLista);
+
+        return this.service.pesquisaListaDeCompras(descritorLista);
+    }
+
+    public String pesquisaListasDeComprasPorData(String data) throws ParseException {
+        Date dataFormatada = this.validator.validaPesquisaPorData(data);
+
+        return this.service.pesquisaListasDeComprasPorData(dataFormatada);
+    }
+
+    public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
+        this.validator.validaPesquisaPorItem(id);
+
+        return this.service.pesquisaListasDeComprasPorItem(id);
     }
 }

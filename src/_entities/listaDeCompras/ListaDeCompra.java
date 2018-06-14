@@ -1,11 +1,12 @@
 package _entities.listaDeCompras;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class ListaDeCompra {
+public class ListaDeCompra implements Comparable<ListaDeCompra> {
 
     private String descritor, localDeCompra;
     private Set<Compra> compras;
@@ -26,6 +27,10 @@ public class ListaDeCompra {
             }
         }
         return c;
+    }
+
+    public Date getMomentoDeCriacao() {
+        return momentoDeCriacao;
     }
 
     public String getDescritor() {
@@ -58,9 +63,8 @@ public class ListaDeCompra {
 
     @Override
     public String toString() {
-        return "ListaDeCompra{" +
-                "descritor='" + descritor + '\'' +
-                '}';
+        SimpleDateFormat formatPattern = new SimpleDateFormat("dd/MM/yyyy");
+        return formatPattern.format(momentoDeCriacao) + " - " + this.descritor;
     }
 
     @Override
@@ -73,4 +77,9 @@ public class ListaDeCompra {
 
     @Override
     public int hashCode() { return Objects.hash(descritor);}
+
+    @Override
+    public int compareTo(ListaDeCompra o) {
+        return this.momentoDeCriacao.compareTo(o.momentoDeCriacao);
+    }
 }

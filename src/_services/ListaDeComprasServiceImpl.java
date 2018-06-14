@@ -1,9 +1,9 @@
 package _services;
 
 import _entities.comparators.ComprasComparator;
+import _entities.comparators.ListaDescritorComparator;
 import _entities.comparators.NomeComparator;
 import _entities.item.Item;
-import _entities.comparators.CategoriaComparator;
 import _entities.listaDeCompras.Compra;
 import _entities.listaDeCompras.ListaDeCompra;
 import _repositories.ItemRepository;
@@ -16,6 +16,8 @@ import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import static util.Util.*;
@@ -103,11 +105,12 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
         ComprasComparator c1 = new ComprasComparator();
         NomeComparator c2 = new NomeComparator();
-        c1.thenComparing(c2);
-        Collections.sort(compras, c1);
+
+        Collections.sort(compras, c1.thenComparing(c2));
 
         for (Compra compra : compras) {
-            listaStringify += compra.getItemCompravel().toString(compra.getQuantidade()) + "\n";
+            listaStringify += compra.getItemCompravel().toString(compra.getQuantidade()) +
+            System.lineSeparator();
         }
         return listaStringify;
     }
@@ -120,6 +123,46 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
         listaAtual.setLocalDeCompra(localDaCompra);
         listaAtual.setValorFinal(valorFinalDaCompra);
+    }
+
+    @Override
+    public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+        this.verificaDescritor(descritorLista);
+
+        return imprimirListaDeCompras(descritorLista);
+    }
+
+    @Override
+    public String pesquisaListasDeComprasPorData(Date data) {
+        List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
+        String listaStringifier = "";
+
+        Comparator currentComparator = new ListaDescritorComparator();
+        Collections.sort(allLists, currentComparator);
+
+        for (ListaDeCompra l : allLists) {
+            if (l.getMomentoDeCriacao().equals(data)) {
+                listaStringifier += l.getDescritor() + System.lineSeparator();
+            }
+        }
+        return listaStringifier;
+    }
+
+    @Override
+    public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
+        verificaItem(id);
+        Item itemAtual = this.itemRepository.recovery(id);
+        List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
+        String listaStringifier = "";
+        Collections.sort(allLists);
+
+        for (ListaDeCompra l : allLists) {
+            if (l.getCompras().contains(itemAtual)) {
+                listaStringifier += l.toString();
+            }
+        }
+
+        return listaStringifier;
     }
 
     private void verificaIntegridade(String descritorLista, int itemId)

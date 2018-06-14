@@ -18,11 +18,7 @@ public class Main {
 		Facade facade = new Facade(app);
 
 		List<String> list = new ArrayList<String>();
-
-		//Adicionando os arquivos de teste
-		list.add("Usercase/usecase_1.txt");
-
-		//Executando os testes
+		list.add("user_cases/usecase_1.txt");
 		EasyAcceptFacade testefachada = new EasyAcceptFacade(facade , list);
 		testefachada.executeTests();
 		System.out.println(testefachada.getCompleteResults());

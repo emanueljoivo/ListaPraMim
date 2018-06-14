@@ -2,7 +2,9 @@ package _repositories;
 
 import _entities.listaDeCompras.ListaDeCompra;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
@@ -25,6 +27,13 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
     @Override
     public ListaDeCompra recoveryLista(String descritorLista) {
         return recoveryListaPorDescritor(descritorLista);
+    }
+
+    @Override
+    public List<ListaDeCompra> getAllLists() {
+        List<ListaDeCompra> listResult = new ArrayList<>();
+        listResult.addAll(listasDeCompras);
+        return listResult;
     }
 
     private ListaDeCompra recoveryListaPorDescritor(String descritorLista) {

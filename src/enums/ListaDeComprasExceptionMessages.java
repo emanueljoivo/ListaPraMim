@@ -25,6 +25,8 @@ public enum ListaDeComprasExceptionMessages {
     COMPRA_JA_FEITA(ERRO_COMPRA.errorMessage + "compra ja adicionada."),
     PESQUISA_INVALIDA_DESCRITOR(ERRO_PESQUISA.errorMessage + DESCRITOR_INVALIDO.errorMessage),
     PESQUISA_INVALIDA_ITEM(ERRO_PESQUISA.errorMessage + ITEM_ID_INVALIDO.errorMessage),
+    PESQUISA_INVALIDA_DATA_VN(ERRO_PESQUISA.errorMessage + "data nao pode ser vazia ou nula."),
+    PESQUISA_INVALIDA_DATA(ERRO_PESQUISA.errorMessage + "data em formato invalido, tente dd/MM/yyyy"),
     FINALIZACAO_INVALIDA_DESCRITOR(ERRO_FINALIZACAO.errorMessage + DESCRITOR_INVALIDO.errorMessage),
     FINALIZACAO_INVALIDA_LOCAL(ERRO_FINALIZACAO.errorMessage + "local nao pode ser vazio ou nulo."),
     FINALIZACAO_INVALIDA_VALOR(ERRO_FINALIZACAO.errorMessage + "valor final da lista invalido.");
