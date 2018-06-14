@@ -5,30 +5,81 @@
 #Iniciando o sistema do ListaPraMim
 
 start
+
 ###############################
 #  Cadastro de itens  #
 ###############################
 
-###  Entradas inv�lidas ###
+###  Entradas invalidas ###
 expectError "Erro no cadastro de item: nome nao pode ser vazio ou nulo." adicionaItemPorQtd nome="" categoria="limpeza" qtd=100 unidadeDeMedida="gramas"
-expectError "Erro no cadastro de item: categoria nao pode ser vazia ou nula." adicionaItemPorUnidade nome="Detergente" categoria="" qtd=1
+expectError "Erro no cadastro de item: categoria nao pode ser vazia ou nula." adicionaItemPorUnidade nome="Detergente" categoria="" unidade=1
 expectError "Erro no cadastro de item: categoria nao existe." adicionaItemPorQuilo nome="Banana" categoria="fruta" kg=1
 expectError "Erro no cadastro de item: valor de quilos nao pode ser menor que zero." adicionaItemPorQuilo nome="Biscoito" categoria="alimento industrializado" kg=-4.3
 expectError "Erro no cadastro de item: valor de quantidade nao pode ser menor que zero." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=-300 unidadeDeMedida="gramas"
 expectError "Erro no cadastro de item: unidade de medida nao pode ser vazia ou nula." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=300 unidadeDeMedida=""
+expectError "Erro no cadastro de item: valor de unidade nao pode ser menor que zero." adicionaItemPorUnidade nome="Abacaxi" categoria="alimento nao industrializado" unidade=-4
 
 ### Adicionando itens ###
-id1=adicionaItemPorQuilo nome="banana" categoria="alimento nao industrializado" kg=2
-id2=adicionaItemPorQtd nome="macarrao" categoria="alimento industrializado" qnt=500 unidadeDeMedida="grama"
-id3=adicionaItemPorQuilo nome="uva" categoria="alimento nao industrializado" kg=0.5
-id4=adicionaItemPorQtd nome="detergente" categoria="limpeza" qnt=500 unidadeDeMedida="ml"
-id5=adicionaItemPorQtd nome="pasta de dente" categoria="higiene pessoal" qnt=70 unidadeDeMedia="grama"
+id1=adicionaItemPorQtd nome="Agua Sanitaria Drogon" categoria="limpeza" qnt=1 unidadeDeMedida="l"
+id2=adicionaItemPorQuilo nome="Peito de peru Saara" categoria="alimento industrializado" kg=1.0
+id3=adicionaItemPorQtd nome="Queijo ralado Lebron" categoria="alimento industrializado" qnt=50 unidadeDeMedida="grama"
+id4=adicionaItemPorUnidade nome="Creme dental Oral-C" categoria="higiene pessoal" unidade=3
+id5=adicionaItemPorUnidade nome="Esponja de Aco Assolange" categoria="limpeza" unidade=1
+id6=adicionaItemPorQuilo nome="Limao" categoria="alimento nao industrializado" kg=1.0
+id7=adicionaItemPorUnidade nome="Coentro" categoria="alimento nao industrializado" unidade=1
+id8=adicionaItemPorQtd nome="Capsula Dois Coracoes" categoria="alimento industrializado" qnt=8 unidadeDeMedida="capsulas"
+id9=adicionaItemPorQuilo nome="Costela suina Saara" categoria="alimento industrializado" kg=1.0
+id10=adicionaItemPorUnidade nome="Batata Tentacoes" categoria="alimento industrializado" unidade=1
 
+### Listando itens pelo id ###
+expect ${id1}". Agua Sanitaria Drogon, limpeza, 1 l, Preco: <>" listaItem id=${id1}
+expect ${id2}". Peito de peru Saara, alimento industrializado, Preco por quilo: <>" listaItem id=${id2}
+expect ${id3}". Queijo ralado Lebron, alimento industrializado, 50 grama, Preco: <>" listaItem id=${id3}
+expect ${id4}". Creme dental Oral-C, higiene pessoal, Preco: <>" listaItem id=${id4}
+expect ${id5}". Esponja de Aco Assolange, limpeza, Preco: <>" listaItem id=${id5}
+expect ${id6}". Limao, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id6}
+expect ${id7}". Coentro, alimento nao industrializado, Preco: <>" listaItem id=${id7}
+expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <>" listaItem id=${id8}
+expect ${id9}". Costela suina Saara, alimento industrializado, Preco por quilo: <>" listaItem id=${id9}
+expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <>" listaItem id=${id10}
 
-### Testando listaItem ###
+###############################
+#  Atualizando itens  #
+###############################
 
-##Esse vai dar erro por causa do acento##
-expect ${id1}". banana, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id1}
+## Entradas invalidas ##
 
+expectError "Erro na atualizacao de item: item nao existe." atualizaItem id=98 atributo="categoria" novoValor="limpeza"
+expectError "Erro na atualizacao de item: atributo nao existe." atualizaItem id=${id1} atributo="cor" novoValor="verde"
+expectError "Erro na atualizacao de item: atributo nao pode ser vazio ou nulo." atualizaItem id=${id3} atributo="" novoValor="limpeza"
+expectError "Erro na atualizacao de item: novo valor de atributo nao pode ser vazio ou nulo." atualizaItem id=${id8} atributo="categoria" novoValor=""
+expectError "Erro na atualizacao de item: categoria nao existe." atualizaItem id=${id10} atributo="categoria" novoValor="batata"
+expectError "Erro na atualizacao de item: valor de quantidade nao pode ser menor que zero." atualizaItem id=${id10} atributo="unidade" novoValor="-1"
+expectError "Erro na atualizacao de item: valor de quilos nao pode ser menor que zero." atualizaItem id=${id10} atributo="kg" novoValor="-1"
 
+atualizaItem id=${id1} atributo="nome" novoValor="Agua Sanitaria Viserion"
+atualizaItem id=${id1} atributo="unidade de medida" novoValor="ml"
+atualizaItem id=${id1} atributo="quantidade" novoValor="500"
+expect ${id1}". Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <>" listaItem id=${id1}
 
+atualizaItem id=${id9} atributo="nome" novoValor="Costela suina Sabia"
+atualizaItem id=${id9} atributo="kg" novoValor="0.8"
+expect ${id9}". Costela suina Sabia, alimento industrializado, Preco por quilo: <>" listaItem id=${id9}
+
+atualizaItem id=${id3} atributo="nome" novoValor="listerine"
+atualizaItem id=${id3} atributo="categoria" novoValor="higiene pessoal"
+atualizaItem id=${id3} atributo="quantidade" novoValor="1"
+atualizaItem id=${id3} atributo="unidade de medida" novoValor="l"
+expect ${id3}". listerine, higiene pessoal, 1 l, Preco: <>" listaItem id=${id3}
+
+###############################
+#  Removendo itens  #
+###############################
+
+deletaItem id=${id4}
+expectError "Item nao existe." listaItem id=${id4}
+expectError "Item nao existe." atualizaItem id=${id4} atributo="nome" novoValor="Creme dental Oral-D"
+
+deletaItem id=${id3}
+expectError "Item nao existe." listaItem id=${id3}
+expectError "Item nao existe." atualizaItem id=${id3} atributo="nome" novoValor="colgate"
