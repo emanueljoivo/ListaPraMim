@@ -3,6 +3,8 @@ package _repositories;
 import java.util.*;
 
 import _entities.item.Item;
+import _entities.listaDeCompras.Compra;
+import enums.ItemCategorias;
 import util.Util;
 
 /**
@@ -78,7 +80,9 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 */
 	@Override
 	public List getItens() {
-		return Util.toList(this.itens);
+		List<Item> listaAux = new ArrayList();
+		listaAux.addAll(this.itens);
+		return listaAux;
 	}
 
 	/**
@@ -125,6 +129,10 @@ public class ItemRepositoryImpl implements ItemRepository {
         }
 	    return itensRelacionados;
     }
+
+   private ItemCategorias generateCategoria(String categoria) {
+		return ItemCategorias.generateCategoria(categoria);
+	}
 
 
 }

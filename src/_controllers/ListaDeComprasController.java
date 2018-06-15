@@ -12,17 +12,27 @@ import java.util.Date;
 
 /**
  * Controlador de lista de compras responsavel pelo gerenciamento e direcionamento do
+ * @author Emanuel Joivo.
  */
 public class ListaDeComprasController {
 
     private ValidatorListaDeCompras validator;
     private ListaDeComprasService service;
 
+    /**
+     * Construtor que recebe por injecao um provedor de servicos sobre lista de compras e um provedor de validacao.
+     * @param validator provem validacao de dados para as operacoes sobre lista de compras.
+     * @param service provem servicos de logica de negocio para as operacoes sobre lista de compras.
+     */
     public ListaDeComprasController(ValidatorListaDeCompras validator, ListaDeComprasService service) {
         this.validator = validator;
         this.service = service;
     }
 
+    /**
+     * Gerencia a criacao e adicao de uma nova lista de compras.
+     * @param descritor
+     */
     public void adicionaListaDeCompras(String descritor) {
         this.validator.validaDescritor(descritor);
         this.service.adicionaNovaLista(descritor);

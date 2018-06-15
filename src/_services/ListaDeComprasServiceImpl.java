@@ -14,13 +14,7 @@ import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-
-import static util.Util.*;
+import java.util.*;
 
 public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
@@ -71,6 +65,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         }
     }
 
+    @Override
     public void deletaCompraDeLista(String descritorLista, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
         verificaIntegridade(descritorLista, itemId);
@@ -100,7 +95,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
         String listaStringify = "";
 
-        List<Compra> compras = toList(this.listaRepository.
+        List<Compra> compras = setToList(this.listaRepository.
                 recoveryLista(descritorLista).getCompras());
 
         ComprasComparator c1 = new ComprasComparator();
@@ -163,6 +158,12 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         }
 
         return listaStringifier;
+    }
+
+    private List<Compra> setToList(Set<Compra> compras) {
+        List<Compra> listaAux = new ArrayList();
+        listaAux.addAll(compras);
+        return listaAux;
     }
 
     private void verificaIntegridade(String descritorLista, int itemId)

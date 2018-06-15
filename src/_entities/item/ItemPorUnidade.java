@@ -42,7 +42,7 @@ public class ItemPorUnidade extends Item {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "Preco: " + Util.mapToString(getMapaDePrecos());
+		return super.toString() + "Preco: " + mapToString(getMapaDePrecos());
 	}
 
 	@Override

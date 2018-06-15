@@ -3,6 +3,7 @@ package _entities.item;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import enums.ItemAtributos;
 import enums.ItemCategorias;
@@ -87,7 +88,7 @@ public abstract class Item implements Comparable<Item>{
 		if (atributo.equals(ItemAtributos.NOME.getValue())) {			
 			setNome(novoValor);
 		} else if (atributo.equals(ItemAtributos.CATEGORIA.getValue()) ) {
-			setCategoria(Util.generateCategoria(novoValor));
+			setCategoria(ItemCategorias.generateCategoria(novoValor));
 		}	
 	}
 
@@ -127,6 +128,22 @@ public abstract class Item implements Comparable<Item>{
 	public int hashCode() {
 
 		return Objects.hash(id);
+	}
+
+	/**
+	 * Tranforma um mapa numa representação em string customizada.
+	 * @param mapa a ter representação do toString() customizada.
+	 * @return representação em string customizada.
+	 */
+	protected String mapToString(Map<String, Double> mapa) {
+		String mapStringifier = "<";
+
+		Set<String> keys = mapa.keySet();
+
+		for (String key: keys) {
+			mapStringifier += (key + ", R$ " + mapa.get(key).toString() + ";");
+		}
+		return mapStringifier + ">";
 	}
 
 	/**
