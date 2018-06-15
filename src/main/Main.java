@@ -4,12 +4,9 @@ import _view.Facade;
 import easyaccept.EasyAcceptFacade;
 import itemExceptions.ItemExistException;
 import itemExceptions.ItemNotExistException;
-import util.Util;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Main {
 
