@@ -50,7 +50,7 @@ public class Facade  {
 		this.app.getItemController().atualizaItem(id, atributo, novoValor);
 		
 	}
-	public String listaItem(int id)
+	public String exibirItem(int id)
 			throws ItemNotExistException, NullPointerException, IllegalArgumentException {
 
 		return this.app.getItemController().listaItem(id);
