@@ -3,16 +3,14 @@ package _repositories;
 import _entities.listaDeCompras.ListaDeCompra;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
 
-    private Set<ListaDeCompra> listasDeCompras;
+    private List<ListaDeCompra> listasDeCompras;
 
     public ListaDeComprasRepositoryImpl() {
-        this.listasDeCompras = new HashSet<>();
+        this.listasDeCompras = new ArrayList<>();
     }
 
     public boolean save(ListaDeCompra l) {

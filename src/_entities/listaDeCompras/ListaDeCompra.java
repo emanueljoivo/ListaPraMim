@@ -40,6 +40,10 @@ public class ListaDeCompra implements Comparable<ListaDeCompra> {
     public Set<Compra> getCompras() {
         return compras;
     }
+    
+    public void setCompras(Set<Compra> compras) {
+		this.compras = compras;
+	} // Método para facilitar a criação automática de listas de compra.
 
     public void setDescritor(String descritor) {
         this.descritor = descritor;
