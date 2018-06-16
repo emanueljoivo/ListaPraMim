@@ -16,6 +16,7 @@ public class Main {
 
 		List<String> list = new ArrayList<String>();
 		list.add("use_cases/use_case1.txt");
+		list.add("use_cases/use_case2.txt");
 		EasyAcceptFacade testefachada = new EasyAcceptFacade(facade , list);
 		testefachada.executeTests();
 		System.out.println(testefachada.getCompleteResults());
