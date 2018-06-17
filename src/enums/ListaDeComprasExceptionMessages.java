@@ -35,8 +35,10 @@ public enum ListaDeComprasExceptionMessages {
     FINALIZACAO_INVALIDA_VALOR(ERRO_FINALIZACAO.errorMessage + "valor final da lista invalido."),
     NAO_HA_LISTAS_MAIS_RECENTE(ERRO_GERA_AUTOMATICO_RECENTE.errorMessage + "nenhuma lista de compras cadastrada."),
     NAO_HA_LISTAS_POR_ITEM(ERRO_GERA_AUTOMATICO_POR_ITEM.errorMessage + "nenhuma lista de compras cadastrada."),
-    NAO_HA_LISTAS_ITENS_MAIS_RECENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nenhuma lista de compras cadastrada."),;
-
+    NAO_HA_LISTAS_ITENS_MAIS_RECENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nenhuma lista de compras cadastrada."),
+	NAO_HA_COMPRA_POR_ITEM(ERRO_GERA_AUTOMATICO_POR_ITEM.errorMessage + "nao ha compras cadastradas com o item desejado."),
+	NAO_HA_ITENS_CADASTRADOS_MAIS_PRESENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nao ha nenhum item que aparece em metade das listas cadastradas.");
+	
     private String errorMessage;
     ListaDeComprasExceptionMessages(String errorMessage) {
         this.errorMessage = errorMessage;

@@ -1,6 +1,13 @@
 package _repositories;
 
+import _entities.listaDeCompras.GeradorAutomaticoItensMaisPresentes;
+import _entities.listaDeCompras.GeradorAutomaticoListaDeCompras;
+import _entities.listaDeCompras.GeradorAutomaticoPorItem;
+import _entities.listaDeCompras.GeradorAutomaticoPorListaMaisRecente;
 import _entities.listaDeCompras.ListaDeCompra;
+import enums.AutoGeneratorStrategies;
+import listaDeComprasExceptions.CompraNotExistException;
+import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +15,32 @@ import java.util.List;
 public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
 
     private List<ListaDeCompra> listasDeCompras;
+    private GeradorAutomaticoListaDeCompras geradorAutomatico;
 
     public ListaDeComprasRepositoryImpl() {
         this.listasDeCompras = new ArrayList<>();
     }
+    
+    public void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException {
+    	this.geradorAutomatico = new GeradorAutomaticoPorItem(descritorItem);
+    	gerar();
+    }
+    
+    public void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
+    	this.geradorAutomatico = new GeradorAutomaticoItensMaisPresentes();
+    	gerar();
+    }
+    
+    public void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
+    	this.geradorAutomatico = new GeradorAutomaticoPorListaMaisRecente();
+    	gerar();
+    }
 
-    public boolean save(ListaDeCompra l) {
+    private void gerar() throws ListaDeComprasNotExistException, CompraNotExistException{
+		this.geradorAutomatico.gerar(this.listasDeCompras);
+	}
+
+	public boolean save(ListaDeCompra l) {
         return this.listasDeCompras.add(l);
     }
 

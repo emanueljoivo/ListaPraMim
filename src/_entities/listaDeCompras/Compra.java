@@ -13,7 +13,21 @@ public class Compra implements Comparable<Compra>  {
         this.quantidade = quantidade;
         this.item = itemId;
     }
+    
+    public double getQuantidade() { return quantidade; }
 
+    public void setQuantidade(double quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Item getItemCompravel() {
+        return item;
+    }
+    
+    public String getNomeItem() {
+    	return this.item.getNome();
+    }
+    
     @Override
     public String toString() {
         return quantidade + " " + item.toString();
@@ -30,16 +44,6 @@ public class Compra implements Comparable<Compra>  {
 
     @Override
     public int hashCode() {return Objects.hash(quantidade, item);}
-
-    public double getQuantidade() { return quantidade; }
-
-    public void setQuantidade(double quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public Item getItemCompravel() {
-        return item;
-    }
 
     @Override
     public int compareTo(Compra o) {

@@ -2,7 +2,7 @@ package _entities.listaDeCompras;
 
 import java.util.List;
 
-import itemExceptions.ItemNotExistException;
+import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
 /**
@@ -13,5 +13,5 @@ import listaDeComprasExceptions.ListaDeComprasNotExistException;
 public interface GeradorAutomaticoListaDeCompras {
 	
 	public ListaDeCompra gerar(List<ListaDeCompra> compras) 
-			throws ListaDeComprasNotExistException, ItemNotExistException;
+			throws ListaDeComprasNotExistException, CompraNotExistException;
 }

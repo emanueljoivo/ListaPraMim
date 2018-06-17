@@ -12,9 +12,9 @@ import listaDeComprasExceptions.ListaDeComprasNotExistException;
  * @author lucas
  */
 
-public class GeradorAutomaticoMaisRecente extends AbstractGeradorAutomatico {
+public class GeradorAutomaticoPorListaMaisRecente extends AbstractGeradorAutomatico {
 	
-	public GeradorAutomaticoMaisRecente() {
+	public GeradorAutomaticoPorListaMaisRecente() {
 		super();
 	}
 

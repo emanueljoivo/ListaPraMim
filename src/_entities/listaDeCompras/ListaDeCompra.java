@@ -64,6 +64,19 @@ public class ListaDeCompra implements Comparable<ListaDeCompra> {
     public void setValorFinal(double valorFinal) {
         this.valorFinal = valorFinal;
     }
+    
+    public boolean procuraItemPorNome(String nomeItem) {
+    	boolean contem = false;
+    	
+    	for (Compra c: this.compras) {
+    		if (c.getNomeItem().trim().toLowerCase().equals(nomeItem.trim().toLowerCase())) {
+    			contem = true;
+    			break;
+    		}
+    	}
+    	
+    	return contem;
+    }
 
     @Override
     public String toString() {
