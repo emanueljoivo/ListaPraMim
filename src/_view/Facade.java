@@ -153,5 +153,27 @@ public class Facade  {
 
 		this.app.getListaDeComprasController().pesquisaListasDeComprasPorItem(id);
 	}
+	
+	/*
+	 * US - 5
+	 */
+	
+	public void geraAutomaticaUltimaLista()
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		
+		this.app.getListaDeComprasController().geraAutomaticaUltimaLista();
+	}
+
+	public void geraAutomaticaItensMaisPresentes() 
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		
+		this.app.getListaDeComprasController().geraAutomaticaItensMaisPresentes();
+	}
+
+	public void geraAutomaticaItem(String descritorItem)
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		
+		this.app.getListaDeComprasController().geraAutomaticaItem(descritorItem);
+	}
 
 }

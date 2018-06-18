@@ -20,25 +20,6 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
     public ListaDeComprasRepositoryImpl() {
         this.listasDeCompras = new ArrayList<>();
     }
-    
-    public void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException {
-    	this.geradorAutomatico = new GeradorAutomaticoPorItem(descritorItem);
-    	gerar();
-    }
-    
-    public void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
-    	this.geradorAutomatico = new GeradorAutomaticoItensMaisPresentes();
-    	gerar();
-    }
-    
-    public void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
-    	this.geradorAutomatico = new GeradorAutomaticoPorListaMaisRecente();
-    	gerar();
-    }
-
-    private void gerar() throws ListaDeComprasNotExistException, CompraNotExistException{
-		this.geradorAutomatico.gerar(this.listasDeCompras);
-	}
 
 	public boolean save(ListaDeCompra l) {
         return this.listasDeCompras.add(l);
@@ -60,6 +41,28 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
         listResult.addAll(listasDeCompras);
         return listResult;
     }
+    
+    @Override
+    public void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException {
+    	this.geradorAutomatico = new GeradorAutomaticoPorItem(descritorItem);
+    	gerar();
+    }
+    
+    @Override
+    public void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
+    	this.geradorAutomatico = new GeradorAutomaticoItensMaisPresentes();
+    	gerar();
+    }
+    
+    @Override
+    public void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
+    	this.geradorAutomatico = new GeradorAutomaticoPorListaMaisRecente();
+    	gerar();
+    }
+
+    private void gerar() throws ListaDeComprasNotExistException, CompraNotExistException{
+		this.geradorAutomatico.gerar(this.listasDeCompras);
+	}
 
     private ListaDeCompra recoveryListaPorDescritor(String descritorLista) {
         ListaDeCompra listaAtual = null;

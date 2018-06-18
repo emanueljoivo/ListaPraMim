@@ -31,4 +31,10 @@ public interface ListaDeComprasService {
     String pesquisaListasDeComprasPorData(Date data);
 
     String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException;
+    
+    void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException;
+    
+    void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException;
+    
+    void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException;
 }

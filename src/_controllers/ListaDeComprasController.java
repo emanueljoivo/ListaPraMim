@@ -91,4 +91,20 @@ public class ListaDeComprasController {
 
         return this.service.pesquisaListasDeComprasPorItem(id);
     }
+    
+	public void geraAutomaticaUltimaLista()
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		this.service.geraAutomaticaUltimaLista();
+	}
+
+	public void geraAutomaticaItensMaisPresentes() 
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		this.service.geraAutomaticaItensMaisPresentes();
+	}
+
+	public void geraAutomaticaItem(String descritorItem)
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		this.service.geraAutomaticaItem(descritorItem);
+	}
+    
 }
