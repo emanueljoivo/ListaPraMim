@@ -28,16 +28,16 @@ id9=adicionaItemPorQuilo nome="Costela suina Saara" categoria="alimento industri
 id10=adicionaItemPorUnidade nome="Batata Tentacoes" categoria="alimento industrializado" unidade=1
 
 ### Listando itens pelo id ###
-expect ${id1}". Agua Sanitaria Drogon, limpeza, 1 l, Preco: <>" listaItem id=${id1}
-expect ${id2}". Peito de peru Saara, alimento industrializado, Preco por quilo: <>" listaItem id=${id2}
-expect ${id3}". Queijo ralado Lebron, alimento industrializado, 50 grama, Preco: <>" listaItem id=${id3}
-expect ${id4}". Creme dental Oral-C, higiene pessoal, Preco: <>" listaItem id=${id4}
-expect ${id5}". Esponja de Aco Assolange, limpeza, Preco: <>" listaItem id=${id5}
-expect ${id6}". Limao, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id6}
-expect ${id7}". Coentro, alimento nao industrializado, Preco: <>" listaItem id=${id7}
-expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <>" listaItem id=${id8}
-expect ${id9}". Costela suina Saara, alimento industrializado, Preco por quilo: <>" listaItem id=${id9}
-expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <>" listaItem id=${id10}
+expect ${id1}". Agua Sanitaria Drogon, limpeza, 1 l, Preco: <>" exibirItem id=${id1}
+expect ${id2}". Peito de peru Saara, alimento industrializado, Preco por quilo: <>" exibirItem id=${id2}
+expect ${id3}". Queijo ralado Lebron, alimento industrializado, 50 grama, Preco: <>" exibirItem id=${id3}
+expect ${id4}". Creme dental Oral-C, higiene pessoal, Preco: <>" exibirItem id=${id4}
+expect ${id5}". Esponja de Aco Assolange, limpeza, Preco: <>" exibirItem id=${id5}
+expect ${id6}". Limao, alimento nao industrializado, Preco por quilo: <>" exibirItem id=${id6}
+expect ${id7}". Coentro, alimento nao industrializado, Preco: <>" exibirItem id=${id7}
+expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <>" exibirItem id=${id8}
+expect ${id9}". Costela suina Saara, alimento industrializado, Preco por quilo: <>" exibirItem id=${id9}
+expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <>" exibirItem id=${id10}
 
 ###############################
 #  Atualizando itens  #
@@ -56,20 +56,20 @@ expectError "Erro na atualizacao de item: valor de quilos nao pode ser menor que
 atualizaItem id=${id1} atributo="nome" novoValor="Agua Sanitaria Viserion"
 atualizaItem id=${id1} atributo="unidade de medida" novoValor="ml"
 atualizaItem id=${id1} atributo="quantidade" novoValor="500"
-expect ${id1}". Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <>" listaItem id=${id1}
+expect ${id1}". Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <>" exibirItem id=${id1}
 
 atualizaItem id=${id9} atributo="nome" novoValor="Costela suina Sabia"
 atualizaItem id=${id9} atributo="kg" novoValor="0.8"
-expect ${id9}". Costela suina Sabia, alimento industrializado, Preco por quilo: <>" listaItem id=${id9}
+expect ${id9}". Costela suina Sabia, alimento industrializado, Preco por quilo: <>" exibirItem id=${id9}
 
 atualizaItem id=${id3} atributo="nome" novoValor="listerine"
 atualizaItem id=${id3} atributo="categoria" novoValor="higiene pessoal"
 atualizaItem id=${id3} atributo="quantidade" novoValor="1"
 atualizaItem id=${id3} atributo="unidade de medida" novoValor="l"
-expect ${id3}". listerine, higiene pessoal, 1 l, Preco: <>" listaItem id=${id3}
+expect ${id3}". listerine, higiene pessoal, 1 l, Preco: <>" exibirItem id=${id3}
 
 atualizaItem id=${id4} atributo="nome" novoValor="mudeiONomeDoItem"
-expect "4. mudeiONomeDoItem, higiene pessoal, Preco: <>" listaItem id=${id4}
+expect "4. mudeiONomeDoItem, higiene pessoal, Preco: <>" exibirItem id=${id4}
 
 ###############################
 #  Removendo itens  #
@@ -78,9 +78,9 @@ expect "4. mudeiONomeDoItem, higiene pessoal, Preco: <>" listaItem id=${id4}
 expectError "Erro na exclusao de item: item nao existe." deletaItem id=22
 
 deletaItem id=${id4}
-expectError "Erro na listagem de item: item nao existe." listaItem id=${id4}
+expectError "Erro na listagem de item: item nao existe." exibirItem id=${id4}
 expectError "Erro na atualizacao de item: item nao existe." atualizaItem id=${id4} atributo="nome" novoValor="Creme dental Oral-D"
 
 deletaItem id=${id3}
-expectError "Erro na listagem de item: item nao existe." listaItem id=${id3}
+expectError "Erro na listagem de item: item nao existe." exibirItem id=${id3}
 expectError "Erro na atualizacao de item: item nao existe." atualizaItem id=${id3} atributo="nome" novoValor="colgate"

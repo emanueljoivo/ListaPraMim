@@ -40,6 +40,10 @@ public class ListaDeCompra implements Comparable<ListaDeCompra> {
     public Set<Compra> getCompras() {
         return compras;
     }
+    
+    public void setCompras(Set<Compra> compras) {
+		this.compras = compras;
+	} // Método para facilitar a criação automática de listas de compra.
 
     public void setDescritor(String descritor) {
         this.descritor = descritor;
@@ -59,6 +63,19 @@ public class ListaDeCompra implements Comparable<ListaDeCompra> {
 
     public void setValorFinal(double valorFinal) {
         this.valorFinal = valorFinal;
+    }
+    
+    public boolean procuraItemPorNome(String nomeItem) {
+    	boolean contem = false;
+    	
+    	for (Compra c: this.compras) {
+    		if (c.getNomeItem().trim().toLowerCase().equals(nomeItem.trim().toLowerCase())) {
+    			contem = true;
+    			break;
+    		}
+    	}
+    	
+    	return contem;
     }
 
     @Override

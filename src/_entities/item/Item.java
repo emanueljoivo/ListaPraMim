@@ -152,7 +152,7 @@ public abstract class Item implements Comparable<Item>{
 	 */
 	public String getMenorPreco() {
 		Map<String, Double> precos = getMapaDePrecos();
-		Double minor = min(precos.values());
-		return minor.toString();
+		Double menorPreco = min(precos.values());
+		return menorPreco.toString();
 	}
 }

@@ -192,4 +192,22 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
                     COMPRA_NAO_ENCONTRADA.getErrorMessage());
         }
     }
+
+	@Override
+	public void geraAutomaticaUltimaLista()
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		this.listaRepository.geraAutomaticaUltimaLista();
+	}
+
+	@Override
+	public void geraAutomaticaItensMaisPresentes() 
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		this.listaRepository.geraAutomaticaItensMaisPresentes();
+	}
+
+	@Override
+	public void geraAutomaticaItem(String descritorItem)
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		this.listaRepository.geraAutomaticaItem(descritorItem);
+	}
 }

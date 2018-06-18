@@ -50,7 +50,7 @@ public class Facade  {
 		this.app.getItemController().atualizaItem(id, atributo, novoValor);
 		
 	}
-	public String listaItem(int id)
+	public String exibirItem(int id)
 			throws ItemNotExistException, NullPointerException, IllegalArgumentException {
 
 		return this.app.getItemController().listaItem(id);
@@ -152,6 +152,28 @@ public class Facade  {
 	public void pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
 
 		this.app.getListaDeComprasController().pesquisaListasDeComprasPorItem(id);
+	}
+	
+	/*
+	 * US - 5
+	 */
+	
+	public void geraAutomaticaUltimaLista()
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		
+		this.app.getListaDeComprasController().geraAutomaticaUltimaLista();
+	}
+
+	public void geraAutomaticaItensMaisPresentes() 
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		
+		this.app.getListaDeComprasController().geraAutomaticaItensMaisPresentes();
+	}
+
+	public void geraAutomaticaItem(String descritorItem)
+			throws ListaDeComprasNotExistException, CompraNotExistException {
+		
+		this.app.getListaDeComprasController().geraAutomaticaItem(descritorItem);
 	}
 
 }
