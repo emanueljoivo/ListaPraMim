@@ -47,13 +47,13 @@ adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2 itemId=${id1
 ## Finalizar Lista ##
 finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
 
-## Pesquisa Item na Lista Nao Finalizada ##
+## Pesquisa Item na Lista ##
 expect "3 Sabão líquido Pomo, limpeza, 1 litro" pesquisaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1}
 
 ## Atualiza Item na lista ##
 atualizaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1} quantidade=5
 
-## Pesquisa Item na Lista Finalizada ##
+## Pesquisa Item na Lista ##
 expect "5 Sabão líquido Pomo, limpeza, 1 litro" pesquisaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1}
 
 ## Imprimir Lista Itens ## 
