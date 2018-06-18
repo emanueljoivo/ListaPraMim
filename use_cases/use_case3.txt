@@ -2,35 +2,36 @@
 # Caso de Uso 3 #
 #################
 
-#Iniciando o sistema do ListaPraMim
-start
+###############################
+#  Cadastro de itens  #
+###############################
 
-### Adicionando Itens ###
-id1=adicionaItem nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="grama"
-id2=adicionaItem nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1
-id3=adicionaItem nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="grama"
-id4=adicionaItem nome="Algodão Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="grama"
-id5=adicionaItem nome="Creme de ricota Rocotó" categoria="alimento industrializado" unidade=1
-id6=adicionaItem nome="Tomate" categoria="alimento nao industrializado" kg=1.5
-id7=adicionaItem nome="Sabão líquido Pomo" categoria="limpeza" qnt=1000 unidadeDeMedida="ml"
-id8=adicionaItem nome="Carne moída extra light" categoria="alimento nao industrializado" kg=2.0
-id9=adicionaItem nome="Chuchu" categoria="alimento nao industrializado" kg=0.5
-id10=adicionaItem nome="Iogurte Lactivia" categoria="alimento nao industrializado" unidade=2
+id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="grama"
+id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1
+id3=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="grama"
+id4=adicionaItemPorQtd nome="Algodão Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="grama"
+id5=adicionaItemPorUnidade nome="Creme de ricota Rocotó" categoria="alimento industrializado" unidade=1
+id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5
+id7=adicionaItemPorQtd nome="Sabão líquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l"
+id8=adicionaItemPorQuilo nome="Carne moída extra light" categoria="alimento nao industrializado" kg=2.0
+id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5
+id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento nao industrializado" unidade=2
 
-### Verificar Valor ## 
-expect ${id1}". Sabonete de aveia Dorene, higiene pessoal, 80 grama, Preco: <>" listaItem id=${id1}
-expect ${id2}". Queijo minas Dali, alimento industrializado, Preco por quilo: <>" listaItem id=${id2}
-expect ${id3}". Pasta dental DDS, higiene pessoal, 120 grama, Preco: <>" listaItem id=${id3}
-expect ${id4}". Algodão Clemer, higiene pessoal, 300 grama, Preco: <>" listaItem id=${id4}
-expect ${id5}". Creme de ricota Rocotó, alimento industrializado, Preco por quilo: <>" listaItem id=${id5}
-expect ${id6}". Tomate, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id6}
-expect ${id7}". Sabão líquido Pomo, limpeza, 1000 ml, Preco: <>" listaItem id=${id7}
-expect ${id8}". Carne moída extra light, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id8}
-expect ${id9}". Chuchu, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id9}
-expect ${id10}". Iogurte Lactivia, alimento nao industrializado, Preco por quilo: <>" listaItem id=${id10}
+## Verificar Item ## 
+expect ${id1}". Sabonete de aveia Dorene, higiene pessoal, 80 grama, Preco: <>" exibirItem id=${id1}
+expect ${id2}". Queijo minas Dali, alimento industrializado, Preco: <>" exibirItem id=${id2}
+expect ${id3}". Pasta dental DDS, higiene pessoal, 120 grama, Preco: <>" exibirItem id=${id3}
+expect ${id4}". Algodão Clemer, higiene pessoal, 300 grama, Preco: <>" exibirItem id=${id4}
+expect ${id5}". Creme de ricota Rocotó, alimento industrializado, Preco: <>" exibirItem id=${id5}
+expect ${id6}". Tomate, alimento nao industrializado, Preco por quilo: <>" exibirItem id=${id6}
+expect ${id7}". Sabão líquido Pomo, limpeza, 1 l, Preco: <>" exibirItem id=${id7}
+expect ${id8}". Carne moída extra light, alimento nao industrializado, Preco por quilo: <>" exibirItem id=${id8}
+expect ${id9}". Chuchu, alimento nao industrializado, Preco por quilo: <>" exibirItem id=${id9}
+expect ${id10}". Iogurte Lactivia, alimento nao industrializado, Preco: <>" exibirItem id=${id10}
 
 ## Criar Lista de Compra ##
 adicionaListaDeCompras descritorLista="feira 23/05/2017"
+adicionaListaDeCompras descritorLista="feira 01/05/2017"
 
 ## Adicionar Itens a Lista ##
 adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=5 itemId=${id1}
@@ -46,10 +47,15 @@ adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2 itemId=${id1
 
 
 #! Implementacao nao finalizada, aguardar implementacao ##
-### Lista Itens ## 
-expect "1 Algodão Clemer, higiene pessoal, 300 grama#2 Pasta dental DDS, higiene pessoal, 120 grama#5 Sabonete de aveia Dorene, higiene pessoal, 80 grama#2 Sabão líquido Pomo, limpeza, 1 litro#1 Creme de ricota Rocotó, alimento industrializado#2 Iogurte Lactivia, alimento industrializado#1 Queijo minas Dali, alimento industrializado#0,5 kg Chuchu, alimento nao industrializado#1,5 kg Tomate, alimento nao industrializado#2,0 kg Carne moída extra light, alimento nao industrializado" listaItens
+## Imprimir Lista Itens ## 
+expect "1 Algodão Clemer, higiene pessoal, 300 grama |2 Pasta dental DDS, higiene pessoal, 120 grama |5 Sabonete de aveia Dorene, higiene pessoal, 80 grama |2 Sabão líquido Pomo, limpeza, 1 litro |1 Creme de ricota Rocotó, alimento industrializado |2 Iogurte Lactivia, alimento industrializado#1 Queijo minas Dali, alimento industrializado|0,5 kg Chuchu, alimento nao industrializado|1,5 kg Tomate, alimento nao industrializado|2,0 kg Carne moída extra light, alimento nao industrializado" imprimirListaDeCompras descritorLista="feira 23/05/2017"
 
-### Lista Itens Categoria ## 
+## Finalizar Lista ##
+finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
+
+## Pesquisa Item na Lista ##
+
+## Lista Itens Categoria ## 
 expect "" listaItens Categoria="higiene pessoal"
 
 expect "" listaItens Categoria="limpeza"
@@ -58,9 +64,9 @@ expect "" listaItens Categoria="alimento industrializado"
 
 expect "" listaItens Categoria="alimento nao industrializado"
 
-### Lista Itens Preco ## 
+## Lista Itens Preco ## 
 expect "" listaItensPreco
 
-### Lista Itens Preco ## 
+## Lista Itens Por Nome ## 
 expect "" listaItensPesquisa strPesquisada="alimento"
 expect "" listaItensPesquisa strPesquisada="chuchu"
