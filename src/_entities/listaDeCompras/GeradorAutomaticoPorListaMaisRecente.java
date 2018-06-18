@@ -6,8 +6,8 @@ import enums.ListaDeComprasExceptionMessages;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
 /**
- * Classe que é responsável por gerar uma lista de compras automática,
- * repetindo a última que foi cadastrada no sistema.
+ * Classe que é responsável por gerar uma lista de compras automática, seguindo a estratégia de
+ * repetir a última que foi cadastrada no sistema.
  * 
  * @author lucas
  */
@@ -18,6 +18,9 @@ public class GeradorAutomaticoPorListaMaisRecente extends AbstractGeradorAutomat
 		super();
 	}
 
+	/**
+	 * {@link _entities.listaDeCompras.GeradorAutomaticoListaDeCompras#gerar(List)}
+	 */
 	@Override
 	public ListaDeCompra gerar(List<ListaDeCompra> compras) throws ListaDeComprasNotExistException {
 		if (compras.isEmpty())
@@ -26,7 +29,7 @@ public class GeradorAutomaticoPorListaMaisRecente extends AbstractGeradorAutomat
 		
 		int pos = compras.size() - 1;
 		
-		return super.criaListaDeCompra(compras.get(pos).getCompras(), "Lista automatica 1");
+		return super.criaListaDeCompra(compras.get(pos).getCompras(), "Lista automatica 1 ");
 	}
 
 }

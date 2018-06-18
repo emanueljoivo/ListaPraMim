@@ -1,6 +1,6 @@
 package _repositories;
 
-import _entities.listaDeCompras.GeradorAutomaticoItensMaisPresentes;
+import _entities.listaDeCompras.GeradorAutomaticoPorItensMaisPresentes;
 import _entities.listaDeCompras.GeradorAutomaticoListaDeCompras;
 import _entities.listaDeCompras.GeradorAutomaticoPorItem;
 import _entities.listaDeCompras.GeradorAutomaticoPorListaMaisRecente;
@@ -50,7 +50,7 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
     
     @Override
     public void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
-    	this.geradorAutomatico = new GeradorAutomaticoItensMaisPresentes();
+    	this.geradorAutomatico = new GeradorAutomaticoPorItensMaisPresentes();
     	gerar();
     }
     

@@ -9,9 +9,9 @@ public class Compra implements Comparable<Compra>  {
     private double quantidade;
     private Item item;
 
-    public Compra(double quantidade, Item itemId) {
+    public Compra(double quantidade, Item item) {
         this.quantidade = quantidade;
-        this.item = itemId;
+        this.item = item;
     }
     
     public double getQuantidade() { return quantidade; }
