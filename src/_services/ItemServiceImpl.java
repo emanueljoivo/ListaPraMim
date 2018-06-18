@@ -104,6 +104,7 @@ public class ItemServiceImpl implements ItemService {
     /**
      * {@link ItemService#listaItens()}
      */
+	@SuppressWarnings("unchecked")
 	@Override
 	public String listaItens() {
         List<Item> itens = this.itemRepository.getItens();
