@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import _entities.item.Item;
 import enums.ListaDeComprasExceptionMessages;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -44,25 +45,36 @@ public class GeradorAutomaticoPorItensMaisPresentes extends AbstractGeradorAutom
 	 * @throws CompraNotExistException exceçao lançada quando nao existirem compras que contemplem a estrategia escolhida.
 	 */
 	private Set<Compra> getCompras(List<ListaDeCompra> compras) throws CompraNotExistException {
-		Map<Compra, Integer> countMap = new HashMap<>();
+		Map<Item, Integer> countMap = new HashMap<>();
+		Map<Item, Double> sumQtdMap = new HashMap<>();
 		
 		for (ListaDeCompra lista: compras) {
 			for (Compra compra: lista.getCompras()) {
-				Integer count = countMap.get(compra);
+				Integer count = countMap.get(compra.getItemCompravel());
 				
 				if (count == null)
 					count = 0;
 				
-				countMap.put(compra, count + 1);
+				double qtd = compra.getQuantidade();
+				
+				if (sumQtdMap.get(compra.getItemCompravel()) != null)
+					qtd += sumQtdMap.get(compra.getItemCompravel());
+				
+				countMap.put(compra.getItemCompravel(), count + 1);
+				sumQtdMap.put(compra.getItemCompravel(), qtd);
 			}
 		}
 		
 		Set<Compra> out = new HashSet<>();
 		int size = compras.size();
 		
-		for (Compra compra: countMap.keySet()) {
-			if (countMap.get(compra) >= (size / 2.0))
-				out.add(compra);
+		for (Item item: countMap.keySet()) {
+			int count = countMap.get(item);
+			
+			if (count >= (size / 2.0)) {
+				double qtd = Math.floor(sumQtdMap.get(item) / countMap.get(item));
+				out.add(new Compra(qtd, item));
+			}
 		}
 		
 		if (out.isEmpty())

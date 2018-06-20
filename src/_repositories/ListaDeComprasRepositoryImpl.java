@@ -5,7 +5,6 @@ import _entities.listaDeCompras.GeradorAutomaticoListaDeCompras;
 import _entities.listaDeCompras.GeradorAutomaticoPorItem;
 import _entities.listaDeCompras.GeradorAutomaticoPorListaMaisRecente;
 import _entities.listaDeCompras.ListaDeCompra;
-import enums.AutoGeneratorStrategies;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
@@ -61,7 +60,7 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
     }
 
     private void gerar() throws ListaDeComprasNotExistException, CompraNotExistException{
-		this.geradorAutomatico.gerar(this.listasDeCompras);
+		this.listasDeCompras.add(this.geradorAutomatico.gerar(this.listasDeCompras));
 	}
 
     private ListaDeCompra recoveryListaPorDescritor(String descritorLista) {

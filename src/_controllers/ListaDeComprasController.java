@@ -102,6 +102,10 @@ public class ListaDeComprasController {
         return this.service.pesquisaListasDeComprasPorItem(id);
     }
     
+    /*
+     * US5
+     */
+    
 	public void geraAutomaticaUltimaLista()
 			throws ListaDeComprasNotExistException, CompraNotExistException {
 		this.service.geraAutomaticaUltimaLista();
