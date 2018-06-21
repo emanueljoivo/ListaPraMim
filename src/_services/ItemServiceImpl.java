@@ -119,9 +119,7 @@ public class ItemServiceImpl implements ItemService {
 	public String listaItens(String categoria) {
 		List<Item> itens = this.itemRepository.getItensByCategoria(categoria);
 
-		CategoriaComparator comparator = new CategoriaComparator();
-
-		sort(itens, comparator);
+		sort(itens);
 
 		return listaDeItens(itens);
 	}
@@ -173,7 +171,7 @@ public class ItemServiceImpl implements ItemService {
 	private String listaDeItens(List<Item> itens) {
 		String itensStringifier = "";
 
-		for (Item item : itens) itensStringifier += item.toString() + System.lineSeparator();
+		for (Item item : itens) itensStringifier += item.toString() + " |";
 		return itensStringifier;
 	}
 

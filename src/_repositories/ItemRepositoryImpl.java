@@ -122,8 +122,8 @@ public class ItemRepositoryImpl implements ItemRepository {
     public List<Item> getItensBySearch(String strPesquisada) {
         List<Item> itensRelacionados = new ArrayList<>();
         for (Item item : this.itens) {
-            if (item.getNome().equalsIgnoreCase(strPesquisada)
-                    || item.getCategoria().getValue().equalsIgnoreCase(strPesquisada)) {
+            if (item.getNome().toLowerCase().contains(strPesquisada)
+                    || item.getCategoria().getValue().toLowerCase().contains(strPesquisada)) {
                 itensRelacionados.add(item);
             }
         }
