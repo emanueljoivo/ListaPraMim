@@ -78,15 +78,18 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     }
 
     @Override
-    public Compra pesquisaCompraDeLista(String descritorLista, int itemId) throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
-        verificaIntegridade(descritorLista, itemId);
+    public String pesquisaCompraDeLista(String descritorLista, int itemId)
+            throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
 
+        verificaIntegridade(descritorLista, itemId);
         ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
         Compra compraAtual = listaAtual.getCompra(itemId);
 
         verificaCompra(compraAtual);
 
-        return compraAtual;
+        System.out.println(compraAtual.toString());
+
+        return compraAtual.toString();
     }
 
     @Override

@@ -60,45 +60,51 @@ public class ListaDeComprasController {
 
     public void deletaCompraDeLista(String descritorLista, int itemId)
             throws CompraNotExistException, ListaDeComprasNotExistException, ItemNotExistException {
+
         this.validator.validaExclusao(descritorLista, itemId);
         this.service.deletaCompraDeLista(descritorLista, itemId);
     }
 
     public String pesquisaCompraDeLista(String descritorLista, int itemId)
             throws CompraNotExistException, ListaDeComprasNotExistException, ItemNotExistException {
-        this.validator.validaPesquisa(descritorLista, itemId);
 
-        return this.service.pesquisaCompraDeLista(descritorLista, itemId).toString();
+        this.validator.validaPesquisa(descritorLista, itemId);
+        return this.service.pesquisaCompraDeLista(descritorLista, itemId);
     }
 
-    public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
-        this.validator.validaDescritor(descritorLista);
+    public String imprimirListaDeCompras(String descritorLista)
+            throws ListaDeComprasNotExistException {
 
+        this.validator.validaDescritor(descritorLista);
         return this.service.imprimirListaDeCompras(descritorLista);
     }
 
 
-    public void finalizaListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) throws ListaDeComprasNotExistException {
-        this.validator.validaFinalizacaoDeLista(descritorLista, localDaCompra, valorFinalDaCompra);
+    public void finalizaListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra)
+            throws ListaDeComprasNotExistException {
 
+        this.validator.validaFinalizacaoDeLista(descritorLista, localDaCompra, valorFinalDaCompra);
         this.service.finalizaListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);
     }
 
-    public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
-        this.validator.validaPesquisa(descritorLista);
+    public String pesquisaListaDeCompras(String descritorLista)
+            throws ListaDeComprasNotExistException {
 
+        this.validator.validaPesquisa(descritorLista);
         return this.service.pesquisaListaDeCompras(descritorLista);
     }
 
-    public String pesquisaListasDeComprasPorData(String data) throws ParseException {
-        Date dataFormatada = this.validator.validaPesquisaPorData(data);
+    public String pesquisaListasDeComprasPorData(String data)
+            throws ParseException {
 
+        Date dataFormatada = this.validator.validaPesquisaPorData(data);
         return this.service.pesquisaListasDeComprasPorData(dataFormatada);
     }
 
-    public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
-        this.validator.validaPesquisaPorItem(id);
+    public String pesquisaListasDeComprasPorItem(int id)
+            throws ItemNotExistException {
 
+        this.validator.validaPesquisaPorItem(id);
         return this.service.pesquisaListasDeComprasPorItem(id);
     }
     
