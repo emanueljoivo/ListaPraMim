@@ -2,6 +2,7 @@ package _view;
 
 import itemExceptions.ItemExistException;
 import itemExceptions.ItemNotExistException;
+import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -180,6 +181,9 @@ public class Facade  {
 	 * US6
 	 */
 	
-	
+	public String sugereMelhorEstabelecimento(String descritorLista)
+			throws ListaDeComprasNotExistException, ItemSemPrecoException {
+		return this.app.getListaDeComprasController().sugereMelhorEstabelecimento(descritorLista);
+	}
 
 }

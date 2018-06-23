@@ -226,7 +226,6 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     }
 
     private String getMelhorEstabelecimento(ListaDeCompra lista) throws ItemSemPrecoException {
-    	// TODO ainda
     	String out = "";
     	
     	List<Item> itens = new ArrayList<>();
@@ -235,12 +234,40 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     		itens.add(c.getItemCompravel());
     	}
     	
-    	String[] precos = precosEstabelecimentosMaisCitados(itens);
+    	String[] estabelecimentos = estabelecimentosMaisCitados(itens);
+    	Map<String, Double> outMap = new HashMap<>();
+    	
+    	for (String estabelecimento: estabelecimentos) {
+    		if (estabelecimento != null) {
+    			for (Item item: itens) {
+    				Map<String, Double> mapPrecos = item.getMapaDePrecos();
+    				Double preco = mapPrecos.get(estabelecimento);
+    				Double outMapPreco = outMap.get(estabelecimento);
+    				
+    				if (outMapPreco == null)
+    					outMapPreco = new Double(0);
+    				
+    				outMap.put(estabelecimento, preco + outMapPreco);
+    			}
+    		}
+    	}
+    	
+    	if (estabelecimentos[1] == null) {
+    		out += estabelecimentos[0] + ", R$ " + outMap.get(estabelecimentos[0]) + System.lineSeparator();
+    	} else {
+    		if (outMap.get(estabelecimentos[1]).compareTo(outMap.get(estabelecimentos[0])) < 0) {
+    			out += estabelecimentos[1] + ", R$ " + outMap.get(estabelecimentos[1]) + System.lineSeparator();
+    			out += estabelecimentos[0] + ", R$ " + outMap.get(estabelecimentos[0]) + System.lineSeparator();
+    		} else {
+    			out += estabelecimentos[0] + ", R$ " + outMap.get(estabelecimentos[0]) + System.lineSeparator();
+    			out += estabelecimentos[1] + ", R$ " + outMap.get(estabelecimentos[1]) + System.lineSeparator();
+    		}
+    	}
     	
 		return out;
 	}
     
-    private String[] precosEstabelecimentosMaisCitados(List<Item> itens) throws ItemSemPrecoException {
+    private String[] estabelecimentosMaisCitados(List<Item> itens) throws ItemSemPrecoException {
     	Map<String, Integer> countMap = countEstabelecimentos(itens);
     	
     	Map.Entry<String, Integer> mapEstab1 = null;
@@ -257,9 +284,12 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     	String[] out = new String[2];
     	
     	if (mapEstab1 == null)
-    		throw new ItemSemPrecoException("");
+    		throw new ItemSemPrecoException("Nao ha mapa de preço para item algum."); // alterar mensagem depois
     	else {
+    		out[0] = mapEstab1.getKey();
     		
+    		if(mapEstab2 != null)
+    			out[1] = mapEstab2.getKey();
     	}
     	
     	return out;

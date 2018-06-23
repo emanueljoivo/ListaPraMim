@@ -2,6 +2,7 @@ package _controllers;
 
 import _services.ListaDeComprasService;
 import itemExceptions.ItemNotExistException;
+import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -131,6 +132,9 @@ public class ListaDeComprasController {
 	 * US6
 	 */
 	
-	
+	public String sugereMelhorEstabelecimento(String descritorLista) 
+			throws ListaDeComprasNotExistException, ItemSemPrecoException {
+		return this.service.sugereMelhorEstabelecimento(descritorLista);
+	}
     
 }
