@@ -2,9 +2,7 @@
 # Caso de Uso 3 #
 #################
 
-###############################
-#  Cadastro de itens  #
-###############################
+##  Cadastro de itens  ##
 
 id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="grama"
 id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1
@@ -17,7 +15,8 @@ id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao 
 id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5
 id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento nao industrializado" unidade=2
 
-## Verificar Item ## 
+## Verificar Item ##
+
 expect ${id1}". Sabonete de aveia Dorene, higiene pessoal, 80 grama, Preco: <>" exibirItem id=${id1}
 expect ${id2}". Queijo minas Dali, alimento industrializado, Preco: <>" exibirItem id=${id2}
 expect ${id3}". Pasta dental DDS, higiene pessoal, 120 grama, Preco: <>" exibirItem id=${id3}
@@ -30,9 +29,11 @@ expect ${id9}". Chuchu, alimento nao industrializado, Preco por quilo: <>" exibi
 expect ${id10}". Iogurte Lactivia, alimento nao industrializado, Preco: <>" exibirItem id=${id10}
 
 ## Criar Lista de Compra ##
+
 adicionaListaDeCompras descritorLista="feira 23/05/2017"
 
 ## Adicionar Itens a Lista ##
+
 adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=3 itemId=${id1}
 adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=1 itemId=${id2}
 adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2 itemId=${id3}
@@ -45,28 +46,35 @@ adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=0.5 itemId=${i
 adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2 itemId=${id10}
 
 ## Finalizar Lista ##
+
 finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
 
 ## Pesquisa Item na Lista ##
-expect "3 Sabao laquido Pomo, limpeza, 1 litro" pesquisaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1}
+
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 grama" pesquisaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1}
 
 ## Atualiza Item na lista ##
+
 atualizaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1} quantidade=5
 
 ## Pesquisa Item na Lista ##
-expect "5 Sabao liquido Pomo, limpeza, 1 litro" pesquisaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1}
+
+expect "5 Sabonete de aveia Dorene, higiene pessoal, 80 grama" pesquisaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1}
 
 ## Imprimir Lista Itens ## 
+
 expect "1 Algodao Clemer, higiene pessoal, 300 grama |2 Pasta dental DDS, higiene pessoal, 120 grama |5 Sabonete de aveia Dorene, higiene pessoal, 80 grama |2 Sabao liquido Pomo, limpeza, 1 litro |1 Creme de ricota Rocota, alimento industrializado |2 Iogurte Lactivia, alimento industrializado |1 Queijo minas Dali, alimento industrializado |0,5 kg Chuchu, alimento nao industrializado |1,5 kg Tomate, alimento nao industrializado |2,0 kg Carne moida extra light, alimento nao industrializado" imprimirListaDeCompras descritorLista="feira 23/05/2017"
 
-##############################################
+######################################
 ## Teste de Delete de item da lista ##
-##############################################
+######################################
 
 ## Criar Lista de Compra ##
+
 adicionaListaDeCompras descritorLista="feira 01/05/2017"
 
 ## Adicionar Itens a Lista ##
+
 adicionaCompraALista descritorLista="feira 01/05/2017" quantidade=3 itemId=${id1}
 adicionaCompraALista descritorLista="feira 01/05/2017" quantidade=1 itemId=${id2}
 
@@ -75,7 +83,8 @@ expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 grama |1 Queijo minas Da
 deletaCompraDeLista escritorLista="feira 01/05/2017" itemId=${id1}
 
 ## Finalizar Lista ##
+
 finalizarListaDeCompras descritorLista="feira 01/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=10
 
-
+## Lista de compras feira 01/05/2017 ##
 expect "1 Queijo minas Dali, alimento industrializado" imprimirListaDeCompras descritorLista="feira 01/05/2017"
