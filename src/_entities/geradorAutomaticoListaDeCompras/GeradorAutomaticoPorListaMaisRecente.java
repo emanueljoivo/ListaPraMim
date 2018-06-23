@@ -1,7 +1,8 @@
-package _entities.listaDeCompras;
+package _entities.geradorAutomaticoListaDeCompras;
 
 import java.util.List;
 
+import _entities.listaDeCompras.ListaDeCompra;
 import enums.ListaDeComprasExceptionMessages;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
@@ -19,7 +20,7 @@ public class GeradorAutomaticoPorListaMaisRecente extends AbstractGeradorAutomat
 	}
 
 	/**
-	 * {@link _entities.listaDeCompras.GeradorAutomaticoListaDeCompras#gerar(List)}
+	 * {@link _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoListaDeCompras#gerar(List)}
 	 */
 	@Override
 	public ListaDeCompra gerar(List<ListaDeCompra> compras) throws ListaDeComprasNotExistException {

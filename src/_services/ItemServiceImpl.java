@@ -1,6 +1,5 @@
 package _services;
 
-import _entities.comparators.CategoriaComparator;
 import _entities.comparators.PrecoComparator;
 import _factories.ItemFactory;
 

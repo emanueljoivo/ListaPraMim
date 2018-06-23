@@ -126,5 +126,11 @@ public class ListaDeComprasController {
 			throws ListaDeComprasNotExistException, CompraNotExistException {
 		this.service.geraAutomaticaItem(descritorItem);
 	}
+	
+	/*
+	 * US6
+	 */
+	
+	
     
 }

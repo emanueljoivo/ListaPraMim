@@ -14,6 +14,7 @@ public enum ListaDeComprasExceptionMessages {
     ERRO_GERA_AUTOMATICO_RECENTE("Erro na geracao de lista automatica mais recente: "),
     ERRO_GERA_AUTOMATICO_POR_ITEM("Erro na geracao de lista automatica por item: "),
     ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES("Erro na geracao de lista automatica por itens mais presentes: "),
+    ERRO_PESQUISA_MELHOR_ESTABELECIMENTO("Erro ao pesquisar o melhor estabelecimento: "),
     CRIACAO_INVALIDA_DESCRITOR("Erro na criacao de lista de compras: " + DESCRITOR_INVALIDO.errorMessage),
     COMPRA_INVALIDA_DESCRITOR(ERRO_COMPRA.errorMessage + DESCRITOR_INVALIDO.errorMessage),
     COMPRA_INVALIDA_QUANTIDADE(ERRO_COMPRA.errorMessage + QUANTIDADE_INVALIDA.errorMessage),
@@ -33,11 +34,13 @@ public enum ListaDeComprasExceptionMessages {
     FINALIZACAO_INVALIDA_DESCRITOR(ERRO_FINALIZACAO.errorMessage + DESCRITOR_INVALIDO.errorMessage),
     FINALIZACAO_INVALIDA_LOCAL(ERRO_FINALIZACAO.errorMessage + "local nao pode ser vazio ou nulo."),
     FINALIZACAO_INVALIDA_VALOR(ERRO_FINALIZACAO.errorMessage + "valor final da lista invalido."),
-    NAO_HA_LISTAS_MAIS_RECENTE(ERRO_GERA_AUTOMATICO_RECENTE.errorMessage + "nenhuma lista de compras cadastrada."),
-    NAO_HA_LISTAS_POR_ITEM(ERRO_GERA_AUTOMATICO_POR_ITEM.errorMessage + "nenhuma lista de compras cadastrada."),
-    NAO_HA_LISTAS_ITENS_MAIS_RECENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nenhuma lista de compras cadastrada."),
+    NAO_HA_LISTAS_MAIS_RECENTE(ERRO_GERA_AUTOMATICO_RECENTE.errorMessage + "nenhuma lista de compras cadastrada com esse descritor."),
+    NAO_HA_LISTAS_POR_ITEM(ERRO_GERA_AUTOMATICO_POR_ITEM.errorMessage + "nenhuma lista de compras cadastrada com esse descritor."),
+    NAO_HA_LISTAS_ITENS_MAIS_RECENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nenhuma lista de compras cadastrada com esse descritor."),
 	NAO_HA_COMPRA_POR_ITEM(ERRO_GERA_AUTOMATICO_POR_ITEM.errorMessage + "nao ha compras cadastradas com o item desejado."),
-	NAO_HA_ITENS_CADASTRADOS_MAIS_PRESENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nao ha nenhum item que aparece em metade das listas cadastradas.");
+	NAO_HA_ITENS_CADASTRADOS_MAIS_PRESENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nao ha nenhum item que aparece em metade das listas cadastradas."),
+	NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO(ERRO_PESQUISA_MELHOR_ESTABELECIMENTO.errorMessage + " nenhuma lista de compras cadastrada com esse descritor.");
+	
 	
     private String errorMessage;
     ListaDeComprasExceptionMessages(String errorMessage) {

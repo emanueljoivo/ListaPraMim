@@ -11,6 +11,7 @@ import _repositories.ListaDeComprasRepository;
 import enums.ItemExceptionsMessages;
 import enums.ListaDeComprasExceptionMessages;
 import itemExceptions.ItemNotExistException;
+import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -130,12 +131,12 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         return imprimirListaDeCompras(descritorLista);
     }
 
-    @Override
+	@Override
     public String pesquisaListasDeComprasPorData(Date data) {
         List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
         String listaStringifier = "";
 
-        Comparator currentComparator = new ListaDescritorComparator();
+        Comparator<ListaDeCompra> currentComparator = new ListaDescritorComparator();
         Collections.sort(allLists, currentComparator);
 
         for (ListaDeCompra l : allLists) {
@@ -164,7 +165,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     }
 
     private List<Compra> setToList(Set<Compra> compras) {
-        List<Compra> listaAux = new ArrayList();
+        List<Compra> listaAux = new ArrayList<>();
         listaAux.addAll(compras);
         return listaAux;
     }
@@ -213,4 +214,69 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 			throws ListaDeComprasNotExistException, CompraNotExistException {
 		this.listaRepository.geraAutomaticaItem(descritorItem);
 	}
+	
+	@Override
+    public String sugereMelhorEstabelecimento(String descritorLista) throws ListaDeComprasNotExistException, ItemSemPrecoException{
+    	if (!this.listaRepository.containsLista(descritorLista)) {
+    		throw new ListaDeComprasNotExistException(ListaDeComprasExceptionMessages
+    				.NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO.getErrorMessage());
+    	}
+    	
+    	return this.getMelhorEstabelecimento(this.listaRepository.recoveryLista(descritorLista));
+    }
+
+    private String getMelhorEstabelecimento(ListaDeCompra lista) throws ItemSemPrecoException {
+    	// TODO ainda
+    	String out = "";
+    	
+    	List<Item> itens = new ArrayList<>();
+    	
+    	for (Compra c: lista.getCompras()) {
+    		itens.add(c.getItemCompravel());
+    	}
+    	
+    	String[] precos = precosEstabelecimentosMaisCitados(itens);
+    	
+		return out;
+	}
+    
+    private String[] precosEstabelecimentosMaisCitados(List<Item> itens) throws ItemSemPrecoException {
+    	Map<String, Integer> countMap = countEstabelecimentos(itens);
+    	
+    	Map.Entry<String, Integer> mapEstab1 = null;
+    	Map.Entry<String, Integer> mapEstab2 = null;
+    	
+    	for (Map.Entry<String, Integer> entry: countMap.entrySet()) {
+    		if (mapEstab1 == null || entry.getValue().compareTo(mapEstab1.getValue()) > 0) {
+    			mapEstab1 = entry;
+    		} else if (mapEstab2 == null || entry.getValue().compareTo(mapEstab2.getValue()) > 0) {
+    			mapEstab2 = entry;
+    		}
+    	}
+    	
+    	String[] out = new String[2];
+    	
+    	if (mapEstab1 == null)
+    		throw new ItemSemPrecoException("");
+    	else {
+    		
+    	}
+    	
+    	return out;
+    }
+    
+    private Map<String, Integer> countEstabelecimentos(List<Item> itens) {
+    	Map<String, Integer> countMap = new HashMap<>();
+    	
+    	for (Item item: itens) {
+    		for(String s: item.getMapaDePrecos().keySet()) {
+    			Integer count = countMap.get(s);
+    			if (count == null)
+    				count = new Integer(0);
+    			countMap.put(s, count);
+    		}
+    	}
+    	
+    	return countMap;
+    }
 }

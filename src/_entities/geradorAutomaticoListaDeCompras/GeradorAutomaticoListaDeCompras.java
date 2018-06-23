@@ -1,7 +1,8 @@
-package _entities.listaDeCompras;
+package _entities.geradorAutomaticoListaDeCompras;
 
 import java.util.List;
 
+import _entities.listaDeCompras.ListaDeCompra;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 

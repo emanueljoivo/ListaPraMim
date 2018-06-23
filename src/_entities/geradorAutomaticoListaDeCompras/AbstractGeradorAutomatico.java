@@ -1,8 +1,11 @@
-package _entities.listaDeCompras;
+package _entities.geradorAutomaticoListaDeCompras;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
+
+import _entities.listaDeCompras.Compra;
+import _entities.listaDeCompras.ListaDeCompra;
 
 /**
  * Classe abstrata para o gerador de lista automática, visando reaproveitamento de código.

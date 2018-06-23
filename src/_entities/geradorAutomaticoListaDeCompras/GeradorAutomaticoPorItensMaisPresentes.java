@@ -1,4 +1,4 @@
-package _entities.listaDeCompras;
+package _entities.geradorAutomaticoListaDeCompras;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 import _entities.item.Item;
+import _entities.listaDeCompras.Compra;
+import _entities.listaDeCompras.ListaDeCompra;
 import enums.ListaDeComprasExceptionMessages;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -25,7 +27,7 @@ public class GeradorAutomaticoPorItensMaisPresentes extends AbstractGeradorAutom
 	}
 
 	/**
-	 * {@link _entities.listaDeCompras.GeradorAutomaticoListaDeCompras#gerar(List)}
+	 * {@link _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoListaDeCompras#gerar(List)}
 	 */
 	@Override
 	public ListaDeCompra gerar(List<ListaDeCompra> compras)

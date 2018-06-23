@@ -1,9 +1,9 @@
 package _repositories;
 
-import _entities.listaDeCompras.GeradorAutomaticoPorItensMaisPresentes;
-import _entities.listaDeCompras.GeradorAutomaticoListaDeCompras;
-import _entities.listaDeCompras.GeradorAutomaticoPorItem;
-import _entities.listaDeCompras.GeradorAutomaticoPorListaMaisRecente;
+import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoListaDeCompras;
+import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorItem;
+import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorItensMaisPresentes;
+import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorListaMaisRecente;
 import _entities.listaDeCompras.ListaDeCompra;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -41,6 +41,10 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
         return listResult;
     }
     
+    /*
+     * US5
+     */
+    
     @Override
     public void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException {
     	this.geradorAutomatico = new GeradorAutomaticoPorItem(descritorItem);
@@ -63,7 +67,7 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
 		this.listasDeCompras.add(this.geradorAutomatico.gerar(this.listasDeCompras));
 	}
 
-    private ListaDeCompra recoveryListaPorDescritor(String descritorLista) {
+	private ListaDeCompra recoveryListaPorDescritor(String descritorLista) {
         ListaDeCompra listaAtual = null;
         for (ListaDeCompra l: this.listasDeCompras) {
             if (l.getDescritor().equalsIgnoreCase(descritorLista)) {

@@ -2,6 +2,7 @@ package _services;
 
 import _entities.listaDeCompras.Compra;
 import itemExceptions.ItemNotExistException;
+import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -37,4 +38,6 @@ public interface ListaDeComprasService {
     void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException;
     
     void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException;
+
+	String sugereMelhorEstabelecimento(String descritorLista) throws ListaDeComprasNotExistException,ItemSemPrecoException;
 }

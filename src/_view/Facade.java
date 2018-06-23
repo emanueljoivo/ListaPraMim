@@ -175,5 +175,11 @@ public class Facade  {
 		
 		this.app.getListaDeComprasController().geraAutomaticaItem(descritorItem);
 	}
+	
+	/*
+	 * US6
+	 */
+	
+	
 
 }
