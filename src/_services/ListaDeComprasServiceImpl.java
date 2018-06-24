@@ -57,12 +57,12 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         Compra compraAtual = this.listaRepository.recoveryLista(descritorLista).
                 getCompra(itemId);
 
-        verificaCompra(compraAtual);
+        verificaCompra(compraAtual, ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
 
-        if ((compraAtual.getQuantidade() - novaQuantidade) <= 0) {
+        if ((compraAtual.getQuantidade() < novaQuantidade)) {
             deletaCompraDeLista(descritorLista, itemId);
         } else {
-            compraAtual.setQuantidade(novaQuantidade);
+            compraAtual.setQuantidade(compraAtual.getQuantidade() - novaQuantidade);
         }
     }
 
@@ -74,21 +74,21 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
         Compra compraAtual = listaAtual.getCompra(itemId);
 
-        verificaCompra(compraAtual);
+        verificaCompra(compraAtual,
+                ListaDeComprasExceptionMessages.EXCLUSAO_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
         listaAtual.getCompras().remove(compraAtual);
     }
 
     @Override
-    public String pesquisaCompraDeLista(String descritorLista, int itemId)
+    public String pesquisaCompraEmLista(String descritorLista, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
 
         verificaIntegridade(descritorLista, itemId);
         ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
         Compra compraAtual = listaAtual.getCompra(itemId);
 
-        verificaCompra(compraAtual);
-
-        System.out.println(compraAtual.toString());
+        verificaCompra(compraAtual,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
 
         return compraAtual.toString();
     }
@@ -108,10 +108,9 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         Collections.sort(compras, c1.thenComparing(c2));
 
         for (Compra compra : compras) {
-            listaStringify += compra.getItemCompravel().toString(compra.getQuantidade()) +
-            System.lineSeparator();
+            listaStringify += compra.toString() + " |";
         }
-        return listaStringify;
+        return listaStringify.substring(0, listaStringify.length()-2);
     }
 
     @Override
@@ -190,10 +189,9 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         }
     }
 
-    private void verificaCompra(Compra compra) throws CompraNotExistException {
+    private void verificaCompra(Compra compra, String msg) throws CompraNotExistException {
         if (compra == null) {
-            throw new CompraNotExistException(ListaDeComprasExceptionMessages.
-                    COMPRA_NAO_ENCONTRADA.getErrorMessage());
+            throw new CompraNotExistException(msg);
         }
     }
 

@@ -20,13 +20,13 @@ public class ListaDeCompra implements Comparable<ListaDeCompra> {
     }
 
     public Compra getCompra(int itemId) {
-        Compra c = null;
+
         for (Compra compra : this.compras) {
             if (compra.getItemCompravel().getId() == itemId) {
-                c = compra;
+                return compra;
             }
         }
-        return c;
+        return null;
     }
 
     public Date getMomentoDeCriacao() {

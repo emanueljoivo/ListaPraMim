@@ -46,12 +46,6 @@ public class ListaDeComprasController {
         this.service.adicionaNovaCompra(descritorLista, quantidade, itemId);
     }
 
-    public void adicionaCompraALista(String descritorLista, int quantidade, int itemId)
-            throws ListaDeComprasNotExistException, ItemNotExistException, CompraAlreadyExistException {
-
-        adicionaCompraALista(descritorLista, (double) quantidade, itemId);
-    }
-
     public void atualizaCompraDeLista(String descritorLista, int itemId, int novaQuantidade)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
 
@@ -66,11 +60,11 @@ public class ListaDeComprasController {
         this.service.deletaCompraDeLista(descritorLista, itemId);
     }
 
-    public String pesquisaCompraDeLista(String descritorLista, int itemId)
+    public String pesquisaCompraEmLista(String descritorLista, int itemId)
             throws CompraNotExistException, ListaDeComprasNotExistException, ItemNotExistException {
 
         this.validator.validaPesquisa(descritorLista, itemId);
-        return this.service.pesquisaCompraDeLista(descritorLista, itemId);
+        return this.service.pesquisaCompraEmLista(descritorLista, itemId);
     }
 
     public String imprimirListaDeCompras(String descritorLista)

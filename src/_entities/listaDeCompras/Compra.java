@@ -30,7 +30,7 @@ public class Compra implements Comparable<Compra>  {
     
     @Override
     public String toString() {
-        return quantidade + " " + item.toString();
+        return item.toString(this.quantidade);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class ItemPorUnidade extends Item {
 
 	@Override
 	public String toString(double quantidade) {
-		return (int) quantidade + " " + this.getNome() + " " + this.getCategoria().getValue();
+		return (int) quantidade + " " + this.getNome() + ", " + this.getCategoria().getValue();
 	}
 
 	/**

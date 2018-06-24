@@ -92,11 +92,6 @@ public class Facade  {
 		this.app.getListaDeComprasController().adicionaListaDeCompras(descritorLista);
 	}
 
-	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId)
-			throws ListaDeComprasNotExistException, ItemNotExistException, CompraAlreadyExistException {
-
-		this.app.getListaDeComprasController().adicionaCompraALista(descritorLista, quantidade, itemId);
-	}
 
 	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId)
 			throws ListaDeComprasNotExistException, ItemNotExistException, CompraAlreadyExistException {
@@ -116,16 +111,16 @@ public class Facade  {
 		this.app.getListaDeComprasController().deletaCompraDeLista(descritorLista, itemId);
 	}
 
-	public void imprimirListaDeCompras(String descritorLista)
+	public String imprimirListaDeCompras(String descritorLista)
 			throws ListaDeComprasNotExistException {
 
-		this.app.getListaDeComprasController().imprimirListaDeCompras(descritorLista);
+		return this.app.getListaDeComprasController().imprimirListaDeCompras(descritorLista);
 	}
 
-	public void pesquisaCompraDeLista(String descritorLista, int itemId)
+	public String pesquisaCompraEmLista(String descritorLista, int itemId)
 			throws ItemNotExistException, ListaDeComprasNotExistException, CompraNotExistException {
 
-		this.app.getListaDeComprasController().pesquisaCompraDeLista(descritorLista, itemId);
+		return this.app.getListaDeComprasController().pesquisaCompraEmLista(descritorLista, itemId);
 	}
 
 	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra)

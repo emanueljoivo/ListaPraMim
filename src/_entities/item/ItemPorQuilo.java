@@ -56,7 +56,7 @@ public class ItemPorQuilo extends Item {
 
 	@Override
 	public String toString(double quantidade) {
-		return Util.formatDouble(quantidade) + " kg " + this.getNome()
+		return Util.formatDouble(quantidade) + " kg " + this.getNome() + ", "
 				+ this.getCategoria().getValue();
 	}
 
