@@ -2,11 +2,13 @@ package enums;
 
 public enum ListaDeComprasExceptionMessages {
 
-    DESCRITOR_INVALIDO("descritor vazio ou nulo."),
+    DESCRITOR_INVALIDO("descritor nao pode ser vazio ou nulo."),
     QUANTIDADE_INVALIDA("quantidade invalida."),
-    ITEM_ID_INVALIDO("item id inválido."),
+    ITEM_ID_INVALIDO("item id invalido."),
     COMPRA_NAO_ENCONTRADA("compra nao encontrada na lista."),
+    ITEM_NOT_EXIST("item nao existe no sistema."),
 
+    ERRO_IMPRESSAO("Erro na impressao de compra: "),
     ERRO_COMPRA("Erro na compra de item: "),
     ERRO_ATUALIZACAO("Erro na atualizacao de compra: "),
     ERRO_EXCLUSAO("Erro na exclusao de compra: "),

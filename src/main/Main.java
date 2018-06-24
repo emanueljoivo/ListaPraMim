@@ -18,13 +18,16 @@ public class Main {
 		Application app = new Application();
 		Facade facade = new Facade(app);
 
+		final String us = "use_cases/use_case";
+		final String extension = ".txt";
+		final String excep = "_exception";
+		final int usQntd = 3;
 
+		List<String> list = new ArrayList<>();
 
-		List<String> list = new ArrayList<String>();
-		list.add("use_cases/use_case1.txt");
-		list.add("use_cases/use_case2.txt");
-		list.add("use_cases/use_case3.txt");
-		list.add("use_cases/use_case3_exception.txt");
+		for (int i = 0; i < usQntd; i ++) list.add(us + (i+1) + extension);
+		for (int i = 0; i < 1; i++) list.add(us + (i+usQntd) + excep + extension);
+
 		EasyAcceptFacade testefachada = new EasyAcceptFacade(facade , list);
 		testefachada.executeTests();
 		System.out.println(testefachada.getCompleteResults());

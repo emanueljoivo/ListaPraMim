@@ -15,6 +15,8 @@ import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
+import util.Util;
+
 import java.util.*;
 
 public class ListaDeComprasServiceImpl implements ListaDeComprasService {
@@ -36,9 +38,10 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     public void adicionaNovaCompra(String descritorLista, double quantidade, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraAlreadyExistException {
 
-        verificaIntegridade(descritorLista, itemId);
+        verificaIntegridade(descritorLista, itemId, ListaDeComprasExceptionMessages.ERRO_COMPRA.getErrorMessage());
 
         Item itemAtual = this.itemRepository.recovery(itemId);
+
         Compra compraAtual = new Compra(quantidade, itemAtual);
         ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
 
@@ -53,7 +56,9 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     public void atualizaCompraDeLista(String descritorLista, int itemId, int novaQuantidade)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
 
-        verificaIntegridade(descritorLista, itemId);
+        verificaIntegridade(descritorLista, itemId,
+                ListaDeComprasExceptionMessages.ERRO_ATUALIZACAO.getErrorMessage());
+
         Compra compraAtual = this.listaRepository.recoveryLista(descritorLista).
                 getCompra(itemId);
 
@@ -69,13 +74,18 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     @Override
     public void deletaCompraDeLista(String descritorLista, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
-        verificaIntegridade(descritorLista, itemId);
+
+        verificaIntegridade(descritorLista, itemId,
+                ListaDeComprasExceptionMessages.ERRO_EXCLUSAO.getErrorMessage());
+
+
 
         ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
         Compra compraAtual = listaAtual.getCompra(itemId);
 
         verificaCompra(compraAtual,
                 ListaDeComprasExceptionMessages.EXCLUSAO_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
+
         listaAtual.getCompras().remove(compraAtual);
     }
 
@@ -83,7 +93,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     public String pesquisaCompraEmLista(String descritorLista, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
 
-        verificaIntegridade(descritorLista, itemId);
+        verificaIntegridade(descritorLista, itemId,
+                ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
         ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
         Compra compraAtual = listaAtual.getCompra(itemId);
 
@@ -95,7 +106,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
-        verificaDescritor(descritorLista);
+        verificaDescritor(descritorLista,
+                ListaDeComprasExceptionMessages.ERRO_IMPRESSAO.getErrorMessage());
 
         String listaStringify = "";
 
@@ -115,7 +127,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public void finalizaListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) throws ListaDeComprasNotExistException {
-        verificaDescritor(descritorLista);
+        verificaDescritor(descritorLista, ListaDeComprasExceptionMessages.ERRO_FINALIZACAO.getErrorMessage());
 
         ListaDeCompra listaAtual = this.listaRepository.recoveryLista(descritorLista);
 
@@ -125,7 +137,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
-        this.verificaDescritor(descritorLista);
+        this.verificaDescritor(descritorLista,
+                ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
 
         return imprimirListaDeCompras(descritorLista);
     }
@@ -148,7 +161,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
-        verificaItem(id);
+        verificaItem(id, ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
+
         Item itemAtual = this.itemRepository.recovery(id);
         List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
         String listaStringifier = "";
@@ -169,23 +183,23 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         return listaAux;
     }
 
-    private void verificaIntegridade(String descritorLista, int itemId)
+    private void verificaIntegridade(String descritorLista, int itemId, String errorMessage)
             throws ListaDeComprasNotExistException, ItemNotExistException {
-        verificaDescritor(descritorLista);
-        verificaItem(itemId);
+        verificaDescritor(descritorLista,
+                (errorMessage + ListaDeComprasExceptionMessages.LISTA_NAO_ENCONTRADA.getErrorMessage()));
+        verificaItem(itemId,
+                (errorMessage + ListaDeComprasExceptionMessages.ITEM_NOT_EXIST.getErrorMessage()));
     }
 
-    private void verificaItem(int itemId) throws ItemNotExistException {
+    private void verificaItem(int itemId, String errorMessage) throws ItemNotExistException {
         if (!this.itemRepository.contains(itemId)) {
-            throw new ItemNotExistException(ItemExceptionsMessages.
-                    NAO_CONTEM_ITEM.getErrorMessage());
+            throw new ItemNotExistException(errorMessage);
         }
     }
 
-    private void verificaDescritor(String descritorLista) throws ListaDeComprasNotExistException {
+    private void verificaDescritor(String descritorLista, String errorMessage) throws ListaDeComprasNotExistException {
         if (!this.listaRepository.containsLista(descritorLista)) {
-            throw new ListaDeComprasNotExistException(ListaDeComprasExceptionMessages.
-                    LISTA_NAO_ENCONTRADA.getErrorMessage());
+            throw new ListaDeComprasNotExistException(errorMessage);
         }
     }
 
@@ -194,6 +208,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
             throw new CompraNotExistException(msg);
         }
     }
+
+    // US 5
 
 	@Override
 	public void geraAutomaticaUltimaLista()
