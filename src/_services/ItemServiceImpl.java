@@ -170,7 +170,7 @@ public class ItemServiceImpl implements ItemService {
 	private String listaDeItens(List<Item> itens) {
 		String itensStringifier = "";
 
-		for (Item item : itens) itensStringifier += item.toString() + " |";
+		for (Item item : itens) itensStringifier += item.toString() + System.lineSeparator();
 		return itensStringifier;
 	}
 

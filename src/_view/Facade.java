@@ -14,10 +14,10 @@ import java.text.ParseException;
  * Implementação da Facade.
  *
  */
-public class Facade  {
-	
+public class Facade {
+
 	private Application app;
-	
+
 	public Facade(Application app) {
 		this.app = app;
 		this.app.init();
@@ -26,7 +26,7 @@ public class Facade  {
 	/*
 	 * US - 1
 	 */
-	
+
 	public int adicionaItemPorQtd(String nome, String categoria, int qtd, String unidadeDeMedida)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
 
@@ -38,21 +38,21 @@ public class Facade  {
 
 		return this.app.getItemController().adicionaItem(nome, categoria, unidade);
 	}
-	
+
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 
 		return this.app.getItemController().adicionaItem(nome, categoria, kg);
 	}
-	
+
 	public void atualizaItem(int id, String atributo, String novoValor)
 			throws IllegalArgumentException, ItemNotExistException {
 
 		this.app.getItemController().atualizaItem(id, atributo, novoValor);
-		
+
 	}
-	public String exibirItem(int id)
-			throws ItemNotExistException, NullPointerException, IllegalArgumentException {
+
+	public String exibirItem(int id) throws ItemNotExistException, NullPointerException, IllegalArgumentException {
 
 		return this.app.getItemController().listaItem(id);
 	}
@@ -70,8 +70,7 @@ public class Facade  {
 		return this.app.getItemController().listaItens();
 	}
 
-	public String listaItensPorCategoria(String categoria)
-		throws NullPointerException, IllegalArgumentException {
+	public String listaItensPorCategoria(String categoria) throws NullPointerException, IllegalArgumentException {
 
 		return this.app.getItemController().listaItens(categoria);
 	}
@@ -84,6 +83,65 @@ public class Facade  {
 		return this.app.getItemController().listaItensPesquisa(strPesquisada);
 	}
 
+	/*Opcao 1 */
+
+	public String getItemListaItens(int index) {
+		String[] itens = listaItens().split(System.lineSeparator());
+
+		if (index - 1 < itens.length)
+			return itens[index - 1];
+
+		return "Item nao encontrado";
+	}
+
+	public String getItemListaItensPorCategoria(int index, String categoria){
+		String[] itens = listaItensPorCategoria(categoria).split(System.lineSeparator());
+
+		if (index - 1 < itens.length)
+			return itens[index - 1];
+
+		return "Item nao encontrado";
+	}
+
+	public String getItemListaItensPorMenorPreco(int index) {
+		String[] itens = listaItensPorMenorPreco().split(System.lineSeparator());
+
+		if (index - 1 < itens.length)
+			return itens[index - 1];
+
+		return "Item nao encontrado";
+	}
+
+	public String getItemListaItensPesquisa(int index, String strPesquisada) {
+		String[] itens = listaItensPesquisa(strPesquisada).split(System.lineSeparator());
+
+		if (index - 1 < itens.length)
+			return itens[index - 1];
+
+		return "Item nao encontrado";
+	}
+	
+	/*Opcao 2 */
+	
+	public String getItemLista(String descritorDaLista, String stringPesquisada, int index) {
+		
+		String[] itens = {};
+		
+		if(descritorDaLista.equals("categoria"))
+			itens = listaItensPorCategoria(stringPesquisada).split(System.lineSeparator());
+		else if(descritorDaLista.equals("preco"))
+			itens = listaItensPorMenorPreco().split(System.lineSeparator());
+		else if(descritorDaLista.equals("pesquisa"))
+			itens = listaItensPesquisa(stringPesquisada).split(System.lineSeparator());
+		else if(descritorDaLista.equals("todos"))
+			itens = listaItens().split(System.lineSeparator());
+			
+		if (index - 1 < itens.length)
+			return itens[index - 1];
+
+		return "Item nao encontrado";
+	}
+
 	/*
 	 * US - 3
 	 */
@@ -91,7 +149,6 @@ public class Facade  {
 	public void adicionaListaDeCompras(String descritorLista) {
 		this.app.getListaDeComprasController().adicionaListaDeCompras(descritorLista);
 	}
-
 
 	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId)
 			throws ListaDeComprasNotExistException, ItemNotExistException, CompraAlreadyExistException {
@@ -111,8 +168,7 @@ public class Facade  {
 		this.app.getListaDeComprasController().deletaCompraDeLista(descritorLista, itemId);
 	}
 
-	public String imprimirListaDeCompras(String descritorLista)
-			throws ListaDeComprasNotExistException {
+	public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
 
 		return this.app.getListaDeComprasController().imprimirListaDeCompras(descritorLista);
 	}
@@ -126,7 +182,8 @@ public class Facade  {
 	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra)
 			throws ListaDeComprasNotExistException {
 
-		this.app.getListaDeComprasController().finalizaListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);
+		this.app.getListaDeComprasController().finalizaListaDeCompras(descritorLista, localDaCompra,
+				valorFinalDaCompra);
 	}
 
 	/*
@@ -149,33 +206,31 @@ public class Facade  {
 
 		this.app.getListaDeComprasController().pesquisaListasDeComprasPorItem(id);
 	}
-	
+
 	/*
 	 * US - 5
 	 */
-	
-	public void geraAutomaticaUltimaLista()
-			throws ListaDeComprasNotExistException, CompraNotExistException {
-		
+
+	public void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
+
 		this.app.getListaDeComprasController().geraAutomaticaUltimaLista();
 	}
 
-	public void geraAutomaticaItensMaisPresentes() 
-			throws ListaDeComprasNotExistException, CompraNotExistException {
-		
+	public void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
+
 		this.app.getListaDeComprasController().geraAutomaticaItensMaisPresentes();
 	}
 
 	public void geraAutomaticaItem(String descritorItem)
 			throws ListaDeComprasNotExistException, CompraNotExistException {
-		
+
 		this.app.getListaDeComprasController().geraAutomaticaItem(descritorItem);
 	}
-	
+
 	/*
 	 * US6
 	 */
-	
+
 	public String sugereMelhorEstabelecimento(String descritorLista)
 			throws ListaDeComprasNotExistException, ItemSemPrecoException {
 		return this.app.getListaDeComprasController().sugereMelhorEstabelecimento(descritorLista);

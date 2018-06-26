@@ -5,25 +5,25 @@
 ###############################
 # 	 Listagem de itens  	  #
 ###############################
-expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |" listaItens
+#expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |" listaItens
 
 id11=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2
 id12=adicionaItemPorUnidade nome="Agua Mineral" categoria="alimento nao industrializado" unidade=5
 id13=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5
 
-expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <> |1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |"${id11}". Iogurte Lactivia, alimento industrializado, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |"${id13}". Tomate, alimento nao industrializado, Preco por quilo: <> |" listaItens
+#expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <> |1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |"${id11}". Iogurte Lactivia, alimento industrializado, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |"${id13}". Tomate, alimento nao industrializado, Preco por quilo: <> |" listaItens
 
 ####################################
 #  Listagem de itens por categoria #
 ####################################
 
-expect "10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |"${id11}". Iogurte Lactivia, alimento industrializado, Preco: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |"  listaItensPorCategoria categoria="alimento industrializado"
-expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |"${id13}". Tomate, alimento nao industrializado, Preco por quilo: <> |" listaItensPorCategoria categoria="alimento nao industrializado"
-expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |" listaItensPorCategoria categoria="limpeza"
-expect "" listaItensPorCategoria categoria="higiene pessoal"
+#expect "10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |"${id11}". Iogurte Lactivia, alimento industrializado, Preco: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |"  listaItensPorCategoria categoria="alimento industrializado"
+#expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |"${id13}". Tomate, alimento nao industrializado, Preco por quilo: <> |" listaItensPorCategoria categoria="alimento nao industrializado"
+#expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |" listaItensPorCategoria categoria="limpeza"
+#expect "" listaItensPorCategoria categoria="higiene pessoal"
 
-expectError "Erro na listagem de item: categoria nao existe." listaItensPorCategoria categoria="alimento"
-expectError "Erro na listagem de item: categoria nao existe." listaItensPorCategoria categoria="irineu"
+#expectError "Erro na listagem de item: categoria nao existe." listaItensPorCategoria categoria="alimento"
+#expectError "Erro na listagem de item: categoria nao existe." listaItensPorCategoria categoria="irineu"
 
 ######################################
 #  Listagem de itens por menor preco #
@@ -35,7 +35,10 @@ expect "" listaItensPorMenorPreco
 #  Listagem de itens por pesquisa #
 ###################################
 
-expect "12. Agua Mineral, alimento nao industrializado, Preco: <> |1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |" listaItensPesquisa strPesquisada="agua"
-expect "5. Esponja de Aco Assolange, limpeza, Preco: <> |" listaItensPesquisa strPesquisada="esponja"
-expect "" listaItensPesquisa strPesquisada="biscoito"
+#expect "12. Agua Mineral, alimento nao industrializado, Preco: <> |1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |" listaItensPesquisa strPesquisada="agua"
+#expect "5. Esponja de Aco Assolange, limpeza, Preco: <> |" listaItensPesquisa strPesquisada="esponja"
+#expect "" listaItensPesquisa strPesquisada="biscoito"
+
+
+expect "" getItemListaItens index=1
 
