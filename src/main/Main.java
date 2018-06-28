@@ -21,7 +21,7 @@ public class Main {
 		final String us = "use_cases/use_case";
 		final String extension = ".txt";
 		final String excep = "_exception";
-		final int usQntd = 3;
+		final int usQntd = 4;
 
 		List<String> list = new ArrayList<>();
 

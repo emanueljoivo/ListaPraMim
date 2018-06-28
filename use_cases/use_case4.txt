@@ -1,0 +1,62 @@
+#################
+# Caso de Uso 4 #
+#################
+
+##  Cadastro de itens  ##
+
+id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas"
+id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1
+id3=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="gramas"
+id4=adicionaItemPorQtd nome="Algodao Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="gramas"
+id5=adicionaItemPorUnidade nome="Creme de ricota Rocota" categoria="alimento industrializado" unidade=1
+id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5
+id7=adicionaItemPorQtd nome="Sabao liquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l"
+id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2.0
+id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5
+id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2
+
+## Criar Lista de Compra ##
+
+adicionaListaDeCompras descritorLista="Hiper shoppring"
+adicionaListaDeCompras descritorLista="Extra"
+
+## Adicionar Itens a Lista ##
+
+#Descricao: Hiper shoppring
+adicionaCompraALista descritorLista="Hiper shoppring" quantidade=3 itemId=${id1}
+adicionaCompraALista descritorLista="Hiper shoppring" quantidade=1 itemId=${id2}
+adicionaCompraALista descritorLista="Hiper shoppring" quantidade=2 itemId=${id3}
+adicionaCompraALista descritorLista="Hiper shoppring" quantidade=1 itemId=${id4}
+adicionaCompraALista descritorLista="Hiper shoppring" quantidade=1 itemId=${id5}
+
+#Descricao: Extra
+adicionaCompraALista descritorLista="Extra" quantidade=3 itemId=${id1}
+adicionaCompraALista descritorLista="Extra" quantidade=1.5 itemId=${id6}
+adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=${id7}
+adicionaCompraALista descritorLista="Extra" quantidade=2.0 itemId=${id8}
+adicionaCompraALista descritorLista="Extra" quantidade=0.5 itemId=${id9}
+adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=${id10}
+
+## Finalizar Lista ##
+
+finalizarListaDeCompras descritorLista="Hiper shoppring" localDaCompra="Shopping Boulevard" valorFinalDaCompra=600
+finalizarListaDeCompras descritorLista="Extra" localDaCompra="Shopping Boulevard" valorFinalDaCompra=300
+
+## Pesquisa de lista de compra por descricao ##
+
+expect "1 Algodao Clemer, higiene pessoal, 300 gramas |2 Pasta dental DDS, higiene pessoal, 120 gramas |3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas |1 Creme de ricota Rocota, alimento industrializado |1 Queijo minas Dali, alimento industrializado" pesquisaListaDeCompra descritorLista="Hiper shoppring"
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas |2 Sabao liquido Pomo, limpeza, 1 l |2 Iogurte Lactivia, alimento industrializado |2,0 kg Carne moida extra light, alimento nao industrializado |0,5 kg Chuchu, alimento nao industrializado |1,5 kg Tomate, alimento nao industrializado" pesquisaListaDeCompra descritorLista="Extra"
+
+## Pesquisa por data de criacao ##
+
+#Colocando data atual do teste, supondo que seja adicionada a data pelo sistema
+
+expect "Extra|Hiper shoppring" pesquisaListasDeComprasPorData data="28/06/2018"
+
+## Pesquisa lista por id item ##
+
+#Colocando data atual do teste, supondo que seja adicionada a data pelo sistema
+
+expect "28/06/2018 - Hiper shoppring" pesquisaListasDeComprasPorItem id=${id2}
+expect "28/06/2018 - Extra" pesquisaListasDeComprasPorItem id=${id6}
+expect "28/06/2018 - Hiper shoppring|28/06/2018 - Extra" pesquisaListasDeComprasPorItem id=${id1}
