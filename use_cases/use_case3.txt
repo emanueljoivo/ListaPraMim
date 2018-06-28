@@ -15,19 +15,6 @@ id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao 
 id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5
 id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2
 
-## Verificar Item ##
-
-expect ${id1}". Sabonete de aveia Dorene, higiene pessoal, 80 gramas, Preco: <>" exibirItem id=${id1}
-expect ${id2}". Queijo minas Dali, alimento industrializado, Preco: <>" exibirItem id=${id2}
-expect ${id3}". Pasta dental DDS, higiene pessoal, 120 gramas, Preco: <>" exibirItem id=${id3}
-expect ${id4}". Algodao Clemer, higiene pessoal, 300 gramas, Preco: <>" exibirItem id=${id4}
-expect ${id5}". Creme de ricota Rocota, alimento industrializado, Preco: <>" exibirItem id=${id5}
-expect ${id6}". Tomate, alimento nao industrializado, Preco por quilo: <>" exibirItem id=${id6}
-expect ${id7}". Sabao liquido Pomo, limpeza, 1 l, Preco: <>" exibirItem id=${id7}
-expect ${id8}". Carne moida extra light, alimento nao industrializado, Preco por quilo: <>" exibirItem id=${id8}
-expect ${id9}". Chuchu, alimento nao industrializado, Preco por quilo: <>" exibirItem id=${id9}
-expect ${id10}". Iogurte Lactivia, alimento industrializado, Preco: <>" exibirItem id=${id10}
-
 ## Criar Lista de Compra ##
 
 adicionaListaDeCompras descritorLista="feira 23/05/2017"
