@@ -1,5 +1,6 @@
 package validation;
 
+import _entities.item.Item;
 import enums.ItemAtributos;
 import enums.ItemCategorias;
 import enums.ItemExceptionsMessages;
@@ -72,45 +73,50 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	/**
 	 * Faz validacao dos principais atributos usados em um cadastro de itens.
 	 */
-	private void validaCadastro(String nome, String categoria) {
+	private void validaCadastro(String nome, String categoria, String localDeCompra, double precoItem) {
 		this.genericValidatorString(nome,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_NOME.getErrorMessage());
 		this.genericValidatorString(categoria,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_CATEGORIA_VN.getErrorMessage());
 		this.validaCategoria(categoria,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_CATEGORIA.getErrorMessage());
+		this.genericValidatorString(localDeCompra,
+                ItemExceptionsMessages.CADASTRO_INVALIDO_LOCAL.getErrorMessage());
+		this.genericValidatorNumber(precoItem,
+                ItemExceptionsMessages.CADASTRO_INVALIDO_PRECO.getErrorMessage());
 	}
 
 	/**
-	 * {@link ValidatorItem#validaCadastro(String, String, int)}
+	 * {@link ValidatorItem#validaCadastro(String, String, int, String, double)}
 	 */
 	@Override
-	public void validaCadastro(String nome, String categoria, int unidade)
+	public void validaCadastro(String nome, String categoria, int unidade, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException {
-		validaCadastro(nome, categoria);
+		validaCadastro(nome, categoria, localDeCompra, precoItem);
 		this.genericValidatorNumber(unidade,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_UNIDADE.getErrorMessage());
 	}
 
 	/**
-	 * {@link ValidatorItem#validaCadastro(String, String, double)}
+	 * {@link ValidatorItem#validaCadastro(String, String, double, String, double)}
 	 */
 	@Override
-	public void validaCadastro(String nome, String categoria, double kg)
+	public void validaCadastro(String nome, String categoria, double kg, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException {
-		validaCadastro(nome, categoria);
+		validaCadastro(nome, categoria, localDeCompra, precoItem);
 		this.genericValidatorNumber(kg,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_QUILO.getErrorMessage());
 	}
 
 	/**
-	 * {@link ValidatorItem#validaCadastro(String, String, int, String)}
+	 * {@link ValidatorItem#validaCadastro(String, String, int, String, String, double)}
 	 */
 	@Override
-	public void validaCadastro(String nome, String categoria, int qtd, String unidadeDeMedida)
+	public void validaCadastro(String nome, String categoria, int qtd, String unidadeDeMedida, String localDeCompra,
+							   double precoItem)
 			throws NullPointerException, IllegalArgumentException {
 
-		validaCadastro(nome, categoria);
+		validaCadastro(nome, categoria, localDeCompra, precoItem);
 		this.genericValidatorNumber(qtd,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_QUANTIDADE.getErrorMessage());
 
@@ -130,7 +136,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	}
 
 	@Override
-	public void ValidaPesquisa(String strPesquisada)
+	public void validaPesquisa(String strPesquisada)
 			throws IllegalArgumentException, NullPointerException {
 
 		this.genericValidatorString(strPesquisada,
@@ -147,7 +153,19 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 				ItemExceptionsMessages.LISTAGEM_INVALIDA_CATEGORIA.getErrorMessage());
 	}
 
-	/**
+    @Override
+    public void validaAdicaoDePreco(int id, String localDeCompra, double precoItem)
+            throws IllegalArgumentException, NullPointerException{
+
+	    this.genericValidatorNumber(id,
+                ItemExceptionsMessages.CADASTRO_DE_PRECO_ID.getErrorMessage());
+	    this.genericValidatorString(localDeCompra,
+                ItemExceptionsMessages.CADASTRO_DE_PRECO_LOCAL.getErrorMessage());
+	    this.genericValidatorNumber(precoItem,
+                ItemExceptionsMessages.CADASTRO_DE_PRECO_PRECO.getErrorMessage());
+    }
+
+    /**
 	 * {@link ValidatorItem#validaAtualizacao(int, String, String)}
 	 */
 	@Override

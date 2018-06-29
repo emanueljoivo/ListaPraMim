@@ -36,42 +36,48 @@ public class ItemServiceImpl implements ItemService {
 	}	
 	
 	/**
-	 * {@link ItemService#adicionaItem(String, String, int, String)}
+	 * {@link ItemService#adicionaItem(String, String, int, String, double)}
 	 */
 	@Override
-	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException {
+	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida, String localDeCompra,
+							double precoItem) throws ItemExistException {
 		Item itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
 			
 		if (!this.itemRepository.save(itemAtual)) {
 			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
 		}
+		itemAtual.getMapaDePrecos().put(localDeCompra, precoItem);
+
 		return itemAtual.getId();
 	}
 	
 	/**
-	 * {@link ItemService#adicionaItem(String, String, int)}
+	 * {@link ItemService#adicionaItem(String, String, int,String, double)}
 	 */
 	@Override
-	public int adicionaItem(String nome, String categoria, int unidade) throws ItemExistException {
+	public int adicionaItem(String nome, String categoria, int unidade, String localDeCompra, double precoItem)
+			throws ItemExistException {
 		Item itemAtual = this.itemFactory.create(nome, categoria, unidade);			
 		
 		if (!this.itemRepository.save(itemAtual)) {
 			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
 		}
+		itemAtual.getMapaDePrecos().put(localDeCompra, precoItem);
 		return itemAtual.getId();
 	}
 	
 	/**
-	 * {@link ItemService#adicionaItem(String, String, double)}
+	 * {@link ItemService#adicionaItem(String, String, double, String, double)}
 	 */
 	@Override
-	public int adicionaItem(String nome, String categoria, double kg) throws ItemExistException {
+	public int adicionaItem(String nome, String categoria, double kg, String localDeCompra, double precoItem)
+			throws ItemExistException {
 		Item itemAtual = this.itemFactory.create(nome, categoria, kg);
 		
 		if (!this.itemRepository.save(itemAtual)) {
 			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
 		}
-
+		itemAtual.getMapaDePrecos().put(localDeCompra, precoItem);
 		return itemAtual.getId();
 	}
 
@@ -147,6 +153,15 @@ public class ItemServiceImpl implements ItemService {
 		sort(itens);
 
 		return listaDeItens(itens);
+	}
+
+	@Override
+	public void adicionaPrecoItem(int id, String localDeCompra, double precoItem) throws ItemNotExistException {
+		if (!this.itemRepository.contains(id)) {
+			throw new ItemNotExistException(ItemExceptionsMessages.CADASTRO_DE_PRECO_ITEM_NOT_EXIST.getErrorMessage());
+		}
+
+		this.itemRepository.recovery(id).getMapaDePrecos().put(localDeCompra, precoItem);
 	}
 
 	/**

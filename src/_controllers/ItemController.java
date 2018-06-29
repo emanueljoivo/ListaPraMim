@@ -30,11 +30,11 @@ public class ItemController {
 	 * @throws NullPointerException caso algum parâmetro seja nulo.
 	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
-	public int adicionaItem(String nome, String categoria, int unidade)
+	public int adicionaItem(String nome, String categoria, int unidade, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 		
-		this.validator.validaCadastro(nome, categoria, unidade);
-		return this.itemService.adicionaItem(nome, categoria, unidade);
+		this.validator.validaCadastro(nome, categoria, unidade, localDeCompra, precoItem);
+		return this.itemService.adicionaItem(nome, categoria, unidade, localDeCompra, precoItem);
 	}
 	
 	/**
@@ -43,11 +43,11 @@ public class ItemController {
 	 * @throws NullPointerException caso algum parâmetro seja nulo.
 	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
-	public int adicionaItem(String nome, String categoria, double kg)
+	public int adicionaItem(String nome, String categoria, double kg, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
-		
-		this.validator.validaCadastro(nome, categoria, kg);
-		return this.itemService.adicionaItem(nome, categoria, kg);
+
+		this.validator.validaCadastro(nome, categoria, kg, localDeCompra, precoItem);
+		return this.itemService.adicionaItem(nome, categoria, kg, localDeCompra, precoItem);
 	}
 	
 	/**
@@ -56,11 +56,12 @@ public class ItemController {
 	 * @throws NullPointerException caso algum parâmetro seja nulo.
 	 * @throws IllegalArgumentException caso algum parâmetro seja inválido.
 	 */
-	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida)
+	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida,
+							String localDeCompra, double precoItem)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
 		
-		this.validator.validaCadastro(nome, categoria, qtd, unidadeDeMedida);
-		return this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida);
+		this.validator.validaCadastro(nome, categoria, qtd, unidadeDeMedida, localDeCompra, precoItem);
+		return this.itemService.adicionaItem(nome, categoria, qtd, unidadeDeMedida, localDeCompra, precoItem);
 	}
 	
 	/**
@@ -123,8 +124,14 @@ public class ItemController {
 	 * dem a string pesquisada.
 	 */
 	public String listaItensPesquisa(String strPesquisada) {
-    	this.validator.ValidaPesquisa(strPesquisada);
+    	this.validator.validaPesquisa(strPesquisada);
 
     	return this.itemService.listaItensPesquisa(strPesquisada);
 	}
+
+    public void adicionaPrecoItem(int id, String localDeCompra, double precoItem) throws ItemNotExistException {
+        this.validator.validaAdicaoDePreco(id, localDeCompra, precoItem);
+
+        this.itemService.adicionaPrecoItem(id, localDeCompra, precoItem);
+    }
 }

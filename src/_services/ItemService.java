@@ -16,18 +16,20 @@ public interface ItemService {
 	 * Gerencia adição de itens do tipo ItemPorQntdFixa.
 	 * @throws ItemExistException caso o item já exista na base de dados.
 	 */
-	int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida) throws ItemExistException;
-	
+	int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida, String localDeCompra,
+					 double precoItem) throws ItemExistException;
 	/**
 	 * Gerencia adição de itens do tipo ItemPorUnidade.
 	 */
-	int adicionaItem(String nome, String categoria, int unidade) throws ItemExistException;
+	int adicionaItem(String nome, String categoria, int unidade, String localDeCompra, double precoItem)
+			throws ItemExistException;
 	
 	/**
 	 * Gerencia adição de itens do tipo ItemPorQuilo.
 	 * @throws ItemExistException caso o item já exista na base de dados.
 	 */
-	int adicionaItem(String nome, String categoria, double kg) throws ItemExistException;
+	int adicionaItem(String nome, String categoria, double kg, String localDeCompra, double precoItem)
+			throws ItemExistException;
 	
 	/**
 	 * Atualiza atributo de um item.
@@ -72,4 +74,6 @@ public interface ItemService {
 	 * @return uma representação em string de uma lista de itens relacionadas com uma dada string.
 	 */
 	String listaItensPesquisa(String strPesquisada);
+
+    void adicionaPrecoItem(int id, String localDeCompra, double precoItem) throws ItemNotExistException;
 }

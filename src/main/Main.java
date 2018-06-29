@@ -26,7 +26,7 @@ public class Main {
 		List<String> list = new ArrayList<>();
 
 		for (int i = 0; i < usQntd; i ++) list.add(us + (i+1) + extension);
-		for (int i = 0; i < 1; i++) list.add(us + (i+usQntd) + excep + extension);
+		for (int i = 0; i < 1; i++) list.add(us + (i+3) + excep + extension);
 
 		EasyAcceptFacade testefachada = new EasyAcceptFacade(facade , list);
 		testefachada.executeTests();

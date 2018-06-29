@@ -27,22 +27,24 @@ public class Facade {
 	 * US - 1
 	 */
 
-	public int adicionaItemPorQtd(String nome, String categoria, int qtd, String unidadeDeMedida)
+	public int adicionaItemPorQtd(String nome, String categoria, int qtd, String unidadeDeMedida,
+                                  String localDeCompra, double precoItem)
 			throws IllegalArgumentException, NullPointerException, ItemExistException {
 
-		return this.app.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida);
+		return this.app.getItemController().adicionaItem(nome, categoria, qtd, unidadeDeMedida, localDeCompra, precoItem);
 	}
 
-	public int adicionaItemPorUnidade(String nome, String categoria, int unidade)
+	public int adicionaItemPorUnidade(String nome, String categoria, int unidade,
+                                      String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 
-		return this.app.getItemController().adicionaItem(nome, categoria, unidade);
+		return this.app.getItemController().adicionaItem(nome, categoria, unidade, localDeCompra, precoItem);
 	}
 
-	public int adicionaItemPorQuilo(String nome, String categoria, double kg)
+	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException, ItemExistException {
 
-		return this.app.getItemController().adicionaItem(nome, categoria, kg);
+		return this.app.getItemController().adicionaItem(nome, categoria, kg, localDeCompra, precoItem);
 	}
 
 	public void atualizaItem(int id, String atributo, String novoValor)
@@ -52,7 +54,7 @@ public class Facade {
 
 	}
 
-	public String exibirItem(int id) throws ItemNotExistException, NullPointerException, IllegalArgumentException {
+	public String exibeItem(int id) throws ItemNotExistException, NullPointerException, IllegalArgumentException {
 
 		return this.app.getItemController().listaItem(id);
 	}
@@ -60,6 +62,10 @@ public class Facade {
 	public void deletaItem(int id) throws ItemNotExistException {
 		this.app.getItemController().deletaItem(id);
 	}
+
+	public void adicionaPrecoItem(int id, String localDeCompra, double precoItem) throws ItemNotExistException {
+	    this.app.getItemController().adicionaPrecoItem(id, localDeCompra, precoItem);
+    }
 
 	/*
 	 * US - 2
@@ -81,65 +87,6 @@ public class Facade {
 
 	public String listaItensPesquisa(String strPesquisada) {
 		return this.app.getItemController().listaItensPesquisa(strPesquisada);
-	}
-
-	/*Opcao 1 */
-
-	public String getItemListaItens(int index) {
-		String[] itens = listaItens().split(System.lineSeparator());
-
-		if (index - 1 < itens.length)
-			return itens[index - 1];
-
-		return "Item nao encontrado";
-	}
-
-	public String getItemListaItensPorCategoria(int index, String categoria){
-		String[] itens = listaItensPorCategoria(categoria).split(System.lineSeparator());
-
-		if (index - 1 < itens.length)
-			return itens[index - 1];
-
-		return "Item nao encontrado";
-	}
-
-	public String getItemListaItensPorMenorPreco(int index) {
-		String[] itens = listaItensPorMenorPreco().split(System.lineSeparator());
-
-		if (index - 1 < itens.length)
-			return itens[index - 1];
-
-		return "Item nao encontrado";
-	}
-
-	public String getItemListaItensPesquisa(int index, String strPesquisada) {
-		String[] itens = listaItensPesquisa(strPesquisada).split(System.lineSeparator());
-
-		if (index - 1 < itens.length)
-			return itens[index - 1];
-
-		return "Item nao encontrado";
-	}
-	
-	/*Opcao 2 */
-	
-	public String getItemLista(String descritorDaLista, String stringPesquisada, int index) {
-		
-		String[] itens = {};
-		
-		if(descritorDaLista.equals("categoria"))
-			itens = listaItensPorCategoria(stringPesquisada).split(System.lineSeparator());
-		else if(descritorDaLista.equals("preco"))
-			itens = listaItensPorMenorPreco().split(System.lineSeparator());
-		else if(descritorDaLista.equals("pesquisa"))
-			itens = listaItensPesquisa(stringPesquisada).split(System.lineSeparator());
-		else if(descritorDaLista.equals("todos"))
-			itens = listaItens().split(System.lineSeparator());
-			
-		if (index - 1 < itens.length)
-			return itens[index - 1];
-
-		return "Item nao encontrado";
 	}
 
 	/*
@@ -190,21 +137,21 @@ public class Facade {
 	 * US - 4
 	 */
 
-	public void pesquisaListaDeCompra(String descritorLista)
+	public String pesquisaListaDeCompra(String descritorLista)
 			throws IllegalArgumentException, NullPointerException, ListaDeComprasNotExistException {
 
-		this.app.getListaDeComprasController().pesquisaListaDeCompras(descritorLista);
+		return this.app.getListaDeComprasController().pesquisaListaDeCompras(descritorLista);
 	}
 
-	public void pesquisaListasDeComprasPorData(String data)
+	public String pesquisaListasDeComprasPorData(String data)
 			throws IllegalArgumentException, NullPointerException, ParseException {
 
-		this.app.getListaDeComprasController().pesquisaListasDeComprasPorData(data);
+		return this.app.getListaDeComprasController().pesquisaListasDeComprasPorData(data);
 	}
 
-	public void pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
+	public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
 
-		this.app.getListaDeComprasController().pesquisaListasDeComprasPorItem(id);
+		return this.app.getListaDeComprasController().pesquisaListasDeComprasPorItem(id);
 	}
 
 	/*

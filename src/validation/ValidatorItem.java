@@ -12,7 +12,7 @@ public interface ValidatorItem {
 	 * @throws IllegalArgumentException exceção lançada caso nome e categoria sejam strings vazias,
 	 * ou unidade for menor que zero.
 	 */
-	void validaCadastro(String nome, String categoria, int unidade)
+	void validaCadastro(String nome, String categoria, int unidade, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException;
 	
 	/**
@@ -25,7 +25,7 @@ public interface ValidatorItem {
 	 * @throws IllegalArgumentException exceção lançada caso nome e categoria sejam strings vazias,
 	 * ou kg for menor que zero.
 	 */
-	void validaCadastro(String nome, String categoria, double kg)
+	void validaCadastro(String nome, String categoria, double kg, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException;
 	
 	/**
@@ -40,7 +40,7 @@ public interface ValidatorItem {
 	 * @throws IllegalArgumentException exceção lançada caso nome, categoria 
 	 * ou unidadeDeMedida sejam strings vazias, ou qtd for menor que zero.
 	 */
-	void validaCadastro(String nome, String categoria, int qtd, String unidadeDeMedida)
+	void validaCadastro(String nome, String categoria, int qtd, String unidadeDeMedida, String localDeCompra, double precoItem)
 			throws NullPointerException, IllegalArgumentException;
 
 	/**
@@ -58,7 +58,9 @@ public interface ValidatorItem {
 	 * Verifica se uma dada string para pesquisa no sistema é válida.
 	 * @param strPesquisada
 	 */
-	void ValidaPesquisa(String strPesquisada) throws IllegalArgumentException;
+	void validaPesquisa(String strPesquisada) throws IllegalArgumentException;
 
 	void validaListagem(String categoria) throws IllegalArgumentException;
+
+	void validaAdicaoDePreco(int id, String localDeCompra, double precoItem);
 }
