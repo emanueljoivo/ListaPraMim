@@ -11,7 +11,7 @@ import java.util.Date;
 
 public interface ListaDeComprasService {
 
-    void adicionaNovaLista(String descritor);
+    String adicionaNovaLista(String descritor);
 
     void adicionaNovaCompra(String descritorLista, double quantidade, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraAlreadyExistException;
@@ -23,7 +23,7 @@ public interface ListaDeComprasService {
 
     String pesquisaCompraEmLista(String descritorLista, int itemId) throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException;
 
-    String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException;
+    String imprimeListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException;
 
     void finalizaListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) throws ListaDeComprasNotExistException;
 

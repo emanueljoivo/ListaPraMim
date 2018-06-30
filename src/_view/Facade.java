@@ -68,31 +68,51 @@ public class Facade {
     }
 
 	/*
-	 * US - 2
+	 * US - 2 Metodos para auxiliar testes.
 	 */
 
 	public String getItem(int posicao) throws ItemNotExistException {
-		return this.app.getItemController().getItem(posicao);
+		return this.app.getAuxController().getItem(posicao);
 	}
 
 	public String getItemPorCategoria(String categoria, int posicao) throws ItemNotExistException {
-		return this.app.getItemController().getItemPorCategoria(categoria, posicao);
+		return this.app.getAuxController().getItemPorCategoria(categoria, posicao);
 	}
 
 	public String getItemPorMenorPreco(int posicao) throws ItemNotExistException {
-		return this.app.getItemController().getItemPorMenorPreco(posicao);
+		return this.app.getAuxController().getItemPorMenorPreco(posicao);
 	}
 
 	public String getItemPorPesquisa(String strPesquisada, int posicao) throws ItemNotExistException {
-		return this.app.getItemController().getItemPorPesquisa(strPesquisada, posicao);
+		return this.app.getAuxController().getItemPorPesquisa(strPesquisada, posicao);
+	}
+
+	/*
+	 * US - 2
+	 */
+
+	public String listaItens() {
+		return this.app.getItemController().listaItens();
+	}
+
+	public String listaItens(String categoria) {
+		return this.app.getItemController().listaItens(categoria);
+	}
+
+	public String listaItensPreco() {
+		return this.app.getItemController().listaItensPreco();
+	}
+
+	public String listaItensPesquisa(String strPesquisada) {
+		return this.app.getItemController().listaItensPesquisa(strPesquisada);
 	}
 
 	/*
 	 * US - 3
 	 */
 
-	public void adicionaListaDeCompras(String descritorLista) {
-		this.app.getListaDeComprasController().adicionaListaDeCompras(descritorLista);
+	public String adicionaListaDeCompras(String descritorLista) {
+		return this.app.getListaDeComprasController().adicionaListaDeCompras(descritorLista);
 	}
 
 	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId)
@@ -113,9 +133,9 @@ public class Facade {
 		this.app.getListaDeComprasController().deletaCompraDeLista(descritorLista, itemId);
 	}
 
-	public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+	public String imprimeListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
 
-		return this.app.getListaDeComprasController().imprimirListaDeCompras(descritorLista);
+		return this.app.getListaDeComprasController().imprimeListaDeCompras(descritorLista);
 	}
 
 	public String pesquisaCompraEmLista(String descritorLista, int itemId)
@@ -132,23 +152,39 @@ public class Facade {
 	}
 
 	/*
+	 * US - 4 Métodos para auxiliar testes
+	 */
+
+	public String getItemLista(String descritorLista, int posicaoItem )
+			throws IllegalArgumentException, NullPointerException, ListaDeComprasNotExistException {
+
+		return this.app.getAuxController().getItemLista(descritorLista, posicaoItem);
+	}
+
+	public String getItemListaPorData(String data, int posicaoLista)
+			throws IllegalArgumentException, NullPointerException, ParseException {
+
+		return this.app.getAuxController().getItemListaPorData(data, posicaoLista);
+	}
+
+	public String getItemListaPorItem(int id, int posicaoLista) throws ItemNotExistException, ListaDeComprasNotExistException {
+
+		return this.app.getAuxController().getItemListaPorItem(id, posicaoLista);
+	}
+
+	/*
 	 * US - 4
 	 */
 
-	public String pesquisaListaDeCompra(String descritorLista)
-			throws IllegalArgumentException, NullPointerException, ListaDeComprasNotExistException {
-
+	public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
 		return this.app.getListaDeComprasController().pesquisaListaDeCompras(descritorLista);
 	}
 
-	public String pesquisaListasDeComprasPorData(String data)
-			throws IllegalArgumentException, NullPointerException, ParseException {
-
+	public String pesquisaListasDeComprasPorData(String data) throws ParseException {
 		return this.app.getListaDeComprasController().pesquisaListasDeComprasPorData(data);
 	}
 
 	public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
-
 		return this.app.getListaDeComprasController().pesquisaListasDeComprasPorItem(id);
 	}
 

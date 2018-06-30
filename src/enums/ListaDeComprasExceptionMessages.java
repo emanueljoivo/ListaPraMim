@@ -7,6 +7,7 @@ public enum ListaDeComprasExceptionMessages {
     ITEM_ID_INVALIDO("item id invalido."),
     COMPRA_NAO_ENCONTRADA("compra nao encontrada na lista."),
     ITEM_NOT_EXIST("item nao existe no sistema."),
+    LISTA_NOT_EXIST("lista de compras nao existe."),
 
     ERRO_IMPRESSAO("Erro na impressao de compra: "),
     ERRO_COMPRA("Erro na compra de item: "),
@@ -23,6 +24,8 @@ public enum ListaDeComprasExceptionMessages {
     COMPRA_INVALIDA_DESCRITOR(ERRO_COMPRA.errorMessage + DESCRITOR_INVALIDO.errorMessage),
     COMPRA_INVALIDA_QUANTIDADE(ERRO_COMPRA.errorMessage + QUANTIDADE_INVALIDA.errorMessage),
     COMPRA_INVALIDA_ITEM(ERRO_COMPRA.errorMessage + ITEM_ID_INVALIDO.errorMessage),
+    IMPRESSAO_INVALIDA_DESCRITOR(ERRO_IMPRESSAO.errorMessage + DESCRITOR_INVALIDO.errorMessage),
+    IMPRESSAO_INVALIDA_LISTA_NOT_EXIST(ERRO_IMPRESSAO.errorMessage + LISTA_NOT_EXIST.errorMessage),
 
     LISTA_NAO_ENCONTRADA(ERRO_COMPRA.errorMessage + "lista de compras ainda nao existe."),
 
@@ -42,6 +45,10 @@ public enum ListaDeComprasExceptionMessages {
     PESQUISA_INVALIDA_ITEM(ERRO_PESQUISA.errorMessage + ITEM_ID_INVALIDO.errorMessage),
     PESQUISA_INVALIDA_DATA_VN(ERRO_PESQUISA.errorMessage + "data nao pode ser vazia ou nula."),
     PESQUISA_INVALIDA_DATA(ERRO_PESQUISA.errorMessage + "data em formato invalido, tente dd/MM/yyyy"),
+    PESQUISA_INVALIDA_POSICAO_ITEM(ERRO_PESQUISA.errorMessage + "posicao de item invalida."),
+    PESQUISA_INVALIDA_POSICAO_LISTA(ERRO_PESQUISA.errorMessage + "posicao de lista invalida."),
+    PESQUISA_INVALIDA_ITEM_NOT_EXIST(ERRO_PESQUISA.errorMessage + ITEM_NOT_EXIST.errorMessage),
+    PESQUISA_INVALIDA_LISTA_NOT_EXIST(ERRO_PESQUISA.errorMessage + LISTA_NOT_EXIST.errorMessage),
 
     FINALIZACAO_INVALIDA_DESCRITOR(ERRO_FINALIZACAO.errorMessage + DESCRITOR_INVALIDO.errorMessage),
     FINALIZACAO_INVALIDA_LOCAL(ERRO_FINALIZACAO.errorMessage + "local nao pode ser vazio ou nulo."),

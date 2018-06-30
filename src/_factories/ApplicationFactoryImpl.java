@@ -1,15 +1,13 @@
 package _factories;
 
+import _controllers.AuxController;
 import _controllers.ItemController;
 import _controllers.ListaDeComprasController;
 import _repositories.ItemRepository;
 import _repositories.ItemRepositoryImpl;
 import _repositories.ListaDeComprasRepository;
 import _repositories.ListaDeComprasRepositoryImpl;
-import _services.ItemService;
-import _services.ItemServiceImpl;
-import _services.ListaDeComprasService;
-import _services.ListaDeComprasServiceImpl;
+import _services.*;
 import validation.ValidatorItem;
 import validation.ValidatorItemImpl;
 import validation.ValidatorListaDeCompras;
@@ -62,7 +60,10 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 	 * Interface que define validações de listas de compras.
 	 */
 	private ValidatorListaDeCompras validatorLista;
-		
+
+	private AuxController auxController;
+
+	private AuxService auxService;
 	/**
 	 * Contrutor responsável pela injeção de dependências adequada.
 	 */
@@ -76,6 +77,8 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 		this.listaDeComprasRepository = new ListaDeComprasRepositoryImpl();
 		this.listaService = new ListaDeComprasServiceImpl(listaDeComprasRepository, itemRepository);
 		this.listaDeComprasController = new ListaDeComprasController(validatorLista, listaService);
+		this.auxService = new AuxServiceImpl(itemRepository, listaDeComprasRepository);
+		this.auxController = new AuxController(auxService,validatorLista, validatorItem);
 	}	
 	
 	/**
@@ -94,5 +97,10 @@ public class ApplicationFactoryImpl implements ApplicationFactory {
 	@Override
 	public ListaDeComprasController getListaDeComprasController() {
 		return this.listaDeComprasController;
+	}
+
+	@Override
+	public AuxController getAuxController() {
+		return this.auxController;
 	}
 }

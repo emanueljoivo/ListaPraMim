@@ -34,9 +34,9 @@ public class ListaDeComprasController {
      * Gerencia a criacao e adicao de uma nova lista de compras.
      * @param descritor
      */
-    public void adicionaListaDeCompras(String descritor) {
-        this.validator.validaDescritor(descritor);
-        this.service.adicionaNovaLista(descritor);
+    public String adicionaListaDeCompras(String descritor) {
+        this.validator.validaCriacao(descritor);
+        return this.service.adicionaNovaLista(descritor);
     }
 
     public void adicionaCompraALista(String descritorLista, double quantidade, int itemId)
@@ -67,11 +67,11 @@ public class ListaDeComprasController {
         return this.service.pesquisaCompraEmLista(descritorLista, itemId);
     }
 
-    public String imprimirListaDeCompras(String descritorLista)
+    public String imprimeListaDeCompras(String descritorLista)
             throws ListaDeComprasNotExistException {
 
-        this.validator.validaDescritor(descritorLista);
-        return this.service.imprimirListaDeCompras(descritorLista);
+        this.validator.validaImpressaoDeCompra(descritorLista);
+        return this.service.imprimeListaDeCompras(descritorLista);
     }
 
 
@@ -81,6 +81,8 @@ public class ListaDeComprasController {
         this.validator.validaFinalizacaoDeLista(descritorLista, localDaCompra, valorFinalDaCompra);
         this.service.finalizaListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);
     }
+
+    /* US - 4 */
 
     public String pesquisaListaDeCompras(String descritorLista)
             throws ListaDeComprasNotExistException {
@@ -102,6 +104,7 @@ public class ListaDeComprasController {
         this.validator.validaPesquisaPorItem(id);
         return this.service.pesquisaListasDeComprasPorItem(id);
     }
+
     
     /*
      * US5

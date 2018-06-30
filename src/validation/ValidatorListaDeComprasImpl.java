@@ -9,7 +9,7 @@ import java.util.Date;
 public class ValidatorListaDeComprasImpl extends Validator implements ValidatorListaDeCompras {
 
     @Override
-    public void validaDescritor(String descritorLista)
+    public void validaCriacao(String descritorLista)
             throws IllegalArgumentException, NullPointerException {
         this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.CRIACAO_INVALIDA_DESCRITOR.getErrorMessage());
@@ -54,10 +54,16 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     public void validaPesquisa(String descritorLista, int itemId)
             throws IllegalArgumentException, NullPointerException {
 
-        this.genericValidatorString(descritorLista,
-                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_DESCRITOR.getErrorMessage());
+        validaPesquisa(descritorLista);
+
         this.genericValidatorNumber(itemId,
                 ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_ITEM.getErrorMessage()) ;
+    }
+
+    @Override
+    public void validaPesquisa(String descritorLista) {
+        this.genericValidatorString(descritorLista,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_DESCRITOR.getErrorMessage());
     }
 
     @Override
@@ -76,29 +82,52 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     }
 
     @Override
-    public void validaPesquisa(String descritorLista)
+    public void validaPesquisaDeItemEmLista(String descritorLista, int posicaoItem)
             throws IllegalArgumentException, NullPointerException {
 
         this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_DESCRITOR.getErrorMessage());
+
+        this.genericValidatorNumber(posicaoItem,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_POSICAO_ITEM.getErrorMessage());
     }
 
     @Override
-    public Date validaPesquisaPorData(String data)
+    public Date validaPesquisaPorData(String data, int posicaoLista)
             throws IllegalArgumentException, NullPointerException, ParseException {
 
+        this.genericValidatorNumber(posicaoLista,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_POSICAO_LISTA.getErrorMessage());
+
+        return validaPesquisaPorData(data);
+    }
+
+    @Override
+    public Date validaPesquisaPorData(String data) throws ParseException {
         this.genericValidatorString(data,
                 ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_DATA_VN.getErrorMessage());
 
         return this.validaData(data,
                 ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_DATA.getErrorMessage());
-
     }
 
     @Override
     public void validaPesquisaPorItem(int id) {
         this.genericValidatorNumber(id,
                 ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_ITEM.getErrorMessage());
+    }
+
+    @Override
+    public void validaPesquisaPorItem(int id, int posicaoLista) {
+        validaPesquisaPorItem(id);
+        this.genericValidatorNumber(posicaoLista,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_POSICAO_LISTA.getErrorMessage());
+    }
+
+    @Override
+    public void validaImpressaoDeCompra(String descritorLista) {
+        this.genericValidatorString(descritorLista,
+                ListaDeComprasExceptionMessages.IMPRESSAO_INVALIDA_DESCRITOR.getErrorMessage());
     }
 
     private Date validaData(String data, String errorMsg) throws ParseException {;

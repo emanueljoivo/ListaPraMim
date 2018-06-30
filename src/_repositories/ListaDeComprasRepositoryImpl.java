@@ -4,6 +4,7 @@ import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoListaDeCompras
 import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorItem;
 import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorItensMaisPresentes;
 import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorListaMaisRecente;
+import _entities.item.Item;
 import _entities.listaDeCompras.ListaDeCompra;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -20,12 +21,12 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
         this.listasDeCompras = new ArrayList<>();
     }
 
-	public boolean save(ListaDeCompra l) {
-        return this.listasDeCompras.add(l);
+	public void save(ListaDeCompra l) {
+        this.listasDeCompras.add(l);
     }
 
     @Override
-    public boolean containsLista(String descritorLista) {
+    public boolean notContainList(String descritorLista) {
         return containsListaPorDescritor(descritorLista);
     }
 
@@ -40,7 +41,19 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
         listResult.addAll(listasDeCompras);
         return listResult;
     }
-    
+
+    @Override
+    public List<ListaDeCompra> getListsByItem(Item item) {
+        List<ListaDeCompra> auxList = new ArrayList<>();
+
+        for (ListaDeCompra l : this.listasDeCompras) {
+            if (l.getCompras().contains(item)) {
+                auxList.add(l);
+            }
+        }
+        return auxList;
+    }
+
     /*
      * US5
      */

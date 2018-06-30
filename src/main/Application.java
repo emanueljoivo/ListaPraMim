@@ -1,5 +1,6 @@
 package main;
 
+import _controllers.AuxController;
 import _controllers.ItemController;
 import _controllers.ListaDeComprasController;
 import _factories.ApplicationFactory;
@@ -40,4 +41,6 @@ public class Application {
 	 * @return a instância de ListaDeComprasController.
 	 */
 	public ListaDeComprasController getListaDeComprasController() {return this.appFactory.getListaDeComprasController(); }
+
+	public AuxController getAuxController() {return this.appFactory.getAuxController();}
 }

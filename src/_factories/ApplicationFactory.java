@@ -1,5 +1,6 @@
 package _factories;
 
+import _controllers.AuxController;
 import _controllers.ItemController;
 import _controllers.ListaDeComprasController;
 
@@ -21,5 +22,7 @@ public interface ApplicationFactory {
 	 * @return ListaDeComprasController
 	 */
 	ListaDeComprasController getListaDeComprasController();
+
+	AuxController getAuxController();
 
 }

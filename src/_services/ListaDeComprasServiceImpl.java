@@ -30,8 +30,10 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     }
 
     @Override
-    public void adicionaNovaLista(String descritor) {
+    public String adicionaNovaLista(String descritor) {
+
         this.listaRepository.save(new ListaDeCompra(descritor));
+        return descritor;
     }
 
     @Override
@@ -105,9 +107,9 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     }
 
     @Override
-    public String imprimirListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+    public String imprimeListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
         verificaDescritor(descritorLista,
-                ListaDeComprasExceptionMessages.ERRO_IMPRESSAO.getErrorMessage());
+                ListaDeComprasExceptionMessages.IMPRESSAO_INVALIDA_LISTA_NOT_EXIST.getErrorMessage());
 
         String listaStringify = "";
 
@@ -120,7 +122,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         Collections.sort(compras, c1.thenComparing(c2));
 
         for (Compra compra : compras) {
-            listaStringify += compra.toString() + " |";
+            listaStringify += compra.toString() + System.lineSeparator();
         }
         return listaStringify.substring(0, listaStringify.length()-2);
     }
@@ -135,15 +137,18 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         listaAtual.setValorFinal(valorFinalDaCompra);
     }
 
+    /*
+      US - 4
+     */
     @Override
     public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
         this.verificaDescritor(descritorLista,
                 ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
 
-        return imprimirListaDeCompras(descritorLista);
+        return imprimeListaDeCompras(descritorLista);
     }
 
-	@Override
+    @Override
     public String pesquisaListasDeComprasPorData(Date data) {
         List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
         String listaStringifier = "";
@@ -177,6 +182,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         return listaStringifier;
     }
 
+
+
     private List<Compra> setToList(Set<Compra> compras) {
         List<Compra> listaAux = new ArrayList<>();
         listaAux.addAll(compras);
@@ -198,7 +205,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     }
 
     private void verificaDescritor(String descritorLista, String errorMessage) throws ListaDeComprasNotExistException {
-        if (!this.listaRepository.containsLista(descritorLista)) {
+        if (this.listaRepository.notContainList(descritorLista)) {
             throw new ListaDeComprasNotExistException(errorMessage);
         }
     }
@@ -231,7 +238,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 	
 	@Override
     public String sugereMelhorEstabelecimento(String descritorLista) throws ListaDeComprasNotExistException, ItemSemPrecoException{
-    	if (!this.listaRepository.containsLista(descritorLista)) {
+    	if (this.listaRepository.notContainList(descritorLista)) {
     		throw new ListaDeComprasNotExistException(ListaDeComprasExceptionMessages
     				.NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO.getErrorMessage());
     	}
