@@ -92,46 +92,34 @@ public class ItemController {
 		this.itemService.atualizaItem(id, atributo, novoValor);		
 	}
 
-	/**
-	 * Gerencia a listagem de todos os itens da base de dados.
-	 * @return uma representação em string da lista de itens salvos.
-	 */
-    public String listaItens() {
-		return this.itemService.listaItens();
-    }
-
-	/**
-	 * Gerencia a listagem de todos os itens dada uma categoria, ordenados em ordem alfabética.
-	 * @return uma representação em string da lista de itens de uma dada categoria.
-	 */
-	public String listaItens(String categoria) {
-
-    	this.validator.validaListagem(categoria);
-    	return this.itemService.listaItens(categoria);
-    }
-
-	/**
-	 * Gerencia a listagem de todos os itens pelo menor preço, ordenados em ordem alfabética.
-	 * @return uma representação em string da lista de itens ordenados pelo seu menor preço.
-	 */
-	public String listaItensPreco() {
-    	return this.itemService.listaItensPreco();
-	}
-
-	/**
-	 * Gerencia a listagem de todos os itens relacionados a uma dada string pesquisada.
-	 * @return uma representação em string de uma lista de itens ordenados por ordem alfabética dos itens que correspon-
-	 * dem a string pesquisada.
-	 */
-	public String listaItensPesquisa(String strPesquisada) {
-    	this.validator.validaPesquisa(strPesquisada);
-
-    	return this.itemService.listaItensPesquisa(strPesquisada);
-	}
-
     public void adicionaPrecoItem(int id, String localDeCompra, double precoItem) throws ItemNotExistException {
         this.validator.validaAdicaoDePreco(id, localDeCompra, precoItem);
 
         this.itemService.adicionaPrecoItem(id, localDeCompra, precoItem);
     }
+
+    public String getItem(int posicao) throws ItemNotExistException {
+		this.validator.validaGetItem(posicao);
+
+		return this.itemService.getItem(posicao);
+    }
+
+
+	public String getItemPorCategoria(String categoria, int posicao) throws ItemNotExistException {
+		this.validator.validaGetItemByCategory(categoria, posicao);
+
+		return this.itemService.getItemPorCategoria(categoria, posicao);
+	}
+
+	public String getItemPorMenorPreco(int posicao) throws ItemNotExistException {
+		this.validator.validaGetItem(posicao);
+
+		return this.itemService.getItemPorMenorPreco(posicao);
+	}
+
+	public String getItemPorPesquisa(String strPesquisada, int posicao) throws ItemNotExistException {
+		this.validator.validaGetItem(strPesquisada, posicao);
+
+		return this.itemService.getItemPorPesquisa(strPesquisada, posicao);
+	}
 }

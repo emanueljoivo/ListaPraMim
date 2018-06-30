@@ -17,7 +17,7 @@ public interface ItemRepository extends Repository<Item> {
      * Pega uma lista com todos os itens do sistema.
      * @return uma lista de itens.
      */
-    List getItens();
+    List<Item> getItens();
 
     /**
      * Pega uma lista com todos os itens do sistema de uma dada categoria.

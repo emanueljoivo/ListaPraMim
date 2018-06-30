@@ -23,42 +23,6 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	public ValidatorItemImpl() {}
 
 	/**
-	 * Método que verifica se o enum de categorias contém o valor passado pelo usuário.
-	 *
-	 * @param categoria string passada pelo usuario.
-	 * @return <code>true</code> se o valor existir no enum, <code>falso</code> senão.
-	 */
-	private boolean categoriaEhValida(String categoria) {
-		Map<String, ItemCategorias> auxMap = new HashMap<>();
-		ItemCategorias[] auxArr = ItemCategorias.values();
-
-		for (int i = 0; i < auxArr.length; i++) {
-			auxMap.put(auxArr[i].getValue(), auxArr[i]);
-		}
-		return auxMap.containsKey(categoria);
-	}
-
-	/**
-	 * Verifica se um dado atributo corresponde a algum valor no enum de ItemAtributos.
-	 * @return <code> true </code> caso haja o atributo no enum e <code> false </code> no caso contrário.
-	 */
-	private boolean atributoEhValido(String atributo) {
-		ItemAtributos[] auxArr = ItemAtributos.values();
-		Map<String, ItemAtributos> auxMap = new HashMap<>();
-
-		for (int i = 0; i < auxArr.length; i++) {
-			auxMap.put(auxArr[i].getValue() , auxArr[i]);
-		}
-		return auxMap.containsKey(atributo);
-	}
-
-	private void validaAtributo(String atributo, String errorMessage) throws IllegalArgumentException{
-		if (!atributoEhValido(atributo)) {
-			throw new IllegalArgumentException(errorMessage);
-		}
-	}
-
-	/**
 	 * Método que valida categoria e nome de um item (atributos gerais)
 	 * @param categoria categoria do item
 	 * @throws NullPointerException exceção que será lançada caso algum dos dois seja nulo.
@@ -128,6 +92,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	 * {@link ValidatorItem#validaExclusao(int)}
 	 *
 	 */
+	@Override
 	public void validaExclusao(int id)
 			throws IllegalArgumentException, NullPointerException {
 
@@ -165,7 +130,28 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
                 ItemExceptionsMessages.CADASTRO_DE_PRECO_PRECO.getErrorMessage());
     }
 
-    /**
+	@Override
+	public void validaGetItem(int posicao) {
+		this.genericValidatorNumber(posicao,
+				ItemExceptionsMessages.PESQUISA_INVALIDA_POSICAO.getErrorMessage());
+	}
+
+	@Override
+	public void validaGetItem(String strPesquisada, int posicao) {
+		this.genericValidatorString(strPesquisada,
+				ItemExceptionsMessages.PESQUISA_INVALIDA_STR.getErrorMessage());
+		validaGetItem(posicao);
+	}
+
+	@Override
+	public void validaGetItemByCategory(String categoria, int posicao) {
+		this.validaCategoria(categoria,
+				ItemExceptionsMessages.PESQUISA_INVALIDA_CATEGORIA.getErrorMessage());
+
+		validaGetItem(posicao);
+	}
+
+	/**
 	 * {@link ValidatorItem#validaAtualizacao(int, String, String)}
 	 */
 	@Override
@@ -194,6 +180,42 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 		if (atributo.equalsIgnoreCase(ItemAtributos.CATEGORIA.getValue())) {
 			this.validaCategoria(novoValor,
 					ItemExceptionsMessages.ATUALIZACAO_INVALIDA_CATEGORIA.getErrorMessage());
+		}
+	}
+
+	/**
+	 * Método que verifica se o enum de categorias contém o valor passado pelo usuário.
+	 *
+	 * @param categoria string passada pelo usuario.
+	 * @return <code>true</code> se o valor existir no enum, <code>falso</code> senão.
+	 */
+	private boolean categoriaEhValida(String categoria) {
+		Map<String, ItemCategorias> auxMap = new HashMap<>();
+		ItemCategorias[] auxArr = ItemCategorias.values();
+
+		for (int i = 0; i < auxArr.length; i++) {
+			auxMap.put(auxArr[i].getValue(), auxArr[i]);
+		}
+		return auxMap.containsKey(categoria);
+	}
+
+	/**
+	 * Verifica se um dado atributo corresponde a algum valor no enum de ItemAtributos.
+	 * @return <code> true </code> caso haja o atributo no enum e <code> false </code> no caso contrário.
+	 */
+	private boolean atributoEhValido(String atributo) {
+		ItemAtributos[] auxArr = ItemAtributos.values();
+		Map<String, ItemAtributos> auxMap = new HashMap<>();
+
+		for (int i = 0; i < auxArr.length; i++) {
+			auxMap.put(auxArr[i].getValue() , auxArr[i]);
+		}
+		return auxMap.containsKey(atributo);
+	}
+
+	private void validaAtributo(String atributo, String errorMessage) throws IllegalArgumentException{
+		if (!atributoEhValido(atributo)) {
+			throw new IllegalArgumentException(errorMessage);
 		}
 	}
 }

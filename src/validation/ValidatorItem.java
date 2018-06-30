@@ -63,4 +63,10 @@ public interface ValidatorItem {
 	void validaListagem(String categoria) throws IllegalArgumentException;
 
 	void validaAdicaoDePreco(int id, String localDeCompra, double precoItem);
+
+    void validaGetItem(int posicao);
+
+    void validaGetItem(String strPesquisada, int posicao);
+
+    void validaGetItemByCategory(String categoria, int posicao);
 }

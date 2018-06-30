@@ -71,22 +71,20 @@ public class Facade {
 	 * US - 2
 	 */
 
-	public String listaItens() {
-
-		return this.app.getItemController().listaItens();
+	public String getItem(int posicao) throws ItemNotExistException {
+		return this.app.getItemController().getItem(posicao);
 	}
 
-	public String listaItensPorCategoria(String categoria) throws NullPointerException, IllegalArgumentException {
-
-		return this.app.getItemController().listaItens(categoria);
+	public String getItemPorCategoria(String categoria, int posicao) throws ItemNotExistException {
+		return this.app.getItemController().getItemPorCategoria(categoria, posicao);
 	}
 
-	public String listaItensPorMenorPreco() {
-		return this.app.getItemController().listaItensPreco();
+	public String getItemPorMenorPreco(int posicao) throws ItemNotExistException {
+		return this.app.getItemController().getItemPorMenorPreco(posicao);
 	}
 
-	public String listaItensPesquisa(String strPesquisada) {
-		return this.app.getItemController().listaItensPesquisa(strPesquisada);
+	public String getItemPorPesquisa(String strPesquisada, int posicao) throws ItemNotExistException {
+		return this.app.getItemController().getItemPorPesquisa(strPesquisada, posicao);
 	}
 
 	/*

@@ -79,8 +79,8 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 * {@link ItemRepository#getItens()}
 	 */
 	@Override
-	public List getItens() {
-		List<Item> listaAux = new ArrayList();
+	public List<Item> getItens() {
+		List<Item> listaAux = new ArrayList<>();
 		listaAux.addAll(this.itens);
 		return listaAux;
 	}

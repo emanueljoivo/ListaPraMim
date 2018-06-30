@@ -22,7 +22,6 @@ public class ItemServiceImpl implements ItemService {
 	private ItemRepository itemRepository;
 	private ItemFactory itemFactory;
 	
-	
 	/**
 	 * Construtor que recebe por injeção uma fabrica e um repositorio
 	 * dos quais este serviço é dependente.
@@ -106,53 +105,43 @@ public class ItemServiceImpl implements ItemService {
 		this.itemRepository.delete(id);		
 	}
 
-    /**
-     * {@link ItemService#listaItens()}
-     */
-	@SuppressWarnings("unchecked")
 	@Override
-	public String listaItens() {
-        List<Item> itens = this.itemRepository.getItens();
-        sort(itens);
-        return listaDeItens(itens);
-	}
-
-	/**
-	 * {@link ItemService#listaItens(String)}
-	 */
-	@Override
-	public String listaItens(String categoria) {
-		List<Item> itens = this.itemRepository.getItensByCategoria(categoria);
-
+	public String getItem(int posicao) throws ItemNotExistException {
+		List<Item> itens = this.itemRepository.getItens();
 		sort(itens);
 
-		return listaDeItens(itens);
+		Item itemAtual = itemNotNull(itens, posicao);
+		return itemAtual.toString();
 	}
 
-	/**
-	 * {@link ItemService#listaItensPreco()}
-	 * @return
-	 */
 	@Override
-	public String listaItensPreco() {
+	public String getItemPorCategoria(String categoria, int posicao) throws ItemNotExistException {
+		List<Item> itens = this.itemRepository.getItensByCategoria(categoria);
+		sort(itens);
+
+		Item itemAtual = itemNotNull(itens, posicao);
+		return itemAtual.toString();
+	}
+
+	@Override
+	public String getItemPorMenorPreco(int posicao) throws ItemNotExistException {
 		List<Item> itens = this.itemRepository.getItensByPreco();
-
 		PrecoComparator comparator = new PrecoComparator();
-
 		sort(itens, comparator);
 
-		return listaDeItensByPreco(itens);
+		Item itemAtual = itemNotNull(itens, posicao);
+
+		return itemAtual.toString();
 	}
 
-	/**
-	 * {@link ItemService#listaItens(String)}
-	 */
 	@Override
-	public String listaItensPesquisa(String strPesquisada) {
+	public String getItemPorPesquisa(String strPesquisada, int posicao) throws ItemNotExistException {
 		List<Item> itens = this.itemRepository.getItensBySearch(strPesquisada);
 		sort(itens);
 
-		return listaDeItens(itens);
+		Item itemAtual = itemNotNull(itens, posicao);
+
+		return itemAtual.toString();
 	}
 
 	@Override
@@ -162,31 +151,6 @@ public class ItemServiceImpl implements ItemService {
 		}
 
 		this.itemRepository.recovery(id).getMapaDePrecos().put(localDeCompra, precoItem);
-	}
-
-	/**
-	 * Método que transforma uma lista de itens numa string de itens.
-	 * @return uma representação em string para uma lista de itens;
-	 */
-	private String listaDeItensByPreco(List<Item> itens) {
-		String itensStringifier = "";
-
-		for (Item item : itens) {
-			String menorPreco = item.getMenorPreco();
-			itensStringifier += item.toString(menorPreco) + System.lineSeparator();
-		}
-		return itensStringifier;
-	}
-
-	/**
-	 * Método que transforma uma lista de itens numa string de itens.
-	 * @return uma representação em string para uma lista de itens;
-	 */
-	private String listaDeItens(List<Item> itens) {
-		String itensStringifier = "";
-
-		for (Item item : itens) itensStringifier += item.toString() + System.lineSeparator();
-		return itensStringifier;
 	}
 
 	/**
@@ -200,5 +164,14 @@ public class ItemServiceImpl implements ItemService {
 		}		
 		
 		this.itemRepository.recovery(id).set(atributo.toLowerCase(), novoValor);					
-	}	
+	}
+
+	private Item itemNotNull(List<Item> itens, int posicao) throws ItemNotExistException {
+		try {
+			return itens.get(posicao);
+		} catch (IndexOutOfBoundsException e) {
+			throw new ItemNotExistException(
+					ItemExceptionsMessages.PESQUISA_INVALIDA_ITEM_NOT_EXIST.getErrorMessage());
+		}
+	}
 }
