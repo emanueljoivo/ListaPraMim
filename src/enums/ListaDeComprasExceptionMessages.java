@@ -58,7 +58,8 @@ public enum ListaDeComprasExceptionMessages {
     NAO_HA_LISTAS_ITENS_MAIS_RECENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nenhuma lista de compras cadastrada com esse descritor."),
 	NAO_HA_COMPRA_POR_ITEM(ERRO_GERA_AUTOMATICO_POR_ITEM.errorMessage + "nao ha compras cadastradas com o item desejado."),
 	NAO_HA_ITENS_CADASTRADOS_MAIS_PRESENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nao ha nenhum item que aparece em metade das listas cadastradas."),
-	NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO(ERRO_PESQUISA_MELHOR_ESTABELECIMENTO.errorMessage + " nenhuma lista de compras cadastrada com esse descritor.");
+	NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO(ERRO_PESQUISA_MELHOR_ESTABELECIMENTO.errorMessage + " nenhuma lista de compras cadastrada com esse descritor."),
+	SEM_DADOS_ESTABELECIMENTO(ERRO_PESQUISA_MELHOR_ESTABELECIMENTO.errorMessage + "Faltam dados para identificar o melhor local de compra.");
 	
 	
     private String errorMessage;

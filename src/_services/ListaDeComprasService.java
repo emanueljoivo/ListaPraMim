@@ -6,6 +6,7 @@ import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
+import listaDeComprasExceptions.SemDadosEstabelecimentosException;
 
 import java.util.Date;
 
@@ -33,11 +34,11 @@ public interface ListaDeComprasService {
 
     String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException;
     
-    void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException;
+    String geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException;
     
-    void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException;
+    String geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException;
     
-    void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException;
+    String geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException;
 
-	String sugereMelhorEstabelecimento(String descritorLista) throws ListaDeComprasNotExistException,ItemSemPrecoException;
+	String sugereMelhorEstabelecimento(String descritorLista) throws ListaDeComprasNotExistException, SemDadosEstabelecimentosException;
 }

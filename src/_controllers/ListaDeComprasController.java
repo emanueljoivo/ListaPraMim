@@ -6,6 +6,7 @@ import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
+import listaDeComprasExceptions.SemDadosEstabelecimentosException;
 import validation.ValidatorListaDeCompras;
 
 import java.text.ParseException;
@@ -110,19 +111,19 @@ public class ListaDeComprasController {
      * US5
      */
     
-	public void geraAutomaticaUltimaLista()
+	public String geraAutomaticaUltimaLista()
 			throws ListaDeComprasNotExistException, CompraNotExistException {
-		this.service.geraAutomaticaUltimaLista();
+		return this.service.geraAutomaticaUltimaLista();
 	}
 
-	public void geraAutomaticaItensMaisPresentes() 
+	public String geraAutomaticaItensMaisPresentes() 
 			throws ListaDeComprasNotExistException, CompraNotExistException {
-		this.service.geraAutomaticaItensMaisPresentes();
+		return this.service.geraAutomaticaItensMaisPresentes();
 	}
 
-	public void geraAutomaticaItem(String descritorItem)
+	public String geraAutomaticaItem(String descritorItem)
 			throws ListaDeComprasNotExistException, CompraNotExistException {
-		this.service.geraAutomaticaItem(descritorItem);
+		return this.service.geraAutomaticaItem(descritorItem);
 	}
 	
 	/*
@@ -130,7 +131,7 @@ public class ListaDeComprasController {
 	 */
 	
 	public String sugereMelhorEstabelecimento(String descritorLista) 
-			throws ListaDeComprasNotExistException, ItemSemPrecoException {
+			throws ListaDeComprasNotExistException, SemDadosEstabelecimentosException {
 		return this.service.sugereMelhorEstabelecimento(descritorLista);
 	}
     

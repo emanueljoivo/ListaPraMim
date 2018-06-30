@@ -1,7 +1,12 @@
 package listaDeComprasExceptions;
 
 public class CompraNotExistException extends Exception {
-    public CompraNotExistException(String errorMessage) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public CompraNotExistException(String errorMessage) {
         super(errorMessage);
     }
 }

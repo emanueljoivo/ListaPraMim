@@ -6,6 +6,7 @@ import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.CompraAlreadyExistException;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
+import listaDeComprasExceptions.SemDadosEstabelecimentosException;
 import main.Application;
 
 import java.text.ParseException;
@@ -192,20 +193,20 @@ public class Facade {
 	 * US - 5
 	 */
 
-	public void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
+	public String geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
 
-		this.app.getListaDeComprasController().geraAutomaticaUltimaLista();
+		return this.app.getListaDeComprasController().geraAutomaticaUltimaLista();
 	}
 
-	public void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
+	public String geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
 
-		this.app.getListaDeComprasController().geraAutomaticaItensMaisPresentes();
+		return this.app.getListaDeComprasController().geraAutomaticaItensMaisPresentes();
 	}
 
-	public void geraAutomaticaItem(String descritorItem)
+	public String geraAutomaticaItem(String descritorItem)
 			throws ListaDeComprasNotExistException, CompraNotExistException {
 
-		this.app.getListaDeComprasController().geraAutomaticaItem(descritorItem);
+		return this.app.getListaDeComprasController().geraAutomaticaItem(descritorItem);
 	}
 
 	/*
@@ -213,7 +214,7 @@ public class Facade {
 	 */
 
 	public String sugereMelhorEstabelecimento(String descritorLista)
-			throws ListaDeComprasNotExistException, ItemSemPrecoException {
+			throws ListaDeComprasNotExistException, SemDadosEstabelecimentosException {
 		return this.app.getListaDeComprasController().sugereMelhorEstabelecimento(descritorLista);
 	}
 

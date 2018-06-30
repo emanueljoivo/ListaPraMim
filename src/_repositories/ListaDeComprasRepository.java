@@ -19,9 +19,9 @@ public interface ListaDeComprasRepository {
 
     List<ListaDeCompra> getListsByItem(Item item);
     
-    void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException;
+    String geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException;
     
-    void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException;
+    String geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException;
     
-    void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException;
+    String geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException;
 }

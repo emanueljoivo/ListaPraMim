@@ -59,25 +59,27 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
      */
     
     @Override
-    public void geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException {
+    public String geraAutomaticaItem(String descritorItem) throws ListaDeComprasNotExistException, CompraNotExistException {
     	this.geradorAutomatico = new GeradorAutomaticoPorItem(descritorItem);
-    	gerar();
+    	return gerar();
     }
     
     @Override
-    public void geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
+    public String geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
     	this.geradorAutomatico = new GeradorAutomaticoPorItensMaisPresentes();
-    	gerar();
+    	return gerar();
     }
     
     @Override
-    public void geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
+    public String geraAutomaticaUltimaLista() throws ListaDeComprasNotExistException, CompraNotExistException {
     	this.geradorAutomatico = new GeradorAutomaticoPorListaMaisRecente();
-    	gerar();
+    	return gerar();
     }
 
-    private void gerar() throws ListaDeComprasNotExistException, CompraNotExistException{
-		this.listasDeCompras.add(this.geradorAutomatico.gerar(this.listasDeCompras));
+    private String gerar() throws ListaDeComprasNotExistException, CompraNotExistException{
+    	ListaDeCompra newList = this.geradorAutomatico.gerar(this.listasDeCompras);
+		this.listasDeCompras.add(newList);
+		return newList.getDescritor();
 	}
 
 	private ListaDeCompra recoveryListaPorDescritor(String descritorLista) {
