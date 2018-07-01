@@ -245,8 +245,10 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     				.NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO.getErrorMessage());
     	}
     	
+    	ListaDeCompra lista = this.listaRepository.recoveryLista(descritorLista);
+    	
     	Map<String, Double> melhoresEstabelecimentos = 
-    			this.sugestorEstabelecimento.melhoresEstabelecimentos(this.listaRepository.recoveryLista(descritorLista));
+    			this.sugestorEstabelecimento.melhoresEstabelecimentos(lista);
     	
     	if (melhoresEstabelecimentos.size() < 2) {
     		throw new SemDadosEstabelecimentosException(ListaDeComprasExceptionMessages
@@ -271,9 +273,34 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     			menorStr = key;
     		}
     	}
+    	
+    	if (checkDisjoint(maiorStr, menorStr, lista.getCompras())) {
+    		throw new SemDadosEstabelecimentosException("Faltam dados para identificar se o melhor local"
+    				+ " de compra e o " + maiorStr + "ou o " + menorStr);
+    	}
+    	
     	String out = maiorStr + ", R$ " + String.format("%,.2f", maior) + System.lineSeparator() +
     			menorStr + ", R$ " + String.format("%,.2f", menor);
     	
     	return out;
     }
+
+	private boolean checkDisjoint(String maiorStr, String menorStr, Set<Compra> compras) {
+		int count = 0;
+		
+		for (Compra c: compras) {
+			Double dMaior = c.getItemCompravel().getMapaDePrecos().get(maiorStr);
+			Double dMenor = c.getItemCompravel().getMapaDePrecos().get(menorStr);
+			if (dMaior == null ^ dMenor == null) {
+				/*
+				 * utilizando o operador lógico XOR de java ^, pois se os dois não tiverem dados para um item,
+				 * ou seja, ambos forem nulos para essa busca, o programa ainda deve retornar o melhor 
+				 * estabelecimento.
+				 */
+				count++;
+			}
+		}
+		
+		return count == compras.size();
+	}
 }

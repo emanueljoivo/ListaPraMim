@@ -1,11 +1,9 @@
 package _entities.sugestorMelhorEstabelecimento;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import _entities.item.Item;
 import _entities.listaDeCompras.Compra;
 import _entities.listaDeCompras.ListaDeCompra;
 
@@ -13,32 +11,49 @@ public class SugestorDeEstabelecimentosImpl implements SugestorDeEstabelecimento
 
 	@Override
 	public Map<String, Double> melhoresEstabelecimentos(ListaDeCompra lista) {
-		List<Item> itens = new ArrayList<>();
-		
-		for (Compra c: lista.getCompras()) {
-			itens.add(c.getItemCompravel());
-		}
-		
-		Map<String, Integer> countMap = countEstabelecimentos(itens);
+		Set<Compra> compras = lista.getCompras();
+		Map<String, Integer> countMap = countEstabelecimentos(compras);
 		Map<String, Double> out = new HashMap<>();
 		
-		// TODO Auto-generated method stub
-		return null;
+		int maior = Integer.MIN_VALUE;
+		
+		for (int i: countMap.values()) {
+			if (i > maior) {
+				maior = i;
+			}
+		}
+		
+		for (Map.Entry<String, Integer> entry: countMap.entrySet()) {
+			if (entry.getValue().equals(maior)) {
+				for (Compra c: lista.getCompras()) {
+					Double precoAcumulado = out.get(entry.getKey());
+					
+					if (precoAcumulado == null) {
+						precoAcumulado = new Double(0);
+					}
+					
+					out.put(entry.getKey(), precoAcumulado + c.getItemCompravel().getMapaDePrecos().get(entry.getKey()));
+				}
+			}
+		}
+		
+		return out;
 	}
 	
-	private Map<String, Integer> countEstabelecimentos(List<Item> itens) {
+	private Map<String, Integer> countEstabelecimentos(Set<Compra> compras) {
     	Map<String, Integer> countMap = new HashMap<>();
     	
-    	for (Item item: itens) {
-    		for(String s: item.getMapaDePrecos().keySet()) {
+    	for (Compra c: compras) {
+    		for(String s: c.getItemCompravel().getMapaDePrecos().keySet()) {
     			Integer count = countMap.get(s);
-    			if (count == null)
+    			
+    			if (count == null) {
     				count = new Integer(0);
+    			}
+    			
     			countMap.put(s, count);
     		}
     	}
-    	
     	return countMap;
     }
-
 }
