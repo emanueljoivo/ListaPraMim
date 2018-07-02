@@ -17,16 +17,17 @@ public class Main {
 	public static void main(String[] args) throws NullPointerException, IllegalArgumentException, ItemExistException, ItemNotExistException, ListaDeComprasNotExistException, CompraNotExistException, CompraAlreadyExistException {
 		Application app = new Application();
 		Facade facade = new Facade(app);
-
-		final String us = "use_cases/use_case";
-		final String extension = ".txt";
-		final String excep = "_exception";
-		final int usQntd = 4;
-
+		
+		String[] cases = new String[] {"use_cases/use_case1.txt",
+				"use_cases/use_case2.txt",
+				"use_cases/use_case3.txt",
+				"use_cases/use_case3_exception.txt",
+				"use_cases/use_case4.txt",
+				"use_cases/use_case4_exception.txt"};
+				
 		List<String> list = new ArrayList<>();
-
-		for (int i = 0; i < usQntd; i ++) list.add(us + (i+1) + extension);
-		for (int i = 0; i < 1; i++) list.add(us + (i+3) + excep + extension);
+		
+		for(String use_case: cases) list.add(use_case);
 
 		EasyAcceptFacade testefachada = new EasyAcceptFacade(facade , list);
 		testefachada.executeTests();
