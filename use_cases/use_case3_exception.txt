@@ -4,8 +4,8 @@
 
 ##  Cadastro de itens  ##
 
-id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="grama"
-id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1
+id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=5.50
+id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper" precoItem=15
 
 
 ## Criar Lista de Compra com atributos invalidos ##
@@ -51,3 +51,14 @@ expectError "Erro na exclusao de compra: descritor nao pode ser vazio ou nulo." 
 expectError "Erro na exclusao de compra: descritor nao pode ser vazio ou nulo." deletaCompraDeLista escritorLista= itemId=${id1}
 expectError "Erro na exclusao de compra: compra nao encontrada na lista." deletaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id2}
 expectError "Erro na exclusao de compra: item nao existe no sistema." deletaCompraDeLista descritorLista="feira 23/05/2017" itemId=26
+
+## Finalizar Lista parametros invalidos##
+
+expectError "Erro na finalizacao de lista de compras: descritor nao pode ser vazio ou nulo." finalizarListaDeCompras descritorLista="" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
+expectError "Erro na finalizacao de lista de compras: local nao pode ser vazio ou nulo." finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="" valorFinalDaCompra=1000
+expectError "Erro na finalizacao de lista de compras: valor final da lista invalido." finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=-1000
+expectError "Erro na finalizacao de lista de compras: valor final da lista invalido." finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=0
+
+#Feito so para retornar o erro que esta sendo gerado na finalizacao dalista
+expectError "Nao he para retornar erro!!" finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
+
