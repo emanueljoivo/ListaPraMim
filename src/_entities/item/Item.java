@@ -11,6 +11,13 @@ import java.util.Set;
 import enums.ItemAtributos;
 import enums.ItemCategorias;
 
+<<<<<<< HEAD
+=======
+import static java.util.Collections.min;
+
+import java.text.DecimalFormat;
+
+>>>>>>> c354d426830075fd2846f5e8302120626410346a
 /**
  * Classe abstrata que representa o tipo mais geral de items.  
  * 
@@ -141,7 +148,11 @@ public abstract class Item implements Comparable<Item>{
 		Set<String> keys = mapa.keySet();
 		
 		DecimalFormat DF = new DecimalFormat();
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> c354d426830075fd2846f5e8302120626410346a
 		DF.applyPattern("0.00");
 
 		for (String key: keys) {
