@@ -6,7 +6,7 @@
 #  Cadastro de itens  #
 ###############################
 
-# Entradas inv·lidas #
+# Entradas inv√°lidas #
 expectError "Erro no cadastro de item: nome nao pode ser vazio ou nulo." adicionaItemPorQtd nome="" categoria="limpeza" qtd=100 unidadeDeMedida="gramas" localDeCompra="Supermercado Essencial" preco="1.00"
 expectError "Erro no cadastro de item: categoria nao pode ser vazia ou nula." adicionaItemPorUnidade nome="Detergente" categoria="" unidade=1 localDeCompra="Supermercado Essencial" preco="1.50"
 expectError "Erro no cadastro de item: categoria nao existe." adicionaItemPorQuilo nome="Banana" categoria="fruta" kg=1 localDeCompra="Supermercado Essencial" preco="5.50"
@@ -34,16 +34,16 @@ id10=adicionaItemPorUnidade nome="Batata Tentacoes" categoria="alimento industri
 expectError "Erro na listagem de item: id invalido." exibeItem id=-1
 expectError "Erro na listagem de item: item nao existe." exibeItem id=19
 
-expect ${id1}". Agua Sanitaria Drogon, limpeza, 1 l, Preco: <Supermercado Excepcional, R$ 2.19;>" exibeItem id=${id1}
-expect ${id2}". Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34.49;>" exibeItem id=${id2}
-expect ${id3}". Queijo ralado Lebron, alimento industrializado, 50 grama, Preco: <Supermercado UauMart, R$ 1.59;>" exibeItem id=${id3}
-expect ${id4}". Creme dental Oral-C, higiene pessoal, Preco: <Mercadinho Bem Barato, R$ 3.79;>" exibeItem id=${id4}
-expect ${id5}". Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3.50;>" exibeItem id=${id5}
-expect ${id6}". Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4.19;>" exibeItem id=${id6}
-expect ${id7}". Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1.39;>" exibeItem id=${id7}
-expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Supermercado BuyMore, R$ 10.89;>" exibeItem id=${id8}
-expect ${id9}". Costela suina Saara, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23.49;>" exibeItem id=${id9}
-expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercado Excepcional, R$ 3.79;>" exibeItem id=${id10}
+expect ${id1}". Agua Sanitaria Drogon, limpeza, 1 l, Preco: <Supermercado Excepcional, R$ 2,19;>" exibeItem id=${id1}
+expect ${id2}". Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" exibeItem id=${id2}
+expect ${id3}". Queijo ralado Lebron, alimento industrializado, 50 grama, Preco: <Supermercado UauMart, R$ 1,59;>" exibeItem id=${id3}
+expect ${id4}". Creme dental Oral-C, higiene pessoal, Preco: <Mercadinho Bem Barato, R$ 3,79;>" exibeItem id=${id4}
+expect ${id5}". Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" exibeItem id=${id5}
+expect ${id6}". Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" exibeItem id=${id6}
+expect ${id7}". Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" exibeItem id=${id7}
+expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Supermercado BuyMore, R$ 10,89;>" exibeItem id=${id8}
+expect ${id9}". Costela suina Saara, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" exibeItem id=${id9}
+expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercado Excepcional, R$ 3,79;>" exibeItem id=${id10}
 
 ###############################
 #  Atualizando itens  #
@@ -61,23 +61,23 @@ expectError "Erro na atualizacao de item: valor de quilos nao pode ser menor que
 atualizaItem id=${id1} atributo="nome" novoValor="Agua Sanitaria Viserion"
 atualizaItem id=${id1} atributo="unidade de medida" novoValor="ml"
 atualizaItem id=${id1} atributo="quantidade" novoValor="500"
-expect ${id1}". Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2.19;>" exibeItem id=${id1}
+expect ${id1}". Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" exibeItem id=${id1}
 
 atualizaItem id=${id9} atributo="nome" novoValor="Costela suina Sabia"
 atualizaItem id=${id9} atributo="kg" novoValor="0.8"
-expect ${id9}". Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23.49;>" exibeItem id=${id9}
+expect ${id9}". Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" exibeItem id=${id9}
 
 atualizaItem id=${id3} atributo="nome" novoValor="listerine"
 atualizaItem id=${id3} atributo="categoria" novoValor="higiene pessoal"
 atualizaItem id=${id3} atributo="quantidade" novoValor="1"
 atualizaItem id=${id3} atributo="unidade de medida" novoValor="l"
-expect ${id3}". listerine, higiene pessoal, 1 l, Preco: <Supermercado UauMart, R$ 1.59;>" exibeItem id=${id3}
+expect ${id3}". listerine, higiene pessoal, 1 l, Preco: <Supermercado UauMart, R$ 1,59;>" exibeItem id=${id3}
 
 atualizaItem id=${id4} atributo="nome" novoValor="Creme Dental Oral-D"
-expect "4. Creme Dental Oral-D, higiene pessoal, Preco: <Mercadinho Bem Barato, R$ 3.79;>" exibeItem id=${id4}
+expect "4. Creme Dental Oral-D, higiene pessoal, Preco: <Mercadinho Bem Barato, R$ 3,79;>" exibeItem id=${id4}
 
 ###############################
-#  Adicionando novos preÁos  #
+#  Adicionando novos pre√ßos  #
 ###############################
 
 # Entradas invalidas #
@@ -95,8 +95,8 @@ adicionaPrecoItem id=8 localDeCompra="Supermercado Excepcional" preco="9.49"
 adicionaPrecoItem id=8 localDeCompra="Mercadinho Bem Barato" preco="11.69"
 adicionaPrecoItem id=8 localDeCompra="Supermercado UauMart" preco="10.89"
 
-expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3.69;Mercadinho Bem Barato, R$ 3.99;Supermercado BuyMore, R$ 4.09;Supermercado Excepcional, R$ 3.79;>" exibeItem id=${id10}
-expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11.69;Supermercado UauMart, R$ 10.89;Supermercado BuyMore, R$ 10.89;Supermercado Excepcional, R$ 9.49;>" exibeItem id=${id8}
+expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" exibeItem id=${id10}
+expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" exibeItem id=${id8}
 
 ###############################
 #  Removendo itens  #

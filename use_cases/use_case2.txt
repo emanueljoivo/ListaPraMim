@@ -5,11 +5,24 @@
 ###############################
 # 	 Listagem de itens  	  #
 ###############################
-#expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |" listaItens
 
-id11=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2
-id12=adicionaItemPorUnidade nome="Agua Mineral" categoria="alimento nao industrializado" unidade=5
-id13=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5
+expect 1". Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" getItem posicao=0
+expect 10". Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" getItem posicao=1
+expect 8". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" getItem posicao=2
+expect 7". Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" getItem posicao=3
+expect 9". Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" getItem posicao=4
+expect 5". Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" getItem posicao=5
+expect 6". Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" getItem posicao=6
+expect 2". Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" getItem posicao=7
+
+
+
+
+
+
+#id11=adicionaItemPorunidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2
+#id12=adicionaItemPorunidade nome="Agua Mineral" categoria="alimento nao industrializado" unidade=5
+#id13=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5
 
 #expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <> |1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <> |10. Batata Tentacoes, alimento industrializado, Preco: <> |8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <> |7. Coentro, alimento nao industrializado, Preco: <> |9. Costela suina Sabia, alimento industrializado, Preco por quilo: <> |5. Esponja de Aco Assolange, limpeza, Preco: <> |"${id11}". Iogurte Lactivia, alimento industrializado, Preco: <> |6. Limao, alimento nao industrializado, Preco por quilo: <> |2. Peito de peru Saara, alimento industrializado, Preco por quilo: <> |"${id13}". Tomate, alimento nao industrializado, Preco por quilo: <> |" listaItens
 
@@ -29,7 +42,7 @@ id13=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado"
 #  Listagem de itens por menor preco #
 ######################################
 
-expect "" listaItensPorMenorPreco
+#expect "" listaItensPreco
 
 ###################################
 #  Listagem de itens por pesquisa #
@@ -40,5 +53,4 @@ expect "" listaItensPorMenorPreco
 #expect "" listaItensPesquisa strPesquisada="biscoito"
 
 
-expect "" getItemListaItens index=1
 

@@ -1,5 +1,8 @@
 package _entities.item;
 
+import static java.util.Collections.min;
+
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -7,8 +10,6 @@ import java.util.Set;
 
 import enums.ItemAtributos;
 import enums.ItemCategorias;
-
-import static java.util.Collections.min;
 
 /**
  * Classe abstrata que representa o tipo mais geral de items.  
@@ -138,9 +139,13 @@ public abstract class Item implements Comparable<Item>{
 		String mapStringifier = "<";
 
 		Set<String> keys = mapa.keySet();
+		
+		DecimalFormat DF = new DecimalFormat();
+		
+		DF.applyPattern("0.00");
 
 		for (String key: keys) {
-			mapStringifier += (key + ", R$ " + mapa.get(key).toString() + ";");
+			mapStringifier += (key + ", R$ " + DF.format(mapa.get(key)) + ";");
 		}
 		return mapStringifier + ">";
 	}

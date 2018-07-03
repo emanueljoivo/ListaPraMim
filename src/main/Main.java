@@ -20,6 +20,7 @@ public class Main {
 		
 		String[] cases = new String[] {"use_cases/use_case1.txt",
 				"use_cases/use_case2.txt",
+				//"use_cases/use_case2_exception.txt"};
 				"use_cases/use_case3.txt",
 				"use_cases/use_case3_exception.txt",
 				"use_cases/use_case4.txt",
