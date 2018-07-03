@@ -183,7 +183,7 @@ public class ItemServiceImpl implements ItemService {
 		String itensStringifier = "";
 
 		for (Item item : itens) {
-			String menorPreco = item.getMenorPreco();
+			String menorPreco = item.getMenorPreco().toString();
 			itensStringifier += item.toString(menorPreco) + System.lineSeparator();
 		}
 		return itensStringifier;

@@ -1,0 +1,35 @@
+###################################
+#  Exception em listagem de itens #
+###################################
+
+expectError "Erro na pesquisa de itens: item nao existe." getItem posicao=12
+
+#################################################
+#  Exception em listagem de itens por categoria #
+#################################################
+
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorCategoria categoria="alimento industrializado" posicao=5
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorCategoria categoria="alimento nao industrializado" posicao=4
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorCategoria categoria="limpeza" posicao=2
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorCategoria categoria="higiene pessoal" posicao=1
+
+expectError "Erro na pesquisa de itens: categoria nao existe." getItemPorCategoria categoria="alimento" posicao=0
+expectError "Erro na pesquisa de itens: categoria nao existe." getItemPorCategoria categoria="irineu" posicao=0
+
+##################################################
+# Exception em listagem de itens por menor preco #
+##################################################
+
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorMenorPreco posicao=13
+
+
+################################################
+#  Exception em listagem de itens por pesquisa #
+################################################
+
+
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorPesquisa strPesquisada="agua" posicao=2
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorPesquisa strPesquisada="esponja" posicao=1
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorPesquisa strPesquisada="coljate" posicao=1
+expectError "Erro na pesquisa de itens: item nao existe." getItemPorPesquisa strPesquisada="irineu" posicao=0
+

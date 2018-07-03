@@ -47,7 +47,7 @@ public enum ItemExceptionsMessages {
     CADASTRO_DE_PRECO_ITEM_NOT_EXIST(ERRO_CADASTRO_PRECO.errorMessage + ITEM_NOT_EXIST.errorMessage),
 
 	PESQUISA_INVALIDA_STR(ERRO_PESQUISA.errorMessage + "palavra pesquisada nao pode ser vazia ou nula."),
-	PESQUISA_INVALIDA_CATEGORIA(ERRO_PESQUISA.errorMessage + ID_INVALIDO.errorMessage),
+	PESQUISA_INVALIDA_CATEGORIA(ERRO_PESQUISA.errorMessage + CATEGORIA_INVALIDA.errorMessage),
 	PESQUISA_INVALIDA_POSICAO(ERRO_PESQUISA.errorMessage + "posicao invalida."),
 	PESQUISA_INVALIDA_ITEM_NOT_EXIST(ERRO_PESQUISA.errorMessage + ITEM_NOT_EXIST.errorMessage),
 	LISTAGEM_INVALIDA_CATEGORIA_VN(ERRO_LISTAGEM.errorMessage + CATEGORIA_INVALIDA_VN.errorMessage),

@@ -8,6 +8,6 @@ public class PrecoComparator implements Comparator<Item> {
 
     @Override
     public int compare(Item i1, Item i2) {
-        return i1.getMenorPreco().compareToIgnoreCase(i2.getMenorPreco());
+        return i1.getMenorPreco().compareTo(i2.getMenorPreco());
     }
 }

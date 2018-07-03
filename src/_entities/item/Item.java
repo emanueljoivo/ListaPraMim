@@ -11,13 +11,6 @@ import java.util.Set;
 import enums.ItemAtributos;
 import enums.ItemCategorias;
 
-<<<<<<< HEAD
-=======
-import static java.util.Collections.min;
-
-import java.text.DecimalFormat;
-
->>>>>>> c354d426830075fd2846f5e8302120626410346a
 /**
  * Classe abstrata que representa o tipo mais geral de items.  
  * 
@@ -148,11 +141,7 @@ public abstract class Item implements Comparable<Item>{
 		Set<String> keys = mapa.keySet();
 		
 		DecimalFormat DF = new DecimalFormat();
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> c354d426830075fd2846f5e8302120626410346a
 		DF.applyPattern("0.00");
 
 		for (String key: keys) {
@@ -165,9 +154,9 @@ public abstract class Item implements Comparable<Item>{
 	 * Metodo que pega menor preco no mapa de preços.
 	 * @return o menor preço do mapa de precos;
 	 */
-	public String getMenorPreco() {
+	public Double getMenorPreco() {
 		Map<String, Double> precos = getMapaDePrecos();
 		Double menorPreco = min(precos.values());
-		return menorPreco.toString();
+		return menorPreco;
 	}
 }
