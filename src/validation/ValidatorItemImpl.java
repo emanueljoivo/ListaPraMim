@@ -37,7 +37,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	/**
 	 * Faz validacao dos principais atributos usados em um cadastro de itens.
 	 */
-	private void validaCadastro(String nome, String categoria, String localDeCompra, double precoItem) {
+	private void validaCadastro(String nome, String categoria, String localDeCompra, Double precoItem) {
 		this.genericValidatorString(nome,
 				ItemExceptionsMessages.CADASTRO_INVALIDO_NOME.getErrorMessage());
 		this.genericValidatorString(categoria,
@@ -46,6 +46,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 				ItemExceptionsMessages.CADASTRO_INVALIDO_CATEGORIA.getErrorMessage());
 		this.genericValidatorString(localDeCompra,
                 ItemExceptionsMessages.CADASTRO_INVALIDO_LOCAL.getErrorMessage());
+
 		this.genericValidatorNumber(precoItem,
                 ItemExceptionsMessages.CADASTRO_INVALIDO_PRECO.getErrorMessage());
 	}
@@ -149,6 +150,12 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 				ItemExceptionsMessages.PESQUISA_INVALIDA_CATEGORIA.getErrorMessage());
 
 		validaGetItem(posicao);
+	}
+
+	@Override
+	public void validaListagem(int id) {
+		this.genericValidatorNumber(id,
+				ItemExceptionsMessages.LISTAGEM_INVALIDA_ID.getErrorMessage());
 	}
 
 	/**

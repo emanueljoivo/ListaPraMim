@@ -69,4 +69,6 @@ public interface ValidatorItem {
     void validaGetItem(String strPesquisada, int posicao);
 
     void validaGetItemByCategory(String categoria, int posicao);
+
+    void validaListagem(int id);
 }

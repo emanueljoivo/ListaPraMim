@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Main {
 
-	public static void main(String[] args) throws NullPointerException, IllegalArgumentException, ItemExistException, ItemNotExistException, ListaDeComprasNotExistException, CompraNotExistException, CompraAlreadyExistException {
+	public static void main(String[] args) {
 		Application app = new Application();
 		Facade facade = new Facade(app);
 		

@@ -68,7 +68,8 @@ public class ItemController {
 	 * Retorna uma representação em string de um item se o item existir.
 	 * @throws ItemNotExistException caso o item não exista na base de dados.
 	 */
-	public String listaItem(int id) throws ItemNotExistException {		
+	public String listaItem(int id) throws ItemNotExistException {
+		this.validator.validaListagem(id);
 		return this.itemService.recuperaItem(id).toString();
 	}
 
