@@ -19,12 +19,13 @@ public class Main {
 		Facade facade = new Facade(app);
 		
 		String[] cases = new String[] {"use_cases/use_case1.txt",
+				"use_cases/use_case1_exception.txt",
 				"use_cases/use_case2.txt",
-				"use_cases/use_case2_exception.txt"};
-				//"use_cases/use_case3.txt",
-				//"use_cases/use_case3_exception.txt",
-				//"use_cases/use_case4.txt",
-				//"use_cases/use_case4_exception.txt"};
+				"use_cases/use_case2_exception.txt",
+				"use_cases/use_case3.txt",
+				"use_cases/use_case3_exception.txt",
+				"use_cases/use_case4.txt",
+				"use_cases/use_case4_exception.txt"};
 				
 		List<String> list = new ArrayList<>();
 		

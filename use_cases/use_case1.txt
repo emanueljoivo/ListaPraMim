@@ -6,33 +6,18 @@
 #  Cadastro de itens  #
 ###############################
 
-# Entradas inválidas #
-expectError "Erro no cadastro de item: nome nao pode ser vazio ou nulo." adicionaItemPorQtd nome="" categoria="limpeza" qtd=100 unidadeDeMedida="gramas" localDeCompra="Supermercado Essencial" preco="1.00"
-expectError "Erro no cadastro de item: categoria nao pode ser vazia ou nula." adicionaItemPorUnidade nome="Detergente" categoria="" unidade=1 localDeCompra="Supermercado Essencial" preco="1.50"
-expectError "Erro no cadastro de item: categoria nao existe." adicionaItemPorQuilo nome="Banana" categoria="fruta" kg=1 localDeCompra="Supermercado Essencial" preco="5.50"
-expectError "Erro no cadastro de item: valor de quilos nao pode ser menor que zero." adicionaItemPorQuilo nome="Biscoito" categoria="alimento industrializado" kg=-4.3 localDeCompra="Supermercado Essencial" preco="2.29"
-expectError "Erro no cadastro de item: valor de quantidade nao pode ser menor que zero." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=-300 unidadeDeMedida="gramas" localDeCompra="Supermercado Essencial" preco="1.79"
-expectError "Erro no cadastro de item: unidade de medida nao pode ser vazia ou nula." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=300 unidadeDeMedida="" localDeCompra="Supermercado Essencial" preco="1.79"
-expectError "Erro no cadastro de item: valor de unidade nao pode ser menor que zero." adicionaItemPorUnidade nome="Abacaxi" categoria="alimento nao industrializado" unidade=-4 localDeCompra="Supermercado Essencial" preco="3.49"
-expectError "Erro no cadastro de item: local de compra nao pode ser vazio ou nulo." adicionaItemPorUnidade nome="Batata britanica" categoria="alimento nao industrializado" unidade=-4 localDeCompra="" preco="2.49"
-expectError "Erro no cadastro de item: preco de item invalido." adicionaItemPorUnidade nome="Tompero do Jacquin" categoria="alimento nao industrializado" unidade=-4 localDeCompra="Supermercado Essencial" preco="-1.99"
-expectError "Erro no cadastro de item: preco de item nao pode ser vazio ou nulo." adicionaItemPorUnidade nome="Tompero do Jacquin" categoria="alimento nao industrializado" unidade=-4 localDeCompra="Supermercado Essencial" preco=""
-
-id1=adicionaItemPorQtd nome="Agua Sanitaria Drogon" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Supermercado Excepcional" preco="2.19"
-id2=adicionaItemPorQuilo nome="Peito de peru Saara" categoria="alimento industrializado" kg=1.0 localDeCompra="Mercadinho Bem Barato" preco="34.49"
-id3=adicionaItemPorQtd nome="Queijo ralado Lebron" categoria="alimento industrializado" qnt=50 unidadeDeMedida="grama" localDeCompra="Supermercado UauMart" preco="1.59"
-id4=adicionaItemPorUnidade nome="Creme dental Oral-C" categoria="higiene pessoal" unidade=3 localDeCompra="Mercadinho Bem Barato" preco="3.79"
-id5=adicionaItemPorUnidade nome="Esponja de Aco Assolange" categoria="limpeza" unidade=1 localDeCompra="Supermercado BuyMore" preco="3.50"
-id6=adicionaItemPorQuilo nome="Limao" categoria="alimento nao industrializado" kg=1.0 localDeCompra="Supermercado Excepcional" preco="4.19"
-id7=adicionaItemPorUnidade nome="Coentro" categoria="alimento nao industrializado" unidade=1 localDeCompra="Mercadinho Bem Barato" preco="1.39"
-id8=adicionaItemPorQtd nome="Capsula Dois Coracoes" categoria="alimento industrializado" qnt=8 unidadeDeMedida="capsulas" localDeCompra="Supermercado BuyMore" preco="10.89"
-id9=adicionaItemPorQuilo nome="Costela suina Saara" categoria="alimento industrializado" kg=1.0 localDeCompra="Supermercado UauMart" preco="23.49"
-id10=adicionaItemPorUnidade nome="Batata Tentacoes" categoria="alimento industrializado" unidade=1 localDeCompra="Supermercado Excepcional" preco="3.79"
+id1=adicionaItemPorQtd nome="Agua Sanitaria Drogon" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Supermercado Excepcional" preco=2.19
+id2=adicionaItemPorQuilo nome="Peito de peru Saara" categoria="alimento industrializado" kg=1.0 localDeCompra="Mercadinho Bem Barato" preco=34.49
+id3=adicionaItemPorQtd nome="Queijo ralado Lebron" categoria="alimento industrializado" qnt=50 unidadeDeMedida="grama" localDeCompra="Supermercado UauMart" preco=1.59
+id4=adicionaItemPorUnidade nome="Creme dental Oral-C" categoria="higiene pessoal" unidade=3 localDeCompra="Mercadinho Bem Barato" preco=3.79
+id5=adicionaItemPorUnidade nome="Esponja de Aco Assolange" categoria="limpeza" unidade=1 localDeCompra="Supermercado BuyMore" preco=3.50
+id6=adicionaItemPorQuilo nome="Limao" categoria="alimento nao industrializado" kg=1.0 localDeCompra="Supermercado Excepcional" preco=4.19
+id7=adicionaItemPorUnidade nome="Coentro" categoria="alimento nao industrializado" unidade=1 localDeCompra="Mercadinho Bem Barato" preco=1.39
+id8=adicionaItemPorQtd nome="Capsula Dois Coracoes" categoria="alimento industrializado" qnt=8 unidadeDeMedida="capsulas" localDeCompra="Supermercado BuyMore" preco=10.89
+id9=adicionaItemPorQuilo nome="Costela suina Saara" categoria="alimento industrializado" kg=1.0 localDeCompra="Supermercado UauMart" preco=23.49
+id10=adicionaItemPorUnidade nome="Batata Tentacoes" categoria="alimento industrializado" unidade=1 localDeCompra="Supermercado Excepcional" preco=3.79
 
 ### Listando itens pelo id ###
-
-expectError "Erro na listagem de item: id invalido." exibeItem id=-1
-expectError "Erro na listagem de item: item nao existe." exibeItem id=19
 
 expect ${id1}". Agua Sanitaria Drogon, limpeza, 1 l, Preco: <Supermercado Excepcional, R$ 2,19;>" exibeItem id=${id1}
 expect ${id2}". Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" exibeItem id=${id2}
@@ -48,15 +33,6 @@ expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercad
 ###############################
 #  Atualizando itens  #
 ###############################
-
-# Entradas invalidas #
-expectError "Erro na atualizacao de item: item nao existe." atualizaItem id=98 atributo="categoria" novoValor="limpeza"
-expectError "Erro na atualizacao de item: atributo nao existe." atualizaItem id=${id1} atributo="cor" novoValor="verde"
-expectError "Erro na atualizacao de item: atributo nao pode ser vazio ou nulo." atualizaItem id=${id3} atributo="" novoValor="limpeza"
-expectError "Erro na atualizacao de item: novo valor de atributo nao pode ser vazio ou nulo." atualizaItem id=${id8} atributo="categoria" novoValor=""
-expectError "Erro na atualizacao de item: categoria nao existe." atualizaItem id=${id10} atributo="categoria" novoValor="batata"
-expectError "Erro na atualizacao de item: valor de quantidade nao pode ser menor que zero." atualizaItem id=${id10} atributo="unidades" novoValor="-1"
-expectError "Erro na atualizacao de item: valor de quilos nao pode ser menor que zero." atualizaItem id=${id10} atributo="kg" novoValor="-1"
 
 atualizaItem id=${id1} atributo="nome" novoValor="Agua Sanitaria Viserion"
 atualizaItem id=${id1} atributo="unidade de medida" novoValor="ml"
@@ -77,23 +53,16 @@ atualizaItem id=${id4} atributo="nome" novoValor="Creme Dental Oral-D"
 expect "4. Creme Dental Oral-D, higiene pessoal, Preco: <Mercadinho Bem Barato, R$ 3,79;>" exibeItem id=${id4}
 
 ###############################
-#  Adicionando novos preços  #
+#  Adicionando novos pre�os  #
 ###############################
 
-# Entradas invalidas #
-expectError "Erro no cadastro de preco: id de item invalido." adicionaPrecoItem id=-10 localDeCompra="Mercadinho Bem Barato" preco="3.99"
-expectError "Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo." adicionaPrecoItem id=10 localDeCompra="" preco="3.99"
-expectError "Erro no cadastro de preco: preco nao pode ser vazio ou nulo." adicionaPrecoItem id=10 localDeCompra="" preco=""
-expectError "Erro no cadastro de preco: preco de item invalido." adicionaPrecoItem id=10 localDeCompra="Mercadinho Bem Barato" preco="-3.99"
-expectError "Erro no cadastro de preco: item nao existe." adicionaPrecoItem id=98 localDeCompra="Mercadinho Bem Barato" preco="3.99"
+adicionaPrecoItem id=10 localDeCompra="Supermercado UauMart" preco=3.69
+adicionaPrecoItem id=10 localDeCompra="Mercadinho Bem Barato" preco=3.99
+adicionaPrecoItem id=10 localDeCompra="Supermercado BuyMore" preco=4.09
 
-adicionaPrecoItem id=10 localDeCompra="Supermercado UauMart" preco="3.69"
-adicionaPrecoItem id=10 localDeCompra="Mercadinho Bem Barato" preco="3.99"
-adicionaPrecoItem id=10 localDeCompra="Supermercado BuyMore" preco="4.09"
-
-adicionaPrecoItem id=8 localDeCompra="Supermercado Excepcional" preco="9.49"
-adicionaPrecoItem id=8 localDeCompra="Mercadinho Bem Barato" preco="11.69"
-adicionaPrecoItem id=8 localDeCompra="Supermercado UauMart" preco="10.89"
+adicionaPrecoItem id=8 localDeCompra="Supermercado Excepcional" preco=9.49
+adicionaPrecoItem id=8 localDeCompra="Mercadinho Bem Barato" preco=11.69
+adicionaPrecoItem id=8 localDeCompra="Supermercado UauMart" preco=10.89
 
 expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" exibeItem id=${id10}
 expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" exibeItem id=${id8}
