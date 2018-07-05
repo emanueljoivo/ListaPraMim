@@ -138,17 +138,6 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         listaAtual.setValorFinal(valorFinalDaCompra);
     }
 
-    /*
-      US - 4
-     */
-    @Override
-    public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
-        this.verificaDescritor(descritorLista,
-                ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
-
-        return this.listaRepository.recoveryLista(descritorLista).getDescritor();
-    }
-
     @Override
     public String pesquisaListasDeComprasPorData(Date data) {
         List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
@@ -167,7 +156,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
-        verificaItem(id, ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
+        verificaItem(id,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
 
         Item itemAtual = this.itemRepository.recovery(id);
         List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
@@ -189,10 +179,22 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         return listaAux;
     }
 
+    /*
+      US - 4
+     */
+    @Override
+    public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+        this.verificaDescritor(descritorLista,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_LISTA_NOT_EXIST.getErrorMessage());
+
+        return this.listaRepository.recoveryLista(descritorLista).getDescritor();
+    }
+
     private void verificaIntegridade(String descritorLista, int itemId, String errorMessage)
             throws ListaDeComprasNotExistException, ItemNotExistException {
+
         verificaDescritor(descritorLista,
-                (errorMessage + ListaDeComprasExceptionMessages.LISTA_NAO_ENCONTRADA.getErrorMessage()));
+                (errorMessage + ListaDeComprasExceptionMessages.LISTA_NOT_EXIST.getErrorMessage()));
         verificaItem(itemId,
                 (errorMessage + ListaDeComprasExceptionMessages.ITEM_NOT_EXIST.getErrorMessage()));
     }
