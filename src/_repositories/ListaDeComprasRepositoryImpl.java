@@ -27,7 +27,7 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
 
     @Override
     public boolean notContainList(String descritorLista) {
-        return containsListaPorDescritor(descritorLista);
+        return !containsListaPorDescritor(descritorLista);
     }
 
     @Override

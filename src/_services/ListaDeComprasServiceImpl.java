@@ -33,7 +33,6 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public String adicionaNovaLista(String descritor) {
-
         this.listaRepository.save(new ListaDeCompra(descritor));
         return descritor;
     }
@@ -126,7 +125,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         for (Compra compra : compras) {
             listaStringify += compra.toString() + System.lineSeparator();
         }
-        return listaStringify.substring(0, listaStringify.length()-2);
+        return listaStringify.substring(0, listaStringify.length()-1);
     }
 
     @Override
@@ -147,7 +146,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         this.verificaDescritor(descritorLista,
                 ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
 
-        return imprimeListaDeCompras(descritorLista);
+        return this.listaRepository.recoveryLista(descritorLista).getDescritor();
     }
 
     @Override
@@ -183,8 +182,6 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
         return listaStringifier;
     }
-
-
 
     private List<Compra> setToList(Set<Compra> compras) {
         List<Compra> listaAux = new ArrayList<>();

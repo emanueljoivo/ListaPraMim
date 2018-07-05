@@ -76,9 +76,18 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
         this.genericValidatorString(localDaCompra,
                 ListaDeComprasExceptionMessages.FINALIZACAO_INVALIDA_LOCAL.getErrorMessage());
 
-        this.genericValidatorNumber(valorFinalDaCompra,
-                ListaDeComprasExceptionMessages.FINALIZACAO_INVALIDA_VALOR.getErrorMessage());
+        validaValorFinalDeCompra(valorFinalDaCompra);
 
+    }
+
+    private void validaValorFinalDeCompra(double valorFinalDaCompra) {
+        String errorMsg = ListaDeComprasExceptionMessages.FINALIZACAO_INVALIDA_VALOR.getErrorMessage();
+
+        if (valorFinalDaCompra == 0) {
+            throw new IllegalArgumentException(errorMsg);
+        }
+
+        this.genericValidatorNumber(valorFinalDaCompra, errorMsg);
     }
 
     @Override
