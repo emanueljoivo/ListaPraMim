@@ -30,6 +30,8 @@ public class AuxServiceImpl implements AuxService {
     @Override
     public String getItem(int posicao) throws ItemNotExistException {
         List<Item> itens = this.itemRepository.getItens();
+        if (posicao >= itens.size()) return "";
+
         sort(itens);
 
         Item itemAtual = itemNotNull(itens, posicao);
@@ -39,6 +41,7 @@ public class AuxServiceImpl implements AuxService {
     @Override
     public String getItemPorCategoria(String categoria, int posicao) throws ItemNotExistException {
         List<Item> itens = this.itemRepository.getItensByCategoria(categoria);
+        if (posicao >= itens.size()) return "";
         sort(itens);
 
         Item itemAtual = itemNotNull(itens, posicao);
@@ -48,8 +51,9 @@ public class AuxServiceImpl implements AuxService {
     @Override
     public String getItemPorMenorPreco(int posicao) throws ItemNotExistException {
         List<Item> itens = this.itemRepository.getItensByPreco();
+        if (posicao >= itens.size()) return "";
         PrecoComparator comparator = new PrecoComparator();
-        sort(itens, comparator);
+        itens.sort(comparator);
 
         Item itemAtual = itemNotNull(itens, posicao);
 
@@ -59,6 +63,7 @@ public class AuxServiceImpl implements AuxService {
     @Override
     public String getItemPorPesquisa(String strPesquisada, int posicao) throws ItemNotExistException {
         List<Item> itens = this.itemRepository.getItensBySearch(strPesquisada);
+        if (posicao >= itens.size()) return "";
         sort(itens);
 
         Item itemAtual = itemNotNull(itens, posicao);
@@ -75,10 +80,12 @@ public class AuxServiceImpl implements AuxService {
 
         List<Compra> compras = setToList(listaAtual.getCompras());
 
+        if (posicaoItem >= compras.size()) return "";
+
         ComprasComparator c1 = new ComprasComparator();
         NomeComparator c2 = new NomeComparator();
 
-        Collections.sort(compras, c1.thenComparing(c2));
+        compras.sort(c1.thenComparing(c2));
 
         return compras.get(posicaoItem).toString();
     }
@@ -88,6 +95,8 @@ public class AuxServiceImpl implements AuxService {
         List<ListaDeCompra> allLists = this.listaDeComprasRepository.getAllLists();
         List<ListaDeCompra> auxList = new ArrayList<>();
 
+        if (posicaoLista >= allLists.size()) return "";
+
         Comparator<ListaDeCompra> currentComparator = new ListaDescritorComparator();
 
         for (ListaDeCompra l : allLists) {
@@ -95,7 +104,7 @@ public class AuxServiceImpl implements AuxService {
                 auxList.add(l);
             }
         }
-        Collections.sort(auxList, currentComparator);
+        auxList.sort(currentComparator);
 
         return auxList.get(posicaoLista).toString();
     }
@@ -107,6 +116,7 @@ public class AuxServiceImpl implements AuxService {
         verificaItem(id, ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_ITEM_NOT_EXIST.getErrorMessage());
         Item itemAtual = this.itemRepository.recovery(id);
         List<ListaDeCompra> allListsContentItem = this.listaDeComprasRepository.getListsByItem(itemAtual);
+        if (posicaoLista > allListsContentItem.size()) return "";
 
 
         Collections.sort(allListsContentItem);

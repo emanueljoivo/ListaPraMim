@@ -147,7 +147,7 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 	@Override
 	public void validaGetItemByCategory(String categoria, int posicao) {
 		this.validaCategoria(categoria,
-				ItemExceptionsMessages.PESQUISA_INVALIDA_CATEGORIA.getErrorMessage());
+				ItemExceptionsMessages.LISTAGEM_INVALIDA_CATEGORIA.getErrorMessage());
 
 		validaGetItem(posicao);
 	}
