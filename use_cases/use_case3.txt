@@ -54,16 +54,16 @@ expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEm
 
 ## Imprimir Lista Itens ## Usando metodo auxiliar para pegar itens da lista
 
-expect "1 Algodao Clemer, higiene pessoal, 300 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=1
-expect "2 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=2
-expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=3
-expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="feira 23/05/2017" posicaoItem=4
-expect "1 Creme de ricota Rocota, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=5
-expect "2 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=6
-expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=7
-expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=8
-expect "0,5 kg Chuchu, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=9
-expect "1,5 kg Tomate, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=10
+expect "1 Algodao Clemer, higiene pessoal, 300 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=0
+expect "2 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=1
+expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=2
+expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="feira 23/05/2017" posicaoItem=3
+expect "1 Creme de ricota Rocota, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=4
+expect "2 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=5
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=6
+expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=7
+expect "0,5 kg Chuchu, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=8
+expect "1,5 kg Tomate, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=9
 
 ######################################
 ## Teste de Delete de item da lista ##
@@ -78,8 +78,8 @@ adicionaListaDeCompras descritorLista="outra feira 01/06/2017"
 adicionaCompraALista descritorLista="outra feira 01/06/2017" quantidade=3 itemId=${id1}
 adicionaCompraALista descritorLista="outra feira 01/06/2017" quantidade=1 itemId=${id2}
 
-expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="outra feira 01/06/2017" posicaoItem=1
-expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="outra feira 01/06/2017" posicaoItem=2
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="outra feira 01/06/2017" posicaoItem=0
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="outra feira 01/06/2017" posicaoItem=1
 
 deletaCompraDeLista escritorLista="outra feira 01/06/2017" itemId=${id1}
 
@@ -88,4 +88,4 @@ deletaCompraDeLista escritorLista="outra feira 01/06/2017" itemId=${id1}
 finalizarListaDeCompras descritorLista="outra feira 01/06/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=10
 
 ## Lista de compras feira 01/05/2017 ##
-expect "1 Queijo minas Dali, alimento industrializado" imprimirListaDeCompras descritorLista="outra feira 01/06/2017"
+expect "1 Queijo minas Dali, alimento industrializado" imprimeListaDeCompras descritorLista="outra feira 01/06/2017"

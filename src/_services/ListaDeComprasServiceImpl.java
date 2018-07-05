@@ -33,7 +33,6 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public String adicionaNovaLista(String descritor) {
-
         this.listaRepository.save(new ListaDeCompra(descritor));
         return descritor;
     }
@@ -126,7 +125,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         for (Compra compra : compras) {
             listaStringify += compra.toString() + System.lineSeparator();
         }
-        return listaStringify.substring(0, listaStringify.length()-2);
+        return listaStringify.substring(0, listaStringify.length()-1);
     }
 
     @Override
@@ -137,17 +136,6 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
         listaAtual.setLocalDeCompra(localDaCompra);
         listaAtual.setValorFinal(valorFinalDaCompra);
-    }
-
-    /*
-      US - 4
-     */
-    @Override
-    public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
-        this.verificaDescritor(descritorLista,
-                ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
-
-        return imprimeListaDeCompras(descritorLista);
     }
 
     @Override
@@ -168,7 +156,8 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     @Override
     public String pesquisaListasDeComprasPorItem(int id) throws ItemNotExistException {
-        verificaItem(id, ListaDeComprasExceptionMessages.ERRO_PESQUISA.getErrorMessage());
+        verificaItem(id,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
 
         Item itemAtual = this.itemRepository.recovery(id);
         List<ListaDeCompra> allLists = this.listaRepository.getAllLists();
@@ -184,18 +173,28 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         return listaStringifier;
     }
 
-
-
     private List<Compra> setToList(Set<Compra> compras) {
         List<Compra> listaAux = new ArrayList<>();
         listaAux.addAll(compras);
         return listaAux;
     }
 
+    /*
+      US - 4
+     */
+    @Override
+    public String pesquisaListaDeCompras(String descritorLista) throws ListaDeComprasNotExistException {
+        this.verificaDescritor(descritorLista,
+                ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_LISTA_NOT_EXIST.getErrorMessage());
+
+        return this.listaRepository.recoveryLista(descritorLista).getDescritor();
+    }
+
     private void verificaIntegridade(String descritorLista, int itemId, String errorMessage)
             throws ListaDeComprasNotExistException, ItemNotExistException {
+
         verificaDescritor(descritorLista,
-                (errorMessage + ListaDeComprasExceptionMessages.LISTA_NAO_ENCONTRADA.getErrorMessage()));
+                (errorMessage + ListaDeComprasExceptionMessages.LISTA_NOT_EXIST.getErrorMessage()));
         verificaItem(itemId,
                 (errorMessage + ListaDeComprasExceptionMessages.ITEM_NOT_EXIST.getErrorMessage()));
     }
