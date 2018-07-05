@@ -54,7 +54,7 @@ expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepc
 expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" getItemPorCategoria categoria="limpeza" posicao=1
 
 #Higiene pessoal
-expectError "Erro na pesquisa de itens: item nao existe." getItemPorCategoria categoria="higiene pessoal" posicao=0
+expect "" getItemPorCategoria categoria="higiene pessoal" posicao=0
 id14=adicionaItemPorUnidade nome="Pasta Dental Coljate" categoria="higiene pessoal" unidade=1 localDeCompra="Supermercado UauMart" preco="6.39"
 expect ${id14}". Pasta Dental Coljate, higiene pessoal, Preco: <Supermercado UauMart, R$ 6,39;>" getItemPorCategoria categoria="higiene pessoal" posicao=0
 
