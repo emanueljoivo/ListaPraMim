@@ -13,18 +13,20 @@ expect "" getItemPorCategoria categoria="alimento nao industrializado" posicao=4
 expect "" getItemPorCategoria categoria="limpeza" posicao=2
 expect "" getItemPorCategoria categoria="higiene pessoal" posicao=1
 
+expectError "Erro na listagem de item: categoria nao existe." getItemPorCategoria categoria="higiene" posicao=0
 expectError "Erro na listagem de item: categoria nao existe." getItemPorCategoria categoria="alimento" posicao=0
+expectError "Erro na listagem de item: categoria nao existe." getItemPorCategoria categoria="industrializado" posicao=0
 expectError "Erro na listagem de item: categoria nao existe." getItemPorCategoria categoria="irineu" posicao=0
 
-##################################################
-# Exception em listagem de itens por menor preco #
-##################################################
+#############################################
+# Erro em listagem de itens por menor preco #
+#############################################
 
 expect "" getItemPorMenorPreco posicao=13
 
-################################################
-#  Exception em listagem de itens por pesquisa #
-################################################
+###########################################
+#  Erro em listagem de itens por pesquisa #
+###########################################
 
 expect "" getItemPorPesquisa strPesquisada="agua" posicao=2
 expect "" getItemPorPesquisa strPesquisada="esponja" posicao=1
