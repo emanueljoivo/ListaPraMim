@@ -14,6 +14,7 @@ import enums.ListaDeComprasExceptionMessages;
 import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static java.util.Collections.sort;
@@ -98,15 +99,20 @@ public class AuxServiceImpl implements AuxService {
         if (posicaoLista >= allLists.size()) return "";
 
         Comparator<ListaDeCompra> currentComparator = new ListaDescritorComparator();
+        SimpleDateFormat formatPattern = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = formatPattern.format(data);
 
         for (ListaDeCompra l : allLists) {
-            if (l.getMomentoDeCriacao().equals(data)) {
+            String dataListaAtual = formatPattern.format(l.getMomentoDeCriacao());
+
+            if (dataListaAtual.equals(dateString)) {
                 auxList.add(l);
             }
+
         }
         auxList.sort(currentComparator);
 
-        return auxList.get(posicaoLista).toString();
+        return auxList.get(posicaoLista).getDescritor();
     }
 
     @Override
@@ -115,14 +121,15 @@ public class AuxServiceImpl implements AuxService {
 
         verificaItem(id, ListaDeComprasExceptionMessages.PESQUISA_INVALIDA_ITEM_NOT_EXIST.getErrorMessage());
         Item itemAtual = this.itemRepository.recovery(id);
-        List<ListaDeCompra> allListsContentItem = this.listaDeComprasRepository.getListsByItem(itemAtual);
-        if (posicaoLista > allListsContentItem.size()) return "";
 
+        List<ListaDeCompra> allListsContentItem = this.listaDeComprasRepository.getListsByItem(itemAtual);
+
+        if (posicaoLista > allListsContentItem.size()) return "";
 
         Collections.sort(allListsContentItem);
         ListaDeCompra listaAtual = getCurrentList(allListsContentItem, posicaoLista);
 
-        return listaAtual.getDescritor();
+        return listaAtual.toString();
     }
 
 

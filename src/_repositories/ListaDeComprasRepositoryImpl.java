@@ -5,6 +5,7 @@ import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorItem;
 import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorItensMaisPresentes;
 import _entities.geradorAutomaticoListaDeCompras.GeradorAutomaticoPorListaMaisRecente;
 import _entities.item.Item;
+import _entities.listaDeCompras.Compra;
 import _entities.listaDeCompras.ListaDeCompra;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
@@ -47,8 +48,10 @@ public class ListaDeComprasRepositoryImpl implements ListaDeComprasRepository {
         List<ListaDeCompra> auxList = new ArrayList<>();
 
         for (ListaDeCompra l : this.listasDeCompras) {
-            if (l.getCompras().contains(item)) {
-                auxList.add(l);
+            for (Compra c: l.getCompras()) {
+                if (c.getItemCompravel().equals(item)) {
+                    auxList.add(l);
+                }
             }
         }
         return auxList;
