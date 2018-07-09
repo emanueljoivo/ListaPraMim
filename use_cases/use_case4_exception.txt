@@ -45,7 +45,6 @@ expectError "Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo." 
 
 ## Pesquisa por data de criacao ##
 
-expectError "Erro na pesquisa de compra: lista de compras nao existe." pesquisaListasDeComprasPorData data="01/01/2000"
 expectError "Erro na pesquisa de compra: data em formato invalido, tente dd/MM/yyyy" pesquisaListasDeComprasPorData data="01012000"
 expectError "Erro na pesquisa de compra: data nao pode ser vazia ou nula." pesquisaListasDeComprasPorData data=""
 
