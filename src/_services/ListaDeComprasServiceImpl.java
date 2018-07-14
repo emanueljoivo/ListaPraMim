@@ -11,11 +11,9 @@ import _entities.sugestorMelhorEstabelecimento.SugestorDeEstabelecimentosImpl;
 import _repositories.ItemRepository;
 import _repositories.ListaDeComprasRepository;
 import enums.ListaDeComprasExceptionMessages;
+import enums.OperacoesDeAtualizacao;
 import itemExceptions.ItemNotExistException;
-import listaDeComprasExceptions.CompraNotExistException;
-import listaDeComprasExceptions.CompraAlreadyExistException;
-import listaDeComprasExceptions.ListaDeComprasNotExistException;
-import listaDeComprasExceptions.SemDadosEstabelecimentosException;
+import listaDeComprasExceptions.*;
 
 import java.util.*;
 
@@ -56,21 +54,28 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     }
 
     @Override
-    public void atualizaCompraDeLista(String descritorLista, int itemId, int novaQuantidade)
-            throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
+    public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int novaQuantidade)
+            throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException, OperacaoInvalidaException {
 
         verificaIntegridade(descritorLista, itemId,
                 ListaDeComprasExceptionMessages.ERRO_ATUALIZACAO.getErrorMessage());
 
-        Compra compraAtual = this.listaRepository.recoveryLista(descritorLista).
-                getCompra(itemId);
+        ListaDeCompra listaDeCompraAtual = this.listaRepository.recoveryLista(descritorLista);
+        Compra compraAtual = listaDeCompraAtual.getCompra(itemId);
 
         verificaCompra(compraAtual, ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
 
-        if ((compraAtual.getQuantidade() < novaQuantidade)) {
-            deletaCompraDeLista(descritorLista, itemId);
-        } else {
-            compraAtual.setQuantidade(compraAtual.getQuantidade() - novaQuantidade);
+        if (operacao.equalsIgnoreCase(OperacoesDeAtualizacao.ADICIONA.getOperacao())) {
+            compraAtual.setQuantidade(compraAtual.getQuantidade() + novaQuantidade);
+        } else if (operacao.equalsIgnoreCase(OperacoesDeAtualizacao.DIMINUI.getOperacao())) {
+            if (compraAtual.getQuantidade() < 0) {
+                throw new OperacaoInvalidaException(
+                        ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_OPERACAO.getErrorMessage());
+
+            } else if (compraAtual.getQuantidade() == 0) {
+                listaDeCompraAtual.removeCompra(itemId);
+            }
+            compraAtual.setQuantidade(Math.abs(compraAtual.getQuantidade() - novaQuantidade));
         }
     }
 

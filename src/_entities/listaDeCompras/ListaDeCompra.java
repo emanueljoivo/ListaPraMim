@@ -29,6 +29,14 @@ public class ListaDeCompra implements Comparable<ListaDeCompra> {
         return null;
     }
 
+    public void removeCompra(int itemId) {
+        for (Compra compra: this.compras) {
+            if (compra.getItemCompravel().getId() == itemId) {
+                this.compras.remove(compra);
+            }
+        }
+    }
+
     public Date getMomentoDeCriacao() {
         return momentoDeCriacao;
     }

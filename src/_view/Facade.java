@@ -3,10 +3,7 @@ package _view;
 import itemExceptions.ItemExistException;
 import itemExceptions.ItemNotExistException;
 import itemExceptions.ItemSemPrecoException;
-import listaDeComprasExceptions.CompraAlreadyExistException;
-import listaDeComprasExceptions.CompraNotExistException;
-import listaDeComprasExceptions.ListaDeComprasNotExistException;
-import listaDeComprasExceptions.SemDadosEstabelecimentosException;
+import listaDeComprasExceptions.*;
 import main.Application;
 
 import java.text.ParseException;
@@ -122,10 +119,10 @@ public class Facade {
 		this.app.getListaDeComprasController().adicionaCompraALista(descritorLista, quantidade, itemId);
 	}
 
-	public void atualizaCompraDeLista(String descritorLista, int itemId, int novaQuantidade)
-			throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
+	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int novaQuantidade)
+			throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException, OperacaoInvalidaException {
 
-		this.app.getListaDeComprasController().atualizaCompraDeLista(descritorLista, itemId, novaQuantidade);
+		this.app.getListaDeComprasController().atualizaCompraDeLista(descritorLista, itemId, operacao, novaQuantidade);
 	}
 
 	public void deletaCompraDeLista(String descritorLista, int itemId)

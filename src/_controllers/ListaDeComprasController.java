@@ -3,10 +3,7 @@ package _controllers;
 import _services.ListaDeComprasService;
 import itemExceptions.ItemNotExistException;
 import itemExceptions.ItemSemPrecoException;
-import listaDeComprasExceptions.CompraAlreadyExistException;
-import listaDeComprasExceptions.CompraNotExistException;
-import listaDeComprasExceptions.ListaDeComprasNotExistException;
-import listaDeComprasExceptions.SemDadosEstabelecimentosException;
+import listaDeComprasExceptions.*;
 import validation.ValidatorListaDeCompras;
 
 import java.text.ParseException;
@@ -47,11 +44,11 @@ public class ListaDeComprasController {
         this.service.adicionaNovaCompra(descritorLista, quantidade, itemId);
     }
 
-    public void atualizaCompraDeLista(String descritorLista, int itemId, int novaQuantidade)
-            throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException {
+    public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int novaQuantidade)
+            throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException, OperacaoInvalidaException {
 
-        this.validator.validaAtualizacao(descritorLista, itemId, novaQuantidade);
-        this.service.atualizaCompraDeLista(descritorLista, itemId, novaQuantidade);
+        this.validator.validaAtualizacao(descritorLista, itemId, operacao, novaQuantidade);
+        this.service.atualizaCompraDeLista(descritorLista, itemId,  operacao, novaQuantidade);
     }
 
     public void deletaCompraDeLista(String descritorLista, int itemId)

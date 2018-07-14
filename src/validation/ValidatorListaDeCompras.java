@@ -9,7 +9,7 @@ public interface ValidatorListaDeCompras {
 
     void validaCompra(String descritorLista, double quantidade, int itemId);
 
-    void validaAtualizacao(String descritorLista, int itemId, int quantidade);
+    void validaAtualizacao(String descritorLista, int itemId, String operacao, int quantidade);
 
     void validaExclusao(String descritorLista, int itemId);
 

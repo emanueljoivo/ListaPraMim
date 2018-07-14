@@ -1,5 +1,6 @@
 package validation;
 
+import _entities.listaDeCompras.ListaDeCompra;
 import enums.ListaDeComprasExceptionMessages;
 
 import java.text.ParseException;
@@ -27,8 +28,9 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
     }
 
     @Override
-    public void validaAtualizacao(String descritorLista, int itemId, int quantidade)
+    public void validaAtualizacao(String descritorLista, int itemId, String operacao, int quantidade)
             throws IllegalArgumentException, NullPointerException {
+
         this.genericValidatorString(descritorLista,
                 ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_DESCRITOR.getErrorMessage());
 
@@ -37,6 +39,9 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
 
         this.genericValidatorNumber(quantidade,
                 ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_QUANTIDADE.getErrorMessage());
+
+        this.genericValidatorString(operacao,
+                ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_OPERACAO.getErrorMessage());
     }
 
     @Override

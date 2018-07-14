@@ -31,6 +31,7 @@ public enum ListaDeComprasExceptionMessages {
     ATUALIZACAO_INVALIDA_ITEM(ERRO_ATUALIZACAO.errorMessage + ITEM_ID_INVALIDO.errorMessage),
     ATUALIZACAO_INVALIDA_QUANTIDADE(ERRO_ATUALIZACAO.errorMessage + QUANTIDADE_INVALIDA.errorMessage),
     ATUALIZACAO_INVALIDA_COMPRA_NAO_ENCONTRADA(ERRO_ATUALIZACAO.errorMessage + COMPRA_NAO_ENCONTRADA.errorMessage),
+    ATUALIZACAO_INVALIDA_OPERACAO(ERRO_ATUALIZACAO.errorMessage + "operacao de atualizacao invalida."),
 
     EXCLUSAO_INVALIDA_DESCRITOR(ERRO_EXCLUSAO.errorMessage + DESCRITOR_INVALIDO.errorMessage),
     EXCLUSAO_INVALIDA_ITEM(ERRO_EXCLUSAO.errorMessage + ITEM_ID_INVALIDO.errorMessage),
@@ -58,7 +59,6 @@ public enum ListaDeComprasExceptionMessages {
 	NAO_HA_ITENS_CADASTRADOS_MAIS_PRESENTES(ERRO_GERA_AUTOMATICO_ITENS_MAIS_PRESENTES.errorMessage + "nao ha nenhum item que aparece em metade das listas cadastradas."),
 	NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO(ERRO_PESQUISA_MELHOR_ESTABELECIMENTO.errorMessage + " nenhuma lista de compras cadastrada com esse descritor."),
 	SEM_DADOS_ESTABELECIMENTO(ERRO_PESQUISA_MELHOR_ESTABELECIMENTO.errorMessage + "Faltam dados para identificar o melhor local de compra.");
-	
 	
     private String errorMessage;
     ListaDeComprasExceptionMessages(String errorMessage) {

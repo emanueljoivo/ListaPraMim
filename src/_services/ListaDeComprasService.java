@@ -1,12 +1,7 @@
 package _services;
 
-import _entities.listaDeCompras.Compra;
 import itemExceptions.ItemNotExistException;
-import itemExceptions.ItemSemPrecoException;
-import listaDeComprasExceptions.CompraAlreadyExistException;
-import listaDeComprasExceptions.CompraNotExistException;
-import listaDeComprasExceptions.ListaDeComprasNotExistException;
-import listaDeComprasExceptions.SemDadosEstabelecimentosException;
+import listaDeComprasExceptions.*;
 
 import java.util.Date;
 
@@ -17,8 +12,8 @@ public interface ListaDeComprasService {
     void adicionaNovaCompra(String descritorLista, double quantidade, int itemId)
             throws ListaDeComprasNotExistException, ItemNotExistException, CompraAlreadyExistException;
 
-    void atualizaCompraDeLista(String descritorLista, int itemId, int novaQuantidade)
-            throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException;
+    void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int novaQuantidade)
+            throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException, OperacaoInvalidaException;
 
     void deletaCompraDeLista(String descritorLista, int itemId) throws ListaDeComprasNotExistException, ItemNotExistException, CompraNotExistException;
 
