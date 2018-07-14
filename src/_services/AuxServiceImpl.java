@@ -13,6 +13,7 @@ import enums.ItemExceptionsMessages;
 import enums.ListaDeComprasExceptionMessages;
 import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
+import util.Util;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -130,6 +131,13 @@ public class AuxServiceImpl implements AuxService {
         ListaDeCompra listaAtual = getCurrentList(allListsContentItem, posicaoLista);
 
         return listaAtual.toString();
+    }
+
+    @Override
+    public String getDataAtual() {
+        Date data = new Date();
+
+        return Util.dateToString(data);
     }
 
 

@@ -1,6 +1,7 @@
 package util;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import _view.Facade;
@@ -24,5 +25,10 @@ public class Util {
 
 	public static void print(String msg) {
 		System.out.println(msg);
+	}
+
+	public static String dateToString(Date data) {
+		SimpleDateFormat formatPattern = new SimpleDateFormat("dd/MM/yyyy");
+		return formatPattern.format(data);
 	}
 }

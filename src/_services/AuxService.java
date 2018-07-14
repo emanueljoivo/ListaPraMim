@@ -20,4 +20,6 @@ public interface AuxService {
     String getItemListaPorData(Date data, int posicaoLista);
 
     String getItemListaPorItem(int id, int posicaoLista) throws ItemNotExistException, ListaDeComprasNotExistException;
+
+    String getDataAtual();
 }

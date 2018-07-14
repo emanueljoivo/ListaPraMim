@@ -1,5 +1,7 @@
 package _entities.listaDeCompras;
 
+import util.Util;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -88,8 +90,7 @@ public class ListaDeCompra implements Comparable<ListaDeCompra> {
 
     @Override
     public String toString() {
-        SimpleDateFormat formatPattern = new SimpleDateFormat("dd/MM/yyyy");
-        return formatPattern.format(momentoDeCriacao) + " - " + this.descritor;
+        return Util.dateToString(this.momentoDeCriacao) + " - " + this.descritor;
     }
 
     @Override

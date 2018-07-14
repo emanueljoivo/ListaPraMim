@@ -21,6 +21,10 @@ public class Facade {
 		this.app.init();
 	}
 
+	public String dataAtual() {
+		return this.app.getAuxController().getDataAtual();
+	}
+
 	/*
 	 * US - 1
 	 */

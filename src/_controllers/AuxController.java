@@ -61,4 +61,8 @@ public class AuxController {
         this.validatorItem.validaGetItem(strPesquisada, posicao);
         return this.auxService.getItemPorPesquisa(strPesquisada, posicao);
     }
+
+    public String getDataAtual() {
+        return this.auxService.getDataAtual();
+    }
 }
