@@ -1,6 +1,8 @@
 package validation;
 
-public interface ValidatorItem {
+import java.io.Serializable;
+
+public interface ValidatorItem extends Serializable {
 	
 	/**
 	 * Método que faz a validação dos dados do cadastro de um ItemPorUnidade.

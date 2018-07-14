@@ -6,6 +6,7 @@ import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.*;
 import validation.ValidatorListaDeCompras;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import java.util.Date;
  * Controlador de lista de compras responsavel pelo gerenciamento e direcionamento do
  * @author Emanuel Joivo.
  */
-public class ListaDeComprasController {
+public class ListaDeComprasController implements Serializable {
 
     private ValidatorListaDeCompras validator;
     private ListaDeComprasService service;

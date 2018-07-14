@@ -1,10 +1,11 @@
 package _entities.sugestorMelhorEstabelecimento;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import _entities.listaDeCompras.ListaDeCompra;
 
-public interface SugestorDeEstabelecimentos {
+public interface SugestorDeEstabelecimentos extends Serializable {
 	
 	/**
 	 * Método que pesquisa em uma lista de compras, os estabelecimentos cadastrados com os melhores preços.

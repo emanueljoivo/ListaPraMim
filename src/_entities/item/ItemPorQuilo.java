@@ -4,13 +4,14 @@ import enums.ItemAtributos;
 import enums.ItemCategorias;
 import util.Util;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 /**
  * Classe que representa um item vendido por quilo.
  *
  */
-public class ItemPorQuilo extends Item {
+public class ItemPorQuilo extends Item implements Serializable {
 	private double kg;
 	
 	/**

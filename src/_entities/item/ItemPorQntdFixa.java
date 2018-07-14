@@ -5,11 +5,13 @@ import util.Util;
 import enums.ItemAtributos;
 import enums.ItemCategorias;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa um item com quantidade fixa.
  *
  */
-public class ItemPorQntdFixa extends Item {
+public class ItemPorQntdFixa extends Item implements Serializable {
 	private int qntd;
 	private String unidadeDeMedida;
 

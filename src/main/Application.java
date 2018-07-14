@@ -5,6 +5,9 @@ import _controllers.ItemController;
 import _controllers.ListaDeComprasController;
 import _factories.ApplicationFactory;
 import _factories.ApplicationFactoryImpl;
+import jdk.management.resource.internal.inst.AbstractPlainDatagramSocketImplRMHooks;
+
+import java.io.*;
 
 /**
  * Classe responsável por representar o Sistema como um todo. 
@@ -14,18 +17,57 @@ import _factories.ApplicationFactoryImpl;
  * @author Emanuel Joivo.
  *
  */
-public class Application {
+public class Application implements Serializable {
 	
 	/**
 	 * Fábrica das entidades estruturais do sistema.
 	 */
 	private ApplicationFactory appFactory;
+
+	private final String PATH = "db/system.txt";
+
+	private Application application = this;
+
+	public Application() {init();}
 	
 	/**
 	 * Cria a instância do sistema.
 	 */
-	public void init() {
+	private void init() {
 		this.appFactory = new ApplicationFactoryImpl();
+	}
+
+	public void iniciaSistema() throws FileNotFoundException {
+
+	    try {
+	        FileInputStream fileInputStream = new FileInputStream(new File(PATH).getCanonicalPath());
+            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            this.application = (Application) input.readObject();
+            input.close();
+        } catch (FileNotFoundException e) {
+			System.out.println("Sistema iniciado pela primeira vez. Arquivo criado." +
+				System.lineSeparator());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }
+	}
+
+	public void fechaSistema() throws IOException {
+		 try {
+
+			 FileOutputStream fileOutputStream = new FileOutputStream(new File(PATH).getCanonicalPath());
+             ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
+
+             output.writeObject(this);
+             output.close();
+         } catch (IOException e) {
+		     throw new IOException("Erro ao fechar sistema: " + e.toString());
+         }
 	}
 	
 	/**

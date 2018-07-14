@@ -2,9 +2,10 @@ package _entities.listaDeCompras;
 
 import _entities.item.Item;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Compra implements Comparable<Compra>  {
+public class Compra implements Comparable<Compra>, Serializable {
 
     private double quantidade;
     private Item item;

@@ -2,6 +2,7 @@ package _entities.item;
 
 import static java.util.Collections.min;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ import enums.ItemCategorias;
  * 
  * @author Emanuel Joivo
  */
-public abstract class Item implements Comparable<Item>{
+public abstract class Item implements Comparable<Item>, Serializable {
 
 	private int id;
 	protected String nome;

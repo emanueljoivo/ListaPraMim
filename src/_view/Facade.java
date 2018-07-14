@@ -6,6 +6,8 @@ import itemExceptions.ItemSemPrecoException;
 import listaDeComprasExceptions.*;
 import main.Application;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -18,11 +20,18 @@ public class Facade {
 
 	public Facade(Application app) {
 		this.app = app;
-		this.app.init();
 	}
 
 	public String dataAtual() {
 		return this.app.getAuxController().getDataAtual();
+	}
+
+	public void iniciaSistema() throws FileNotFoundException {
+		this.app.iniciaSistema();
+	}
+
+	public void fechaSistema() throws IOException {
+		this.app.fechaSistema();
 	}
 
 	/*

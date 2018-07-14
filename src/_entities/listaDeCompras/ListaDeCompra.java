@@ -2,13 +2,14 @@ package _entities.listaDeCompras;
 
 import util.Util;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class ListaDeCompra implements Comparable<ListaDeCompra> {
+public class ListaDeCompra implements Comparable<ListaDeCompra>, Serializable {
 
     private String descritor, localDeCompra;
     private Set<Compra> compras;

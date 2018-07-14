@@ -1,5 +1,8 @@
 package _repositories;
 
+import java.awt.*;
+import java.io.Serializable;
+
 /**
  * Interface que define contrato de CRUD básico no qual
  * qualquer repositorio do sistema deve oferecer para 
@@ -9,7 +12,7 @@ package _repositories;
  *
  * @param <T> 
  */
-public interface Repository<T> {
+public interface Repository<T> extends Serializable {
 	
 	/**
 	 * Salva uma entidade no banco de dados.

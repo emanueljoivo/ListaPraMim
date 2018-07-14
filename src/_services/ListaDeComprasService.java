@@ -3,9 +3,10 @@ package _services;
 import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public interface ListaDeComprasService {
+public interface ListaDeComprasService extends Serializable {
 
     String adicionaNovaLista(String descritor);
 

@@ -2,6 +2,7 @@ package _repositories;
 
 import _entities.item.Item;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @author Emanuel Joivo
  *
  */
-public interface ItemRepository extends Repository<Item> {
+public interface ItemRepository extends Repository<Item>, Serializable {
 
     /**
      * Pega uma lista com todos os itens do sistema.

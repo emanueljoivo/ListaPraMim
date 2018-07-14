@@ -4,13 +4,15 @@ import _entities.item.Item;
 import itemExceptions.ItemExistException;
 import itemExceptions.ItemNotExistException;
 
+import java.io.Serializable;
+
 /**
  * Interface que representa contrato de serviços oferecidos sobre itens.
  * 
  * @author Emanuel Joivo
  *
  */
-public interface ItemService {
+public interface ItemService extends Serializable {
 	
 	/**
 	 * Gerencia adição de itens do tipo ItemPorQntdFixa.

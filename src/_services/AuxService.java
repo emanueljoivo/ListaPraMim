@@ -3,9 +3,10 @@ package _services;
 import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public interface AuxService {
+public interface AuxService extends Serializable {
 
     String getItem(int posicao) throws ItemNotExistException;
 

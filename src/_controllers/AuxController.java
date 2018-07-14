@@ -6,10 +6,11 @@ import listaDeComprasExceptions.ListaDeComprasNotExistException;
 import validation.ValidatorItem;
 import validation.ValidatorListaDeCompras;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
-public class AuxController {
+public class AuxController implements Serializable {
 
     private AuxService auxService;
     private ValidatorListaDeCompras validatorListaDeCompras;

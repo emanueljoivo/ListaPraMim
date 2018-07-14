@@ -5,9 +5,10 @@ import _entities.listaDeCompras.ListaDeCompra;
 import listaDeComprasExceptions.CompraNotExistException;
 import listaDeComprasExceptions.ListaDeComprasNotExistException;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface ListaDeComprasRepository {
+public interface ListaDeComprasRepository extends Serializable {
 
     void save(ListaDeCompra l);
 

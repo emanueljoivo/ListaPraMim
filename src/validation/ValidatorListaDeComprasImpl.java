@@ -3,11 +3,12 @@ package validation;
 import _entities.listaDeCompras.ListaDeCompra;
 import enums.ListaDeComprasExceptionMessages;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ValidatorListaDeComprasImpl extends Validator implements ValidatorListaDeCompras {
+public class ValidatorListaDeComprasImpl extends Validator implements ValidatorListaDeCompras, Serializable {
 
     @Override
     public void validaCriacao(String descritorLista)

@@ -2,12 +2,14 @@ package _factories;
 
 import _entities.item.Item;
 
+import java.io.Serializable;
+
 /**
  * Interface que define métodos de criação de itens, a depender do seu tipo.
  * 
  * @author Emanuel Joivo
  */
-public interface ItemFactory {
+public interface ItemFactory extends Serializable {
 	
 	/**
 	 * Cria um item do tipo ItemPorQndtFixa.

@@ -1,9 +1,10 @@
 package validation;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
-public interface ValidatorListaDeCompras {
+public interface ValidatorListaDeCompras extends Serializable {
 
     void validaCriacao(String descritor);
 

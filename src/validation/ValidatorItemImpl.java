@@ -1,10 +1,10 @@
 package validation;
 
-import _entities.item.Item;
 import enums.ItemAtributos;
 import enums.ItemCategorias;
 import enums.ItemExceptionsMessages;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +14,7 @@ import java.util.Map;
  * @author lucas
  */
 
-public class ValidatorItemImpl extends Validator implements ValidatorItem {
+public class ValidatorItemImpl extends Validator implements ValidatorItem, Serializable {
 
 	/**
 	 * Construtor de ValidatorItemImpl, que atribui valor ao atributo errorMessage, que é o responsável
@@ -200,8 +200,8 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 		Map<String, ItemCategorias> auxMap = new HashMap<>();
 		ItemCategorias[] auxArr = ItemCategorias.values();
 
-		for (int i = 0; i < auxArr.length; i++) {
-			auxMap.put(auxArr[i].getValue(), auxArr[i]);
+		for (ItemCategorias anAuxArr : auxArr) {
+			auxMap.put(anAuxArr.getValue(), anAuxArr);
 		}
 		return auxMap.containsKey(categoria);
 	}
@@ -214,8 +214,8 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem {
 		ItemAtributos[] auxArr = ItemAtributos.values();
 		Map<String, ItemAtributos> auxMap = new HashMap<>();
 
-		for (int i = 0; i < auxArr.length; i++) {
-			auxMap.put(auxArr[i].getValue() , auxArr[i]);
+		for (ItemAtributos anAuxArr : auxArr) {
+			auxMap.put(anAuxArr.getValue(), anAuxArr);
 		}
 		return auxMap.containsKey(atributo);
 	}

@@ -5,6 +5,8 @@ import itemExceptions.ItemExistException;
 import itemExceptions.ItemNotExistException;
 import validation.ValidatorItem;
 
+import java.io.Serializable;
+
 /**
  * Controlador de itens, responsável pelo gerenciamento e redirecionamento de fluxo de itens. Trata requisições de
  * usuário.
@@ -12,7 +14,7 @@ import validation.ValidatorItem;
  * @author Emanuel Joivo
  *
  */
-public class ItemController {
+public class ItemController implements Serializable {
 	private ItemService itemService;
 	private ValidatorItem validator;	
 	

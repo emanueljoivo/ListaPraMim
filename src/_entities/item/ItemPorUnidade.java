@@ -4,11 +4,13 @@ import enums.ItemAtributos;
 import enums.ItemCategorias;
 import util.Util;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa um item vendido por unidade.
  *
  */
-public class ItemPorUnidade extends Item {
+public class ItemPorUnidade extends Item implements Serializable {
 	private int unidades;
 	
 	/**
