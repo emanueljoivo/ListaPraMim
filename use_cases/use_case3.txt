@@ -44,12 +44,21 @@ adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id11}
 expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id1}
 expect "2 Caixa de Suco, alimento industrializado, 1 l" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id11}
 
+# Adicioando quantidade
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id1} operacao="adiciona" quantidade=2
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id11} operacao="adiciona" quantidade=2
+
+# Verificandao atualizacao
+expect "5 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id1}
+expect "4 Caixa de Suco, alimento industrializado, 1 l" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id11}
+
 # Diminuindo quantidade
-atualizaCompraDeLista descritorLista="feira semana" itemId=${id1} quantidade=2
-atualizaCompraDeLista descritorLista="feira semana" itemId=${id11} quantidade=2
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id1} operacao="diminui" quantidade=4
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id11} operacao="diminui" quantidade=4
 
 # Verificanado atualizacao
 expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id1}
+
 # Item com quantidade zero eh removido da lista
 expectError "Erro na pesquisa de compra: compra nao encontrada na lista." pesquisaCompraEmLista descritorLista="feira semana" itemId=${id11}
 
