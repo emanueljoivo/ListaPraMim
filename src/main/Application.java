@@ -5,8 +5,6 @@ import _controllers.ItemController;
 import _controllers.ListaDeComprasController;
 import _factories.ApplicationFactory;
 import _factories.ApplicationFactoryImpl;
-import jdk.management.resource.internal.inst.AbstractPlainDatagramSocketImplRMHooks;
-
 import java.io.*;
 
 /**
