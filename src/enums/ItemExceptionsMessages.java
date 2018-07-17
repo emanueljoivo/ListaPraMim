@@ -38,7 +38,7 @@ public enum ItemExceptionsMessages {
 	CADASTRO_INVALIDO_QUILO(ERRO_CADASTRO.errorMessage + "valor de quilos nao pode ser menor que zero."),
 	CADASTRO_INVALIDO_QUANTIDADE(ERRO_CADASTRO.errorMessage + "valor de quantidade nao pode ser menor que zero."),
 	CADASTRO_INVALIDO_UNI_DE_MEDIDA(ERRO_CADASTRO.errorMessage + "unidade de medida nao pode ser vazia ou nula."),
-	CADASTRO_INVALIDO_ITEM_EXIST(ERRO_CADASTRO.errorMessage + "item ja existe."),
+	CADASTRO_INVALIDO_ITEM_EXIST(ERRO_CADASTRO.errorMessage + "item ja cadastrado no sistema."),
 	CADASTRO_INVALIDO_LOCAL(ERRO_CADASTRO.errorMessage + "local de compra nao pode ser vazio ou nulo."),
 	CADASTRO_INVALIDO_PRECO(ERRO_CADASTRO.errorMessage + "preco de item invalido."),
 	CADASTRO_DE_PRECO_ID(ERRO_CADASTRO_PRECO.errorMessage + "id de item invalido."),

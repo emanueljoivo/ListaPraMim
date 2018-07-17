@@ -10,7 +10,7 @@ idDescritor=geraAutomaticaUltimaLista
 
 expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
 expect "2 Sabao liquido Pomo, limpeza, 1 l"  getItemLista descritorLista=${idDescritor} posicaoItem=1
-expect "1,5 kg Tomate, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1 Tomate, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
 expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=3
 
 ##  Cadastro de itens  ##
@@ -20,10 +20,10 @@ id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industri
 id3=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="gramas" localDeCompra=${idDescritor} precoItem=2.50
 id4=adicionaItemPorQtd nome="Algodao Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="gramas" localDeCompra=${idDescritor} precoItem=5
 id5=adicionaItemPorUnidade nome="Creme de ricota Rocota" categoria="alimento industrializado" unidade=1 localDeCompra=${idDescritor} precoItem=8.30
-id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5 localDeCompra="Extra" precoItem=6.40
+id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1 localDeCompra="Extra" precoItem=6.40
 id7=adicionaItemPorQtd nome="Sabao liquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Extra" precoItem=7.50
-id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2.0 localDeCompra="Extra" precoItem=25.85
-id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5 localDeCompra="Extra" precoItem=4
+id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2 localDeCompra="Extra" precoItem=25.85
+id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=1 localDeCompra="Extra" precoItem=4
 id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2 localDeCompra="Extra" precoItem=2.99
 
 id20=adicionaItemPorUnidade nome="Leite em po" categoria="alimento industrializado" unidade=1 localDeCompra="Mercadinho" precoItem=10
@@ -45,8 +45,9 @@ adicionaCompraALista descritorLista="Bom Preço" quantidade=4 itemId=${id3}
 idDescritor=geraAutomaticaUltimaLista
 expect "4 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista=${idDescritor} posicaoItem=0
 expect "3 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=1
-expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=2
-expect "1,0 kg Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3 
+expect "2 Carne moida extra light, alimento nao industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
+expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
 expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=4
 
 

@@ -9,10 +9,10 @@ id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industri
 id3=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="gramas" localDeCompra="Hiper shopping" precoItem=2.50
 id4=adicionaItemPorQtd nome="Algodao Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="gramas" localDeCompra="Hiper shopping" precoItem=5
 id5=adicionaItemPorUnidade nome="Creme de ricota Rocota" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper shopping" precoItem=8.30
-id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5 localDeCompra="Extra" precoItem=6.40
+id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1 localDeCompra="Extra" precoItem=6.40
 id7=adicionaItemPorQtd nome="Sabao liquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Extra" precoItem=7.50
-id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2.0 localDeCompra="Extra" precoItem=25.85
-id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5 localDeCompra="Extra" precoItem=4
+id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2 localDeCompra="Extra" precoItem=25.85
+id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=1 localDeCompra="Extra" precoItem=4
 id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2 localDeCompra="Extra" precoItem=2.99
 
 ## Criar Lista de Compra ##
@@ -31,10 +31,10 @@ adicionaCompraALista descritorLista="Hiper shopping" quantidade=1 itemId=${id5}
 
 #Descricao: Extra
 adicionaCompraALista descritorLista="Extra" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="Extra" quantidade=1.5 itemId=${id6}
+adicionaCompraALista descritorLista="Extra" quantidade=1 itemId=${id6}
 adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=${id7}
-adicionaCompraALista descritorLista="Extra" quantidade=2.0 itemId=${id8}
-adicionaCompraALista descritorLista="Extra" quantidade=0.5 itemId=${id9}
+adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=${id8}
+adicionaCompraALista descritorLista="Extra" quantidade=1 itemId=${id9}
 adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=${id10}
 
 ## Finalizar Lista ##
@@ -53,9 +53,9 @@ expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLi
 expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="Extra" posicaoItem=0
 expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="Extra" posicaoItem=1
 expect "2 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="Extra" posicaoItem=2
-expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="Extra" posicaoItem=3
-expect "0,5 kg Chuchu, alimento nao industrializado" getItemLista descritorLista="Extra" posicaoItem=4
-expect "1,5 kg Tomate, alimento nao industrializado" getItemLista descritorLista="Extra" posicaoItem=5
+expect "2 Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="Extra" posicaoItem=3
+expect "1 Chuchu, alimento nao industrializado" getItemLista descritorLista="Extra" posicaoItem=4
+expect "1 Tomate, alimento nao industrializado" getItemLista descritorLista="Extra" posicaoItem=5
 
 ## Pesquisa por data de criacao ## Colocando data atual do teste #Metodos auxiliares
 
