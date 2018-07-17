@@ -75,7 +75,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
             compraAtual.setQuantidade(Math.abs(compraAtual.getQuantidade() - novaQuantidade));
         }
 
-        if (compraAtual.getQuantidade() == 0) {listaDeCompraAtual.removeCompra(itemId);}
+        if (compraAtual.getQuantidade() == 0) {deletaCompraDeLista(descritorLista, itemId);}
     }
 
     @Override
@@ -93,7 +93,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
         verificaCompra(compraAtual,
                 ListaDeComprasExceptionMessages.EXCLUSAO_INVALIDA_COMPRA_NAO_ENCONTRADA.getErrorMessage());
 
-        listaAtual.getCompras().remove(compraAtual);
+        listaAtual.removeCompra(itemId);
     }
 
     @Override

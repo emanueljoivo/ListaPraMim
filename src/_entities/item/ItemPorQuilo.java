@@ -57,7 +57,7 @@ public class ItemPorQuilo extends Item implements Serializable {
 
 	@Override
 	public String toString(double quantidade) {
-		return Util.formatDouble(quantidade) + " kg " + this.getNome() + ", "
+		return (int)(quantidade) + " " + this.getNome() + ", "
 				+ this.getCategoria().getValue();
 	}
 

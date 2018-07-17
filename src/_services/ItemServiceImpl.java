@@ -40,6 +40,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida, String localDeCompra,
 							double precoItem) throws ItemExistException {
+
 		Item itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
 			
 		if (!this.itemRepository.save(itemAtual)) {

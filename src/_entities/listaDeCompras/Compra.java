@@ -38,13 +38,16 @@ public class Compra implements Comparable<Compra>, Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Compra compra = (Compra) o;
-        return quantidade == compra.quantidade &&
-                Objects.equals(item, compra.item);
+
+        return item.equals(compra.item);
     }
 
     @Override
-    public int hashCode() {return Objects.hash(quantidade, item);}
+    public int hashCode() {
+        return item.hashCode();
+    }
 
     @Override
     public int compareTo(Compra o) {
