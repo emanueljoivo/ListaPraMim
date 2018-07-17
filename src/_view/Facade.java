@@ -207,16 +207,16 @@ public class Facade {
 
 		return this.app.getListaDeComprasController().geraAutomaticaUltimaLista();
 	}
-
-	public String geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
-
-		return this.app.getListaDeComprasController().geraAutomaticaItensMaisPresentes();
-	}
-
+	
 	public String geraAutomaticaItem(String descritorItem)
 			throws ListaDeComprasNotExistException, CompraNotExistException {
 
 		return this.app.getListaDeComprasController().geraAutomaticaItem(descritorItem);
+	}
+
+	public String geraAutomaticaItensMaisPresentes() throws ListaDeComprasNotExistException, CompraNotExistException {
+
+		return this.app.getListaDeComprasController().geraAutomaticaItensMaisPresentes();
 	}
 
 	/*

@@ -27,20 +27,21 @@ public class Main {
 				"use_cases/use_case3.txt",
 				"use_cases/use_case3_exception.txt",
 				"use_cases/use_case4.txt",
-				"use_cases/use_case4_exception.txt"};
+				"use_cases/use_case4_exception.txt",
+				"use_cases/use_case5.txt"};
 				
 		List<String> list = new ArrayList<>();
 		
 		for(String use_case: cases) list.add(use_case);
 
-		facade.iniciaSistema();
+		//facade.iniciaSistema();
 
 
 		EasyAcceptFacade testefachada = new EasyAcceptFacade(facade , list);
 		testefachada.executeTests();
 		System.out.println(testefachada.getCompleteResults());
 
-		facade.fechaSistema();
+		//facade.fechaSistema();
 	}
 
 

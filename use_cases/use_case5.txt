@@ -1,0 +1,85 @@
+#################
+# Caso de Uso 5 #
+#################
+
+# Gerando lista automatica da ultima compra e testando #
+
+dataAtual=dataAtual
+expect "Lista automatica 1 "${dataAtual} geraAutomaticaUltimaLista
+idDescritor=geraAutomaticaUltimaLista
+
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "2 Sabao liquido Pomo, limpeza, 1 l"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "1,5 kg Tomate, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=3
+
+##  Cadastro de itens  ##
+
+id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas" localDeCompra=${idDescritor} precoItem=5.50
+id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1 localDeCompra=${idDescritor} precoItem=15
+id3=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="gramas" localDeCompra=${idDescritor} precoItem=2.50
+id4=adicionaItemPorQtd nome="Algodao Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="gramas" localDeCompra=${idDescritor} precoItem=5
+id5=adicionaItemPorUnidade nome="Creme de ricota Rocota" categoria="alimento industrializado" unidade=1 localDeCompra=${idDescritor} precoItem=8.30
+id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5 localDeCompra="Extra" precoItem=6.40
+id7=adicionaItemPorQtd nome="Sabao liquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Extra" precoItem=7.50
+id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2.0 localDeCompra="Extra" precoItem=25.85
+id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5 localDeCompra="Extra" precoItem=4
+id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2 localDeCompra="Extra" precoItem=2.99
+
+id20=adicionaItemPorUnidade nome="Leite em po" categoria="alimento industrializado" unidade=1 localDeCompra="Mercadinho" precoItem=10
+
+## Criar Lista de Compra ##
+
+expect "Bom Preço" adicionaListaDeCompras descritorLista="Bom Preço"
+
+#Descricao: Bom Preço
+adicionaCompraALista descritorLista="Bom Preço" quantidade=3 itemId=${id10}
+adicionaCompraALista descritorLista="Bom Preço" quantidade=1 itemId=${id9}
+adicionaCompraALista descritorLista="Bom Preço" quantidade=2 itemId=${id8}
+adicionaCompraALista descritorLista="Bom Preço" quantidade=4 itemId=${id3}
+
+
+# Gerando lista automatica da ultima compra e testando novamente #
+
+
+idDescritor=geraAutomaticaUltimaLista
+expect "4 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "3 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1,0 kg Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3 
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=4
+
+
+# Gerando lista automatica pelo nome do item e testando #
+
+expect "Lista automatica 2 "${dataAtual} geraAutomaticaItem descritorItem="Queijo minas Dali"
+idDescritor=geraAutomaticaItem descritorItem="Queijo minas Dali"
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=2
+
+expect "Lista automatica 2 "${dataAtual} geraAutomaticaItem descritorItem="Creme de ricota Rocota"
+idDescritor=geraAutomaticaItem descritorItem="Creme de ricota Rocota"
+
+expect "1 Algodao Clemer, higiene pessoal, 300 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "2 Pasta dental DDS, higiene pessoal, 120 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1 Creme de ricota Rocota, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
+expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=4
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=5
+
+
+# Gerando lista automatica pela existencia do item em mais de 50% das listas #
+
+
+# Forçando a existencia de um item em mais de 50% das listas
+adicionaCompraALista descritorLista="Extra" quantidade=3 itemId=${id10}
+adicionaCompraALista descritorLista="Hiper shopping" quantidade=10 itemId=${id10}
+
+expect "Lista automatica 3 "${dataAtual} geraAutomaticaItensMaisPresentes
+idDescritor=geraAutomaticaItensMaisPresentes
+
+expect "5 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=1
+
+
