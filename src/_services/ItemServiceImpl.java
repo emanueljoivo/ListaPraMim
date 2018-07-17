@@ -32,7 +32,20 @@ public class ItemServiceImpl implements ItemService {
 		this.itemRepository = itemRepository;
 		this.itemFactory = itemFactory;
 		
-	}	
+	}
+
+	private int saveItem(Item itemAtual, String localDeCompra, double precoItem) {
+		this.itemRepository.save(itemAtual);
+		itemAtual.getMapaDePrecos().put(localDeCompra, precoItem);
+
+		return itemAtual.getId();
+	}
+
+	private void verifyIfItemAlreadyExist(String itemName) throws ItemExistException {
+		if (this.itemRepository.contains(itemName)) {
+			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
+		}
+	}
 	
 	/**
 	 * {@link ItemService#adicionaItem(String, String, int, String, double)}
@@ -41,14 +54,9 @@ public class ItemServiceImpl implements ItemService {
 	public int adicionaItem(String nome, String categoria, int qtd, String unidadeDeMedida, String localDeCompra,
 							double precoItem) throws ItemExistException {
 
+		verifyIfItemAlreadyExist(nome);
 		Item itemAtual = this.itemFactory.create(nome, categoria, qtd, unidadeDeMedida);
-			
-		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
-		}
-		itemAtual.getMapaDePrecos().put(localDeCompra, precoItem);
-
-		return itemAtual.getId();
+		return saveItem(itemAtual, localDeCompra, precoItem);
 	}
 	
 	/**
@@ -57,13 +65,11 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public int adicionaItem(String nome, String categoria, int unidade, String localDeCompra, double precoItem)
 			throws ItemExistException {
-		Item itemAtual = this.itemFactory.create(nome, categoria, unidade);			
-		
-		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
-		}
-		itemAtual.getMapaDePrecos().put(localDeCompra, precoItem);
-		return itemAtual.getId();
+
+		verifyIfItemAlreadyExist(nome);
+		Item itemAtual = this.itemFactory.create(nome, categoria, unidade);
+
+		return saveItem(itemAtual, localDeCompra, precoItem);
 	}
 	
 	/**
@@ -72,13 +78,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public int adicionaItem(String nome, String categoria, double kg, String localDeCompra, double precoItem)
 			throws ItemExistException {
+
+		verifyIfItemAlreadyExist(nome);
 		Item itemAtual = this.itemFactory.create(nome, categoria, kg);
-		
-		if (!this.itemRepository.save(itemAtual)) {
-			throw new ItemExistException(ItemExceptionsMessages.CADASTRO_INVALIDO_ITEM_EXIST.getErrorMessage());
-		}
-		itemAtual.getMapaDePrecos().put(localDeCompra, precoItem);
-		return itemAtual.getId();
+		return saveItem(itemAtual, localDeCompra, precoItem);
 	}
 
 	/**

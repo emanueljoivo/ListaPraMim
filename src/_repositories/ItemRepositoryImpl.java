@@ -130,7 +130,17 @@ public class ItemRepositoryImpl implements ItemRepository {
 	    return itensRelacionados;
     }
 
-   private ItemCategorias generateCategoria(String categoria) {
+	@Override
+	public boolean contains(String itemName) {
+		for (Item item : this.itens) {
+			if (item.getNome().equalsIgnoreCase(itemName)) {
+				return true;
+			}
+		}
+    	return false;
+	}
+
+	private ItemCategorias generateCategoria(String categoria) {
 		return ItemCategorias.generateCategoria(categoria);
 	}
 

@@ -37,5 +37,7 @@ public interface ItemRepository extends Repository<Item>, Serializable {
      * @return uma lista de itens relacionados com uma dada string
      */
     List<Item> getItensBySearch(String strPesquisada);
+
+    boolean contains(String itemName);
 }
 	
