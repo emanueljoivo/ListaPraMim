@@ -59,13 +59,14 @@ expect "outra feira" getItemListaPorData data=${dataAtual} posicaoLista=4
 
 
 expect ${dataAtual}" - feira semana" getItemListaPorItem id=16 posicaoLista=0
-expect ${dataAtual}" - outra feira" getItemListaPorItem id=16 posicaoLista=1
-expect ${dataAtual}" - Hiper shopping" getItemListaPorItem id=16 posicaoLista=2
+expect ${dataAtual}" - Hiper shopping" getItemListaPorItem id=16 posicaoLista=1
+expect ${dataAtual}" - outra feira" getItemListaPorItem id=16 posicaoLista=2
 
-expect ${dataAtual}" - feira semana" getItemListaPorItem id=20 posicaoLista=0
-expect ${dataAtual}" - Extra" getItemListaPorItem id=20 posicaoLista=1
+expect ${dataAtual}" - Extra" getItemListaPorItem id=20 posicaoLista=0
+expect ${dataAtual}" - feira semana" getItemListaPorItem id=20 posicaoLista=1
 
-expect ${dataAtual}" - feira semana" getItemListaPorItem id=15 posicaoLista=0
+expect ${dataAtual}" - Extra" getItemListaPorItem id=15 posicaoLista=0
 expect ${dataAtual}" - feira quinzenal" getItemListaPorItem id=15 posicaoLista=1
-expect ${dataAtual}" - Hiper shopping" getItemListaPorItem id=15 posicaoLista=2
-expect ${dataAtual}" - Extra" getItemListaPorItem id=15 posicaoLista=3
+expect ${dataAtual}" - feira semana" getItemListaPorItem id=15 posicaoLista=2
+expect ${dataAtual}" - Hiper shopping" getItemListaPorItem id=15 posicaoLista=3
+
