@@ -125,7 +125,7 @@ public class AuxServiceImpl implements AuxService {
 
         List<ListaDeCompra> allListsContentItem = this.listaDeComprasRepository.getListsByItem(itemAtual);
 
-        if (posicaoLista > allListsContentItem.size()) return "";
+        if (posicaoLista >= allListsContentItem.size()) return "";
 
         Collections.sort(allListsContentItem);
         ListaDeCompra listaAtual = getCurrentList(allListsContentItem, posicaoLista);
