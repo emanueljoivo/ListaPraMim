@@ -33,11 +33,7 @@ public class ListaDeCompra implements Comparable<ListaDeCompra>, Serializable {
     }
 
     public void removeCompra(int itemId) {
-        for (Compra compra: this.compras) {
-            if (compra.getItemCompravel().getId() == itemId) {
-                this.compras.remove(compra);
-            }
-        }
+        this.compras.remove(getCompra(itemId));
     }
 
     public Date getMomentoDeCriacao() {

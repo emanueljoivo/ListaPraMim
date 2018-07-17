@@ -2,11 +2,14 @@ package validation;
 
 import _entities.listaDeCompras.ListaDeCompra;
 import enums.ListaDeComprasExceptionMessages;
+import enums.OperacoesDeAtualizacao;
 
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ValidatorListaDeComprasImpl extends Validator implements ValidatorListaDeCompras, Serializable {
 
@@ -42,6 +45,9 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
                 ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_QUANTIDADE.getErrorMessage());
 
         this.genericValidatorString(operacao,
+                ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_OPERACAO.getErrorMessage());
+
+        this.validaOperacao(operacao,
                 ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_OPERACAO.getErrorMessage());
     }
 
@@ -156,5 +162,22 @@ public class ValidatorListaDeComprasImpl extends Validator implements ValidatorL
         }
 
         return dataFormatada;
+    }
+
+    private boolean operacaoEhInvalida(String operacao) {
+        OperacoesDeAtualizacao[] auxArr = OperacoesDeAtualizacao.values();
+        Map<String, OperacoesDeAtualizacao> auxMap = new HashMap<>();
+
+        for (OperacoesDeAtualizacao op : auxArr) {
+            auxMap.put(op.getOperacao(), op);
+        }
+
+        return !auxMap.containsKey(operacao);
+    }
+
+    private void validaOperacao(String operacao, String errorMsg) {
+        if (operacaoEhInvalida(operacao)) {
+            throw new IllegalArgumentException(errorMsg);
+        }
     }
 }

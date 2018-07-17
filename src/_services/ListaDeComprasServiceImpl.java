@@ -71,12 +71,11 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
             if (compraAtual.getQuantidade() < 0) {
                 throw new OperacaoInvalidaException(
                         ListaDeComprasExceptionMessages.ATUALIZACAO_INVALIDA_OPERACAO.getErrorMessage());
-
-            } else if (compraAtual.getQuantidade() == 0) {
-                listaDeCompraAtual.removeCompra(itemId);
             }
             compraAtual.setQuantidade(Math.abs(compraAtual.getQuantidade() - novaQuantidade));
         }
+
+        if (compraAtual.getQuantidade() == 0) {listaDeCompraAtual.removeCompra(itemId);}
     }
 
     @Override

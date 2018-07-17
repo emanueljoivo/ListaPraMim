@@ -34,14 +34,9 @@ public class Main {
 		
 		for(String use_case: cases) list.add(use_case);
 
-		//facade.iniciaSistema();
-
-
 		EasyAcceptFacade testefachada = new EasyAcceptFacade(facade , list);
 		testefachada.executeTests();
 		System.out.println(testefachada.getCompleteResults());
-
-		//facade.fechaSistema();
 	}
 
 
