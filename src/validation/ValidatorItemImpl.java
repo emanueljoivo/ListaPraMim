@@ -178,6 +178,11 @@ public class ValidatorItemImpl extends Validator implements ValidatorItem, Seria
 			this.genericValidatorNumber(Integer.parseInt(novoValor),
 					ItemExceptionsMessages.ATUALIZACAO_INVALIDA_UNIDADE.getErrorMessage());
 		}
+		
+		if (atributo.equalsIgnoreCase(ItemAtributos.QUANTIDADE.getValue())) {
+			this.genericValidatorNumber(Integer.parseInt(novoValor),
+					ItemExceptionsMessages.ATUALIZACAO_INVALIDA_QUANTIDADE.getErrorMessage());
+		}
 
 		if (atributo.equalsIgnoreCase(ItemAtributos.QUILOS.getValue())) {
 			this.genericValidatorNumber(Double.parseDouble(novoValor),

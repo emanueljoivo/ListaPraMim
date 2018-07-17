@@ -28,7 +28,8 @@ public enum ItemExceptionsMessages {
 	ATUALIZACAO_INVALIDA_VALOR(ERRO_ATUALIZACAO.errorMessage + NOVO_VALOR_INVALIDO.errorMessage),
 	ATUALIZACAO_INVALIDA_ITEM_NOT_EXIST(ERRO_ATUALIZACAO.errorMessage + ITEM_NOT_EXIST.errorMessage),
 	ATUALIZACAO_INVALIDA_CATEGORIA(ERRO_ATUALIZACAO.errorMessage + CATEGORIA_INVALIDA.errorMessage),
-	ATUALIZACAO_INVALIDA_UNIDADE(ERRO_ATUALIZACAO.errorMessage + "valor de quantidade nao pode ser menor que zero."),
+	ATUALIZACAO_INVALIDA_QUANTIDADE(ERRO_ATUALIZACAO.errorMessage + "valor de quantidade nao pode ser menor que zero."),
+	ATUALIZACAO_INVALIDA_UNIDADE(ERRO_ATUALIZACAO.errorMessage + "valor de unidade nao pode ser menor que zero."),
 	ATUALIZACAO_INVALIDA_KG(ERRO_ATUALIZACAO.errorMessage + "valor de quilos nao pode ser menor que zero."),
 
 	CADASTRO_INVALIDO_NOME(ERRO_CADASTRO.errorMessage + "nome nao pode ser vazio ou nulo."),

@@ -2,7 +2,7 @@ package enums;
 
 public enum ItemAtributos {
 	
-	UNIDADES("unidades"),
+	UNIDADES("unidade"),
 	QUILOS("kg"),
 	UNIDADE_DE_MEDIDA("unidade de medida"),
 	QUANTIDADE("quantidade"),
