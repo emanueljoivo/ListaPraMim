@@ -28,7 +28,8 @@ public class Main {
 				"use_cases/use_case3_exception.txt",
 				"use_cases/use_case4.txt",
 				"use_cases/use_case4_exception.txt",
-				"use_cases/use_case5.txt"};
+				"use_cases/use_case5.txt",
+				"use_cases/use_case7.txt"};
 				
 		List<String> list = new ArrayList<>();
 		
