@@ -2,13 +2,13 @@
 # Caso de Uso 7 #
 #################
 
-## Fecha sistema salvendo todos os dados da aplicacao em um arquivo ##
+expectError "Sistema iniciado pela primeira vez. Arquivo criado." iniciaSistema
+
+## Fecha sistema salvando todos os dados da aplicacao em um arquivo ##
 
 fechaSistema
 
-## Reinicia o sitema carregando tudo que foi salvo quando fechou sitema ## 
-
-# PS: ao inicia o sistema todos os dados anteriores serao sobrescritos
+## Reinicia o sistema carregando tudo que foi salvo quando fechou sistema ## 
 
 iniciaSistema
 
@@ -65,20 +65,3 @@ expect "Hiper shopping" getItemListaPorData data=${dataAtual} posicaoLista=6
 expect "Lista automatica 1 "${dataAtual} getItemListaPorData data=${dataAtual} posicaoLista=7
 
 quit
-
-#verificar
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=8
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=9
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=11
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=12
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=13
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=14
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=15
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=16
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=17
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=18
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=19
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=20
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=21
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=22
-expect "" getItemListaPorData data=${dataAtual} posicaoLista=23
