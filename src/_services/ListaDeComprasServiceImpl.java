@@ -6,8 +6,6 @@ import _entities.comparators.NomeComparator;
 import _entities.item.Item;
 import _entities.listaDeCompras.Compra;
 import _entities.listaDeCompras.ListaDeCompra;
-import _entities.sugestorMelhorEstabelecimento.SugestorDeEstabelecimentos;
-import _entities.sugestorMelhorEstabelecimento.SugestorDeEstabelecimentosImpl;
 import _repositories.ItemRepository;
 import _repositories.ListaDeComprasRepository;
 import enums.ListaDeComprasExceptionMessages;
@@ -16,17 +14,16 @@ import itemExceptions.ItemNotExistException;
 import listaDeComprasExceptions.*;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 
     private ListaDeComprasRepository listaRepository;
     private ItemRepository itemRepository;
-    private SugestorDeEstabelecimentos sugestorEstabelecimento;
 
     public ListaDeComprasServiceImpl(ListaDeComprasRepository listRepository, ItemRepository itemRepository) {
         this.listaRepository = listRepository;
         this.itemRepository = itemRepository;
-        this.sugestorEstabelecimento = new SugestorDeEstabelecimentosImpl();
     }
 
     @Override
@@ -230,7 +227,7 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 	}
 
 	@Override
-	public String geraAutomaticaItensMaisPresentes() 
+	public String geraAutomaticaItensMaisPresentes()
 			throws ListaDeComprasNotExistException, CompraNotExistException {
 		return this.listaRepository.geraAutomaticaItensMaisPresentes();
 	}
@@ -240,70 +237,53 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
 			throws ListaDeComprasNotExistException, CompraNotExistException {
 		return this.listaRepository.geraAutomaticaItem(descritorItem);
 	}
-	
+
 	@Override
     public String sugereMelhorEstabelecimento(String descritorLista) throws ListaDeComprasNotExistException, SemDadosEstabelecimentosException{
     	if (this.listaRepository.notContainList(descritorLista)) {
     		throw new ListaDeComprasNotExistException(ListaDeComprasExceptionMessages
     				.NAO_EXISTE_LISTA_PESQUISA_ESTABELECIMENTO.getErrorMessage());
     	}
-    	
+
     	ListaDeCompra lista = this.listaRepository.recoveryLista(descritorLista);
-    	
-    	Map<String, Double> melhoresEstabelecimentos = 
-    			this.sugestorEstabelecimento.melhoresEstabelecimentos(lista);
-    	
-    	if (melhoresEstabelecimentos.size() < 2) {
+    	Set<Compra> compras = lista.getCompras();
+
+    	Map<String, Double> valorTotalCompras = this.valorTotalCompras(compras);
+
+    	if (valorTotalCompras.size() == 0) {
     		throw new SemDadosEstabelecimentosException(ListaDeComprasExceptionMessages
     				.SEM_DADOS_ESTABELECIMENTO.getErrorMessage());
     	}
-    	
-    	Double maior = (double) Integer.MIN_VALUE;
-    	Double menor = (double) Integer.MIN_VALUE;
-    	
-    	String maiorStr = "";
-    	String menorStr = "";
-    	
-    	for (Map.Entry<String, Double> entry : melhoresEstabelecimentos.entrySet()) {
-    		Double value = entry.getValue();
-    		String key = entry.getKey();
-    		
-    		if (value.compareTo(maior) > 0) {
-    			maior = value;
-    			maiorStr = key;
-    		} else if (value.compareTo(menor) > 0) {
-    			menor = value;
-    			menorStr = key;
+
+    	String out = "";
+
+    	for (Entry<String, Double> entry: valorTotalCompras.entrySet()) {
+    		out += entry.getKey() + ": R$ " + entry.getValue();
+
+    		for (Compra c: compras) {
+    			if (c.getItemCompravel().getMapaDePrecos().containsKey(entry.getKey())) {
+    				out += "- " + c.getQuantidade() + " " + c.getItemCompravel().toString();
+    			}
     		}
     	}
-    	
-    	if (checkDisjoint(maiorStr, menorStr, lista.getCompras())) {
-    		throw new SemDadosEstabelecimentosException("Faltam dados para identificar se o melhor local"
-    				+ " de compra e o " + maiorStr + "ou o " + menorStr);
-    	}
-    	
-    	String out = maiorStr + ", R$ " + String.format("%,.2f", maior) + System.lineSeparator() +
-    			menorStr + ", R$ " + String.format("%,.2f", menor);
-    	
+
     	return out;
     }
 
-	private boolean checkDisjoint(String maiorStr, String menorStr, Set<Compra> compras) {
-		int count = 0;
-		
+	private Map<String, Double> valorTotalCompras(Set<Compra> compras) {
+		Map<String, Double> out = new HashMap<>();
+
 		for (Compra c: compras) {
-			Double dMaior = c.getItemCompravel().getMapaDePrecos().get(maiorStr);
-			Double dMenor = c.getItemCompravel().getMapaDePrecos().get(menorStr);
-			if (dMaior == null ^ dMenor == null) {
-				/*
-				 * utilizando o operador lógico XOR de java ^, pois se os dois não tiverem dados para um item,
-				 * ou seja, ambos forem nulos para essa busca, o programa ainda deve retornar o melhor 
-				 * estabelecimento.
-				 */
-				count++;
+			for (Entry<String, Double> entry: c.getItemCompravel().getMapaDePrecos().entrySet()) {
+				Double preco = entry.getValue() * c.getQuantidade();
+
+				if (out.containsKey(entry.getKey()))
+					preco += out.get(entry.getKey());
+
+				out.put(entry.getKey(), preco);
 			}
 		}
-		
-		return count == compras.size();
+
+		return out;
 	}
 }
