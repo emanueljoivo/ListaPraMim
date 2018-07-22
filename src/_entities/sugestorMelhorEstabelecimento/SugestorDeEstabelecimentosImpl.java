@@ -1,5 +1,6 @@
 package _entities.sugestorMelhorEstabelecimento;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -7,7 +8,7 @@ import java.util.Set;
 import _entities.listaDeCompras.Compra;
 import _entities.listaDeCompras.ListaDeCompra;
 
-public class SugestorDeEstabelecimentosImpl implements SugestorDeEstabelecimentos {
+public class SugestorDeEstabelecimentosImpl implements SugestorDeEstabelecimentos, Serializable {
 
 	@Override
 	public Map<String, Double> melhoresEstabelecimentos(ListaDeCompra lista) {

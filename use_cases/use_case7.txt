@@ -6,23 +6,6 @@
 
 fechaSistema
 
-# Remover itens para teste persistencia #
-
-deletaItem id=1
-deletaItem id=2
-deletaItem id=5
-deletaItem id=6
-deletaItem id=7
-deletaItem id=8
-deletaItem id=9
-deletaItem id=10
-deletaItem id=11
-deletaItem id=12
-deletaItem id=13
-deletaItem id=14
-deletaItem id=15
-deletaItem id=16
-
 ## Reinicia o sitema carregando tudo que foi salvo quando fechou sitema ## 
 
 # PS: ao inicia o sistema todos os dados anteriores serao sobrescritos
@@ -79,7 +62,7 @@ expect "feira quinzenal" getItemListaPorData data=${dataAtual} posicaoLista=3
 expect "feira semana" getItemListaPorData data=${dataAtual} posicaoLista=4
 expect "Hiper Acude Velho" getItemListaPorData data=${dataAtual} posicaoLista=5
 expect "Hiper shopping" getItemListaPorData data=${dataAtual} posicaoLista=6
-expect "Lista automatica 1 21/07/2018" getItemListaPorData data=${dataAtual} posicaoLista=7
+expect "Lista automatica 1 "${dataAtual} getItemListaPorData data=${dataAtual} posicaoLista=7
 
 quit
 

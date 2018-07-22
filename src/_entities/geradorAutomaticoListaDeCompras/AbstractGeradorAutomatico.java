@@ -13,7 +13,7 @@ import _entities.listaDeCompras.ListaDeCompra;
  * @author lucas
  */
 
-public abstract class AbstractGeradorAutomatico implements GeradorAutomaticoListaDeCompras{
+public abstract class AbstractGeradorAutomatico implements GeradorAutomaticoListaDeCompras {
 	/**
 	 * Atributo que representa o momento da geração automática.
 	 */

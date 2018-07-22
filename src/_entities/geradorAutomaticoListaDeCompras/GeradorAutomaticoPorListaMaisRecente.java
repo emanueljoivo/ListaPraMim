@@ -1,5 +1,6 @@
 package _entities.geradorAutomaticoListaDeCompras;
 
+import java.io.Serializable;
 import java.util.List;
 
 import _entities.listaDeCompras.ListaDeCompra;
@@ -13,7 +14,7 @@ import listaDeComprasExceptions.ListaDeComprasNotExistException;
  * @author lucas
  */
 
-public class GeradorAutomaticoPorListaMaisRecente extends AbstractGeradorAutomatico {
+public class GeradorAutomaticoPorListaMaisRecente extends AbstractGeradorAutomatico implements Serializable {
 	
 	public GeradorAutomaticoPorListaMaisRecente() {
 		super();
