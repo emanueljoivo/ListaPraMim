@@ -258,11 +258,14 @@ public class ListaDeComprasServiceImpl implements ListaDeComprasService {
     	String out = "";
 
     	for (Entry<String, Double> entry: valorTotalCompras.entrySet()) {
-    		out += entry.getKey() + ": R$ " + entry.getValue();
+    		String preco = String.format("%.2f %n", entry.getValue());
+    		out += entry.getKey() + ": R$ " + preco + System.lineSeparator();
 
     		for (Compra c: compras) {
     			if (c.getItemCompravel().getMapaDePrecos().containsKey(entry.getKey())) {
-    				out += "- " + c.getQuantidade() + " " + c.getItemCompravel().toString();
+    				Double qtd = c.getQuantidade();
+    				out += "- " + qtd.intValue() + " " + c.getItemCompravel().toString() 
+    						+ System.lineSeparator();
     			}
     		}
     	}
